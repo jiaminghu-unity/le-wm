@@ -30,7 +30,11 @@ python train.py data=pusht trainer.devices=1 trainer.max_epochs=10
 - **`trainer.max_epochs=10` 必须加**：论文附录 E 明确写每个环境只训 10 epoch
   （"10 epochs are sufficient to reach the best performance"），仓库配置默认 100 是误导
 - 数据已转成 lance 格式（`datasets/pusht_expert_train.lance/`，作者默认格式），
-  不需要再加 `data.dataset.name` 参数；h5 原文件可删
+  不需要再加 `data.dataset.name` 参数；**h5 原文件不能删**——`eval.py` 硬编码用
+  `HDF5Dataset`，评测必须要 `datasets/pusht_expert_train.h5`（训练用 lance，评测用 h5）
+- 数据丢失后的恢复（2026-07-21 实例 stop 清空 local SSD 后实测）：
+  HF 数据仓库 `quentinll/lewm-pusht`，单文件 `pusht_expert_train.h5.zst`（13G）；
+  下载 → `zstd -d` 解压（44G）→ 转 lance，一键脚本：`bash scripts/restore_data.sh`
 - 环境变量 `STABLEWM_HOME=/mnt/data/stable-wm` 已写入 `~/.bashrc`
 - 实测 A100 单卡 5.7 it/s、GPU 利用率 90-95%（算力瓶颈），10 epoch ≈ 7 小时
 - 论文用单张 L40S；超参已逐项核对一致（batch 128、frameskip 5、ViT-Tiny patch 14、

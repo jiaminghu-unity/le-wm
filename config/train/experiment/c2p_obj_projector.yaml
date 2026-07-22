@@ -1,0 +1,15 @@
+# @package _global_
+# C2p: L_obj replaces SIGReg; architecture identical to C1 (projector kept).
+# Sweep loss.obj.weight in {0.01, 0.1, 1.0} from the command line.
+output_model_name: lewm_c2p_obj${loss.obj.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  sigreg:
+    weight: 0.0
+  obj:
+    weight: 0.1

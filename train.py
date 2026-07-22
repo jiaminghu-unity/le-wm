@@ -7,11 +7,40 @@ import lightning as pl
 import stable_pretraining as spt
 import stable_worldmodel as swm
 import torch
-from lightning.pytorch.loggers import WandbLogger
+from lightning.pytorch.loggers import CSVLogger, WandbLogger
 from omegaconf import OmegaConf, open_dict
 
+from lobj import obj_loss
 from module import SIGReg
-from utils import get_column_normalizer, get_img_preprocessor, SaveCkptCallback
+from utils import (
+    SaveCkptCallback,
+    WithEpisodeIdx,
+    get_column_normalizer,
+    get_img_preprocessor,
+    get_q_normalizer,
+)
+
+
+def grad_norm(loss, params):
+    grads = torch.autograd.grad(loss, params, retain_graph=True, allow_unused=True)
+    sq = [g.pow(2).sum() for g in grads if g is not None]
+    if not sq:
+        return torch.zeros((), device=loss.device)
+    return torch.sqrt(torch.stack(sq).sum())
+
+
+def latent_health(emb):
+    """||z|| stats + effective rank of the batch covariance (collapse alarm)."""
+    # bf16 autocast would downcast the matmul below and eigvalsh has no bf16 kernel
+    with torch.autocast(device_type=emb.device.type, enabled=False):
+        z = emb.detach().reshape(-1, emb.size(-1)).float()
+        norms = z.norm(dim=-1)
+        zc = z - z.mean(0, keepdim=True)
+        cov = (zc.T @ zc) / max(z.size(0) - 1, 1)
+        eig = torch.linalg.eigvalsh(cov).clamp_min(0)
+        p = eig / eig.sum().clamp_min(1e-12)
+        eff_rank = torch.exp(-(p * p.clamp_min(1e-12).log()).sum())
+    return {"z_norm_mean": norms.mean(), "z_norm_std": norms.std(), "eff_rank": eff_rank}
 
 
 def lejepa_forward(self, batch, stage, cfg):
@@ -20,6 +49,7 @@ def lejepa_forward(self, batch, stage, cfg):
     ctx_len = cfg.history_size
     n_preds = cfg.num_preds
     lambd = cfg.loss.sigreg.weight
+    lambd_obj = cfg.loss.obj.weight
 
     # Replace NaN values with 0 (occurs at sequence boundaries)
     batch["action"] = torch.nan_to_num(batch["action"], 0.0)
@@ -37,15 +67,88 @@ def lejepa_forward(self, batch, stage, cfg):
 
     # LeWM loss
     output["pred_loss"] = (pred_emb - tgt_emb).pow(2).mean()
-    output["sigreg_loss"]= self.sigreg(emb.transpose(0, 1))
-    output["loss"] = output["pred_loss"] + lambd * output["sigreg_loss"]  
+    loss = output["pred_loss"]
+
+    if lambd > 0:
+        output["sigreg_loss"] = self.sigreg(emb.transpose(0, 1))
+        loss = loss + lambd * output["sigreg_loss"]
+
+    # L_obj on the encoder-side embedding (same tensor SIGReg sees);
+    # gradients never reach the predictor by construction
+    if lambd_obj > 0:
+        obj, rho, skipped = obj_loss(
+            emb,
+            batch["q"],
+            batch["ep_idx"],
+            num_pairs=cfg.loss.obj.num_pairs,
+            within_frac=cfg.loss.obj.within_frac,
+        )
+        output["obj_loss"] = obj
+        loss = loss + lambd_obj * obj
+        if skipped:
+            self._obj_skipped = getattr(self, "_obj_skipped", 0) + 1
+        self.log(f"{stage}/obj_rho", rho, on_step=True, sync_dist=True)
+        self.log(
+            f"{stage}/obj_skipped",
+            float(getattr(self, "_obj_skipped", 0)),
+            on_step=True,
+            sync_dist=True,
+        )
+
+    output["loss"] = loss
+
+    # gradient balance between the two encoder losses (train only, every N steps)
+    if (
+        lambd_obj > 0
+        and torch.is_grad_enabled()
+        and self.global_step % cfg.log.grad_balance_every == 0
+    ):
+        enc_params = [p for p in self.model.encoder.parameters() if p.requires_grad]
+        gn_pred = grad_norm(output["pred_loss"], enc_params)
+        gn_obj = grad_norm(lambd_obj * output["obj_loss"], enc_params)
+        self.log_dict(
+            {
+                f"{stage}/grad_pred_enc": gn_pred,
+                f"{stage}/grad_obj_enc": gn_obj,
+                f"{stage}/grad_ratio_obj_pred": gn_obj / gn_pred.clamp_min(1e-12),
+            },
+            on_step=True,
+            sync_dist=True,
+        )
+
+    if self.global_step % cfg.log.latent_every == 0:
+        with torch.no_grad():
+            health = latent_health(emb)
+        self.log_dict(
+            {f"{stage}/{k}": v for k, v in health.items()}, on_step=True, sync_dist=True
+        )
 
     losses_dict = {f"{stage}/{k}": v.detach() for k, v in output.items() if "loss" in k}
     self.log_dict(losses_dict, on_step=True, sync_dist=True)
     return output
 
+
+def validate_config(cfg):
+    if cfg.loss.sigreg.weight > 0 and cfg.model.projector is None:
+        raise ValueError(
+            "SIGReg requires the MLP projector: a final-LayerNorm embedding lives on "
+            "a norm-sqrt(D) shell, incompatible with the isotropic Gaussian target. "
+            "This combination is forbidden by design (instructions §4)."
+        )
+    if cfg.loss.obj.type != "pearson":
+        raise NotImplementedError(
+            f"obj_loss_type={cfg.loss.obj.type!r} is a future ablation hook; "
+            "only 'pearson' is implemented."
+        )
+    if cfg.loss.get("sigreg_on_pred", False):
+        raise NotImplementedError(
+            "sigreg_on_pred is a future ablation hook ('version B'); must stay false."
+        )
+
 @hydra.main(version_base=None, config_path="./config/train", config_name="lewm")
 def run(cfg):
+    validate_config(cfg)
+
     #########################
     ##       dataset       ##
     #########################
@@ -57,7 +160,15 @@ def run(cfg):
         dataset_name, transform=None, cache_dir=cache_dir, **dataset_cfg
     )
     transforms = [get_img_preprocessor(source='pixels', target='pixels', img_size=cfg.img_size)]
-    
+
+    # q must be built from the RAW state column, so this runs before the
+    # z-score normalizers below overwrite 'state' in place
+    q_stats_path = Path(
+        swm.data.utils.get_cache_dir(cache_dir, sub_folder="datasets"),
+        f"{dataset_name}.q_stats.json",
+    )
+    transforms.append(get_q_normalizer(dataset, q_stats_path))
+
     with open_dict(cfg):
         for col in cfg.data.dataset.keys_to_load:
             if col.startswith("pixels"):
@@ -69,6 +180,7 @@ def run(cfg):
 
     transform = spt.data.transforms.Compose(*transforms)
     dataset.transform = transform
+    dataset = WithEpisodeIdx(dataset)  # L_obj pair sampling needs per-sample episode ids
 
     rnd_gen = torch.Generator().manual_seed(cfg.seed)
     train_set, val_set = spt.data.random_split(
@@ -108,10 +220,13 @@ def run(cfg):
     run_id = cfg.get("subdir") or ""
     run_dir = Path(swm.data.utils.get_cache_dir(sub_folder='checkpoints'), run_id)
 
-    logger = None
     if cfg.wandb.enabled:
         logger = WandbLogger(**cfg.wandb.config)
         logger.log_hyperparams(OmegaConf.to_container(cfg))
+    else:
+        # the monitoring in lejepa_forward (obj_rho, eff_rank, grad balance) has
+        # to land somewhere even without wandb
+        logger = CSVLogger(save_dir=str(run_dir), name="csv_logs")
 
     run_dir.mkdir(parents=True, exist_ok=True)
     with open(run_dir / "config.yaml", "w") as f:

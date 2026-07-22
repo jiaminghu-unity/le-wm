@@ -1,0 +1,9 @@
+# @package _global_
+# C1: vanilla LeWM reproduction. Repo defaults everywhere; paper setting is
+# 10 epochs (appendix E). Acceptance gate: planning SR >= 93%.
+output_model_name: lewm_c1_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1

@@ -1,0 +1,13 @@
+# @package _global_
+# C3: SIGReg (repo default 0.09) + L_obj together — additivity/interference test.
+# loss.obj.weight fixed from the C2p sweep.
+output_model_name: lewm_c3_sig_obj${loss.obj.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
