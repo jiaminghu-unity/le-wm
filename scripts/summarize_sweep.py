@@ -45,6 +45,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default="eval_results/results.csv")
     ap.add_argument("--out", default="eval_results/summary.csv")
+    ap.add_argument("--baseline", default="c1")
     args = ap.parse_args()
 
     df = pd.read_csv(args.results)
@@ -77,16 +78,16 @@ def main():
             "mean_plan_ms": round(float(grp["wallclock_per_plan_ms"].mean()), 1),
         }
         # paired McNemar vs C1 at same tier
-        c1 = df[(df.config == "c1") & (df.tier == tier)].sort_values("episode_id")
-        if config != "c1" and len(c1) == len(grp):
+        c1 = df[(df.config == args.baseline) & (df.tier == tier)].sort_values("episode_id")
+        if config != args.baseline and len(c1) == len(grp):
             a = c1["success"].to_numpy()
             assert (c1["episode_id"].to_numpy() == grp["episode_id"].to_numpy()).all()
             assert (c1["cem_seed"].to_numpy() == grp["cem_seed"].to_numpy()).all(), (
                 f"{config}/{tier}: CEM seeds differ from C1 — pairing broken!"
             )
-            row["mcnemar_p_vs_c1"] = round(mcnemar_exact(a, grp["success"].to_numpy()), 4)
+            row["mcnemar_p_vs_baseline"] = round(mcnemar_exact(a, grp["success"].to_numpy()), 4)
         else:
-            row["mcnemar_p_vs_c1"] = np.nan
+            row["mcnemar_p_vs_baseline"] = np.nan
         rows.append(row)
 
     out = pd.DataFrame(rows)

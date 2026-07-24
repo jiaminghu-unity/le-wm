@@ -21,12 +21,15 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import sys
 import time
 import zlib
 from collections import deque
 from copy import deepcopy
 from pathlib import Path
+
+os.environ.setdefault("MUJOCO_GL", "egl")  # dm_control envs render headless
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))  # jepa/module importable for load_pretrained
 
@@ -55,10 +58,30 @@ TIERS = {
     "T5": (10, 3),
 }
 
-CALLABLES = [
-    {"method": "_set_state", "args": {"state": {"value": "state"}}},
-    {"method": "_set_goal_state", "args": {"goal_state": {"value": "goal_state"}}},
-]
+# per-environment wiring, each mirroring the repo's own eval config verbatim
+# (config/eval/pusht.yaml and config/eval/reacher.yaml)
+ENV_PRESETS = {
+    "pusht": {
+        "env_name": "swm/PushT-v1",
+        "env_kwargs": {},
+        "dataset": "pusht_expert_train",
+        "process_cols": ["action", "proprio", "state"],
+        "callables": [
+            {"method": "_set_state", "args": {"state": {"value": "state"}}},
+            {"method": "_set_goal_state", "args": {"goal_state": {"value": "goal_state"}}},
+        ],
+    },
+    "reacher": {
+        "env_name": "swm/ReacherDMControl-v0",
+        "env_kwargs": {"task": "qpos_match"},
+        "dataset": "reacher",
+        "process_cols": ["action"],
+        "callables": [
+            {"method": "set_state", "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}}},
+            {"method": "set_target_qpos", "args": {"target_qpos": {"value": "goal_qpos"}}},
+        ],
+    },
+}
 
 
 def elites(num_candidates):
@@ -84,9 +107,9 @@ def img_transform():
     )
 
 
-def build_process(dataset):
+def build_process(dataset, cols):
     process = {}
-    for col in ["action", "proprio", "state"]:
+    for col in cols:
         scaler = preprocessing.StandardScaler()
         data = dataset.get_col_data(col)
         data = data[~np.isnan(data).any(axis=1)]
@@ -97,7 +120,7 @@ def build_process(dataset):
     return process
 
 
-def run_episode(world, policy, solver, dataset, ep, tier, plan_times):
+def run_episode(world, policy, solver, dataset, ep, tier, plan_times, callables):
     init_state, goal_state, _ = _extract_init_goal(
         dataset, [ep["traj_id"]], [ep["start_idx"]], GOAL_OFFSET
     )
@@ -105,7 +128,7 @@ def run_episode(world, policy, solver, dataset, ep, tier, plan_times):
     world.reset(seed=[ep["env_seed"]])
     merged = {**init_state, **goal_state}
     env_init = {k: v[0] for k, v in merged.items()}
-    _apply_callables(world.envs.envs[0].unwrapped, CALLABLES, env_init)
+    _apply_callables(world.envs.envs[0].unwrapped, callables, env_init)
 
     # first observation comes from the dataset frame, as in the stock eval
     shape_prefix = world.infos["pixels"].shape[:2]
@@ -150,22 +173,24 @@ def run_episode(world, policy, solver, dataset, ep, tier, plan_times):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", nargs=2, required=True, metavar=("NAME", "CKPT"))
+    ap.add_argument("--env", default="pusht", choices=list(ENV_PRESETS))
     ap.add_argument("--tiers", nargs="+", default=list(TIERS), choices=list(TIERS))
     ap.add_argument("--episodes-json", default=str(Path(__file__).parent / "episodes_pusht_50.json"))
     ap.add_argument("--out", default=str(Path(__file__).parent / "results.csv"))
     args = ap.parse_args()
     config_name, ckpt = args.config
+    preset = ENV_PRESETS[args.env]
 
     payload = Path(args.episodes_json).read_text()
     episodes_hash = hashlib.sha256(payload.encode()).hexdigest()[:12]
     episodes = json.loads(payload)["episodes"]
 
     dataset = swm.data.HDF5Dataset(
-        "pusht_expert_train",
-        keys_to_cache=["action", "proprio", "state"],
+        preset["dataset"],
+        keys_to_cache=preset["process_cols"],
         cache_dir=Path(swm.data.utils.get_cache_dir()),
     )
-    process = build_process(dataset)
+    process = build_process(dataset, preset["process_cols"])
     tfm = img_transform()
 
     model = swm.wm.utils.load_pretrained(ckpt)
@@ -174,10 +199,11 @@ def main():
     model.interpolate_pos_encoding = True
 
     world = swm.World(
-        env_name="swm/PushT-v1",
+        env_name=preset["env_name"],
         num_envs=1,
         image_shape=(224, 224),
         max_episode_steps=2 * EVAL_BUDGET,
+        **preset["env_kwargs"],
     )
 
     out_path = Path(args.out)
@@ -231,7 +257,7 @@ def main():
 
         n_success = 0
         for ep in episodes:
-            res = run_episode(world, policy, solver, dataset, ep, tier, plan_times)
+            res = run_episode(world, policy, solver, dataset, ep, tier, plan_times, preset["callables"])
             n_success += res["success"]
             writer.writerow(
                 {

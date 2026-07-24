@@ -46,53 +46,97 @@ def build_q_raw(state):
     return torch.cat([pos, torch.cos(theta), torch.sin(theta)], dim=-1)
 
 
-class QNormalizer:
-    """Picklable state -> standardized q transform (survives DataLoader worker spawn)."""
+def build_q_reacher_joints(qpos):
+    """Reacher joints_only: (..., 2) qpos -> (..., 4) [cos q0, sin q0, cos q1, sin q1].
 
-    def __init__(self, mean, std):
+    Angles enter only as (cos, sin): the shoulder joint is unbounded and
+    accumulates past +-pi, so raw qpos is never used anywhere.
+    """
+    return torch.cat(
+        [torch.cos(qpos[..., :1]), torch.sin(qpos[..., :1]),
+         torch.cos(qpos[..., 1:2]), torch.sin(qpos[..., 1:2])], dim=-1
+    )
+
+
+def build_q_reacher_joints_finger(qpos, finger):
+    """Reacher joints_plus_finger: qpos (...,2) + finger (...,2) -> (..., 6).
+
+    Finger position enters RAW — positions are not periodic, no cos/sin.
+    """
+    return torch.cat([build_q_reacher_joints(qpos), finger[..., :2]], dim=-1)
+
+
+# variant -> (builder fn, source columns, angle unit check: col, idx, lo, hi)
+Q_VARIANTS = {
+    "pusht_state": (build_q_raw, ["state"], ("state", 4, -3.15, 6.30)),
+    "reacher_joints_only": (build_q_reacher_joints, ["qpos"], ("qpos", 1, -3.15, 3.15)),
+    "reacher_joints_plus_finger": (
+        build_q_reacher_joints_finger, ["qpos", "finger_pos"], ("qpos", 1, -3.15, 3.15),
+    ),
+}
+
+
+class QNormalizer:
+    """Picklable multi-column -> standardized q transform (dict in/out, survives
+    DataLoader worker spawn)."""
+
+    def __init__(self, builder, sources, mean, std, target="q"):
+        self.builder = builder
+        self.sources = sources
         self.mean = mean
         self.std = std
+        self.target = target
 
-    def __call__(self, state):
-        q = build_q_raw(state)
-        return ((q - self.mean) / self.std).float()
+    def __call__(self, sample):
+        raws = [torch.as_tensor(sample[s]) for s in self.sources]
+        q = self.builder(*raws)
+        sample[self.target] = ((q - self.mean) / self.std).float()
+        return sample
 
 
-def get_q_normalizer(dataset, stats_path):
-    """Transform producing q from the raw 'state' column (insert BEFORE the state
-    z-score normalizer — it needs unnormalized positions/angle).
+def get_q_normalizer(dataset, stats_path, variant="pusht_state"):
+    """Transform producing q from raw physical columns (insert BEFORE the column
+    z-score normalizers — it needs unnormalized values).
 
     Per-component mean/std are computed once over the whole dataset and persisted
-    to a JSON artifact so training, probing and diagnostics share identical stats.
+    to a JSON artifact PER VARIANT so training, probing and diagnostics share
+    identical stats. Never reuse stats across tasks or variants.
     """
+    builder, sources, (angle_col, angle_idx, lo, hi) = Q_VARIANTS[variant]
     stats_path = Path(stats_path)
     if stats_path.exists():
         stats = json.loads(stats_path.read_text())
+        assert stats.get("variant", variant) == variant, (
+            f"stats file {stats_path} was computed for variant {stats.get('variant')!r}"
+        )
     else:
-        state = torch.from_numpy(np.array(dataset.get_col_data("state")))
-        state = state[~torch.isnan(state).any(dim=1)]
-        theta_min = state[:, 4].min().item()
-        theta_max = state[:, 4].max().item()
-        # unit check: radians live in [-pi, pi] or [0, 2pi]; degrees fail loudly
-        if theta_min < -3.15 or theta_max > 6.30:
+        cols = [torch.from_numpy(np.array(dataset.get_col_data(s))) for s in sources]
+        mask = torch.ones(cols[0].size(0), dtype=torch.bool)
+        for c in cols:
+            mask &= ~torch.isnan(c).any(dim=1)
+        cols = [c[mask] for c in cols]
+        angle = cols[sources.index(angle_col)][:, angle_idx]
+        a_min, a_max = angle.min().item(), angle.max().item()
+        # unit check: radians expected; degree-like ranges fail loudly.
+        # NB: checks a BOUNDED joint only — the reacher shoulder is unbounded.
+        if a_min < lo or a_max > hi:
             raise ValueError(
-                f"block_angle range [{theta_min:.3f}, {theta_max:.3f}] is not radians "
-                "— convert the dataset before training (see instructions §2/§10.4)."
+                f"{angle_col}[{angle_idx}] range [{a_min:.3f}, {a_max:.3f}] outside "
+                f"expected radian range [{lo}, {hi}] — degrees? STOP and check."
             )
-        q = build_q_raw(state)
+        q = builder(*cols)
         stats = {
+            "variant": variant,
             "mean": q.mean(0).tolist(),
             "std": q.std(0).tolist(),
-            "theta_range": [theta_min, theta_max],
+            "angle_range": [a_min, a_max],
             "n_frames": q.size(0),
         }
         stats_path.write_text(json.dumps(stats, indent=2))
 
     mean = torch.tensor(stats["mean"])
     std = torch.tensor(stats["std"])
-    return dt.transforms.WrapTorchTransform(
-        QNormalizer(mean, std), source="state", target="q"
-    )
+    return QNormalizer(builder, sources, mean, std)
 
 
 class WithEpisodeIdx:

@@ -161,13 +161,14 @@ def run(cfg):
     )
     transforms = [get_img_preprocessor(source='pixels', target='pixels', img_size=cfg.img_size)]
 
-    # q must be built from the RAW state column, so this runs before the
-    # z-score normalizers below overwrite 'state' in place
+    # q must be built from RAW physical columns, so this runs before the
+    # z-score normalizers below overwrite them in place
+    q_variant = cfg.loss.obj.get("q_variant", "pusht_state")
     q_stats_path = Path(
         swm.data.utils.get_cache_dir(cache_dir, sub_folder="datasets"),
-        f"{dataset_name}.q_stats.json",
+        f"{dataset_name}.q_stats.{q_variant}.json",
     )
-    transforms.append(get_q_normalizer(dataset, q_stats_path))
+    transforms.append(get_q_normalizer(dataset, q_stats_path, q_variant))
 
     with open_dict(cfg):
         for col in cfg.data.dataset.keys_to_load:

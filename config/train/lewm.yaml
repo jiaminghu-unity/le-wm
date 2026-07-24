@@ -45,6 +45,7 @@ loss:
   obj:
     weight: 0.0
     type: pearson     # hook for future ablations (absolute / rank-hinge)
+    q_variant: pusht_state  # see utils.Q_VARIANTS
     num_pairs: 4096
     within_frac: 0.5
   sigreg_on_pred: false  # hook for future "version B" ablation — must stay false

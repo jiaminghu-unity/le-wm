@@ -70,9 +70,9 @@ def main():
     # duplicate rows are possible (pairs share frames); fetch unique rows once
     all_rows = np.concatenate([rows_t, rows_g])
     uniq_rows, inverse = np.unique(all_rows, return_inverse=True)
-    pix, state = load_frames(dataset, uniq_rows, device)
+    pix, cols = load_frames(dataset, uniq_rows, device)
     z = encode(model, pix, device)[torch.from_numpy(inverse)]
-    state = state[inverse]
+    state = cols["state"][inverse]
 
     q = (build_q_raw(torch.from_numpy(state)) - q_mean) / q_std
     z_t, z_g = z[:N_PAIRS], z[N_PAIRS:]

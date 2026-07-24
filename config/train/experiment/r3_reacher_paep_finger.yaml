@@ -1,0 +1,32 @@
+# @package _global_
+# R3 (ablation, launch ONLY after R2 passes health gates): L_obj on
+# joints_plus_finger q (6-dim: cos/sin joints + raw finger xy).
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_r3_reacher_finger_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    name: reacher.lance
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: reacher_joints_plus_finger

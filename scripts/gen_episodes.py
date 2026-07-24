@@ -22,10 +22,10 @@ GOAL_OFFSET = 25
 DEFAULT_OUT = Path(__file__).resolve().parent / "episodes_pusht_50.json"
 
 
-def generate(num, seed, out):
+def generate(num, seed, out, dataset_name="pusht_expert_train", env_seed_base=20000):
     dataset = swm.data.HDF5Dataset(
-        "pusht_expert_train",
-        keys_to_cache=["action", "proprio", "state"],
+        dataset_name,
+        keys_to_cache=["action"],
         cache_dir=Path(swm.data.utils.get_cache_dir()),
     )
     col_name = "episode_idx" if "episode_idx" in dataset.column_names else "ep_idx"
@@ -50,7 +50,7 @@ def generate(num, seed, out):
                 "traj_id": int(ep_col[r]),
                 "start_idx": int(step_col[r]),
                 "goal_idx": int(step_col[r]) + GOAL_OFFSET,
-                "env_seed": 20000 + i,
+                "env_seed": env_seed_base + i,
             }
         )
 
@@ -70,8 +70,10 @@ def main():
     ap.add_argument("--num", type=int, default=50)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default=str(DEFAULT_OUT))
+    ap.add_argument("--dataset", default="pusht_expert_train")
+    ap.add_argument("--env-seed-base", type=int, default=20000)
     args = ap.parse_args()
-    generate(args.num, args.seed, args.out)
+    generate(args.num, args.seed, args.out, args.dataset, args.env_seed_base)
 
 
 if __name__ == "__main__":

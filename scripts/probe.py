@@ -39,22 +39,29 @@ MLP_BS = 1024
 MLP_LR = 1e-3
 TARGETS = {"pusher_xy": slice(0, 2), "block_xy": slice(2, 4), "block_angle": slice(4, 6)}
 
+# Reacher targets (spec Step 4): joints as cos/sin ONLY (raw qpos is ill-posed —
+# unbounded shoulder), finger position as reference, and the qvel probe as the
+# non-circularity check (qvel is absent from q in BOTH training variants).
+REACHER_TARGETS = {"joints_cossin": slice(0, 4), "finger_xy": slice(4, 6), "qvel": slice(6, 8)}
 
-def load_frames(dataset, rows, device):
-    """Decode pixels + raw state for the given dataset rows (frame indices)."""
+
+def load_frames(dataset, rows, device, cols=("state",)):
+    """Decode pixels + raw physical columns for the given dataset rows."""
     imagenet = spt.data.dataset_stats.ImageNet
     mean = torch.tensor(imagenet["mean"], device=device).view(1, 3, 1, 1)
     std = torch.tensor(imagenet["std"], device=device).view(1, 3, 1, 1)
-    pix_list, state_list = [], []
+    pix_list = []
+    col_lists = {c: [] for c in cols}
     for i in range(0, len(rows), ENCODE_BS):
         chunk = rows[i : i + ENCODE_BS].tolist()
         batch = dataset.get_row_data(chunk)
-        state_list.append(np.asarray(batch["state"], dtype=np.float32))
+        for c in cols:
+            col_lists[c].append(np.asarray(batch[c], dtype=np.float32))
         blobs = batch["pixels"].tolist()
         pix = dataset._decode_images(blobs).to(device).float() / 255.0
         pix = (pix - mean) / std
         pix_list.append(pix.cpu())
-    return pix_list, np.concatenate(state_list)
+    return pix_list, {c: np.concatenate(v) for c, v in col_lists.items()}
 
 
 @torch.no_grad()
@@ -108,22 +115,33 @@ def fit_mlp(z_tr, y_tr, seed=0):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", nargs=2, required=True, metavar=("NAME", "CKPT"))
+    ap.add_argument("--env", default="pusht", choices=["pusht", "reacher"])
     ap.add_argument("--out", default="eval_results/probing.csv")
     args = ap.parse_args()
     name, ckpt = args.config
     device = "cuda"
 
-    dataset = swm.data.load_dataset(
-        "pusht_expert_train.lance", keys_to_load=["pixels", "state"]
-    )
-    stats = json.loads(
-        Path(
-            swm.data.utils.get_cache_dir(sub_folder="datasets"),
-            "pusht_expert_train.lance.q_stats.json",
-        ).read_text()
-    )
-    q_mean = torch.tensor(stats["mean"])
-    q_std = torch.tensor(stats["std"])
+    if args.env == "pusht":
+        dataset = swm.data.load_dataset(
+            "pusht_expert_train.lance", keys_to_load=["pixels", "state"]
+        )
+        cols = ("state",)
+        targets = TARGETS
+        stats = json.loads(
+            Path(
+                swm.data.utils.get_cache_dir(sub_folder="datasets"),
+                "pusht_expert_train.lance.q_stats.pusht_state.json",
+            ).read_text()
+        )
+        q_mean = torch.tensor(stats["mean"])
+        q_std = torch.tensor(stats["std"])
+    else:
+        dataset = swm.data.load_dataset(
+            "reacher.lance", keys_to_load=["pixels", "qpos", "finger_pos", "qvel"]
+        )
+        cols = ("qpos", "finger_pos", "qvel")
+        targets = REACHER_TARGETS
+        q_mean = q_std = None  # standardized on the probe train split (shared across configs)
 
     # episode-disjoint split, deterministic
     n_ep = len(dataset.lengths)
@@ -142,12 +160,29 @@ def main():
     model.requires_grad_(False)
 
     print(f"[{name}] encoding {len(train_rows)}+{len(test_rows)} frames...", flush=True)
-    pix_tr, state_tr = load_frames(dataset, train_rows, device)
-    pix_te, state_te = load_frames(dataset, test_rows, device)
+    pix_tr, cols_tr = load_frames(dataset, train_rows, device, cols)
+    pix_te, cols_te = load_frames(dataset, test_rows, device, cols)
     z_tr = encode(model, pix_tr, device)
     z_te = encode(model, pix_te, device)
-    y_tr = (build_q_raw(torch.from_numpy(state_tr)) - q_mean) / q_std
-    y_te = (build_q_raw(torch.from_numpy(state_te)) - q_mean) / q_std
+
+    if args.env == "pusht":
+        y_tr = (build_q_raw(torch.from_numpy(cols_tr["state"])) - q_mean) / q_std
+        y_te = (build_q_raw(torch.from_numpy(cols_te["state"])) - q_mean) / q_std
+    else:
+        from utils import build_q_reacher_joints
+
+        def targets_raw(c):
+            return torch.cat(
+                [build_q_reacher_joints(torch.from_numpy(c["qpos"])),
+                 torch.from_numpy(c["finger_pos"]), torch.from_numpy(c["qvel"])], dim=-1
+            )
+
+        y_tr_raw, y_te_raw = targets_raw(cols_tr), targets_raw(cols_te)
+        # standardize on the (deterministic) probe train split — identical
+        # across configs, so MSE is comparable; Pearson r is scale-free anyway
+        t_mean, t_std = y_tr_raw.mean(0), y_tr_raw.std(0).clamp_min(1e-8)
+        y_tr = (y_tr_raw - t_mean) / t_std
+        y_te = (y_te_raw - t_mean) / t_std
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -159,7 +194,7 @@ def main():
         if write_header:
             writer.writeheader()
         for probe_name, fitter in [("linear", fit_linear), ("mlp", fit_mlp)]:
-            for tname, sl in TARGETS.items():
+            for tname, sl in targets.items():
                 predict = fitter(z_tr, y_tr[:, sl])
                 pred = predict(z_te)
                 mse = (pred - y_te[:, sl]).pow(2).mean().item()

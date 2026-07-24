@@ -1,0 +1,32 @@
+# @package _global_
+# R2: PAEP main — SIGReg (repo default) + L_obj on joints_only q (4-dim cos/sin).
+# lambda_obj = 0.1 carried over from Push-T, deliberately NOT re-tuned.
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_r2_reacher_paep_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    name: reacher.lance
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: reacher_joints_only

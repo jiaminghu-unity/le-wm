@@ -24,6 +24,10 @@ SERIES = {
     "c2p": ("#eb6834", "C2p L_obj + projector"),
     "c2": ("#1baf7a", "C2 L_obj vanilla (LN)"),
     "c3": ("#eda100", "C3 SIGReg + L_obj"),
+    "c3_l02": ("#e87ba4", "C3 SIGReg + L_obj (l=0.2)"),
+    "r1": ("#2a78d6", "R1 baseline (SIGReg)"),
+    "r2": ("#eb6834", "R2 PAEP joints"),
+    "r3": ("#1baf7a", "R3 PAEP joints+finger"),
 }
 BOOT_REPS = 1000
 BOOT_SEED = 0
