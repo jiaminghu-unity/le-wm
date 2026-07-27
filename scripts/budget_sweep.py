@@ -58,6 +58,18 @@ TIERS = {
     "T5": (10, 3),
 }
 
+# Gradient-descent budget ladder: (parallel restarts, gradient iterations),
+# chosen so that rollout evaluations per replan (samples x steps) match the
+# sampling tiers' candidates x iterations exactly: 9000 / 2250 / 500 / 100 / 30.
+# Optimizer follows the repo's own adam.yaml anchor (AdamW, lr=0.1).
+GD_TIERS = {
+    "T1": (100, 90),
+    "T2": (75, 30),
+    "T3": (50, 10),
+    "T4": (20, 5),
+    "T5": (10, 3),
+}
+
 # per-environment wiring, each mirroring the repo's own eval config verbatim
 # (config/eval/pusht.yaml and config/eval/reacher.yaml)
 ENV_PRESETS = {
@@ -82,6 +94,35 @@ ENV_PRESETS = {
         ],
     },
 }
+
+
+class GDSolverPatched(swm.solver.GradientSolver):
+    """Upstream 0.1.1 bug workaround: GradientSolver.init_action only moves the
+    action tensor to the solver device in its zero-padding branch, so a
+    full-horizon warm-start arrives on CPU and collides with CUDA noise."""
+
+    def init_action(self, n_envs, actions=None):
+        if actions is not None:
+            actions = actions.to(self.device)
+        return super().init_action(n_envs, actions)
+
+
+class CloneActionsCostable:
+    """Second 0.1.1 workaround, for gd only: JEPA.get_cost torch.split()s the
+    action tensor into views; GradientSolver steps the underlying Parameter
+    in-place between iterations, which autograd rejects for stale views.
+    Cloning the actions at the model boundary (differentiable) severs the view."""
+
+    def __init__(self, model):
+        self._model = model
+
+    def get_cost(self, info_dict, action_candidates):
+        return self._model.get_cost(info_dict, action_candidates.clone())
+
+    def __getattr__(self, name):
+        if name == "_model":
+            raise AttributeError(name)
+        return getattr(self._model, name)
 
 
 def elites(num_candidates):
@@ -173,6 +214,7 @@ def run_episode(world, policy, solver, dataset, ep, tier, plan_times, callables)
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", nargs=2, required=True, metavar=("NAME", "CKPT"))
+    ap.add_argument("--solver", default="cem", choices=["cem", "icem", "mppi", "gd"])
     ap.add_argument("--env", default="pusht", choices=list(ENV_PRESETS))
     ap.add_argument("--tiers", nargs="+", default=list(TIERS), choices=list(TIERS))
     ap.add_argument("--episodes-json", default=str(Path(__file__).parent / "episodes_pusht_50.json"))
@@ -208,30 +250,40 @@ def main():
 
     out_path = Path(args.out)
     fields = [
-        "config", "checkpoint_path", "tier", "candidates", "iterations", "elites",
+        "config", "solver", "checkpoint_path", "tier", "candidates", "iterations", "elites",
         "episode_id", "success", "env_steps_used", "num_replans",
         "predictor_forwards_total", "wallclock_per_plan_ms", "wallclock_episode_s",
         "episodes_hash", "traj_id", "start_idx", "cem_seed",
     ]
     write_header = not out_path.exists()
+    if not write_header:
+        # appending to a pre-existing file: adopt its header so columns never shift
+        existing = out_path.open().readline().strip().split(",")
+        fields = existing
     fout = out_path.open("a", newline="")
-    writer = csv.DictWriter(fout, fieldnames=fields)
+    writer = csv.DictWriter(fout, fieldnames=fields, extrasaction="ignore")
     if write_header:
         writer.writeheader()
 
     for tier in args.tiers:
-        candidates, iterations = TIERS[tier]
-        topk = elites(candidates)
-        solver = swm.solver.CEMSolver(
-            model=model,
-            batch_size=1,
-            num_samples=candidates,
-            var_scale=VAR_SCALE,
-            n_steps=iterations,
-            topk=topk,
-            device="cuda",
-            seed=0,  # re-seeded per episode
-        )
+        if args.solver == "gd":
+            candidates, iterations = GD_TIERS[tier]
+            topk = 0  # n/a for gradient descent
+            solver = GDSolverPatched(
+                model=CloneActionsCostable(model), batch_size=1, num_samples=candidates,
+                var_scale=VAR_SCALE, n_steps=iterations, device="cuda", seed=0,
+                optimizer_cls=torch.optim.AdamW, optimizer_kwargs={"lr": 0.1},
+            )
+        else:
+            candidates, iterations = TIERS[tier]
+            topk = elites(candidates)
+            cls = {"cem": swm.solver.CEMSolver, "icem": swm.solver.ICEMSolver,
+                   "mppi": swm.solver.MPPISolver}[args.solver]
+            solver = cls(  # icem/mppi extras (noise_beta, alpha, temperature) stay at repo defaults
+                model=model, batch_size=1, num_samples=candidates,
+                var_scale=VAR_SCALE, n_steps=iterations, topk=topk,
+                device="cuda", seed=0,  # re-seeded per episode
+            )
         plan_times = []
         orig_solve = solver.solve
 
@@ -262,6 +314,7 @@ def main():
             writer.writerow(
                 {
                     "config": config_name,
+                    "solver": args.solver,
                     "checkpoint_path": ckpt,
                     "tier": tier,
                     "candidates": candidates,

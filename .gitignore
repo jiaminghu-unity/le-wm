@@ -4,3 +4,4 @@ outputs/
 *.ckpt
 *.pt
 train_logs
+.claude/

@@ -48,6 +48,9 @@ loss:
     q_variant: pusht_state  # see utils.Q_VARIANTS
     num_pairs: 4096
     within_frac: 0.5
+  aux:
+    weight: 0.0       # auxiliary q-regression head (information-injection control)
+    hidden: 256
   sigreg_on_pred: false  # hook for future "version B" ablation — must stay false
 
 log:

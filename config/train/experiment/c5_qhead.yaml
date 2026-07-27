@@ -1,0 +1,15 @@
+# @package _global_
+# C5: information-injection control — auxiliary MLP head regresses q from the
+# same embedding SIGReg sees (MSE, gradients into the encoder); head discarded
+# at eval. Injects the SAME q signal as L_obj but supervises decodability
+# instead of distance geometry. Sweep loss.aux.weight from the command line.
+output_model_name: lewm_c5_qhead${loss.aux.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  aux:
+    weight: 0.1

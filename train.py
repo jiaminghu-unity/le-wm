@@ -11,7 +11,7 @@ from lightning.pytorch.loggers import CSVLogger, WandbLogger
 from omegaconf import OmegaConf, open_dict
 
 from lobj import obj_loss
-from module import SIGReg
+from module import MLP, SIGReg
 from utils import (
     SaveCkptCallback,
     WithEpisodeIdx,
@@ -73,6 +73,16 @@ def lejepa_forward(self, batch, stage, cfg):
         output["sigreg_loss"] = self.sigreg(emb.transpose(0, 1))
         loss = loss + lambd * output["sigreg_loss"]
 
+    # auxiliary q-regression head (information-injection control): same q, same
+    # tensor as SIGReg/L_obj, but supervises DECODABILITY instead of geometry.
+    # Head lives outside JEPA and is discarded at eval time.
+    lambd_aux = cfg.loss.aux.weight
+    if lambd_aux > 0:
+        q_flat = batch["q"].reshape(-1, batch["q"].size(-1))
+        q_hat = self.aux_head(emb.reshape(-1, emb.size(-1)))
+        output["aux_loss"] = (q_hat - q_flat).pow(2).mean()
+        loss = loss + lambd_aux * output["aux_loss"]
+
     # L_obj on the encoder-side embedding (same tensor SIGReg sees);
     # gradients never reach the predictor by construction
     if lambd_obj > 0:
@@ -97,24 +107,24 @@ def lejepa_forward(self, batch, stage, cfg):
 
     output["loss"] = loss
 
-    # gradient balance between the two encoder losses (train only, every N steps)
+    # gradient balance between the encoder losses (train only, every N steps)
     if (
-        lambd_obj > 0
+        (lambd_obj > 0 or lambd_aux > 0)
         and torch.is_grad_enabled()
         and self.global_step % cfg.log.grad_balance_every == 0
     ):
         enc_params = [p for p in self.model.encoder.parameters() if p.requires_grad]
         gn_pred = grad_norm(output["pred_loss"], enc_params)
-        gn_obj = grad_norm(lambd_obj * output["obj_loss"], enc_params)
-        self.log_dict(
-            {
-                f"{stage}/grad_pred_enc": gn_pred,
-                f"{stage}/grad_obj_enc": gn_obj,
-                f"{stage}/grad_ratio_obj_pred": gn_obj / gn_pred.clamp_min(1e-12),
-            },
-            on_step=True,
-            sync_dist=True,
-        )
+        metrics = {f"{stage}/grad_pred_enc": gn_pred}
+        if lambd_obj > 0:
+            gn_obj = grad_norm(lambd_obj * output["obj_loss"], enc_params)
+            metrics[f"{stage}/grad_obj_enc"] = gn_obj
+            metrics[f"{stage}/grad_ratio_obj_pred"] = gn_obj / gn_pred.clamp_min(1e-12)
+        if lambd_aux > 0:
+            gn_aux = grad_norm(lambd_aux * output["aux_loss"], enc_params)
+            metrics[f"{stage}/grad_aux_enc"] = gn_aux
+            metrics[f"{stage}/grad_ratio_aux_pred"] = gn_aux / gn_pred.clamp_min(1e-12)
+        self.log_dict(metrics, on_step=True, sync_dist=True)
 
     if self.global_step % cfg.log.latent_every == 0:
         with torch.no_grad():
@@ -197,9 +207,20 @@ def run(cfg):
 
     world_model = hydra.utils.instantiate(cfg.model)
 
+    # auxiliary q-regression head (probing-MLP architecture); lives on the
+    # training wrapper, not inside JEPA — checkpoints stay identical to C1
+    aux_head = None
+    if cfg.loss.aux.weight > 0:
+        import json as _json
+        q_dim = len(_json.loads(Path(q_stats_path).read_text())["mean"])
+        aux_head = MLP(
+            input_dim=cfg.embed_dim, hidden_dim=cfg.loss.aux.hidden,
+            output_dim=q_dim, norm_fn=None, act_fn=torch.nn.ReLU,
+        )
+
     optimizers = {
         'model_opt': {
-            "modules": 'model',
+            "modules": 'model|aux_head' if aux_head is not None else 'model',
             "optimizer": dict(cfg.optimizer),
             "scheduler": {"type": "LinearWarmupCosineAnnealingLR"},
             "interval": "epoch",
@@ -207,12 +228,15 @@ def run(cfg):
     }
 
     data_module = spt.data.DataModule(train=train, val=val)
-    world_model = spt.Module(
-        model = world_model,
-        sigreg = SIGReg(**cfg.loss.sigreg.kwargs),
+    module_kwargs = dict(
+        model=world_model,
+        sigreg=SIGReg(**cfg.loss.sigreg.kwargs),
         forward=partial(lejepa_forward, cfg=cfg),
         optim=optimizers,
     )
+    if aux_head is not None:
+        module_kwargs["aux_head"] = aux_head
+    world_model = spt.Module(**module_kwargs)
 
     ##########################
     ##       training       ##
