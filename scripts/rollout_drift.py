@@ -22,6 +22,7 @@ MODELS = {
     "c1": "lewm_c1_s3072/weights_epoch_10.pt",
     "c3": "lewm_c3_sig_obj0.1_s3072/weights_epoch_10.pt",
     "c5_w02": "lewm_c5_qhead0.2_s3072/weights_epoch_10.pt",
+    "c5_w03": "lewm_c5_qhead0.3_s3072/weights_epoch_10.pt",
     "c6": "lewm_c6_combo_s3072/weights_epoch_10.pt",
 }
 M = 256          # windows
