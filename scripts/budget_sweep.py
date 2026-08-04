@@ -93,6 +93,34 @@ ENV_PRESETS = {
             {"method": "set_target_qpos", "args": {"target_qpos": {"value": "goal_qpos"}}},
         ],
     },
+    # OGBench-Cube: mirrors config/eval/cube.yaml verbatim. keys_to_load is required
+    # here (unlike pusht/reacher): _extract_init_goal walks every loaded column, and
+    # the cube h5 carries an object-dtype column (privileged_target_task) plus a dozen
+    # unused ones, so the set is pinned to exactly what the protocol touches.
+    "cube": {
+        "env_name": "swm/OGBCube-v0",
+        "env_kwargs": {
+            "env_type": "single",
+            "ob_type": "states",
+            "multiview": False,
+            "visualize_info": False,
+            "terminate_at_goal": True,
+        },
+        "dataset": "ogbench/cube_single_expert",
+        "process_cols": ["action"],
+        "keys_to_load": [
+            "pixels", "action", "qpos", "qvel",
+            "privileged_block_0_pos", "privileged_block_0_quat",
+        ],
+        "callables": [
+            {"method": "set_state",
+             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}}},
+            {"method": "set_target_pos",
+             "args": {"cube_id": {"value": 0, "in_dataset": False},
+                      "target_pos": {"value": "goal_privileged_block_0_pos"},
+                      "target_quat": {"value": "goal_privileged_block_0_quat"}}},
+        ],
+    },
 }
 
 
@@ -227,10 +255,14 @@ def main():
     episodes_hash = hashlib.sha256(payload.encode()).hexdigest()[:12]
     episodes = json.loads(payload)["episodes"]
 
+    ds_kwargs = {}
+    if preset.get("keys_to_load"):
+        ds_kwargs["keys_to_load"] = preset["keys_to_load"]
     dataset = swm.data.HDF5Dataset(
         preset["dataset"],
         keys_to_cache=preset["process_cols"],
         cache_dir=Path(swm.data.utils.get_cache_dir()),
+        **ds_kwargs,
     )
     process = build_process(dataset, preset["process_cols"])
     tfm = img_transform()

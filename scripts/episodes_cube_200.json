@@ -1,0 +1,1406 @@
+{
+  "episodes": [
+    {
+      "env_seed": 30000,
+      "episode_id": 0,
+      "goal_idx": 132,
+      "start_idx": 107,
+      "traj_id": 39
+    },
+    {
+      "env_seed": 30001,
+      "episode_id": 1,
+      "goal_idx": 161,
+      "start_idx": 136,
+      "traj_id": 40
+    },
+    {
+      "env_seed": 30002,
+      "episode_id": 2,
+      "goal_idx": 118,
+      "start_idx": 93,
+      "traj_id": 41
+    },
+    {
+      "env_seed": 30003,
+      "episode_id": 3,
+      "goal_idx": 30,
+      "start_idx": 5,
+      "traj_id": 127
+    },
+    {
+      "env_seed": 30004,
+      "episode_id": 4,
+      "goal_idx": 112,
+      "start_idx": 87,
+      "traj_id": 140
+    },
+    {
+      "env_seed": 30005,
+      "episode_id": 5,
+      "goal_idx": 73,
+      "start_idx": 48,
+      "traj_id": 200
+    },
+    {
+      "env_seed": 30006,
+      "episode_id": 6,
+      "goal_idx": 77,
+      "start_idx": 52,
+      "traj_id": 334
+    },
+    {
+      "env_seed": 30007,
+      "episode_id": 7,
+      "goal_idx": 133,
+      "start_idx": 108,
+      "traj_id": 337
+    },
+    {
+      "env_seed": 30008,
+      "episode_id": 8,
+      "goal_idx": 148,
+      "start_idx": 123,
+      "traj_id": 437
+    },
+    {
+      "env_seed": 30009,
+      "episode_id": 9,
+      "goal_idx": 124,
+      "start_idx": 99,
+      "traj_id": 466
+    },
+    {
+      "env_seed": 30010,
+      "episode_id": 10,
+      "goal_idx": 52,
+      "start_idx": 27,
+      "traj_id": 506
+    },
+    {
+      "env_seed": 30011,
+      "episode_id": 11,
+      "goal_idx": 114,
+      "start_idx": 89,
+      "traj_id": 740
+    },
+    {
+      "env_seed": 30012,
+      "episode_id": 12,
+      "goal_idx": 134,
+      "start_idx": 109,
+      "traj_id": 760
+    },
+    {
+      "env_seed": 30013,
+      "episode_id": 13,
+      "goal_idx": 95,
+      "start_idx": 70,
+      "traj_id": 827
+    },
+    {
+      "env_seed": 30014,
+      "episode_id": 14,
+      "goal_idx": 141,
+      "start_idx": 116,
+      "traj_id": 828
+    },
+    {
+      "env_seed": 30015,
+      "episode_id": 15,
+      "goal_idx": 38,
+      "start_idx": 13,
+      "traj_id": 933
+    },
+    {
+      "env_seed": 30016,
+      "episode_id": 16,
+      "goal_idx": 191,
+      "start_idx": 166,
+      "traj_id": 1054
+    },
+    {
+      "env_seed": 30017,
+      "episode_id": 17,
+      "goal_idx": 114,
+      "start_idx": 89,
+      "traj_id": 1185
+    },
+    {
+      "env_seed": 30018,
+      "episode_id": 18,
+      "goal_idx": 133,
+      "start_idx": 108,
+      "traj_id": 1191
+    },
+    {
+      "env_seed": 30019,
+      "episode_id": 19,
+      "goal_idx": 177,
+      "start_idx": 152,
+      "traj_id": 1226
+    },
+    {
+      "env_seed": 30020,
+      "episode_id": 20,
+      "goal_idx": 72,
+      "start_idx": 47,
+      "traj_id": 1261
+    },
+    {
+      "env_seed": 30021,
+      "episode_id": 21,
+      "goal_idx": 118,
+      "start_idx": 93,
+      "traj_id": 1264
+    },
+    {
+      "env_seed": 30022,
+      "episode_id": 22,
+      "goal_idx": 120,
+      "start_idx": 95,
+      "traj_id": 1271
+    },
+    {
+      "env_seed": 30023,
+      "episode_id": 23,
+      "goal_idx": 31,
+      "start_idx": 6,
+      "traj_id": 1319
+    },
+    {
+      "env_seed": 30024,
+      "episode_id": 24,
+      "goal_idx": 59,
+      "start_idx": 34,
+      "traj_id": 1396
+    },
+    {
+      "env_seed": 30025,
+      "episode_id": 25,
+      "goal_idx": 28,
+      "start_idx": 3,
+      "traj_id": 1472
+    },
+    {
+      "env_seed": 30026,
+      "episode_id": 26,
+      "goal_idx": 66,
+      "start_idx": 41,
+      "traj_id": 1515
+    },
+    {
+      "env_seed": 30027,
+      "episode_id": 27,
+      "goal_idx": 172,
+      "start_idx": 147,
+      "traj_id": 1538
+    },
+    {
+      "env_seed": 30028,
+      "episode_id": 28,
+      "goal_idx": 39,
+      "start_idx": 14,
+      "traj_id": 1649
+    },
+    {
+      "env_seed": 30029,
+      "episode_id": 29,
+      "goal_idx": 143,
+      "start_idx": 118,
+      "traj_id": 1656
+    },
+    {
+      "env_seed": 30030,
+      "episode_id": 30,
+      "goal_idx": 139,
+      "start_idx": 114,
+      "traj_id": 1709
+    },
+    {
+      "env_seed": 30031,
+      "episode_id": 31,
+      "goal_idx": 161,
+      "start_idx": 136,
+      "traj_id": 1746
+    },
+    {
+      "env_seed": 30032,
+      "episode_id": 32,
+      "goal_idx": 161,
+      "start_idx": 136,
+      "traj_id": 1893
+    },
+    {
+      "env_seed": 30033,
+      "episode_id": 33,
+      "goal_idx": 176,
+      "start_idx": 151,
+      "traj_id": 1937
+    },
+    {
+      "env_seed": 30034,
+      "episode_id": 34,
+      "goal_idx": 58,
+      "start_idx": 33,
+      "traj_id": 2067
+    },
+    {
+      "env_seed": 30035,
+      "episode_id": 35,
+      "goal_idx": 149,
+      "start_idx": 124,
+      "traj_id": 2194
+    },
+    {
+      "env_seed": 30036,
+      "episode_id": 36,
+      "goal_idx": 150,
+      "start_idx": 125,
+      "traj_id": 2246
+    },
+    {
+      "env_seed": 30037,
+      "episode_id": 37,
+      "goal_idx": 167,
+      "start_idx": 142,
+      "traj_id": 2246
+    },
+    {
+      "env_seed": 30038,
+      "episode_id": 38,
+      "goal_idx": 38,
+      "start_idx": 13,
+      "traj_id": 2329
+    },
+    {
+      "env_seed": 30039,
+      "episode_id": 39,
+      "goal_idx": 54,
+      "start_idx": 29,
+      "traj_id": 2455
+    },
+    {
+      "env_seed": 30040,
+      "episode_id": 40,
+      "goal_idx": 138,
+      "start_idx": 113,
+      "traj_id": 2636
+    },
+    {
+      "env_seed": 30041,
+      "episode_id": 41,
+      "goal_idx": 93,
+      "start_idx": 68,
+      "traj_id": 2670
+    },
+    {
+      "env_seed": 30042,
+      "episode_id": 42,
+      "goal_idx": 147,
+      "start_idx": 122,
+      "traj_id": 2711
+    },
+    {
+      "env_seed": 30043,
+      "episode_id": 43,
+      "goal_idx": 172,
+      "start_idx": 147,
+      "traj_id": 2737
+    },
+    {
+      "env_seed": 30044,
+      "episode_id": 44,
+      "goal_idx": 104,
+      "start_idx": 79,
+      "traj_id": 2765
+    },
+    {
+      "env_seed": 30045,
+      "episode_id": 45,
+      "goal_idx": 194,
+      "start_idx": 169,
+      "traj_id": 2782
+    },
+    {
+      "env_seed": 30046,
+      "episode_id": 46,
+      "goal_idx": 37,
+      "start_idx": 12,
+      "traj_id": 2785
+    },
+    {
+      "env_seed": 30047,
+      "episode_id": 47,
+      "goal_idx": 34,
+      "start_idx": 9,
+      "traj_id": 2786
+    },
+    {
+      "env_seed": 30048,
+      "episode_id": 48,
+      "goal_idx": 200,
+      "start_idx": 175,
+      "traj_id": 2814
+    },
+    {
+      "env_seed": 30049,
+      "episode_id": 49,
+      "goal_idx": 137,
+      "start_idx": 112,
+      "traj_id": 2827
+    },
+    {
+      "env_seed": 30050,
+      "episode_id": 50,
+      "goal_idx": 127,
+      "start_idx": 102,
+      "traj_id": 2833
+    },
+    {
+      "env_seed": 30051,
+      "episode_id": 51,
+      "goal_idx": 164,
+      "start_idx": 139,
+      "traj_id": 2887
+    },
+    {
+      "env_seed": 30052,
+      "episode_id": 52,
+      "goal_idx": 128,
+      "start_idx": 103,
+      "traj_id": 2898
+    },
+    {
+      "env_seed": 30053,
+      "episode_id": 53,
+      "goal_idx": 193,
+      "start_idx": 168,
+      "traj_id": 2999
+    },
+    {
+      "env_seed": 30054,
+      "episode_id": 54,
+      "goal_idx": 102,
+      "start_idx": 77,
+      "traj_id": 3039
+    },
+    {
+      "env_seed": 30055,
+      "episode_id": 55,
+      "goal_idx": 191,
+      "start_idx": 166,
+      "traj_id": 3088
+    },
+    {
+      "env_seed": 30056,
+      "episode_id": 56,
+      "goal_idx": 134,
+      "start_idx": 109,
+      "traj_id": 3204
+    },
+    {
+      "env_seed": 30057,
+      "episode_id": 57,
+      "goal_idx": 90,
+      "start_idx": 65,
+      "traj_id": 3219
+    },
+    {
+      "env_seed": 30058,
+      "episode_id": 58,
+      "goal_idx": 48,
+      "start_idx": 23,
+      "traj_id": 3242
+    },
+    {
+      "env_seed": 30059,
+      "episode_id": 59,
+      "goal_idx": 157,
+      "start_idx": 132,
+      "traj_id": 3277
+    },
+    {
+      "env_seed": 30060,
+      "episode_id": 60,
+      "goal_idx": 25,
+      "start_idx": 0,
+      "traj_id": 3414
+    },
+    {
+      "env_seed": 30061,
+      "episode_id": 61,
+      "goal_idx": 52,
+      "start_idx": 27,
+      "traj_id": 3418
+    },
+    {
+      "env_seed": 30062,
+      "episode_id": 62,
+      "goal_idx": 85,
+      "start_idx": 60,
+      "traj_id": 3579
+    },
+    {
+      "env_seed": 30063,
+      "episode_id": 63,
+      "goal_idx": 117,
+      "start_idx": 92,
+      "traj_id": 3623
+    },
+    {
+      "env_seed": 30064,
+      "episode_id": 64,
+      "goal_idx": 85,
+      "start_idx": 60,
+      "traj_id": 3756
+    },
+    {
+      "env_seed": 30065,
+      "episode_id": 65,
+      "goal_idx": 118,
+      "start_idx": 93,
+      "traj_id": 3799
+    },
+    {
+      "env_seed": 30066,
+      "episode_id": 66,
+      "goal_idx": 96,
+      "start_idx": 71,
+      "traj_id": 3889
+    },
+    {
+      "env_seed": 30067,
+      "episode_id": 67,
+      "goal_idx": 26,
+      "start_idx": 1,
+      "traj_id": 3890
+    },
+    {
+      "env_seed": 30068,
+      "episode_id": 68,
+      "goal_idx": 97,
+      "start_idx": 72,
+      "traj_id": 3960
+    },
+    {
+      "env_seed": 30069,
+      "episode_id": 69,
+      "goal_idx": 197,
+      "start_idx": 172,
+      "traj_id": 3994
+    },
+    {
+      "env_seed": 30070,
+      "episode_id": 70,
+      "goal_idx": 117,
+      "start_idx": 92,
+      "traj_id": 3996
+    },
+    {
+      "env_seed": 30071,
+      "episode_id": 71,
+      "goal_idx": 132,
+      "start_idx": 107,
+      "traj_id": 4012
+    },
+    {
+      "env_seed": 30072,
+      "episode_id": 72,
+      "goal_idx": 116,
+      "start_idx": 91,
+      "traj_id": 4017
+    },
+    {
+      "env_seed": 30073,
+      "episode_id": 73,
+      "goal_idx": 57,
+      "start_idx": 32,
+      "traj_id": 4130
+    },
+    {
+      "env_seed": 30074,
+      "episode_id": 74,
+      "goal_idx": 125,
+      "start_idx": 100,
+      "traj_id": 4138
+    },
+    {
+      "env_seed": 30075,
+      "episode_id": 75,
+      "goal_idx": 83,
+      "start_idx": 58,
+      "traj_id": 4145
+    },
+    {
+      "env_seed": 30076,
+      "episode_id": 76,
+      "goal_idx": 38,
+      "start_idx": 13,
+      "traj_id": 4178
+    },
+    {
+      "env_seed": 30077,
+      "episode_id": 77,
+      "goal_idx": 85,
+      "start_idx": 60,
+      "traj_id": 4199
+    },
+    {
+      "env_seed": 30078,
+      "episode_id": 78,
+      "goal_idx": 128,
+      "start_idx": 103,
+      "traj_id": 4219
+    },
+    {
+      "env_seed": 30079,
+      "episode_id": 79,
+      "goal_idx": 159,
+      "start_idx": 134,
+      "traj_id": 4223
+    },
+    {
+      "env_seed": 30080,
+      "episode_id": 80,
+      "goal_idx": 158,
+      "start_idx": 133,
+      "traj_id": 4244
+    },
+    {
+      "env_seed": 30081,
+      "episode_id": 81,
+      "goal_idx": 88,
+      "start_idx": 63,
+      "traj_id": 4509
+    },
+    {
+      "env_seed": 30082,
+      "episode_id": 82,
+      "goal_idx": 174,
+      "start_idx": 149,
+      "traj_id": 4509
+    },
+    {
+      "env_seed": 30083,
+      "episode_id": 83,
+      "goal_idx": 142,
+      "start_idx": 117,
+      "traj_id": 4550
+    },
+    {
+      "env_seed": 30084,
+      "episode_id": 84,
+      "goal_idx": 129,
+      "start_idx": 104,
+      "traj_id": 4568
+    },
+    {
+      "env_seed": 30085,
+      "episode_id": 85,
+      "goal_idx": 134,
+      "start_idx": 109,
+      "traj_id": 4589
+    },
+    {
+      "env_seed": 30086,
+      "episode_id": 86,
+      "goal_idx": 82,
+      "start_idx": 57,
+      "traj_id": 4644
+    },
+    {
+      "env_seed": 30087,
+      "episode_id": 87,
+      "goal_idx": 130,
+      "start_idx": 105,
+      "traj_id": 4699
+    },
+    {
+      "env_seed": 30088,
+      "episode_id": 88,
+      "goal_idx": 103,
+      "start_idx": 78,
+      "traj_id": 4854
+    },
+    {
+      "env_seed": 30089,
+      "episode_id": 89,
+      "goal_idx": 83,
+      "start_idx": 58,
+      "traj_id": 4863
+    },
+    {
+      "env_seed": 30090,
+      "episode_id": 90,
+      "goal_idx": 63,
+      "start_idx": 38,
+      "traj_id": 4874
+    },
+    {
+      "env_seed": 30091,
+      "episode_id": 91,
+      "goal_idx": 160,
+      "start_idx": 135,
+      "traj_id": 4893
+    },
+    {
+      "env_seed": 30092,
+      "episode_id": 92,
+      "goal_idx": 56,
+      "start_idx": 31,
+      "traj_id": 4965
+    },
+    {
+      "env_seed": 30093,
+      "episode_id": 93,
+      "goal_idx": 65,
+      "start_idx": 40,
+      "traj_id": 5003
+    },
+    {
+      "env_seed": 30094,
+      "episode_id": 94,
+      "goal_idx": 131,
+      "start_idx": 106,
+      "traj_id": 5005
+    },
+    {
+      "env_seed": 30095,
+      "episode_id": 95,
+      "goal_idx": 152,
+      "start_idx": 127,
+      "traj_id": 5026
+    },
+    {
+      "env_seed": 30096,
+      "episode_id": 96,
+      "goal_idx": 134,
+      "start_idx": 109,
+      "traj_id": 5036
+    },
+    {
+      "env_seed": 30097,
+      "episode_id": 97,
+      "goal_idx": 53,
+      "start_idx": 28,
+      "traj_id": 5045
+    },
+    {
+      "env_seed": 30098,
+      "episode_id": 98,
+      "goal_idx": 142,
+      "start_idx": 117,
+      "traj_id": 5052
+    },
+    {
+      "env_seed": 30099,
+      "episode_id": 99,
+      "goal_idx": 41,
+      "start_idx": 16,
+      "traj_id": 5082
+    },
+    {
+      "env_seed": 30100,
+      "episode_id": 100,
+      "goal_idx": 183,
+      "start_idx": 158,
+      "traj_id": 5304
+    },
+    {
+      "env_seed": 30101,
+      "episode_id": 101,
+      "goal_idx": 164,
+      "start_idx": 139,
+      "traj_id": 5350
+    },
+    {
+      "env_seed": 30102,
+      "episode_id": 102,
+      "goal_idx": 125,
+      "start_idx": 100,
+      "traj_id": 5364
+    },
+    {
+      "env_seed": 30103,
+      "episode_id": 103,
+      "goal_idx": 185,
+      "start_idx": 160,
+      "traj_id": 5390
+    },
+    {
+      "env_seed": 30104,
+      "episode_id": 104,
+      "goal_idx": 84,
+      "start_idx": 59,
+      "traj_id": 5420
+    },
+    {
+      "env_seed": 30105,
+      "episode_id": 105,
+      "goal_idx": 56,
+      "start_idx": 31,
+      "traj_id": 5478
+    },
+    {
+      "env_seed": 30106,
+      "episode_id": 106,
+      "goal_idx": 28,
+      "start_idx": 3,
+      "traj_id": 5510
+    },
+    {
+      "env_seed": 30107,
+      "episode_id": 107,
+      "goal_idx": 45,
+      "start_idx": 20,
+      "traj_id": 5553
+    },
+    {
+      "env_seed": 30108,
+      "episode_id": 108,
+      "goal_idx": 157,
+      "start_idx": 132,
+      "traj_id": 5553
+    },
+    {
+      "env_seed": 30109,
+      "episode_id": 109,
+      "goal_idx": 98,
+      "start_idx": 73,
+      "traj_id": 5631
+    },
+    {
+      "env_seed": 30110,
+      "episode_id": 110,
+      "goal_idx": 194,
+      "start_idx": 169,
+      "traj_id": 5664
+    },
+    {
+      "env_seed": 30111,
+      "episode_id": 111,
+      "goal_idx": 30,
+      "start_idx": 5,
+      "traj_id": 5736
+    },
+    {
+      "env_seed": 30112,
+      "episode_id": 112,
+      "goal_idx": 180,
+      "start_idx": 155,
+      "traj_id": 5770
+    },
+    {
+      "env_seed": 30113,
+      "episode_id": 113,
+      "goal_idx": 170,
+      "start_idx": 145,
+      "traj_id": 5804
+    },
+    {
+      "env_seed": 30114,
+      "episode_id": 114,
+      "goal_idx": 113,
+      "start_idx": 88,
+      "traj_id": 5806
+    },
+    {
+      "env_seed": 30115,
+      "episode_id": 115,
+      "goal_idx": 164,
+      "start_idx": 139,
+      "traj_id": 5870
+    },
+    {
+      "env_seed": 30116,
+      "episode_id": 116,
+      "goal_idx": 127,
+      "start_idx": 102,
+      "traj_id": 5879
+    },
+    {
+      "env_seed": 30117,
+      "episode_id": 117,
+      "goal_idx": 63,
+      "start_idx": 38,
+      "traj_id": 5931
+    },
+    {
+      "env_seed": 30118,
+      "episode_id": 118,
+      "goal_idx": 84,
+      "start_idx": 59,
+      "traj_id": 6030
+    },
+    {
+      "env_seed": 30119,
+      "episode_id": 119,
+      "goal_idx": 168,
+      "start_idx": 143,
+      "traj_id": 6064
+    },
+    {
+      "env_seed": 30120,
+      "episode_id": 120,
+      "goal_idx": 44,
+      "start_idx": 19,
+      "traj_id": 6095
+    },
+    {
+      "env_seed": 30121,
+      "episode_id": 121,
+      "goal_idx": 82,
+      "start_idx": 57,
+      "traj_id": 6121
+    },
+    {
+      "env_seed": 30122,
+      "episode_id": 122,
+      "goal_idx": 161,
+      "start_idx": 136,
+      "traj_id": 6241
+    },
+    {
+      "env_seed": 30123,
+      "episode_id": 123,
+      "goal_idx": 40,
+      "start_idx": 15,
+      "traj_id": 6303
+    },
+    {
+      "env_seed": 30124,
+      "episode_id": 124,
+      "goal_idx": 47,
+      "start_idx": 22,
+      "traj_id": 6382
+    },
+    {
+      "env_seed": 30125,
+      "episode_id": 125,
+      "goal_idx": 53,
+      "start_idx": 28,
+      "traj_id": 6392
+    },
+    {
+      "env_seed": 30126,
+      "episode_id": 126,
+      "goal_idx": 97,
+      "start_idx": 72,
+      "traj_id": 6404
+    },
+    {
+      "env_seed": 30127,
+      "episode_id": 127,
+      "goal_idx": 149,
+      "start_idx": 124,
+      "traj_id": 6404
+    },
+    {
+      "env_seed": 30128,
+      "episode_id": 128,
+      "goal_idx": 51,
+      "start_idx": 26,
+      "traj_id": 6415
+    },
+    {
+      "env_seed": 30129,
+      "episode_id": 129,
+      "goal_idx": 69,
+      "start_idx": 44,
+      "traj_id": 6522
+    },
+    {
+      "env_seed": 30130,
+      "episode_id": 130,
+      "goal_idx": 119,
+      "start_idx": 94,
+      "traj_id": 6574
+    },
+    {
+      "env_seed": 30131,
+      "episode_id": 131,
+      "goal_idx": 145,
+      "start_idx": 120,
+      "traj_id": 6581
+    },
+    {
+      "env_seed": 30132,
+      "episode_id": 132,
+      "goal_idx": 178,
+      "start_idx": 153,
+      "traj_id": 6588
+    },
+    {
+      "env_seed": 30133,
+      "episode_id": 133,
+      "goal_idx": 27,
+      "start_idx": 2,
+      "traj_id": 6698
+    },
+    {
+      "env_seed": 30134,
+      "episode_id": 134,
+      "goal_idx": 123,
+      "start_idx": 98,
+      "traj_id": 6740
+    },
+    {
+      "env_seed": 30135,
+      "episode_id": 135,
+      "goal_idx": 90,
+      "start_idx": 65,
+      "traj_id": 6764
+    },
+    {
+      "env_seed": 30136,
+      "episode_id": 136,
+      "goal_idx": 74,
+      "start_idx": 49,
+      "traj_id": 6795
+    },
+    {
+      "env_seed": 30137,
+      "episode_id": 137,
+      "goal_idx": 61,
+      "start_idx": 36,
+      "traj_id": 6870
+    },
+    {
+      "env_seed": 30138,
+      "episode_id": 138,
+      "goal_idx": 170,
+      "start_idx": 145,
+      "traj_id": 6911
+    },
+    {
+      "env_seed": 30139,
+      "episode_id": 139,
+      "goal_idx": 39,
+      "start_idx": 14,
+      "traj_id": 6943
+    },
+    {
+      "env_seed": 30140,
+      "episode_id": 140,
+      "goal_idx": 143,
+      "start_idx": 118,
+      "traj_id": 6945
+    },
+    {
+      "env_seed": 30141,
+      "episode_id": 141,
+      "goal_idx": 184,
+      "start_idx": 159,
+      "traj_id": 6967
+    },
+    {
+      "env_seed": 30142,
+      "episode_id": 142,
+      "goal_idx": 171,
+      "start_idx": 146,
+      "traj_id": 6987
+    },
+    {
+      "env_seed": 30143,
+      "episode_id": 143,
+      "goal_idx": 96,
+      "start_idx": 71,
+      "traj_id": 7001
+    },
+    {
+      "env_seed": 30144,
+      "episode_id": 144,
+      "goal_idx": 135,
+      "start_idx": 110,
+      "traj_id": 7041
+    },
+    {
+      "env_seed": 30145,
+      "episode_id": 145,
+      "goal_idx": 120,
+      "start_idx": 95,
+      "traj_id": 7045
+    },
+    {
+      "env_seed": 30146,
+      "episode_id": 146,
+      "goal_idx": 179,
+      "start_idx": 154,
+      "traj_id": 7271
+    },
+    {
+      "env_seed": 30147,
+      "episode_id": 147,
+      "goal_idx": 45,
+      "start_idx": 20,
+      "traj_id": 7435
+    },
+    {
+      "env_seed": 30148,
+      "episode_id": 148,
+      "goal_idx": 46,
+      "start_idx": 21,
+      "traj_id": 7517
+    },
+    {
+      "env_seed": 30149,
+      "episode_id": 149,
+      "goal_idx": 43,
+      "start_idx": 18,
+      "traj_id": 7523
+    },
+    {
+      "env_seed": 30150,
+      "episode_id": 150,
+      "goal_idx": 114,
+      "start_idx": 89,
+      "traj_id": 7526
+    },
+    {
+      "env_seed": 30151,
+      "episode_id": 151,
+      "goal_idx": 188,
+      "start_idx": 163,
+      "traj_id": 7599
+    },
+    {
+      "env_seed": 30152,
+      "episode_id": 152,
+      "goal_idx": 88,
+      "start_idx": 63,
+      "traj_id": 7611
+    },
+    {
+      "env_seed": 30153,
+      "episode_id": 153,
+      "goal_idx": 45,
+      "start_idx": 20,
+      "traj_id": 7632
+    },
+    {
+      "env_seed": 30154,
+      "episode_id": 154,
+      "goal_idx": 143,
+      "start_idx": 118,
+      "traj_id": 7766
+    },
+    {
+      "env_seed": 30155,
+      "episode_id": 155,
+      "goal_idx": 160,
+      "start_idx": 135,
+      "traj_id": 7951
+    },
+    {
+      "env_seed": 30156,
+      "episode_id": 156,
+      "goal_idx": 150,
+      "start_idx": 125,
+      "traj_id": 8006
+    },
+    {
+      "env_seed": 30157,
+      "episode_id": 157,
+      "goal_idx": 184,
+      "start_idx": 159,
+      "traj_id": 8012
+    },
+    {
+      "env_seed": 30158,
+      "episode_id": 158,
+      "goal_idx": 119,
+      "start_idx": 94,
+      "traj_id": 8060
+    },
+    {
+      "env_seed": 30159,
+      "episode_id": 159,
+      "goal_idx": 115,
+      "start_idx": 90,
+      "traj_id": 8100
+    },
+    {
+      "env_seed": 30160,
+      "episode_id": 160,
+      "goal_idx": 51,
+      "start_idx": 26,
+      "traj_id": 8246
+    },
+    {
+      "env_seed": 30161,
+      "episode_id": 161,
+      "goal_idx": 113,
+      "start_idx": 88,
+      "traj_id": 8254
+    },
+    {
+      "env_seed": 30162,
+      "episode_id": 162,
+      "goal_idx": 110,
+      "start_idx": 85,
+      "traj_id": 8277
+    },
+    {
+      "env_seed": 30163,
+      "episode_id": 163,
+      "goal_idx": 42,
+      "start_idx": 17,
+      "traj_id": 8290
+    },
+    {
+      "env_seed": 30164,
+      "episode_id": 164,
+      "goal_idx": 72,
+      "start_idx": 47,
+      "traj_id": 8381
+    },
+    {
+      "env_seed": 30165,
+      "episode_id": 165,
+      "goal_idx": 140,
+      "start_idx": 115,
+      "traj_id": 8387
+    },
+    {
+      "env_seed": 30166,
+      "episode_id": 166,
+      "goal_idx": 61,
+      "start_idx": 36,
+      "traj_id": 8391
+    },
+    {
+      "env_seed": 30167,
+      "episode_id": 167,
+      "goal_idx": 94,
+      "start_idx": 69,
+      "traj_id": 8430
+    },
+    {
+      "env_seed": 30168,
+      "episode_id": 168,
+      "goal_idx": 71,
+      "start_idx": 46,
+      "traj_id": 8449
+    },
+    {
+      "env_seed": 30169,
+      "episode_id": 169,
+      "goal_idx": 35,
+      "start_idx": 10,
+      "traj_id": 8464
+    },
+    {
+      "env_seed": 30170,
+      "episode_id": 170,
+      "goal_idx": 57,
+      "start_idx": 32,
+      "traj_id": 8507
+    },
+    {
+      "env_seed": 30171,
+      "episode_id": 171,
+      "goal_idx": 192,
+      "start_idx": 167,
+      "traj_id": 8618
+    },
+    {
+      "env_seed": 30172,
+      "episode_id": 172,
+      "goal_idx": 182,
+      "start_idx": 157,
+      "traj_id": 8636
+    },
+    {
+      "env_seed": 30173,
+      "episode_id": 173,
+      "goal_idx": 193,
+      "start_idx": 168,
+      "traj_id": 8695
+    },
+    {
+      "env_seed": 30174,
+      "episode_id": 174,
+      "goal_idx": 84,
+      "start_idx": 59,
+      "traj_id": 8716
+    },
+    {
+      "env_seed": 30175,
+      "episode_id": 175,
+      "goal_idx": 172,
+      "start_idx": 147,
+      "traj_id": 8787
+    },
+    {
+      "env_seed": 30176,
+      "episode_id": 176,
+      "goal_idx": 76,
+      "start_idx": 51,
+      "traj_id": 8808
+    },
+    {
+      "env_seed": 30177,
+      "episode_id": 177,
+      "goal_idx": 116,
+      "start_idx": 91,
+      "traj_id": 8811
+    },
+    {
+      "env_seed": 30178,
+      "episode_id": 178,
+      "goal_idx": 46,
+      "start_idx": 21,
+      "traj_id": 8817
+    },
+    {
+      "env_seed": 30179,
+      "episode_id": 179,
+      "goal_idx": 46,
+      "start_idx": 21,
+      "traj_id": 8918
+    },
+    {
+      "env_seed": 30180,
+      "episode_id": 180,
+      "goal_idx": 44,
+      "start_idx": 19,
+      "traj_id": 8948
+    },
+    {
+      "env_seed": 30181,
+      "episode_id": 181,
+      "goal_idx": 84,
+      "start_idx": 59,
+      "traj_id": 8966
+    },
+    {
+      "env_seed": 30182,
+      "episode_id": 182,
+      "goal_idx": 185,
+      "start_idx": 160,
+      "traj_id": 8983
+    },
+    {
+      "env_seed": 30183,
+      "episode_id": 183,
+      "goal_idx": 125,
+      "start_idx": 100,
+      "traj_id": 9194
+    },
+    {
+      "env_seed": 30184,
+      "episode_id": 184,
+      "goal_idx": 68,
+      "start_idx": 43,
+      "traj_id": 9269
+    },
+    {
+      "env_seed": 30185,
+      "episode_id": 185,
+      "goal_idx": 29,
+      "start_idx": 4,
+      "traj_id": 9327
+    },
+    {
+      "env_seed": 30186,
+      "episode_id": 186,
+      "goal_idx": 69,
+      "start_idx": 44,
+      "traj_id": 9386
+    },
+    {
+      "env_seed": 30187,
+      "episode_id": 187,
+      "goal_idx": 176,
+      "start_idx": 151,
+      "traj_id": 9427
+    },
+    {
+      "env_seed": 30188,
+      "episode_id": 188,
+      "goal_idx": 121,
+      "start_idx": 96,
+      "traj_id": 9439
+    },
+    {
+      "env_seed": 30189,
+      "episode_id": 189,
+      "goal_idx": 99,
+      "start_idx": 74,
+      "traj_id": 9450
+    },
+    {
+      "env_seed": 30190,
+      "episode_id": 190,
+      "goal_idx": 145,
+      "start_idx": 120,
+      "traj_id": 9456
+    },
+    {
+      "env_seed": 30191,
+      "episode_id": 191,
+      "goal_idx": 90,
+      "start_idx": 65,
+      "traj_id": 9498
+    },
+    {
+      "env_seed": 30192,
+      "episode_id": 192,
+      "goal_idx": 139,
+      "start_idx": 114,
+      "traj_id": 9516
+    },
+    {
+      "env_seed": 30193,
+      "episode_id": 193,
+      "goal_idx": 55,
+      "start_idx": 30,
+      "traj_id": 9552
+    },
+    {
+      "env_seed": 30194,
+      "episode_id": 194,
+      "goal_idx": 50,
+      "start_idx": 25,
+      "traj_id": 9646
+    },
+    {
+      "env_seed": 30195,
+      "episode_id": 195,
+      "goal_idx": 110,
+      "start_idx": 85,
+      "traj_id": 9874
+    },
+    {
+      "env_seed": 30196,
+      "episode_id": 196,
+      "goal_idx": 147,
+      "start_idx": 122,
+      "traj_id": 9898
+    },
+    {
+      "env_seed": 30197,
+      "episode_id": 197,
+      "goal_idx": 61,
+      "start_idx": 36,
+      "traj_id": 9932
+    },
+    {
+      "env_seed": 30198,
+      "episode_id": 198,
+      "goal_idx": 119,
+      "start_idx": 94,
+      "traj_id": 9966
+    },
+    {
+      "env_seed": 30199,
+      "episode_id": 199,
+      "goal_idx": 194,
+      "start_idx": 169,
+      "traj_id": 9977
+    }
+  ],
+  "goal_offset": 25,
+  "seed": 43
+}

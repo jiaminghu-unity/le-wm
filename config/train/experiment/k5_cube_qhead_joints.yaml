@@ -1,0 +1,19 @@
+# @package _global_
+# K5: information-injection control for K3 — aux head on the 19-dim whole-body q.
+# The head's output_dim is read from the q_stats JSON, so it becomes 192->256->19.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k5_cube_qhead_joints${loss.aux.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_plus_joints   # selects the q the aux head regresses (19-dim)
+  aux:
+    weight: 0.1

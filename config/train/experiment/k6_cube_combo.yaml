@@ -1,0 +1,19 @@
+# @package _global_
+# K6: both injection routes at once on the 9-dim effector q (cube analogue of the
+# Push-T C6 combo). Tests additivity between distance geometry and decodability.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k6_cube_combo_o${loss.obj.weight}a${loss.aux.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_effector
+  aux:
+    weight: 0.1

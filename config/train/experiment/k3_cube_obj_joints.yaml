@@ -1,0 +1,21 @@
+# @package _global_
+# K3: L_obj on the 19-dim whole-body q (effector + 5 moving arm joints as cos/sin).
+# Mirror of the Reacher R2->R3 ablation, run from the opposite direction: there the
+# referee scored joints and we added the interaction end; here it scores the object
+# and we add the whole body.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k3_cube_obj_joints${loss.obj.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_plus_joints
+  aux:
+    weight: 0.0

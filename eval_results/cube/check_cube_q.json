@@ -1,0 +1,134 @@
+{
+  "cube_effector": {
+    "dim": 9,
+    "sources": [
+      "proprio_effector_pos",
+      "proprio_effector_yaw",
+      "proprio_gripper_opening",
+      "privileged_block_0_pos"
+    ],
+    "mean": [
+      0.423549,
+      0.001053,
+      0.126622,
+      -0.072484,
+      -0.012944,
+      0.28802,
+      0.424888,
+      0.000516,
+      0.069097
+    ],
+    "std": [
+      0.069695,
+      0.160727,
+      0.08529,
+      0.694304,
+      0.715905,
+      0.250371,
+      0.072391,
+      0.169393,
+      0.082479
+    ],
+    "std_min": 0.06969535851249513,
+    "std_argmin": 0
+  },
+  "cube_plus_joints": {
+    "dim": 19,
+    "sources": [
+      "proprio_effector_pos",
+      "proprio_effector_yaw",
+      "proprio_gripper_opening",
+      "privileged_block_0_pos",
+      "proprio_joint_pos"
+    ],
+    "mean": [
+      0.423549,
+      0.001053,
+      0.126622,
+      -0.072484,
+      -0.012944,
+      0.28802,
+      0.424888,
+      0.000516,
+      0.069097,
+      -0.282028,
+      -0.891409,
+      0.019997,
+      -0.977214,
+      -0.485345,
+      0.847273,
+      -0.492519,
+      -0.831778,
+      0.089808,
+      -0.026713
+    ],
+    "std": [
+      0.069695,
+      0.160727,
+      0.08529,
+      0.694304,
+      0.715905,
+      0.250371,
+      0.072391,
+      0.169393,
+      0.082479,
+      0.334244,
+      0.118876,
+      0.20965,
+      0.02644,
+      0.185587,
+      0.11012,
+      0.222909,
+      0.126024,
+      0.688993,
+      0.718686
+    ],
+    "std_min": 0.026440158211049024,
+    "std_argmin": 12
+  },
+  "standardized_absmax": {
+    "cube_effector": 3.381817999573408,
+    "cube_plus_joints": 8.442696797755328
+  },
+  "null_space": {
+    "n_anchors": 30,
+    "median_neighbours": 19.0,
+    "match_tol": {
+      "eff_pos_m": 0.005,
+      "psi_rad": 0.02
+    },
+    "joints": [
+      0,
+      1,
+      2,
+      3,
+      5
+    ],
+    "conditional_circstd_rad": [
+      0.00298,
+      0.00274,
+      0.00351,
+      0.00433,
+      0.01123
+    ],
+    "marginal_circstd_rad": [
+      0.36675,
+      0.21373,
+      0.21838,
+      0.26042,
+      2.17609
+    ],
+    "ratio_cond_over_marg": [
+      0.00812,
+      0.01283,
+      0.01608,
+      0.01661,
+      0.00516
+    ]
+  },
+  "pair_distance": {
+    "mean_qA_dist_among_effector_matched": 1.89967,
+    "mean_qB_dist_among_effector_matched": 1.90111,
+    "ratio_B_over_A": 1.0008
+  }
+}

@@ -1,0 +1,65 @@
+07:05:32 | INFO  | __init__.py | JAX version 0.6.2 available.
+07:05:36 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+07:05:36 | INFO  | __init__.py | Cached 'action' from '/mnt/disks/ssd0/stable-wm/datasets/ogbench/cube_single_expert.h5'
+07:05:37 | INFO  | __init__.py | No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+07:05:37 | INFO  | __init__.py | MUJOCO_GL=egl, attempting to import specified OpenGL backend.
+07:05:37 | INFO  | __init__.py | MuJoCo library version is: 3.11.0
+[cube] env rollouts: start 1/20 c_phys range 0.0427..0.2374
+[cube] env rollouts: start 2/20 c_phys range 0.0017..0.1099
+[cube] env rollouts: start 3/20 c_phys range 0.0394..0.0394
+[cube] env rollouts: start 4/20 c_phys range 0.0110..0.3081
+[cube] env rollouts: start 5/20 c_phys range 0.0028..0.0028
+[cube] env rollouts: start 6/20 c_phys range 0.1766..0.2457
+[cube] env rollouts: start 7/20 c_phys range 0.0638..0.2368
+[cube] env rollouts: start 8/20 c_phys range 0.0050..0.1325
+[cube] env rollouts: start 9/20 c_phys range 0.0186..0.2946
+[cube] env rollouts: start 10/20 c_phys range 0.1297..0.1693
+[cube] env rollouts: start 11/20 c_phys range 0.0056..0.2387
+[cube] env rollouts: start 12/20 c_phys range 0.0093..0.1610
+[cube] env rollouts: start 13/20 c_phys range 0.0028..0.1052
+[cube] env rollouts: start 14/20 c_phys range 0.0000..0.0656
+[cube] env rollouts: start 15/20 c_phys range 0.0034..0.0034
+[cube] env rollouts: start 16/20 c_phys range 0.2156..0.2463
+[cube] env rollouts: start 17/20 c_phys range 0.0087..0.1306
+[cube] env rollouts: start 18/20 c_phys range 0.2459..0.3086
+[cube] env rollouts: start 19/20 c_phys range 0.1883..0.3756
+[cube] env rollouts: start 20/20 c_phys range 0.1236..0.2377
+[cube] physical-cost source: infos['privileged/block_0_pos']
+[cube] starts with non-degenerate physical spread: 17/20
+07:21:56 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  base           done
+07:21:58 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  obj            done
+07:21:59 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  aux            done
+
+========================================================================================================
+P4 cube  (17 starts x 64 candidates, elite k=6)
+========================================================================================================
+regret = rank percentile of the model's pick in the true ordering (0 best, 0.5 random); ereg = same for the whole elite set
+
+model     rollerr  (a)tau  (a)reg  (a)ereg (a)elite  (b)tau  (b)reg  (b)ereg (b)elite  tot tau  tot reg
+base       0.3198   0.365   0.238    0.274     0.33   0.228   0.233    0.339     0.25    0.118    0.441
+obj        0.3163   0.443   0.217    0.239     0.31   0.307   0.235    0.316     0.32    0.128    0.346
+aux        0.2388   0.415   0.284    0.235     0.35   0.251   0.231    0.326     0.29    0.114    0.374
+
+相对 base 的变化 (regret 越低越好):
+  obj      rollerr   -1.1%  | (a) tau +0.078 reg -0.021  | (b) tau +0.079 reg +0.002  | tot tau +0.010 reg -0.094
+  aux      rollerr  -25.3%  | (a) tau +0.049 reg +0.046  | (b) tau +0.023 reg -0.003  | tot tau -0.004 reg -0.066
+
+--- paired over the 17 starts (Wilcoxon signed-rank vs base) ---
+  model metric        base   model    delta  SD(delta)      SE        p
+  obj   roll err    0.3198  0.3163  -0.0034     0.0719  0.0174   0.5791
+  obj   (a) tau     0.3654  0.4433  +0.0779     0.1638  0.0397   0.0797
+  obj   (b) tau     0.2285  0.3075  +0.0790     0.1343  0.0326   0.0199  *
+  obj   (b) ereg    0.3392  0.3162  -0.0230     0.1768  0.0429   0.6529
+  obj   tot tau     0.1181  0.1282  +0.0101     0.0931  0.0226   0.9434
+  obj   tot ereg    0.4300  0.3858  -0.0442     0.1056  0.0256   0.0887
+  aux   roll err    0.3198  0.2388  -0.0810     0.0407  0.0099   0.0000  *
+  aux   (a) tau     0.3654  0.4149  +0.0495     0.0977  0.0237   0.1202
+  aux   (b) tau     0.2285  0.2513  +0.0228     0.1326  0.0322   0.2247
+  aux   (b) ereg    0.3392  0.3259  -0.0134     0.1719  0.0417   0.8313
+  aux   tot tau     0.1181  0.1143  -0.0038     0.1051  0.0255   1.0000
+  aux   tot ereg    0.4300  0.4119  -0.0181     0.1877  0.0455   0.5695
+
+wrote eval_results/p4_cube.json

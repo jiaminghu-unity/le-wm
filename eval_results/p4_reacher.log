@@ -1,0 +1,65 @@
+07:05:23 | INFO  | __init__.py | JAX version 0.6.2 available.
+07:05:27 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+07:05:27 | INFO  | __init__.py | Cached 'action' from '/mnt/disks/ssd0/stable-wm/datasets/reacher.h5'
+07:05:27 | INFO  | __init__.py | MUJOCO_GL=egl, attempting to import specified OpenGL backend.
+07:05:27 | INFO  | __init__.py | No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+07:05:28 | INFO  | __init__.py | MuJoCo library version is: 3.11.0
+[reacher] env rollouts: start 1/20 c_phys range 0.0807..6.1054
+[reacher] env rollouts: start 2/20 c_phys range 0.3538..3.7788
+[reacher] env rollouts: start 3/20 c_phys range 0.1532..3.7627
+[reacher] env rollouts: start 4/20 c_phys range 0.1126..4.6572
+[reacher] env rollouts: start 5/20 c_phys range 0.0964..5.1936
+[reacher] env rollouts: start 6/20 c_phys range 0.0353..5.9203
+[reacher] env rollouts: start 7/20 c_phys range 0.2717..4.3591
+[reacher] env rollouts: start 8/20 c_phys range 0.1346..3.5152
+[reacher] env rollouts: start 9/20 c_phys range 0.1013..2.5152
+[reacher] env rollouts: start 10/20 c_phys range 0.1743..4.2504
+[reacher] env rollouts: start 11/20 c_phys range 0.1871..3.5302
+[reacher] env rollouts: start 12/20 c_phys range 0.3385..5.4183
+[reacher] env rollouts: start 13/20 c_phys range 0.0768..2.4393
+[reacher] env rollouts: start 14/20 c_phys range 0.3080..2.1708
+[reacher] env rollouts: start 15/20 c_phys range 0.1714..3.7002
+[reacher] env rollouts: start 16/20 c_phys range 0.1482..2.4774
+[reacher] env rollouts: start 17/20 c_phys range 0.1967..2.5835
+[reacher] env rollouts: start 18/20 c_phys range 0.4651..2.8850
+[reacher] env rollouts: start 19/20 c_phys range 0.4612..3.1552
+[reacher] env rollouts: start 20/20 c_phys range 0.1479..5.3132
+[reacher] physical-cost source: infos['qpos'] vs dataset goal_qpos
+[reacher] starts with non-degenerate physical spread: 20/20
+07:08:13 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  base           done
+07:08:15 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  obj            done
+07:08:17 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  aux            done
+
+========================================================================================================
+P4 reacher  (20 starts x 64 candidates, elite k=6)
+========================================================================================================
+regret = rank percentile of the model's pick in the true ordering (0 best, 0.5 random); ereg = same for the whole elite set
+
+model     rollerr  (a)tau  (a)reg  (a)ereg (a)elite  (b)tau  (b)reg  (b)ereg (b)elite  tot tau  tot reg
+base       0.1812   0.623   0.193    0.190     0.59   0.562   0.004    0.072     0.83    0.391    0.239
+obj        0.1548   0.643   0.264    0.204     0.56   0.682   0.004    0.046     0.85    0.497    0.279
+aux        0.1686   0.633   0.191    0.182     0.59   0.538   0.006    0.059     0.85    0.359    0.248
+
+相对 base 的变化 (regret 越低越好):
+  obj      rollerr  -14.6%  | (a) tau +0.020 reg +0.071  | (b) tau +0.120 reg +0.000  | tot tau +0.105 reg +0.040
+  aux      rollerr   -7.0%  | (a) tau +0.010 reg -0.002  | (b) tau -0.024 reg +0.002  | tot tau -0.032 reg +0.009
+
+--- paired over the 20 starts (Wilcoxon signed-rank vs base) ---
+  model metric        base   model    delta  SD(delta)      SE        p
+  obj   roll err    0.1812  0.1548  -0.0264     0.0159  0.0036   0.0000  *
+  obj   (a) tau     0.6233  0.6435  +0.0202     0.0576  0.0129   0.1850
+  obj   (b) tau     0.5624  0.6821  +0.1197     0.0737  0.0165   0.0000  *
+  obj   (b) ereg    0.0716  0.0460  -0.0255     0.1136  0.0254   0.4652
+  obj   tot tau     0.3914  0.4969  +0.1055     0.0906  0.0203   0.0000  *
+  obj   tot ereg    0.2508  0.2374  -0.0134     0.0671  0.0150   0.4446
+  aux   roll err    0.1812  0.1686  -0.0126     0.0103  0.0023   0.0002  *
+  aux   (a) tau     0.6233  0.6328  +0.0095     0.0519  0.0116   0.0897
+  aux   (b) tau     0.5624  0.5381  -0.0243     0.0581  0.0130   0.1850
+  aux   (b) ereg    0.0716  0.0590  -0.0126     0.0569  0.0127   0.5282
+  aux   tot tau     0.3914  0.3591  -0.0323     0.0631  0.0141   0.0583
+  aux   tot ereg    0.2508  0.2519  +0.0011     0.0587  0.0131   0.7555
+
+wrote eval_results/p4_reacher.json

@@ -66,12 +66,84 @@ def build_q_reacher_joints_finger(qpos, finger):
     return torch.cat([build_q_reacher_joints(qpos), finger[..., :2]], dim=-1)
 
 
+def build_q_cube_effector(effector_pos, effector_yaw, gripper_opening, block_pos):
+    """Cube effector variant: 9-dim
+    [eff x,y,z | cos 2psi, sin 2psi | gripper opening | block x,y,z].
+
+    Gripper yaw enters at DOUBLE angle. A parallel-jaw gripper rotated by pi is the
+    same physical configuration (the two fingers swap), so psi lives on a pi-periodic
+    circle and plain cos/sin would call the most similar pair the most distant.
+    Recon on the training set backs this: among frames matched to 8mm on effector and
+    block position, mean pixel MAE is 1.84 at |dpsi|~0 (the matching floor), PEAKS at
+    2.73 for |dpsi|~pi/2, and falls back to 2.28 at |dpsi|~pi — the signature of
+    pi-symmetry. Folding further (mod pi/2) would be wrong in the other direction: it
+    would zero out exactly the most distinguishable pairs.
+
+    Block orientation is excluded: success is position-only (||obj-target|| <= 0.04 m).
+    Velocities are excluded everywhere (probe material, never in q).
+    """
+    two_psi = 2.0 * effector_yaw[..., :1]
+    return torch.cat(
+        [
+            effector_pos[..., :3],
+            torch.cos(two_psi),
+            torch.sin(two_psi),
+            gripper_opening[..., :1],
+            block_pos[..., :3],
+        ],
+        dim=-1,
+    )
+
+
+# UR5e arm joints that actually move in cube_single_expert. Joint 4 (wrist-2) is
+# pinned by the IK at -pi/2 across the whole dataset (span 1.4deg, std 2e-4 rad):
+# its cos is a unit-variance encoding of meaningless jitter and its sin — quadratic
+# in the offset because sin' = 0 at -pi/2 — has std 2.6e-7, so standardization would
+# blow rare frames up to ~450 sigma and let one dimension own the pair distance.
+CUBE_ARM_JOINTS = (0, 1, 2, 3, 5)
+
+
+def build_q_cube_plus_joints(
+    effector_pos, effector_yaw, gripper_opening, block_pos, joint_pos
+):
+    """Cube plus_joints variant: 19-dim = effector variant + [cos, sin] per moving
+    arm joint (see CUBE_ARM_JOINTS; joint 4 is frozen and excluded).
+
+    Joint 5 (wrist-3) sweeps +-2pi, so cos/sin is mandatory, not cosmetic.
+    Note the effector terms are the forward-kinematics image of these joints: this
+    variant adds the preimage, not an independent quantity, so it differs from the
+    effector variant only on pairs that share an effector pose but differ in arm
+    configuration (the IK null space).
+    """
+    parts = [build_q_cube_effector(effector_pos, effector_yaw, gripper_opening, block_pos)]
+    for i in CUBE_ARM_JOINTS:
+        theta = joint_pos[..., i : i + 1]
+        parts += [torch.cos(theta), torch.sin(theta)]
+    return torch.cat(parts, dim=-1)
+
+
+_CUBE_SOURCES = [
+    "proprio_effector_pos",
+    "proprio_effector_yaw",
+    "proprio_gripper_opening",
+    "privileged_block_0_pos",
+]
+
 # variant -> (builder fn, source columns, angle unit check: col, idx, lo, hi)
 Q_VARIANTS = {
     "pusht_state": (build_q_raw, ["state"], ("state", 4, -3.15, 6.30)),
     "reacher_joints_only": (build_q_reacher_joints, ["qpos"], ("qpos", 1, -3.15, 3.15)),
     "reacher_joints_plus_finger": (
         build_q_reacher_joints_finger, ["qpos", "finger_pos"], ("qpos", 1, -3.15, 3.15),
+    ),
+    "cube_effector": (
+        build_q_cube_effector, _CUBE_SOURCES,
+        ("proprio_effector_yaw", 0, -3.15, 3.15),
+    ),
+    "cube_plus_joints": (
+        build_q_cube_plus_joints, _CUBE_SOURCES + ["proprio_joint_pos"],
+        # unit check rides on effector_yaw (bounded); joint 5 legitimately spans +-2pi
+        ("proprio_effector_yaw", 0, -3.15, 3.15),
     ),
 }
 

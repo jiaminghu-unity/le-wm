@@ -1,0 +1,20 @@
+21:27:55 | INFO  | __init__.py | JAX version 0.6.2 available.
+21:27:59 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+
+=== Reacher (n=4800 frames) ===
+quantity                 R1 baseline    R2 L_obj λ=.15       R5 aux w=.4
+shoulder angle                 0.292             0.663             0.211
+wrist angle                    0.098             0.316             0.113
+finger x                       0.110             0.585             0.077
+finger y                       0.264             0.673             0.219
+wrote eval_results/viz_pca_physical_reacher.png
+
+=== Cube (n=4800 frames) ===
+quantity                 K1 baseline     K2 L_obj λ=.1       K4 aux w=.1
+block x                        0.119             0.817             0.107
+block y                        0.048             0.867             0.027
+block z (lift)                 0.143             0.386             0.106
+effector z                     0.094             0.296             0.193
+gripper opening                0.092             0.268             0.105
+effector yaw                   0.053             0.031             0.087
+wrote eval_results/viz_pca_physical_cube.png

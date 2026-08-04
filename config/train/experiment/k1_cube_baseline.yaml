@@ -1,0 +1,19 @@
+# @package _global_
+# K1: vanilla LeWM on OGBench-Cube (SIGReg only). Reference arm for the whole round.
+# q columns ride along in the batch for pipeline parity but no loss uses them.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k1_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_effector
+  aux:
+    weight: 0.0

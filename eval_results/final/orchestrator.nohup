@@ -1,0 +1,5 @@
+[02:47:02] round 1: complete 14/28, running 5, todo 14
+[02:47:04]   capacity 8 GPU, in-flight 5, free 3
+[02:47:07]   submitted cube k2 gd -> raysubmit_nUQq7h283rVNqfAX (attempt 1)
+[02:47:10]   submitted cube k4 cem -> raysubmit_PFnwh7YNHBRy5cDj (attempt 1)
+[02:47:13]   submitted cube k4 icem -> raysubmit_MGzYwAV2yGE4BdaD (attempt 1)

@@ -1,0 +1,20 @@
+# @package _global_
+# K4: information-injection control for K2 — same 9-dim q, injected by an auxiliary
+# MLP head regressing q from the embedding (supervises DECODABILITY, not distance
+# geometry). Head lives outside JEPA and is discarded at eval.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k4_cube_qhead_eff${loss.aux.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_effector   # selects the q the aux head regresses (9-dim)
+  aux:
+    weight: 0.1

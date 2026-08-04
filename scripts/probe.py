@@ -44,6 +44,13 @@ TARGETS = {"pusher_xy": slice(0, 2), "block_xy": slice(2, 4), "block_angle": sli
 # non-circularity check (qvel is absent from q in BOTH training variants).
 REACHER_TARGETS = {"joints_cossin": slice(0, 4), "finger_xy": slice(4, 6), "qvel": slice(6, 8)}
 
+# Cube targets: the 9-dim q L_obj aligns to / the aux head regresses, split into the
+# groups that matter for the task, plus joint_vel as the non-circularity check
+# (velocity is absent from q in every cube config, exactly as on Reacher).
+CUBE_TARGETS = {"effector_xyz": slice(0, 3), "effector_yaw_cossin": slice(3, 5),
+                "gripper_opening": slice(5, 6), "block_xyz": slice(6, 9),
+                "joint_vel": slice(9, 15)}
+
 
 def load_frames(dataset, rows, device, cols=("state",)):
     """Decode pixels + raw physical columns for the given dataset rows."""
@@ -115,7 +122,7 @@ def fit_mlp(z_tr, y_tr, seed=0):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", nargs=2, required=True, metavar=("NAME", "CKPT"))
-    ap.add_argument("--env", default="pusht", choices=["pusht", "reacher"])
+    ap.add_argument("--env", default="pusht", choices=["pusht", "reacher", "cube"])
     ap.add_argument("--out", default="eval_results/probing.csv")
     args = ap.parse_args()
     name, ckpt = args.config
@@ -135,6 +142,16 @@ def main():
         )
         q_mean = torch.tensor(stats["mean"])
         q_std = torch.tensor(stats["std"])
+    elif args.env == "cube":
+        CUBE_COLS = ("proprio_effector_pos", "proprio_effector_yaw",
+                     "proprio_gripper_opening", "privileged_block_0_pos",
+                     "proprio_joint_vel")
+        dataset = swm.data.load_dataset(
+            "ogbench/cube_single_expert.lance", keys_to_load=["pixels", *CUBE_COLS]
+        )
+        cols = CUBE_COLS
+        targets = CUBE_TARGETS
+        q_mean = q_std = None  # standardized on the probe train split (shared across configs)
     else:
         dataset = swm.data.load_dataset(
             "reacher.lance", keys_to_load=["pixels", "qpos", "finger_pos", "qvel"]
@@ -168,6 +185,23 @@ def main():
     if args.env == "pusht":
         y_tr = (build_q_raw(torch.from_numpy(cols_tr["state"])) - q_mean) / q_std
         y_te = (build_q_raw(torch.from_numpy(cols_te["state"])) - q_mean) / q_std
+    elif args.env == "cube":
+        from utils import build_q_cube_effector
+
+        def targets_raw(c):
+            # same 9-dim q the loss uses, then joint_vel appended as the control
+            q = build_q_cube_effector(
+                torch.from_numpy(c["proprio_effector_pos"]),
+                torch.from_numpy(c["proprio_effector_yaw"]),
+                torch.from_numpy(c["proprio_gripper_opening"]),
+                torch.from_numpy(c["privileged_block_0_pos"]),
+            )
+            return torch.cat([q, torch.from_numpy(c["proprio_joint_vel"])], dim=-1)
+
+        y_tr_raw, y_te_raw = targets_raw(cols_tr), targets_raw(cols_te)
+        t_mean, t_std = y_tr_raw.mean(0), y_tr_raw.std(0).clamp_min(1e-8)
+        y_tr = (y_tr_raw - t_mean) / t_std
+        y_te = (y_te_raw - t_mean) / t_std
     else:
         from utils import build_q_reacher_joints
 

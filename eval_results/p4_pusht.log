@@ -1,0 +1,64 @@
+07:05:13 | INFO  | __init__.py | JAX version 0.6.2 available.
+07:05:17 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+07:05:17 | INFO  | __init__.py | Cached 'action' from '/mnt/disks/ssd0/stable-wm/datasets/pusht_expert_train.h5'
+07:05:17 | INFO  | __init__.py | Cached 'proprio' from '/mnt/disks/ssd0/stable-wm/datasets/pusht_expert_train.h5'
+07:05:17 | INFO  | __init__.py | Cached 'state' from '/mnt/disks/ssd0/stable-wm/datasets/pusht_expert_train.h5'
+[pusht] env rollouts: start 1/20 c_phys range 0.1943..0.8367
+[pusht] env rollouts: start 2/20 c_phys range 0.0097..0.3765
+[pusht] env rollouts: start 3/20 c_phys range 0.3354..0.7213
+[pusht] env rollouts: start 4/20 c_phys range 0.0094..0.4499
+[pusht] env rollouts: start 5/20 c_phys range 0.3135..0.5970
+[pusht] env rollouts: start 6/20 c_phys range 0.1823..0.4358
+[pusht] env rollouts: start 7/20 c_phys range 0.0042..0.1727
+[pusht] env rollouts: start 8/20 c_phys range 0.0537..0.2526
+[pusht] env rollouts: start 9/20 c_phys range 0.0387..0.0657
+[pusht] env rollouts: start 10/20 c_phys range 0.0015..0.3209
+[pusht] env rollouts: start 11/20 c_phys range 0.2859..0.8569
+[pusht] env rollouts: start 12/20 c_phys range 0.0524..0.3726
+[pusht] env rollouts: start 13/20 c_phys range 0.0220..0.2228
+[pusht] env rollouts: start 14/20 c_phys range 0.1181..0.3174
+[pusht] env rollouts: start 15/20 c_phys range 0.1971..0.2141
+[pusht] env rollouts: start 16/20 c_phys range 0.1129..0.2632
+[pusht] env rollouts: start 17/20 c_phys range 0.0658..0.2355
+[pusht] env rollouts: start 18/20 c_phys range 0.0075..0.1293
+[pusht] env rollouts: start 19/20 c_phys range 0.0116..0.3386
+[pusht] env rollouts: start 20/20 c_phys range 0.1134..0.3899
+[pusht] physical-cost source: infos['block_pose'] vs dataset goal_state[2:5]
+[pusht] starts with non-degenerate physical spread: 20/20
+07:07:20 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  base           done
+07:07:22 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  obj            done
+07:07:24 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  aux            done
+
+========================================================================================================
+P4 pusht  (20 starts x 64 candidates, elite k=6)
+========================================================================================================
+regret = rank percentile of the model's pick in the true ordering (0 best, 0.5 random); ereg = same for the whole elite set
+
+model     rollerr  (a)tau  (a)reg  (a)ereg (a)elite  (b)tau  (b)reg  (b)ereg (b)elite  tot tau  tot reg
+base       0.0351   0.732   0.020    0.073     0.69   0.272   0.344    0.329     0.31    0.259    0.244
+obj        0.0276   0.786   0.015    0.068     0.78   0.359   0.207    0.294     0.33    0.313    0.302
+aux        0.0269   0.758   0.009    0.087     0.69   0.289   0.282    0.312     0.32    0.239    0.269
+
+相对 base 的变化 (regret 越低越好):
+  obj      rollerr  -21.4%  | (a) tau +0.054 reg -0.005  | (b) tau +0.087 reg -0.137  | tot tau +0.055 reg +0.059
+  aux      rollerr  -23.4%  | (a) tau +0.026 reg -0.011  | (b) tau +0.017 reg -0.062  | tot tau -0.019 reg +0.025
+
+--- paired over the 20 starts (Wilcoxon signed-rank vs base) ---
+  model metric        base   model    delta  SD(delta)      SE        p
+  obj   roll err    0.0351  0.0276  -0.0075     0.0128  0.0029   0.0027  *
+  obj   (a) tau     0.7316  0.7857  +0.0542     0.0819  0.0183   0.0094  *
+  obj   (b) tau     0.2718  0.3592  +0.0875     0.1502  0.0336   0.0266  *
+  obj   (b) ereg    0.3290  0.2940  -0.0349     0.1533  0.0343   0.1788
+  obj   tot tau     0.2586  0.3132  +0.0546     0.1781  0.0398   0.1429
+  obj   tot ereg    0.3541  0.3220  -0.0321     0.1550  0.0347   0.7564
+  aux   roll err    0.0351  0.0269  -0.0082     0.0095  0.0021   0.0002  *
+  aux   (a) tau     0.7316  0.7576  +0.0260     0.0690  0.0154   0.2598
+  aux   (b) tau     0.2718  0.2885  +0.0168     0.1305  0.0292   0.3488
+  aux   (b) ereg    0.3290  0.3122  -0.0168     0.0819  0.0183   0.3955
+  aux   tot tau     0.2586  0.2392  -0.0194     0.1419  0.0317   0.9039
+  aux   tot ereg    0.3541  0.3438  -0.0103     0.0629  0.0141   0.5349
+
+wrote eval_results/p4_pusht.json

@@ -1,0 +1,19 @@
+# @package _global_
+# K2: PAEP main — SIGReg + L_obj on the 9-dim effector q (cos2psi/sin2psi yaw).
+# lambda_obj = 0.1 carried over from Push-T/Reacher, deliberately NOT re-tuned.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_k2_cube_obj_eff${loss.obj.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_effector
+  aux:
+    weight: 0.0

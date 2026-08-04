@@ -1,0 +1,35 @@
+19:56:47 | INFO  | __init__.py | JAX version 0.6.2 available.
+19:56:51 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+[Push-T] windows=600 frames=4800 q_dim=6
+19:59:39 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   baseline (C1)          window/frame norm ratio = 0.9784
+   baseline (C1)          PC1=  2.2% PC2=  2.1% rho_q=0.145 rho_progress=0.089
+19:59:42 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +L_obj λ=0.1 (C3)      window/frame norm ratio = 0.9797
+   +L_obj λ=0.1 (C3)      PC1=  3.2% PC2=  3.0% rho_q=0.862 rho_progress=0.042
+19:59:45 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +aux w=0.3 (C5)        window/frame norm ratio = 0.9776
+   +aux w=0.3 (C5)        PC1=  2.1% PC2=  2.1% rho_q=0.152 rho_progress=0.075
+[Reacher] windows=600 frames=4800 q_dim=4
+20:02:39 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   baseline (R1)          window/frame norm ratio = 0.9425
+   baseline (R1)          PC1=  3.4% PC2=  3.2% rho_q=0.393 rho_progress=0.059
+20:02:42 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +L_obj λ=0.15 (R2)     window/frame norm ratio = 0.9502
+   +L_obj λ=0.15 (R2)     PC1=  4.2% PC2=  3.9% rho_q=0.674 rho_progress=0.035
+20:02:44 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +aux w=0.4 (R5)        window/frame norm ratio = 0.9417
+   +aux w=0.4 (R5)        PC1=  3.1% PC2=  3.0% rho_q=0.171 rho_progress=0.059
+[Cube] windows=600 frames=4800 q_dim=9
+20:02:52 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   baseline (K1)          window/frame norm ratio = 0.9567
+   baseline (K1)          PC1=  2.2% PC2=  2.0% rho_q=0.143 rho_progress=0.018
+20:02:55 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +L_obj λ=0.1 (K2)      window/frame norm ratio = 0.9749
+   +L_obj λ=0.1 (K2)      PC1=  2.6% PC2=  2.5% rho_q=0.920 rho_progress=0.020
+20:02:57 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+   +aux w=0.1 (K4)        window/frame norm ratio = 0.9713
+   +aux w=0.1 (K4)        PC1=  2.1% PC2=  2.1% rho_q=0.161 rho_progress=0.107
+wrote eval_results/viz_pca_grid_q.png
+wrote eval_results/viz_pca_grid_progress.png
+wrote eval_results/viz_latent_norms.png
