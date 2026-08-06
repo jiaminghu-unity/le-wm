@@ -86,14 +86,21 @@ echo "[gl] $GL"
 # Gate on render fidelity BEFORE spending GPU-hours: if the env's pixels disagree
 # with the stored dataset frames, the absolute SR is biased and not comparable to
 # the paper. Non-fatal (paired comparisons stay valid) but always reported.
-python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 || \
-  echo "[warn] render fidelity gate FAILED — absolute SR not comparable to published numbers"
+# Non-fatal for SR: paired comparisons survive a renderer offset, only absolute SR
+# shifts. But the verdict is recorded next to the results instead of vanishing into the
+# job log, which is what let a failed cube gate go unnoticed.
+GATELOG="$SSD/render_gate_${TASK}.log"
+python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG" || \
+  echo "[warn] render fidelity gate FAILED — absolute SR not comparable to published numbers" \
+    | tee -a "$GATELOG"
+gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
 
 mkdir -p "$SSD/eps"
 RC=0
 for S in "${SEEDS[@]}"; do
-  EPSNAME="episodes_${TASK}_s${S}_100.json"
-  OUT="final_${TASK}_${CFG}_${SOLVER}_s${S}.csv"
+  # EPS_N lets a run point at a set that is not the usual 100 episodes
+  EPSNAME="episodes_${TASK}_s${S}_${EPS_N:-100}.json"
+  OUT="final_${TASK}_${CFG}_${SOLVER}_s${S}${EPS_N:+_$EPS_N}.csv"
   if gcloud storage ls "$OUTP/$OUT" >/dev/null 2>&1; then
     echo "[skip] $OUT already in GCS"; continue
   fi

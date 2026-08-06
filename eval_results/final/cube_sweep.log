@@ -1,0 +1,285 @@
+[09:24:56] round 1: complete 0/16, running 0, todo 16
+[09:24:57]   capacity 8 GPU, in-flight 0, free 8
+[09:24:58]   submitted cube k1 cem -> raysubmit_UqwDYEScGrEN2xSC (attempt 1)
+[09:24:59]   submitted cube k1 icem -> raysubmit_Sry3kbSqvKNT5Uxd (attempt 1)
+[09:25:00]   submitted cube k1 mppi -> raysubmit_HACyPM8mx1nPtm8L (attempt 1)
+[09:25:01]   submitted cube k1 gd -> raysubmit_nnaVb28JUKfy7MUv (attempt 1)
+[09:25:02]   submitted cube k2 cem -> raysubmit_Tu5jv3MberdJs4HW (attempt 1)
+[09:25:03]   submitted cube k2 icem -> raysubmit_8Kc5XRFQU8hYpYrd (attempt 1)
+[09:25:04]   submitted cube k2 mppi -> raysubmit_9DjHqJ19Qn4keh1P (attempt 1)
+[09:25:05]   submitted cube k2 gd -> raysubmit_Jr61gL5jxRrVBgzN (attempt 1)
+[09:28:06] round 2: complete 0/16, running 8, todo 16
+[09:28:07]   capacity 8 GPU, in-flight 8, free 0
+[09:31:08] round 3: complete 0/16, running 8, todo 16
+[09:31:09]   capacity 8 GPU, in-flight 8, free 0
+[09:34:11] round 4: complete 0/16, running 8, todo 16
+[09:34:11]   capacity 8 GPU, in-flight 8, free 0
+[09:37:13] round 5: complete 0/16, running 8, todo 16
+[09:37:14]   capacity 8 GPU, in-flight 8, free 0
+[09:40:15] round 6: complete 0/16, running 7, todo 16
+[09:40:16]   capacity 8 GPU, in-flight 7, free 1
+[09:40:18]   submitted cube k2 gd -> raysubmit_1mW8GxG9SdB2hryU (attempt 2)
+[09:43:19] round 7: complete 0/16, running 8, todo 16
+[09:43:20]   capacity 8 GPU, in-flight 8, free 0
+[09:46:22] round 8: complete 0/16, running 8, todo 16
+[09:46:23]   capacity 8 GPU, in-flight 8, free 0
+[09:49:24] round 9: complete 0/16, running 8, todo 16
+[09:49:25]   capacity 8 GPU, in-flight 8, free 0
+[09:52:26] round 10: complete 0/16, running 8, todo 16
+[09:52:27]   capacity 8 GPU, in-flight 8, free 0
+[09:55:29] round 11: complete 0/16, running 8, todo 16
+[09:55:30]   capacity 8 GPU, in-flight 8, free 0
+[09:58:31] round 12: complete 0/16, running 8, todo 16
+[09:58:32]   capacity 8 GPU, in-flight 8, free 0
+[10:01:34] round 13: complete 0/16, running 8, todo 16
+[10:01:34]   capacity 8 GPU, in-flight 8, free 0
+[10:04:36] round 14: complete 0/16, running 8, todo 16
+[10:04:37]   capacity 8 GPU, in-flight 8, free 0
+[10:07:38] round 15: complete 0/16, running 8, todo 16
+[10:07:39]   capacity 8 GPU, in-flight 8, free 0
+[10:10:41] round 16: complete 3/16, running 5, todo 13
+[10:10:41]   capacity 8 GPU, in-flight 5, free 3
+[10:10:43]   submitted cube k4 cem -> raysubmit_n4jCVZV3RN1RnYte (attempt 1)
+[10:10:44]   submitted cube k4 icem -> raysubmit_BPnVG7E3S9mXTKUd (attempt 1)
+[10:10:45]   submitted cube k4 mppi -> raysubmit_LUeYxef5pn5cc1YN (attempt 1)
+[10:13:46] round 17: complete 4/16, running 7, todo 12
+[10:13:47]   capacity 8 GPU, in-flight 7, free 1
+[10:13:49]   submitted cube k4 gd -> raysubmit_Fp9RsiJJi6qVD2Nb (attempt 1)
+[10:16:51] round 18: complete 5/16, running 7, todo 11
+[10:16:52]   capacity 8 GPU, in-flight 7, free 1
+[10:16:53]   submitted cube k6 cem -> raysubmit_56ZqZNJ3cvXKtC1s (attempt 1)
+[10:19:55] round 19: complete 6/16, running 7, todo 10
+[10:19:56]   capacity 8 GPU, in-flight 7, free 1
+[10:19:58]   submitted cube k6 icem -> raysubmit_dVdkTQrZhmt2TW55 (attempt 1)
+[10:22:59] round 20: complete 6/16, running 8, todo 10
+[10:23:00]   capacity 8 GPU, in-flight 8, free 0
+[10:26:01] round 21: complete 6/16, running 8, todo 10
+[10:26:02]   capacity 8 GPU, in-flight 8, free 0
+[10:29:04] round 22: complete 6/16, running 8, todo 10
+[10:29:05]   capacity 8 GPU, in-flight 8, free 0
+[10:32:06] round 23: complete 6/16, running 8, todo 10
+[10:32:07]   capacity 8 GPU, in-flight 8, free 0
+[10:35:08] round 24: complete 6/16, running 8, todo 10
+[10:35:09]   capacity 8 GPU, in-flight 8, free 0
+[10:38:11] round 25: complete 6/16, running 8, todo 10
+[10:38:11]   capacity 8 GPU, in-flight 8, free 0
+[10:41:13] round 26: complete 6/16, running 8, todo 10
+[10:41:14]   capacity 8 GPU, in-flight 8, free 0
+[10:44:15] round 27: complete 6/16, running 8, todo 10
+[10:44:16]   capacity 8 GPU, in-flight 8, free 0
+[10:47:18] round 28: complete 6/16, running 8, todo 10
+[10:47:18]   capacity 8 GPU, in-flight 8, free 0
+[10:50:20] round 29: complete 6/16, running 8, todo 10
+[10:50:21]   capacity 8 GPU, in-flight 8, free 0
+[10:53:22] round 30: complete 6/16, running 8, todo 10
+[10:53:23]   capacity 8 GPU, in-flight 8, free 0
+[10:56:24] round 31: complete 8/16, running 6, todo 8
+[10:56:25]   capacity 8 GPU, in-flight 6, free 2
+[10:56:27]   submitted cube k6 mppi -> raysubmit_kCez3ny1FvUKQyGZ (attempt 1)
+[10:56:28]   submitted cube k6 gd -> raysubmit_yQjeHqUShLxrkcPC (attempt 1)
+[10:59:29] round 32: complete 8/16, running 8, todo 8
+[10:59:30]   capacity 8 GPU, in-flight 8, free 0
+[11:02:32] round 33: complete 10/16, running 6, todo 6
+[11:02:33]   capacity 8 GPU, in-flight 6, free 2
+[11:05:35] round 34: complete 11/16, running 5, todo 5
+[11:05:36]   capacity 8 GPU, in-flight 5, free 3
+[11:08:38] round 35: complete 11/16, running 5, todo 5
+[11:08:39]   capacity 8 GPU, in-flight 5, free 3
+[11:11:41] round 36: complete 11/16, running 5, todo 5
+[11:11:41]   capacity 8 GPU, in-flight 5, free 3
+[11:14:43] round 37: complete 11/16, running 5, todo 5
+[11:14:44]   capacity 8 GPU, in-flight 5, free 3
+[11:17:46] round 38: complete 11/16, running 5, todo 5
+[11:17:47]   capacity 8 GPU, in-flight 5, free 3
+[11:20:49] round 39: complete 12/16, running 4, todo 4
+[11:20:50]   capacity 8 GPU, in-flight 4, free 4
+[11:23:52] round 40: complete 12/16, running 4, todo 4
+[11:23:53]   capacity 8 GPU, in-flight 4, free 4
+[11:26:55] round 41: complete 12/16, running 4, todo 4
+[11:26:56]   capacity 8 GPU, in-flight 4, free 4
+[11:29:58] round 42: complete 13/16, running 3, todo 3
+[11:29:58]   capacity 8 GPU, in-flight 3, free 5
+[11:33:00] round 43: complete 13/16, running 3, todo 3
+[11:33:01]   capacity 8 GPU, in-flight 3, free 5
+[11:36:03] round 44: complete 13/16, running 3, todo 3
+[11:36:04]   capacity 8 GPU, in-flight 3, free 5
+[11:39:06] round 45: complete 13/16, running 3, todo 3
+[11:39:07]   capacity 8 GPU, in-flight 3, free 5
+[11:42:08] round 46: complete 13/16, running 3, todo 3
+[11:42:09]   capacity 8 GPU, in-flight 3, free 5
+[11:45:11] round 47: complete 13/16, running 3, todo 3
+[11:45:12]   capacity 8 GPU, in-flight 3, free 5
+[11:48:14] round 48: complete 14/16, running 2, todo 2
+[11:48:15]   capacity 8 GPU, in-flight 2, free 6
+[11:51:16] round 49: complete 14/16, running 2, todo 2
+[11:51:17]   capacity 8 GPU, in-flight 2, free 6
+[11:54:19] round 50: complete 14/16, running 2, todo 2
+[11:54:20]   capacity 8 GPU, in-flight 2, free 6
+[11:57:21] round 51: complete 14/16, running 2, todo 2
+[11:57:22]   capacity 8 GPU, in-flight 2, free 6
+[12:00:24] round 52: complete 14/16, running 2, todo 2
+[12:00:25]   capacity 8 GPU, in-flight 2, free 6
+[12:03:26] round 53: complete 15/16, running 1, todo 1
+[12:03:27]   capacity 8 GPU, in-flight 1, free 7
+[12:06:29] round 54: complete 15/16, running 1, todo 1
+[12:06:30]   capacity 8 GPU, in-flight 1, free 7
+[12:09:31] round 55: complete 15/16, running 1, todo 1
+[12:09:32]   capacity 8 GPU, in-flight 1, free 7
+[12:12:34] round 56: complete 15/16, running 1, todo 1
+[12:12:34]   capacity 8 GPU, in-flight 1, free 7
+[12:15:36] round 57: complete 15/16, running 1, todo 1
+[12:15:37]   capacity 8 GPU, in-flight 1, free 7
+[12:18:38] round 58: complete 15/16, running 1, todo 1
+[12:18:39]   capacity 8 GPU, in-flight 1, free 7
+[12:21:41] round 59: complete 15/16, running 1, todo 1
+[12:21:42]   capacity 8 GPU, in-flight 1, free 7
+[12:24:43] round 60: complete 15/16, running 1, todo 1
+[12:24:44]   capacity 8 GPU, in-flight 1, free 7
+[12:27:46] round 61: complete 15/16, running 1, todo 1
+[12:27:46]   capacity 8 GPU, in-flight 1, free 7
+[12:30:48] round 62: complete 15/16, running 1, todo 1
+[12:30:49]   capacity 8 GPU, in-flight 1, free 7
+[12:33:50] round 63: complete 15/16, running 1, todo 1
+[12:33:51]   capacity 8 GPU, in-flight 1, free 7
+[12:36:53] round 64: complete 15/16, running 1, todo 1
+[12:36:54]   capacity 8 GPU, in-flight 1, free 7
+[12:39:55] round 65: complete 15/16, running 1, todo 1
+[12:39:56]   capacity 8 GPU, in-flight 1, free 7
+[12:42:57] round 66: complete 16/16, running 0, todo 0
+[12:42:57] ALL CUBE-SWEEP CELLS COMPLETE
+[08:26:46] round 1: complete 0/16, running 0, todo 16
+[08:26:47]   capacity 8 GPU, in-flight 0, free 8
+[08:26:48]   submitted cube k1 cem -> raysubmit_LQVpUC14wuZbFmNr (attempt 1)
+[08:26:49]   submitted cube k1 icem -> raysubmit_FyRMRgc3Uht73PwC (attempt 1)
+[08:26:50]   submitted cube k1 mppi -> raysubmit_54Tnxi4njApHPdAT (attempt 1)
+[08:26:51]   submitted cube k1 gd -> raysubmit_sbDwYcKiNMjQ9ewR (attempt 1)
+[08:26:52]   submitted cube k2 cem -> raysubmit_NANrEFRTknVjr3f3 (attempt 1)
+[08:26:53]   submitted cube k2 icem -> raysubmit_AQsxdj9cTr82NxRD (attempt 1)
+[08:26:54]   submitted cube k2 mppi -> raysubmit_tYjubEMpuVATtkc8 (attempt 1)
+[08:26:55]   submitted cube k2 gd -> raysubmit_TLAqL3pGmZh1xshw (attempt 1)
+[08:29:57] round 2: complete 0/16, running 8, todo 16
+[08:29:58]   capacity 8 GPU, in-flight 8, free 0
+[08:32:59] round 3: complete 0/16, running 8, todo 16
+[08:33:00]   capacity 8 GPU, in-flight 8, free 0
+[08:36:02] round 4: complete 0/16, running 8, todo 16
+[08:36:02]   capacity 8 GPU, in-flight 8, free 0
+[08:39:04] round 5: complete 0/16, running 8, todo 16
+[08:39:05]   capacity 8 GPU, in-flight 8, free 0
+[08:42:06] round 6: complete 0/16, running 8, todo 16
+[08:42:07]   capacity 8 GPU, in-flight 8, free 0
+[08:45:09] round 7: complete 0/16, running 8, todo 16
+[08:45:09]   capacity 8 GPU, in-flight 8, free 0
+[08:48:11] round 8: complete 0/16, running 8, todo 16
+[08:48:12]   capacity 8 GPU, in-flight 8, free 0
+[08:51:13] round 9: complete 0/16, running 8, todo 16
+[08:51:14]   capacity 8 GPU, in-flight 8, free 0
+[08:54:15] round 10: complete 0/16, running 8, todo 16
+[08:54:16]   capacity 8 GPU, in-flight 8, free 0
+[08:57:18] round 11: complete 0/16, running 8, todo 16
+[08:57:19]   capacity 8 GPU, in-flight 8, free 0
+[09:00:20] round 12: complete 0/16, running 8, todo 16
+[09:00:21]   capacity 8 GPU, in-flight 8, free 0
+[09:03:22] round 13: complete 0/16, running 8, todo 16
+[09:03:23]   capacity 8 GPU, in-flight 8, free 0
+[09:06:25] round 14: complete 1/16, running 7, todo 15
+[09:06:26]   capacity 8 GPU, in-flight 7, free 1
+[09:06:28]   submitted cube k4 cem -> raysubmit_QuWzqVt1kqcNzhKy (attempt 1)
+[09:09:29] round 15: complete 5/16, running 4, todo 11
+[09:09:30]   capacity 8 GPU, in-flight 4, free 4
+[09:09:32]   submitted cube k4 icem -> raysubmit_QDrUAaaCqTJqxthf (attempt 1)
+[09:09:33]   submitted cube k4 mppi -> raysubmit_hLTxN5b2BP7ZV1R1 (attempt 1)
+[09:09:34]   submitted cube k4 gd -> raysubmit_xTekTRPgcJjtQxSr (attempt 1)
+[09:09:35]   submitted cube k6 cem -> raysubmit_5dMyLftNM6ZVGRPv (attempt 1)
+[09:12:36] round 16: complete 5/16, running 8, todo 11
+[09:12:37]   capacity 8 GPU, in-flight 8, free 0
+[09:15:38] round 17: complete 5/16, running 8, todo 11
+[09:15:39]   capacity 8 GPU, in-flight 8, free 0
+[09:18:41] round 18: complete 6/16, running 7, todo 10
+[09:18:42]   capacity 8 GPU, in-flight 7, free 1
+[09:18:44]   submitted cube k6 icem -> raysubmit_REJ9g2qHsf8VXtcJ (attempt 1)
+[09:21:45] round 19: complete 6/16, running 8, todo 10
+[09:21:46]   capacity 8 GPU, in-flight 8, free 0
+[09:24:47] round 20: complete 6/16, running 8, todo 10
+[09:24:48]   capacity 8 GPU, in-flight 8, free 0
+[09:27:50] round 21: complete 6/16, running 8, todo 10
+[09:27:51]   capacity 8 GPU, in-flight 8, free 0
+[09:30:52] round 22: complete 6/16, running 8, todo 10
+[09:30:53]   capacity 8 GPU, in-flight 8, free 0
+[09:33:54] round 23: complete 6/16, running 8, todo 10
+[09:33:55]   capacity 8 GPU, in-flight 8, free 0
+[09:36:56] round 24: complete 6/16, running 8, todo 10
+[09:36:57]   capacity 8 GPU, in-flight 8, free 0
+[09:39:59] round 25: complete 6/16, running 8, todo 10
+[09:40:00]   capacity 8 GPU, in-flight 8, free 0
+[09:43:01] round 26: complete 6/16, running 8, todo 10
+[09:43:02]   capacity 8 GPU, in-flight 8, free 0
+[09:46:03] round 27: complete 7/16, running 7, todo 9
+[09:46:04]   capacity 8 GPU, in-flight 7, free 1
+[09:46:06]   submitted cube k6 mppi -> raysubmit_s5etdBxscnmsw55M (attempt 1)
+[09:49:08] round 28: complete 8/16, running 7, todo 8
+[09:49:09]   capacity 8 GPU, in-flight 7, free 1
+[09:49:11]   submitted cube k6 gd -> raysubmit_mm5myEtGXKYyJG12 (attempt 1)
+[09:52:12] round 29: complete 9/16, running 7, todo 7
+[09:52:13]   capacity 8 GPU, in-flight 7, free 1
+[09:55:15] round 30: complete 10/16, running 6, todo 6
+[09:55:16]   capacity 8 GPU, in-flight 6, free 2
+[09:58:18] round 31: complete 11/16, running 5, todo 5
+[09:58:19]   capacity 8 GPU, in-flight 5, free 3
+[10:01:21] round 32: complete 11/16, running 5, todo 5
+[10:01:22]   capacity 8 GPU, in-flight 5, free 3
+[10:04:25] round 33: complete 11/16, running 5, todo 5
+[10:04:25]   capacity 8 GPU, in-flight 5, free 3
+[10:07:28] round 34: complete 12/16, running 4, todo 4
+[10:07:29]   capacity 8 GPU, in-flight 4, free 4
+[10:10:31] round 35: complete 12/16, running 4, todo 4
+[10:10:31]   capacity 8 GPU, in-flight 4, free 4
+[10:13:33] round 36: complete 13/16, running 3, todo 3
+[10:13:34]   capacity 8 GPU, in-flight 3, free 5
+[10:16:36] round 37: complete 13/16, running 3, todo 3
+[10:16:37]   capacity 8 GPU, in-flight 3, free 5
+[10:19:39] round 38: complete 13/16, running 3, todo 3
+[10:19:40]   capacity 8 GPU, in-flight 3, free 5
+[10:22:42] round 39: complete 13/16, running 3, todo 3
+[10:22:42]   capacity 8 GPU, in-flight 3, free 5
+[10:25:44] round 40: complete 13/16, running 3, todo 3
+[10:25:45]   capacity 8 GPU, in-flight 3, free 5
+[10:28:54] round 41: complete 14/16, running 2, todo 2
+[10:28:54]   capacity 8 GPU, in-flight 2, free 6
+[10:31:56] round 42: complete 14/16, running 2, todo 2
+[10:31:57]   capacity 8 GPU, in-flight 2, free 6
+[10:34:59] round 43: complete 14/16, running 2, todo 2
+[10:35:00]   capacity 8 GPU, in-flight 2, free 6
+[10:38:01] round 44: complete 14/16, running 2, todo 2
+[10:38:02]   capacity 8 GPU, in-flight 2, free 6
+[10:41:04] round 45: complete 14/16, running 2, todo 2
+[10:41:05]   capacity 8 GPU, in-flight 2, free 6
+[10:44:06] round 46: complete 14/16, running 2, todo 2
+[10:44:07]   capacity 8 GPU, in-flight 2, free 6
+[10:47:09] round 47: complete 14/16, running 2, todo 2
+[10:47:10]   capacity 8 GPU, in-flight 2, free 6
+[10:50:12] round 48: complete 15/16, running 1, todo 1
+[10:50:13]   capacity 8 GPU, in-flight 1, free 7
+[10:53:14] round 49: complete 15/16, running 1, todo 1
+[10:53:15]   capacity 8 GPU, in-flight 1, free 7
+[10:56:17] round 50: complete 15/16, running 1, todo 1
+[10:56:18]   capacity 8 GPU, in-flight 1, free 7
+[10:59:19] round 51: complete 15/16, running 1, todo 1
+[10:59:20]   capacity 8 GPU, in-flight 1, free 7
+[11:02:22] round 52: complete 15/16, running 1, todo 1
+[11:02:22]   capacity 8 GPU, in-flight 1, free 7
+[11:05:24] round 53: complete 15/16, running 1, todo 1
+[11:05:25]   capacity 8 GPU, in-flight 1, free 7
+[11:08:26] round 54: complete 15/16, running 1, todo 1
+[11:08:27]   capacity 8 GPU, in-flight 1, free 7
+[11:11:29] round 55: complete 15/16, running 1, todo 1
+[11:11:30]   capacity 8 GPU, in-flight 1, free 7
+[11:14:31] round 56: complete 15/16, running 1, todo 1
+[11:14:32]   capacity 8 GPU, in-flight 1, free 7
+[11:17:34] round 57: complete 15/16, running 1, todo 1
+[11:17:35]   capacity 8 GPU, in-flight 1, free 7
+[11:20:36] round 58: complete 15/16, running 1, todo 1
+[11:20:37]   capacity 8 GPU, in-flight 1, free 7
+[11:23:39] round 59: complete 15/16, running 1, todo 1
+[11:23:39]   capacity 8 GPU, in-flight 1, free 7
+[11:26:41] round 60: complete 16/16, running 0, todo 0
+[11:26:41] ALL CUBE-SWEEP CELLS COMPLETE

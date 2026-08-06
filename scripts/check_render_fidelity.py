@@ -54,50 +54,94 @@ TASKS = {
                              "target_quat": {"value": "goal_privileged_block_0_quat"}}}]),
 }
 
-ap = argparse.ArgumentParser()
-ap.add_argument("task", choices=list(TASKS))
-ap.add_argument("n", nargs="?", type=int, default=8)
-ap.add_argument("--max-mae", type=float, default=3.0)
-args = ap.parse_args()
-
+# Imports and env setup stay at module level; everything that RUNS lives in main().
+# Previously the argparse and the whole check sat at module level, so `from
+# check_render_fidelity import TASKS` executed the check and parsed the *importer's*
+# argv — which is how scripts/diag_render_cube.py died on "invalid choice: '8'".
 os.environ.setdefault("MUJOCO_GL", "egl")
 import hdf5plugin  # noqa: F401,E402
 import stable_worldmodel as swm  # noqa: E402
 from stable_worldmodel.world.world import _apply_callables, _extract_init_goal  # noqa: E402
 
-spec = TASKS[args.task]
-kw = {}
-if spec.get("keys_to_load"):
-    kw["keys_to_load"] = spec["keys_to_load"]
-ds = swm.data.HDF5Dataset(spec["dataset"], keys_to_cache=["action"],
-                          cache_dir=Path(swm.data.utils.get_cache_dir()), **kw)
-world = swm.World(env_name=spec["env"], num_envs=1, image_shape=(224, 224),
-                  max_episode_steps=100, **spec["env_kwargs"])
-env = world.envs.envs[0].unwrapped
-for cb in spec["callables"]:
-    print(f"  env.{cb['method']}: {hasattr(env, cb['method'])}"
-          f"{'   <-- MISSING, callable silently skipped' if not hasattr(env, cb['method']) else ''}")
 
-eps = json.loads(Path(spec["episodes"]).read_text())["episodes"][: args.n]
-maes = []
-for e in eps:
-    init, goal, _ = _extract_init_goal(ds, [e["traj_id"]], [e["start_idx"]], 25)
-    world.reset(seed=[e["env_seed"]])
-    merged = {**init, **goal}
-    _apply_callables(env, spec["callables"],
-                     {k: v[0] for k, v in merged.items() if hasattr(v, "__len__")})
-    r = np.asarray(world.infos["pixels"][0, 0]).astype(np.int32)
-    s = np.asarray(init["pixels"][0]).astype(np.int32)
-    if r.shape != s.shape:
-        r = r.reshape(s.shape)
-    maes.append(float(np.abs(r - s).mean()))
+def measure(task, n, callables=None, env_kwargs_override=None, want_pairs=False):
+    """Per-frame |rendered - stored| for the first n episodes of `task`.
 
-mae = float(np.mean(maes))
-frac = None
-print(f"RENDER_FIDELITY task={args.task} backend={os.environ['MUJOCO_GL']} "
-      f"n={len(maes)} MAE={mae:.4f} per-frame={[round(m, 2) for m in maes]}")
-if mae > args.max_mae:
-    print(f"FAIL: MAE {mae:.3f} > {args.max_mae} — env renders disagree with the dataset "
-          f"the model was trained on; absolute SR will be biased low.", file=sys.stderr)
-    sys.exit(1)
-print(f"OK: MAE {mae:.3f} <= {args.max_mae}")
+    callables / env_kwargs_override let a caller probe variants (e.g. skipping
+    set_target_pos) without duplicating the task table.
+    """
+    spec = TASKS[task]
+    kw = dict(spec["env_kwargs"])
+    kw.update(env_kwargs_override or {})
+    cbs = spec["callables"] if callables is None else callables
+    ds_kw = {"keys_to_load": spec["keys_to_load"]} if spec.get("keys_to_load") else {}
+    ds = swm.data.HDF5Dataset(spec["dataset"], keys_to_cache=["action"],
+                              cache_dir=Path(swm.data.utils.get_cache_dir()), **ds_kw)
+    world = swm.World(env_name=spec["env"], num_envs=1, image_shape=(224, 224),
+                      max_episode_steps=100, **kw)
+    env = world.envs.envs[0].unwrapped
+    missing = [c["method"] for c in cbs if not hasattr(env, c["method"])]
+    eps = json.loads(Path(spec["episodes"]).read_text())["episodes"][:n]
+    maes, extra, pairs, stale_reads = [], [], [], []
+    for e in eps:
+        init, goal, _ = _extract_init_goal(ds, [e["traj_id"]], [e["start_idx"]], 25)
+        world.reset(seed=[e["env_seed"]])
+        merged = {**init, **goal}
+        _apply_callables(env, cbs,
+                         {k: v[0] for k, v in merged.items() if hasattr(v, "__len__")})
+        st = np.asarray(init["pixels"][0]).astype(np.int32)
+        # Render explicitly. world.infos["pixels"] is a snapshot refreshed on
+        # reset/step, so reading it straight after set_state returns the POST-RESET
+        # frame — which made this gate report cube at MAE 9.04 (a reset-pose arm
+        # compared against a dataset-pose arm) when the renderer was in fact fine:
+        # env.render() on the same state gives 0.19, and one env step gives 0.67.
+        # Stepping is not used here because it advances physics and so measures drift
+        # on top of render fidelity.
+        r = None
+        if hasattr(env, "render"):
+            try:
+                cand = np.asarray(env.render())
+                if cand.size == st.size:
+                    r = cand.reshape(st.shape).astype(np.int32)
+            except Exception:
+                r = None
+        if r is None:
+            r = np.asarray(world.infos["pixels"][0, 0]).astype(np.int32)
+            if r.shape != st.shape:
+                r = r.reshape(st.shape)
+            stale_reads.append(True)
+        maes.append(float(np.abs(r - st).mean()))
+        extra.append((init, goal))
+        if want_pairs:
+            pairs.append((st.astype(np.uint8), r.astype(np.uint8)))
+    world.close()
+    if stale_reads:
+        print(f"  NOTE: env.render() unavailable for {task}; fell back to "
+              f"world.infos['pixels'] on {len(stale_reads)} frame(s), which may be stale")
+    return maes, missing, extra, pairs
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("task", choices=list(TASKS))
+    ap.add_argument("n", nargs="?", type=int, default=8)
+    ap.add_argument("--max-mae", type=float, default=3.0)
+    args = ap.parse_args()
+
+    maes, missing, _, _ = measure(args.task, args.n)
+    for cb in TASKS[args.task]["callables"]:
+        flag = "   <-- MISSING, callable silently skipped" if cb["method"] in missing else ""
+        print(f"  env.{cb['method']}: {cb['method'] not in missing}{flag}")
+    mae = float(np.mean(maes))
+    print(f"RENDER_FIDELITY task={args.task} backend={os.environ['MUJOCO_GL']} "
+          f"n={len(maes)} MAE={mae:.4f} per-frame={[round(m, 2) for m in maes]}")
+    if mae > args.max_mae:
+        print(f"FAIL: MAE {mae:.3f} > {args.max_mae} — env renders disagree with the "
+              f"dataset the model was trained on; absolute SR will be biased low.",
+              file=sys.stderr)
+        sys.exit(1)
+    print(f"OK: MAE {mae:.3f} <= {args.max_mae}")
+
+
+if __name__ == "__main__":
+    main()

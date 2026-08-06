@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# P4 bottleneck decomposition: rollout error vs cost-ranking error, per task.
-#   usage: ray_p4.sh <task> [--starts N --cands N]
+# P5 ranking-noise analysis (no physical channel).
+#   usage: ray_p5.sh <task> [--starts N --cands N]
 # Renders live frames, so it needs the same working GL backend and the same
 # fidelity gate as the evaluation sweep: z_true comes from rendered pixels, and a
 # software-rendering fallback would corrupt the geometry channel it is measuring.
@@ -90,7 +90,7 @@ echo "[gl] $GL"
 # And it is FATAL here, not a warning: z_true is the encoding of a rendered frame, so a
 # renderer that disagrees with the training data does not bias these numbers, it
 # invalidates them.
-LOG="$SSD/p4_${TASK}${P5TAG:-}.log"
+LOG="$SSD/p5_${TASK}${P5TAG:-}.log"
 : > "$LOG"
 if [ "$TASK" != pusht ]; then
   if ! python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee -a "$LOG"; then
@@ -101,11 +101,7 @@ the encoder was not trained on" | tee -a "$LOG"
   fi
 fi
 
-python scripts/p4_bottleneck.py "$TASK" "${MODELS[@]}" "${EXTRA[@]}" 2>&1 | tee -a "$LOG"
-gcloud storage cp "eval_results/p4_$TASK.json" "$BUCKET/eval/" || true
-gcloud storage cp "eval_results/p4_cache_$TASK.npz" "$BUCKET/eval/" || true
-for f in eval_results/p4_costs_"$TASK"_*.npz; do
-  [ -f "$f" ] && gcloud storage cp "$f" "$BUCKET/eval/" || true
-done
+python scripts/p5_rank_noise.py "$TASK" "${MODELS[@]}" "${EXTRA[@]}" 2>&1 | tee -a "$LOG"
+for f in eval_results/p5_"$TASK"*.json; do [ -f "$f" ] && gcloud storage cp "$f" "$BUCKET/eval/" || true; done
 gcloud storage cp "$LOG" "$BUCKET/eval/"
-echo "P4 DONE $TASK"
+echo "P5 DONE $TASK"
