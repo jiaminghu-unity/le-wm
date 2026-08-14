@@ -1,0 +1,22 @@
+# @package _global_
+# T1: two-room baseline — SIGReg at the repo default (0.09), no q signal at all.
+# The reference arm for the two-room round. Uses the same data config as T2/T5 so the
+# dataloader is byte-identical across arms and only the loss differs.
+defaults:
+  - override /data: tworoom_q
+
+output_model_name: lewm_t1_tworoom_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    # weight is 0, but train.py builds the q normaliser unconditionally and looks the
+    # stats up as <dataset>.q_stats.<variant>.json, so the variant still has to be named
+    q_variant: tworoom_agent
+  aux:
+    weight: 0.0

@@ -1,0 +1,22 @@
+# @package _global_
+# T2: two-room L_obj — SIGReg (repo default) + L_obj on the 2-d agent position.
+#
+# lambda_obj = 0.1, NOT tuned on two-room: it is the value used on both Push-T and Cube,
+# carried over exactly as the original round carried Push-T's value to the other tasks.
+# Tuning it here would mean tuning on the task being evaluated.
+defaults:
+  - override /data: tworoom_q
+
+output_model_name: lewm_t2_tworoom_obj${loss.obj.weight}_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: tworoom_agent
+  aux:
+    weight: 0.0
