@@ -1,0 +1,81 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/mnt/disks/ssd0/.venv/lib/python3.10/site-packages/Cython/Distutils/old_build_ext.py:15: DeprecationWarning: dep_util is Deprecated. Use functions from setuptools instead.
+  from distutils.dep_util import newer, newer_group
+<frozen importlib._bootstrap>:283: DeprecationWarning: the load_module() method is deprecated and slated for removal in Python 3.12; use exec_module() instead
+[pointmaze_env] registered swm/DWMPointMaze-v0
+[preset] registered pointmaze (swm/DWMPointMaze-v0)
+19:06:27 | INFO  | __init__.py | JAX version 0.6.2 available.
+19:06:31 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+19:06:33 | INFO  | __init__.py | Cached 'action' from '/mnt/disks/ssd0/stable-wm/datasets/pointmaze.h5'
+19:06:35 | INFO  | __init__.py | Cached 'state' from '/mnt/disks/ssd0/stable-wm/datasets/pointmaze.h5'
+19:06:37 | INFO  | __init__.py | Cached 'pos' from '/mnt/disks/ssd0/stable-wm/datasets/pointmaze.h5'
+[pointmaze] env rollouts: start 1/20 c_phys range 0.0279..2.8620
+[pointmaze] env rollouts: start 2/20 c_phys range 0.2367..2.4099
+[pointmaze] env rollouts: start 3/20 c_phys range 0.1002..2.3293
+[pointmaze] env rollouts: start 4/20 c_phys range 0.2143..2.1765
+[pointmaze] env rollouts: start 5/20 c_phys range 0.0386..2.8629
+[pointmaze] env rollouts: start 6/20 c_phys range 0.0365..2.5115
+[pointmaze] env rollouts: start 7/20 c_phys range 0.0185..2.8103
+[pointmaze] env rollouts: start 8/20 c_phys range 0.1017..2.4764
+[pointmaze] env rollouts: start 9/20 c_phys range 0.1699..2.8665
+[pointmaze] env rollouts: start 10/20 c_phys range 0.0849..3.0224
+[pointmaze] env rollouts: start 11/20 c_phys range 0.0368..3.1396
+[pointmaze] env rollouts: start 12/20 c_phys range 0.0251..3.7662
+[pointmaze] env rollouts: start 13/20 c_phys range 0.0783..2.3146
+[pointmaze] env rollouts: start 14/20 c_phys range 0.1090..3.0792
+[pointmaze] env rollouts: start 15/20 c_phys range 0.0827..2.9749
+[pointmaze] env rollouts: start 16/20 c_phys range 0.0934..2.8258
+[pointmaze] env rollouts: start 17/20 c_phys range 0.1334..2.7442
+[pointmaze] env rollouts: start 18/20 c_phys range 0.1825..2.9794
+[pointmaze] env rollouts: start 19/20 c_phys range 0.4512..2.6796
+[pointmaze] env rollouts: start 20/20 c_phys range 0.0258..2.8797
+[pointmaze] physical-cost source: adapter _state[:2] vs dataset goal_state[:2]
+[pointmaze] starts with non-degenerate physical spread: 20/20
+19:13:16 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  base           done
+19:13:18 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  obj            done
+19:13:19 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  aux            done
+19:13:21 | INFO  | __init__.py | HTTP Request: HEAD https://huggingface.co/facebook/dinov2-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:13:21 | WARN  | __init__.py | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:13:21 | INFO  | __init__.py | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 4477.92it/s]
+  dw             done
+
+========================================================================================================
+P4-nav pointmaze  (20 starts x 64 candidates, elite k=6)
+========================================================================================================
+regret = rank percentile of the model's pick in the true ordering (0 best, 0.5 random); ereg = same for the whole elite set
+
+model     rollerr  (a)tau  (a)reg  (a)ereg (a)elite  (b)tau  (b)reg  (b)ereg (b)elite  tot tau  tot reg
+base       2.4226  -0.003   0.425    0.459     0.17   0.415   0.006    0.074     0.83    0.092    0.387
+obj        2.1132   0.168   0.340    0.379     0.25   0.453   0.002    0.070     0.77    0.252    0.289
+aux        2.2418   0.054   0.406    0.440     0.20   0.387   0.003    0.075     0.79    0.161    0.367
+dw         1.9545   0.285   0.183    0.269     0.33   0.457   0.009    0.078     0.72    0.240    0.182
+
+--- paired over the 20 starts (Wilcoxon signed-rank vs base) ---
+  model metric        base   model    delta  SD(delta)      SE        p
+  obj   roll err    2.4226  2.1132  -0.3095     0.1521  0.0340   0.0000  *
+  obj   (a) tau    -0.0029  0.1675  +0.1704     0.0941  0.0210   0.0000  *
+  obj   (b) tau     0.4154  0.4527  +0.0373     0.1464  0.0327   0.4304
+  obj   (b) ereg    0.0743  0.0697  -0.0046     0.0596  0.0133   0.1767
+  obj   tot tau     0.0915  0.2524  +0.1609     0.1376  0.0308   0.0003  *
+  obj   tot ereg    0.4175  0.3444  -0.0730     0.1426  0.0319   0.0400  *
+  aux   roll err    2.4226  2.2418  -0.1808     0.1789  0.0400   0.0002  *
+  aux   (a) tau    -0.0029  0.0540  +0.0568     0.0953  0.0213   0.0172  *
+  aux   (b) tau     0.4154  0.3866  -0.0289     0.1051  0.0235   0.2873
+  aux   (b) ereg    0.0743  0.0751  +0.0008     0.0471  0.0105   0.1817
+  aux   tot tau     0.0915  0.1615  +0.0699     0.1498  0.0335   0.0696
+  aux   tot ereg    0.4175  0.3549  -0.0626     0.1952  0.0437   0.1769
+  dw    roll err    2.4226  1.9545  -0.4681     0.1749  0.0391   0.0000  *
+  dw    (a) tau    -0.0029  0.2850  +0.2878     0.1631  0.0365   0.0000  *
+  dw    (b) tau     0.4154  0.4567  +0.0413     0.1711  0.0383   0.4897
+  dw    (b) ereg    0.0743  0.0780  +0.0037     0.0689  0.0154   0.0854
+  dw    tot tau     0.0915  0.2403  +0.1488     0.2756  0.0616   0.0532
+  dw    tot ereg    0.4175  0.2423  -0.1751     0.2270  0.0508   0.0064  *
+
+wrote eval_results/p4nav_pointmaze.json

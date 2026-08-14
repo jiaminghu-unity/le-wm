@@ -1,0 +1,73 @@
+19:02:36 | INFO  | __init__.py | JAX version 0.6.2 available.
+19:02:40 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)
+19:02:40 | INFO  | __init__.py | Cached 'action' from '/mnt/disks/ssd0/stable-wm/datasets/tworoom.h5'
+19:02:40 | INFO  | __init__.py | Cached 'proprio' from '/mnt/disks/ssd0/stable-wm/datasets/tworoom.h5'
+19:02:40 | INFO  | __init__.py | Cached 'pos_agent' from '/mnt/disks/ssd0/stable-wm/datasets/tworoom.h5'
+[tworoom] env rollouts: start 1/20 c_phys range 0.4739..80.1828
+[tworoom] env rollouts: start 2/20 c_phys range 9.4274..67.2555
+[tworoom] env rollouts: start 3/20 c_phys range 25.5722..86.6790
+[tworoom] env rollouts: start 4/20 c_phys range 26.1994..105.5925
+[tworoom] env rollouts: start 5/20 c_phys range 33.2066..92.4556
+[tworoom] env rollouts: start 6/20 c_phys range 0.7252..53.1695
+[tworoom] env rollouts: start 7/20 c_phys range 6.8986..61.3195
+[tworoom] env rollouts: start 8/20 c_phys range 16.8715..101.4435
+[tworoom] env rollouts: start 9/20 c_phys range 3.6329..59.1580
+[tworoom] env rollouts: start 10/20 c_phys range 3.4416..69.5608
+[tworoom] env rollouts: start 11/20 c_phys range 13.3731..85.8647
+[tworoom] env rollouts: start 12/20 c_phys range 24.1138..83.0845
+[tworoom] env rollouts: start 13/20 c_phys range 2.8704..58.0081
+[tworoom] env rollouts: start 14/20 c_phys range 7.1775..76.5782
+[tworoom] env rollouts: start 15/20 c_phys range 15.9444..91.7720
+[tworoom] env rollouts: start 16/20 c_phys range 3.7872..45.2590
+[tworoom] env rollouts: start 17/20 c_phys range 16.1135..86.4085
+[tworoom] env rollouts: start 18/20 c_phys range 19.0660..59.8467
+[tworoom] env rollouts: start 19/20 c_phys range 16.2417..93.1993
+[tworoom] env rollouts: start 20/20 c_phys range 0.8435..48.8405
+[tworoom] physical-cost source: infos['proprio'] vs dataset goal_proprio
+[tworoom] starts with non-degenerate physical spread: 20/20
+19:05:16 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  base           done
+19:05:18 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  obj            done
+19:05:20 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}
+  aux            done
+19:05:21 | INFO  | __init__.py | HTTP Request: HEAD https://huggingface.co/facebook/dinov2-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:05:21 | WARN  | __init__.py | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+19:05:21 | INFO  | __init__.py | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/facebook/dinov2-small/ed25f3a31f01632728cabb09d1542f84ab7b0056/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/223 [00:00<?, ?it/s]Loading weights: 100%|██████████| 223/223 [00:00<00:00, 3969.08it/s]
+  dw             done
+
+========================================================================================================
+P4-nav tworoom  (20 starts x 64 candidates, elite k=6)
+========================================================================================================
+regret = rank percentile of the model's pick in the true ordering (0 best, 0.5 random); ereg = same for the whole elite set
+
+model     rollerr  (a)tau  (a)reg  (a)ereg (a)elite  (b)tau  (b)reg  (b)ereg (b)elite  tot tau  tot reg
+base       0.3600   0.545   0.221    0.160     0.50   0.334   0.204    0.238     0.39    0.257    0.098
+obj        0.2857   0.621   0.200    0.166     0.46   0.524   0.058    0.126     0.47    0.463    0.125
+aux        0.3511   0.539   0.217    0.154     0.54   0.328   0.194    0.230     0.40    0.244    0.110
+dw         0.1479   0.725   0.090    0.085     0.67   0.721   0.006    0.053     0.81    0.647    0.071
+
+--- paired over the 20 starts (Wilcoxon signed-rank vs base) ---
+  model metric        base   model    delta  SD(delta)      SE        p
+  obj   roll err    0.3600  0.2857  -0.0743     0.0421  0.0094   0.0000  *
+  obj   (a) tau     0.5448  0.6210  +0.0761     0.1226  0.0274   0.0153  *
+  obj   (b) tau     0.3341  0.5239  +0.1898     0.2768  0.0619   0.0064  *
+  obj   (b) ereg    0.2377  0.1265  -0.1112     0.1886  0.0422   0.0386  *
+  obj   tot tau     0.2570  0.4630  +0.2061     0.2520  0.0563   0.0029  *
+  obj   tot ereg    0.2398  0.1831  -0.0567     0.1462  0.0327   0.1359
+  aux   roll err    0.3600  0.3511  -0.0089     0.0152  0.0034   0.0121  *
+  aux   (a) tau     0.5448  0.5389  -0.0059     0.0523  0.0117   0.7369
+  aux   (b) tau     0.3341  0.3279  -0.0062     0.0889  0.0199   0.8880
+  aux   (b) ereg    0.2377  0.2303  -0.0074     0.0699  0.0156   0.7537
+  aux   tot tau     0.2570  0.2441  -0.0129     0.0588  0.0131   0.4812
+  aux   tot ereg    0.2398  0.2230  -0.0168     0.0599  0.0134   0.1579
+  dw    roll err    0.3600  0.1479  -0.2121     0.0950  0.0212   0.0000  *
+  dw    (a) tau     0.5448  0.7250  +0.1802     0.1267  0.0283   0.0000  *
+  dw    (b) tau     0.3341  0.7206  +0.3866     0.2321  0.0519   0.0000  *
+  dw    (b) ereg    0.2377  0.0525  -0.1852     0.2252  0.0504   0.0001  *
+  dw    tot tau     0.2570  0.6472  +0.3902     0.2107  0.0471   0.0000  *
+  dw    tot ereg    0.2398  0.0786  -0.1612     0.1856  0.0415   0.0002  *
+
+wrote eval_results/p4nav_tworoom.json
