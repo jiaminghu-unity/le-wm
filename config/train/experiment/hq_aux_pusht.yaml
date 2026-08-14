@@ -1,0 +1,22 @@
+# @package _global_
+# HQ (reduced-q) ablation, arm aux on Push-T.
+#
+# Identical to C5 (lewm_c5_qhead0.3_s3072): aux weight 0.3, SIGReg at the repo
+# default, 10 epochs. Only q changes, to pusht_block_only (4-dim).
+#
+# The weight is NOT re-scaled for the smaller q: aux_loss averages over dimensions
+# (train.py:83) and q is z-scored per component, so the loss magnitude is
+# dimension-invariant. The head's output_dim follows the q_stats file automatically.
+output_model_name: lewm_hq_aux_pusht_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: pusht_block_only   # selects the q the aux head regresses
+  aux:
+    weight: 0.3

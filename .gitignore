@@ -5,3 +5,11 @@ outputs/
 *.pt
 train_logs
 .claude/
+
+# transient run logs (results live in the CSVs/JSONs; GCS keeps full logs)
+eval_results/*.nohup
+eval_results/**/*.nohup
+eval_results/*babysit*.log
+eval_results/archive_*.log
+eval_results/*.old[0-9]
+scripts/_*

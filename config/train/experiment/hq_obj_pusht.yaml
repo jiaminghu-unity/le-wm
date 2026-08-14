@@ -1,0 +1,21 @@
+# @package _global_
+# HQ (reduced-q) ablation, arm obj on Push-T.
+#
+# Identical to C3 (lewm_c3_sig_obj0.1_s3072) in every respect -- SIGReg at the repo
+# default, lambda_obj = 0.1, 10 epochs, same data, same optimiser -- except that q is
+# pusht_block_only (4-dim: block xy + cos/sin theta) instead of pusht_state (6-dim).
+# The pusher xy is withheld.
+#
+# lambda_obj is NOT re-tuned: L_obj = 1 - Pearson(||dz||^2, ||dq||^2) is scale-free
+# and dimension-free, so 0.1 means the same thing on 4-dim q as on 6-dim q.
+output_model_name: lewm_hq_obj_pusht_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: pusht_block_only

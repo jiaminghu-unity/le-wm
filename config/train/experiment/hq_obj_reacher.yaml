@@ -1,0 +1,38 @@
+# @package _global_
+# HQ (reduced-q) ablation, arm obj on Reacher.
+#
+# Identical to lewm_r2_reacher_paep_l015_s3072 (obj weight 0.15, aux weight 0.0, SIGReg at the repo
+# default, 10 epochs, same lance dataset) except that q is reacher_joint0_only
+# (2-dim: cos/sin of joint 0) instead of reacher_joints_only (4-dim). The elbow
+# joint is withheld -- and with it the finger position it determines.
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_hq_obj_reacher_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    name: reacher.lance
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+
+loss:
+  obj:
+    weight: 0.15
+    q_variant: reacher_joint0_only
+  aux:
+    weight: 0.0

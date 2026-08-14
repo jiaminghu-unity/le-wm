@@ -1,0 +1,24 @@
+# @package _global_
+# HQ (reduced-q) ablation, arm obj on OGBench cube-single.
+#
+# Identical to lewm_k2_cube_obj_eff0.1_s3072 (obj weight 0.1, aux weight 0.0, SIGReg at the repo
+# default, 10 epochs, same lance dataset) except that q is cube_effector_only
+# (5-dim: effector xyz + cos/sin 2psi) instead of cube_effector (9-dim). Block xyz
+# and gripper opening are withheld, so q no longer contains the cube whose position
+# the success test measures -- the sharpest version of this ablation.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_hq_obj_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_effector_only
+  aux:
+    weight: 0.0

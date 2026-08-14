@@ -219,7 +219,13 @@ def main():
                 out.append(f"{m}: p={p:.4f}{'*' if p < 0.05 else ' '}")
             print(f"  {r['label']:8s} " + "   ".join(out))
 
-    tag = "" if args.cand_seed == CAND_SEED else f"_cs{args.cand_seed}"
+    # P5TAG distinguishes runs on different model sets (e.g. "_frozen" for the
+    # frozen-encoder ablation). Without it a frozen run writes p5_<task>.json and the
+    # wrapper then uploads it over the original result -- which is exactly what
+    # happened once and had to be restored from the local copy.
+    tag = os.environ.get("P5TAG", "")
+    if args.cand_seed != CAND_SEED:
+        tag += f"_cs{args.cand_seed}"
     out = f"eval_results/p5_{task}{tag}.json"
     Path(out).write_text(json.dumps(
         {"task": task, "starts": args.starts, "cands": args.cands,

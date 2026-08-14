@@ -66,11 +66,34 @@ if [ ! -f "$H5" ]; then
   fi
 fi
 
+# FROZEN=1 swaps in the frozen-encoder ablation's models. Their encoder+projector are
+# bit-identical to the originals, so z_true, z_goal and the pairwise-distance scale are
+# literally the same numbers -- which is what makes rollerr comparable in absolute
+# terms between a frozen run and its co-trained counterpart.
+CKROOT="$BUCKET/ckpts"
+if [ "${FROZEN:-0}" = "1" ]; then
+  CKROOT="$BUCKET/ckpts_frozen"
+  MODELS=("base:lewm_fz_base_${TASK}_s3072/weights_epoch_10.pt"
+          "obj:lewm_fz_obj_${TASK}_s3072/weights_epoch_10.pt"
+          "aux:lewm_fz_aux_${TASK}_s3072/weights_epoch_10.pt")
+fi
+# HALF=1 adds the reduced-q models ALONGSIDE the full-q ones, five models in one job.
+# They must share a job: the env rollouts (the expensive part) are model-independent, so
+# every model is scored on the SAME candidate actions from the SAME starts, making
+# obj vs obj_h a paired comparison per start rather than two runs compared by their means.
+if [ "${HALF:-0}" = "1" ]; then
+  MODELS+=("obj_h:lewm_hq_obj_${TASK}_s3072/weights_epoch_10.pt"
+           "aux_h:lewm_hq_aux_${TASK}_s3072/weights_epoch_10.pt")
+fi
 for spec in "${MODELS[@]}"; do
   d="${spec#*:}"; d="${d%%/*}"
+  # the reduced-q checkpoints live under their own prefix, so the root is inferred from
+  # the name rather than being one global value (no existing run is named lewm_hq_*)
+  root="$CKROOT"
+  case "$d" in lewm_hq_*) root="$BUCKET/ckpts_half" ;; esac
   mkdir -p "$STABLEWM_HOME/checkpoints/$d"
-  gcloud storage cp "$BUCKET/ckpts/$d/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$d/"
-  gcloud storage cp "$BUCKET/ckpts/$d/config.json" "$STABLEWM_HOME/checkpoints/$d/" || true
+  gcloud storage cp "$root/$d/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$d/"
+  gcloud storage cp "$root/$d/config.json" "$STABLEWM_HOME/checkpoints/$d/" || true
 done
 
 GL=egl
