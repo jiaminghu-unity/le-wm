@@ -1,0 +1,24 @@
+# Primary config for train_frozen.py — the frozen-encoder ablation.
+#
+# It composes lewm.yaml rather than copying it, so the model, data, optimiser, loader
+# and logging settings stay in one place and cannot drift. Only two things are added:
+# the checkpoint whose encoder+projector get loaded and frozen, and the three loss
+# weights forced to zero (they act on the frozen path, so they would train nothing;
+# train_frozen.validate_frozen rejects a non-zero value rather than silently wasting
+# compute).
+#
+# The experiment group carries the per-arm choices: config/train/experiment/fz_*.yaml
+defaults:
+  - lewm            # brings its own `experiment: null` entry -- do not repeat it here,
+  - _self_          # hydra rejects a group appearing twice in the final defaults list
+
+# required — set by each fz_* experiment config
+init_encoder_from: ???
+
+loss:
+  sigreg:
+    weight: 0.0
+  obj:
+    weight: 0.0
+  aux:
+    weight: 0.0

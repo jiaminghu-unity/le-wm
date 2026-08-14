@@ -1,0 +1,403 @@
+[08:05:57] round 1: complete 0/9, in-flight 7, todo 9
+[08:05:59]   capacity 7 GPU, in-flight 7, free 0
+[08:09:00] round 2: complete 0/9, in-flight 7, todo 9
+[08:09:02]   capacity 8 GPU, in-flight 7, free 1
+[08:09:07]   submitted reacher obj -> raysubmit_fkjGqqbhYq9urRZ7
+[08:12:08] round 3: complete 0/9, in-flight 8, todo 9
+[08:12:09]   capacity 8 GPU, in-flight 8, free 0
+[08:15:12] round 4: complete 0/9, in-flight 8, todo 9
+[08:15:13]   capacity 8 GPU, in-flight 8, free 0
+[08:18:15] round 5: complete 0/9, in-flight 8, todo 9
+[08:18:17]   capacity 8 GPU, in-flight 8, free 0
+[08:21:19] round 6: complete 0/9, in-flight 8, todo 9
+[08:21:20]   capacity 8 GPU, in-flight 8, free 0
+[08:24:23] round 7: complete 0/9, in-flight 8, todo 9
+[08:24:24]   capacity 8 GPU, in-flight 8, free 0
+[08:27:26] round 8: complete 0/9, in-flight 8, todo 9
+[08:27:28]   capacity 8 GPU, in-flight 8, free 0
+[08:30:30] round 9: complete 0/9, in-flight 8, todo 9
+[08:30:31]   capacity 8 GPU, in-flight 8, free 0
+[08:33:34] round 10: complete 0/9, in-flight 8, todo 9
+[08:33:35]   capacity 8 GPU, in-flight 8, free 0
+[08:36:37] round 11: complete 0/9, in-flight 8, todo 9
+[08:36:39]   capacity 8 GPU, in-flight 8, free 0
+[08:39:41] round 12: complete 0/9, in-flight 8, todo 9
+[08:39:43]   capacity 8 GPU, in-flight 8, free 0
+[08:42:45] round 13: complete 0/9, in-flight 8, todo 9
+[08:42:46]   capacity 8 GPU, in-flight 8, free 0
+[08:45:49] round 14: complete 0/9, in-flight 8, todo 9
+[08:45:50]   capacity 8 GPU, in-flight 8, free 0
+[08:48:52] round 15: complete 0/9, in-flight 8, todo 9
+[08:48:54]   capacity 8 GPU, in-flight 8, free 0
+[08:51:56] round 16: complete 0/9, in-flight 8, todo 9
+[08:51:57]   capacity 8 GPU, in-flight 8, free 0
+[08:55:00] round 17: complete 0/9, in-flight 8, todo 9
+[08:55:01]   capacity 8 GPU, in-flight 8, free 0
+[08:58:03] round 18: complete 0/9, in-flight 8, todo 9
+[08:58:04]   capacity 8 GPU, in-flight 8, free 0
+[09:01:07] round 19: complete 0/9, in-flight 8, todo 9
+[09:01:08]   capacity 8 GPU, in-flight 8, free 0
+[09:04:11] round 20: complete 0/9, in-flight 8, todo 9
+[09:04:12]   capacity 8 GPU, in-flight 8, free 0
+[09:07:14] round 21: complete 0/9, in-flight 8, todo 9
+[09:07:16]   capacity 8 GPU, in-flight 8, free 0
+[09:10:17] round 22: complete 0/9, in-flight 8, todo 9
+[09:10:18]   capacity 8 GPU, in-flight 8, free 0
+[09:13:20] round 23: complete 0/9, in-flight 8, todo 9
+[09:13:21]   capacity 8 GPU, in-flight 8, free 0
+[09:16:22] round 24: complete 0/9, in-flight 8, todo 9
+[09:16:23]   capacity 8 GPU, in-flight 8, free 0
+[09:19:24] round 25: complete 0/9, in-flight 8, todo 9
+[09:19:25]   capacity 8 GPU, in-flight 8, free 0
+[09:22:27] round 26: complete 0/9, in-flight 8, todo 9
+[09:22:28]   capacity 8 GPU, in-flight 8, free 0
+[09:25:29] round 27: complete 0/9, in-flight 8, todo 9
+[09:25:30]   capacity 8 GPU, in-flight 8, free 0
+[09:28:31] round 28: complete 0/9, in-flight 8, todo 9
+[09:28:32]   capacity 8 GPU, in-flight 8, free 0
+[09:31:34] round 29: complete 0/9, in-flight 8, todo 9
+[09:31:34]   capacity 8 GPU, in-flight 8, free 0
+[09:34:36] round 30: complete 0/9, in-flight 8, todo 9
+[09:34:37]   capacity 8 GPU, in-flight 8, free 0
+[09:37:38] round 31: complete 0/9, in-flight 8, todo 9
+[09:37:39]   capacity 8 GPU, in-flight 8, free 0
+[09:40:40] round 32: complete 0/9, in-flight 8, todo 9
+[09:40:41]   capacity 8 GPU, in-flight 8, free 0
+[09:43:42] round 33: complete 0/9, in-flight 8, todo 9
+[09:43:43]   capacity 8 GPU, in-flight 8, free 0
+[09:46:45] round 34: complete 0/9, in-flight 8, todo 9
+[09:46:46]   capacity 8 GPU, in-flight 8, free 0
+[09:49:47] round 35: complete 0/9, in-flight 8, todo 9
+[09:49:48]   capacity 8 GPU, in-flight 8, free 0
+[09:52:49] round 36: complete 0/9, in-flight 8, todo 9
+[09:52:50]   capacity 8 GPU, in-flight 8, free 0
+[09:55:51] round 37: complete 0/9, in-flight 8, todo 9
+[09:55:52]   capacity 8 GPU, in-flight 8, free 0
+[09:58:54] round 38: complete 0/9, in-flight 8, todo 9
+[09:58:55]   capacity 8 GPU, in-flight 8, free 0
+[10:01:56] round 39: complete 0/9, in-flight 8, todo 9
+[10:01:57]   capacity 8 GPU, in-flight 8, free 0
+[10:04:58] round 40: complete 0/9, in-flight 8, todo 9
+[10:04:59]   capacity 8 GPU, in-flight 8, free 0
+[10:08:00] round 41: complete 0/9, in-flight 8, todo 9
+[10:08:01]   capacity 8 GPU, in-flight 8, free 0
+[10:11:03] round 42: complete 0/9, in-flight 8, todo 9
+[10:11:04]   capacity 8 GPU, in-flight 8, free 0
+[10:14:05] round 43: complete 0/9, in-flight 8, todo 9
+[10:14:06]   capacity 8 GPU, in-flight 8, free 0
+[10:17:07] round 44: complete 0/9, in-flight 8, todo 9
+[10:17:08]   capacity 8 GPU, in-flight 8, free 0
+[10:20:10] round 45: complete 0/9, in-flight 8, todo 9
+[10:20:10]   capacity 8 GPU, in-flight 8, free 0
+[10:23:12] round 46: complete 0/9, in-flight 8, todo 9
+[10:23:13]   capacity 8 GPU, in-flight 8, free 0
+[10:26:14] round 47: complete 0/9, in-flight 8, todo 9
+[10:26:15]   capacity 8 GPU, in-flight 8, free 0
+[10:29:16] round 48: complete 0/9, in-flight 8, todo 9
+[10:29:17]   capacity 8 GPU, in-flight 8, free 0
+[10:32:18] round 49: complete 0/9, in-flight 8, todo 9
+[10:32:19]   capacity 8 GPU, in-flight 8, free 0
+[10:35:21] round 50: complete 0/9, in-flight 8, todo 9
+[10:35:22]   capacity 8 GPU, in-flight 8, free 0
+[10:38:23] round 51: complete 0/9, in-flight 8, todo 9
+[10:38:24]   capacity 8 GPU, in-flight 8, free 0
+[10:41:25] round 52: complete 0/9, in-flight 8, todo 9
+[10:41:26]   capacity 8 GPU, in-flight 8, free 0
+[10:44:28] round 53: complete 0/9, in-flight 8, todo 9
+[10:44:29]   capacity 8 GPU, in-flight 8, free 0
+[10:47:30] round 54: complete 0/9, in-flight 8, todo 9
+[10:47:31]   capacity 8 GPU, in-flight 8, free 0
+[10:50:32] round 55: complete 0/9, in-flight 8, todo 9
+[10:50:33]   capacity 8 GPU, in-flight 8, free 0
+[10:53:35] round 56: complete 0/9, in-flight 8, todo 9
+[10:53:35]   capacity 8 GPU, in-flight 8, free 0
+[10:56:37] round 57: complete 0/9, in-flight 8, todo 9
+[10:56:38]   capacity 8 GPU, in-flight 8, free 0
+[10:59:39] round 58: complete 0/9, in-flight 8, todo 9
+[10:59:40]   capacity 8 GPU, in-flight 8, free 0
+[11:02:41] round 59: complete 0/9, in-flight 8, todo 9
+[11:02:42]   capacity 8 GPU, in-flight 8, free 0
+[11:05:44] round 60: complete 0/9, in-flight 8, todo 9
+[11:05:44]   capacity 8 GPU, in-flight 8, free 0
+[11:08:46] round 61: complete 0/9, in-flight 8, todo 9
+[11:08:47]   capacity 8 GPU, in-flight 8, free 0
+[11:11:48] round 62: complete 0/9, in-flight 8, todo 9
+[11:11:49]   capacity 8 GPU, in-flight 8, free 0
+[11:14:50] round 63: complete 0/9, in-flight 8, todo 9
+[11:14:51]   capacity 8 GPU, in-flight 8, free 0
+[11:17:53] round 64: complete 0/9, in-flight 8, todo 9
+[11:17:54]   capacity 8 GPU, in-flight 8, free 0
+[11:20:55] round 65: complete 0/9, in-flight 8, todo 9
+[11:20:56]   capacity 8 GPU, in-flight 8, free 0
+[11:23:57] round 66: complete 0/9, in-flight 8, todo 9
+[11:23:58]   capacity 8 GPU, in-flight 8, free 0
+[11:27:00] round 67: complete 0/9, in-flight 8, todo 9
+[11:27:01]   capacity 8 GPU, in-flight 8, free 0
+[11:30:02] round 68: complete 0/9, in-flight 8, todo 9
+[11:30:03]   capacity 8 GPU, in-flight 8, free 0
+[11:33:04] round 69: complete 0/9, in-flight 8, todo 9
+[11:33:05]   capacity 8 GPU, in-flight 8, free 0
+[11:36:07] round 70: complete 0/9, in-flight 8, todo 9
+[11:36:07]   capacity 8 GPU, in-flight 8, free 0
+[11:39:09] round 71: complete 0/9, in-flight 8, todo 9
+[11:39:10]   capacity 8 GPU, in-flight 8, free 0
+[11:42:11] round 72: complete 0/9, in-flight 8, todo 9
+[11:42:12]   capacity 8 GPU, in-flight 8, free 0
+[11:45:13] round 73: complete 0/9, in-flight 8, todo 9
+[11:45:14]   capacity 8 GPU, in-flight 8, free 0
+[11:48:15] round 74: complete 0/9, in-flight 8, todo 9
+[11:48:16]   capacity 8 GPU, in-flight 8, free 0
+[11:51:18] round 75: complete 0/9, in-flight 8, todo 9
+[11:51:19]   capacity 8 GPU, in-flight 8, free 0
+[11:54:20] round 76: complete 0/9, in-flight 8, todo 9
+[11:54:21]   capacity 8 GPU, in-flight 8, free 0
+[11:57:22] round 77: complete 0/9, in-flight 8, todo 9
+[11:57:23]   capacity 8 GPU, in-flight 8, free 0
+[12:00:24] round 78: complete 0/9, in-flight 8, todo 9
+[12:00:25]   capacity 8 GPU, in-flight 8, free 0
+[12:03:27] round 79: complete 0/9, in-flight 8, todo 9
+[12:03:27]   capacity 8 GPU, in-flight 8, free 0
+[12:06:29] round 80: complete 0/9, in-flight 8, todo 9
+[12:06:30]   capacity 8 GPU, in-flight 8, free 0
+[12:09:31] round 81: complete 0/9, in-flight 8, todo 9
+[12:09:32]   capacity 8 GPU, in-flight 8, free 0
+[12:12:33] round 82: complete 0/9, in-flight 8, todo 9
+[12:12:34]   capacity 8 GPU, in-flight 8, free 0
+[12:15:35] round 83: complete 0/9, in-flight 8, todo 9
+[12:15:36]   capacity 8 GPU, in-flight 8, free 0
+[12:18:38] round 84: complete 0/9, in-flight 8, todo 9
+[12:18:38]   capacity 8 GPU, in-flight 8, free 0
+[12:21:40] round 85: complete 0/9, in-flight 8, todo 9
+[12:21:41]   capacity 8 GPU, in-flight 8, free 0
+[12:24:42] round 86: complete 0/9, in-flight 8, todo 9
+[12:24:43]   capacity 8 GPU, in-flight 8, free 0
+[12:27:44] round 87: complete 0/9, in-flight 8, todo 9
+[12:27:45]   capacity 8 GPU, in-flight 8, free 0
+[12:30:46] round 88: complete 0/9, in-flight 8, todo 9
+[12:30:47]   capacity 8 GPU, in-flight 8, free 0
+[12:33:49] round 89: complete 0/9, in-flight 8, todo 9
+[12:33:49]   capacity 8 GPU, in-flight 8, free 0
+[12:36:51] round 90: complete 0/9, in-flight 8, todo 9
+[12:36:52]   capacity 8 GPU, in-flight 8, free 0
+[12:39:53] round 91: complete 0/9, in-flight 8, todo 9
+[12:39:54]   capacity 8 GPU, in-flight 8, free 0
+[12:42:55] round 92: complete 0/9, in-flight 8, todo 9
+[12:42:56]   capacity 8 GPU, in-flight 8, free 0
+[12:45:57] round 93: complete 0/9, in-flight 8, todo 9
+[12:45:58]   capacity 8 GPU, in-flight 8, free 0
+[12:49:00] round 94: complete 0/9, in-flight 8, todo 9
+[12:49:00]   capacity 8 GPU, in-flight 8, free 0
+[12:52:02] round 95: complete 0/9, in-flight 8, todo 9
+[12:52:03]   capacity 8 GPU, in-flight 8, free 0
+[12:55:04] round 96: complete 0/9, in-flight 8, todo 9
+[12:55:05]   capacity 8 GPU, in-flight 8, free 0
+[12:58:06] round 97: complete 0/9, in-flight 8, todo 9
+[12:58:07]   capacity 8 GPU, in-flight 8, free 0
+[13:01:08] round 98: complete 0/9, in-flight 8, todo 9
+[13:01:09]   capacity 8 GPU, in-flight 8, free 0
+[13:04:11] round 99: complete 0/9, in-flight 8, todo 9
+[13:04:12]   capacity 8 GPU, in-flight 8, free 0
+[13:07:13] round 100: complete 0/9, in-flight 8, todo 9
+[13:07:14]   capacity 8 GPU, in-flight 8, free 0
+[13:10:15] round 101: complete 0/9, in-flight 8, todo 9
+[13:10:16]   capacity 8 GPU, in-flight 8, free 0
+[13:13:17] round 102: complete 0/9, in-flight 8, todo 9
+[13:13:18]   capacity 8 GPU, in-flight 8, free 0
+[13:16:20] round 103: complete 0/9, in-flight 8, todo 9
+[13:16:20]   capacity 8 GPU, in-flight 8, free 0
+[13:19:22] round 104: complete 0/9, in-flight 8, todo 9
+[13:19:23]   capacity 8 GPU, in-flight 8, free 0
+[13:22:24] round 105: complete 0/9, in-flight 8, todo 9
+[13:22:25]   capacity 8 GPU, in-flight 8, free 0
+[13:25:26] round 106: complete 0/9, in-flight 8, todo 9
+[13:25:27]   capacity 8 GPU, in-flight 8, free 0
+[13:28:28] round 107: complete 0/9, in-flight 8, todo 9
+[13:28:29]   capacity 8 GPU, in-flight 8, free 0
+[13:31:31] round 108: complete 0/9, in-flight 8, todo 9
+[13:31:32]   capacity 8 GPU, in-flight 8, free 0
+[13:34:33] round 109: complete 0/9, in-flight 8, todo 9
+[13:34:34]   capacity 8 GPU, in-flight 8, free 0
+[13:37:35] round 110: complete 0/9, in-flight 8, todo 9
+[13:37:36]   capacity 8 GPU, in-flight 8, free 0
+[13:40:37] round 111: complete 0/9, in-flight 8, todo 9
+[13:40:38]   capacity 8 GPU, in-flight 8, free 0
+[13:43:40] round 112: complete 0/9, in-flight 8, todo 9
+[13:43:40]   capacity 8 GPU, in-flight 8, free 0
+[13:46:42] round 113: complete 0/9, in-flight 8, todo 9
+[13:46:43]   capacity 8 GPU, in-flight 8, free 0
+[13:49:44] round 114: complete 0/9, in-flight 8, todo 9
+[13:49:45]   capacity 8 GPU, in-flight 8, free 0
+[13:52:46] round 115: complete 0/9, in-flight 8, todo 9
+[13:52:47]   capacity 8 GPU, in-flight 8, free 0
+[13:55:49] round 116: complete 0/9, in-flight 8, todo 9
+[13:55:49]   capacity 8 GPU, in-flight 8, free 0
+[13:58:51] round 117: complete 0/9, in-flight 8, todo 9
+[13:58:52]   capacity 8 GPU, in-flight 8, free 0
+[14:01:53] round 118: complete 0/9, in-flight 8, todo 9
+[14:01:54]   capacity 8 GPU, in-flight 8, free 0
+[14:04:55] round 119: complete 0/9, in-flight 8, todo 9
+[14:04:56]   capacity 8 GPU, in-flight 8, free 0
+[14:07:57] round 120: complete 0/9, in-flight 8, todo 9
+[14:07:58]   capacity 8 GPU, in-flight 8, free 0
+[14:11:00] round 121: complete 0/9, in-flight 8, todo 9
+[14:11:01]   capacity 8 GPU, in-flight 8, free 0
+[14:14:02] round 122: complete 0/9, in-flight 8, todo 9
+[14:14:03]   capacity 8 GPU, in-flight 8, free 0
+[14:17:04] round 123: complete 0/9, in-flight 8, todo 9
+[14:17:05]   capacity 8 GPU, in-flight 8, free 0
+[14:20:06] round 124: complete 0/9, in-flight 8, todo 9
+[14:20:07]   capacity 8 GPU, in-flight 8, free 0
+[14:23:09] round 125: complete 0/9, in-flight 8, todo 9
+[14:23:10]   capacity 8 GPU, in-flight 8, free 0
+[14:26:11] round 126: complete 0/9, in-flight 8, todo 9
+[14:26:12]   capacity 8 GPU, in-flight 8, free 0
+[14:29:13] round 127: complete 0/9, in-flight 8, todo 9
+[14:29:14]   capacity 8 GPU, in-flight 8, free 0
+[14:32:16] round 128: complete 0/9, in-flight 8, todo 9
+[14:32:16]   capacity 8 GPU, in-flight 8, free 0
+[14:35:18] round 129: complete 0/9, in-flight 8, todo 9
+[14:35:19]   capacity 8 GPU, in-flight 8, free 0
+[14:38:20] round 130: complete 1/9, in-flight 7, todo 8
+[14:38:21]   capacity 8 GPU, in-flight 7, free 1
+[14:38:23]   submitted reacher aux -> raysubmit_unnzb2tLLiWV1MkZ
+[14:41:24] round 131: complete 1/9, in-flight 8, todo 8
+[14:41:25]   capacity 8 GPU, in-flight 8, free 0
+[14:44:27] round 132: complete 1/9, in-flight 8, todo 8
+[14:44:27]   capacity 8 GPU, in-flight 8, free 0
+[14:47:29] round 133: complete 1/9, in-flight 8, todo 8
+[14:47:30]   capacity 8 GPU, in-flight 8, free 0
+[14:50:31] round 134: complete 1/9, in-flight 8, todo 8
+[14:50:32]   capacity 8 GPU, in-flight 8, free 0
+[14:53:33] round 135: complete 1/9, in-flight 8, todo 8
+[14:53:34]   capacity 8 GPU, in-flight 8, free 0
+[14:56:35] round 136: complete 1/9, in-flight 8, todo 8
+[14:56:36]   capacity 8 GPU, in-flight 8, free 0
+[14:59:38] round 137: complete 3/9, in-flight 6, todo 6
+[14:59:39]   capacity 8 GPU, in-flight 6, free 2
+[15:02:41] round 138: complete 3/9, in-flight 6, todo 6
+[15:02:42]   capacity 8 GPU, in-flight 6, free 2
+[15:05:44] round 139: complete 3/9, in-flight 6, todo 6
+[15:05:45]   capacity 8 GPU, in-flight 6, free 2
+[15:08:47] round 140: complete 3/9, in-flight 6, todo 6
+[15:08:48]   capacity 8 GPU, in-flight 6, free 2
+[15:11:50] round 141: complete 3/9, in-flight 6, todo 6
+[15:11:51]   capacity 8 GPU, in-flight 6, free 2
+[15:14:53] round 142: complete 3/9, in-flight 6, todo 6
+[15:14:54]   capacity 8 GPU, in-flight 6, free 2
+[15:17:56] round 143: complete 3/9, in-flight 6, todo 6
+[15:17:57]   capacity 8 GPU, in-flight 6, free 2
+[15:20:59] round 144: complete 3/9, in-flight 6, todo 6
+[15:21:00]   capacity 8 GPU, in-flight 6, free 2
+[15:24:02] round 145: complete 3/9, in-flight 6, todo 6
+[15:24:03]   capacity 8 GPU, in-flight 6, free 2
+[15:27:06] round 146: complete 3/9, in-flight 6, todo 6
+[15:27:06]   capacity 8 GPU, in-flight 6, free 2
+[15:30:09] round 147: complete 3/9, in-flight 6, todo 6
+[15:30:09]   capacity 8 GPU, in-flight 6, free 2
+[15:33:12] round 148: complete 3/9, in-flight 6, todo 6
+[15:33:13]   capacity 8 GPU, in-flight 6, free 2
+[15:36:15] round 149: complete 4/9, in-flight 5, todo 5
+[15:36:16]   capacity 8 GPU, in-flight 5, free 3
+[15:39:18] round 150: complete 4/9, in-flight 5, todo 5
+[15:39:19]   capacity 8 GPU, in-flight 5, free 3
+[15:42:21] round 151: complete 4/9, in-flight 5, todo 5
+[15:42:22]   capacity 8 GPU, in-flight 5, free 3
+[15:45:24] round 152: complete 6/9, in-flight 3, todo 3
+[15:45:24]   capacity 8 GPU, in-flight 3, free 5
+[15:48:26] round 153: complete 7/9, in-flight 2, todo 2
+[15:48:27]   capacity 8 GPU, in-flight 2, free 6
+[15:51:29] round 154: complete 7/9, in-flight 2, todo 2
+[15:51:30]   capacity 8 GPU, in-flight 2, free 6
+[15:54:31] round 155: complete 7/9, in-flight 2, todo 2
+[15:54:32]   capacity 8 GPU, in-flight 2, free 6
+[15:57:34] round 156: complete 8/9, in-flight 1, todo 1
+[15:57:35]   capacity 8 GPU, in-flight 1, free 7
+[16:00:36] round 157: complete 8/9, in-flight 1, todo 1
+[16:00:37]   capacity 8 GPU, in-flight 1, free 7
+[16:03:39] round 158: complete 8/9, in-flight 1, todo 1
+[16:03:39]   capacity 8 GPU, in-flight 1, free 7
+[16:06:41] round 159: complete 8/9, in-flight 1, todo 1
+[16:06:42]   capacity 8 GPU, in-flight 1, free 7
+[16:09:43] round 160: complete 8/9, in-flight 1, todo 1
+[16:09:44]   capacity 8 GPU, in-flight 1, free 7
+[16:12:46] round 161: complete 8/9, in-flight 1, todo 1
+[16:12:47]   capacity 8 GPU, in-flight 1, free 7
+[16:15:48] round 162: complete 8/9, in-flight 1, todo 1
+[16:15:49]   capacity 8 GPU, in-flight 1, free 7
+[16:18:51] round 163: complete 8/9, in-flight 1, todo 1
+[16:18:52]   capacity 8 GPU, in-flight 1, free 7
+[16:21:53] round 164: complete 8/9, in-flight 1, todo 1
+[16:21:54]   capacity 8 GPU, in-flight 1, free 7
+[16:24:56] round 165: complete 8/9, in-flight 1, todo 1
+[16:24:56]   capacity 8 GPU, in-flight 1, free 7
+[16:27:58] round 166: complete 8/9, in-flight 1, todo 1
+[16:27:59]   capacity 8 GPU, in-flight 1, free 7
+[16:31:00] round 167: complete 8/9, in-flight 1, todo 1
+[16:31:01]   capacity 8 GPU, in-flight 1, free 7
+[16:34:03] round 168: complete 8/9, in-flight 1, todo 1
+[16:34:04]   capacity 8 GPU, in-flight 1, free 7
+[16:37:05] round 169: complete 8/9, in-flight 1, todo 1
+[16:37:06]   capacity 8 GPU, in-flight 1, free 7
+[16:40:08] round 170: complete 8/9, in-flight 1, todo 1
+[16:40:08]   capacity 8 GPU, in-flight 1, free 7
+[16:43:10] round 171: complete 8/9, in-flight 1, todo 1
+[16:43:11]   capacity 8 GPU, in-flight 1, free 7
+[16:46:12] round 172: complete 8/9, in-flight 1, todo 1
+[16:46:13]   capacity 8 GPU, in-flight 1, free 7
+[16:49:15] round 173: complete 8/9, in-flight 1, todo 1
+[16:49:16]   capacity 8 GPU, in-flight 1, free 7
+[16:52:17] round 174: complete 8/9, in-flight 1, todo 1
+[16:52:18]   capacity 8 GPU, in-flight 1, free 7
+[16:55:20] round 175: complete 8/9, in-flight 1, todo 1
+[16:55:20]   capacity 8 GPU, in-flight 1, free 7
+[16:58:22] round 176: complete 8/9, in-flight 1, todo 1
+[16:58:23]   capacity 8 GPU, in-flight 1, free 7
+[17:01:24] round 177: complete 8/9, in-flight 1, todo 1
+[17:01:25]   capacity 8 GPU, in-flight 1, free 7
+[17:04:27] round 178: complete 8/9, in-flight 1, todo 1
+[17:04:28]   capacity 8 GPU, in-flight 1, free 7
+[17:07:29] round 179: complete 8/9, in-flight 1, todo 1
+[17:07:30]   capacity 8 GPU, in-flight 1, free 7
+[17:10:32] round 180: complete 8/9, in-flight 1, todo 1
+[17:10:32]   capacity 8 GPU, in-flight 1, free 7
+[17:13:34] round 181: complete 8/9, in-flight 1, todo 1
+[17:13:35]   capacity 8 GPU, in-flight 1, free 7
+[17:16:36] round 182: complete 8/9, in-flight 1, todo 1
+[17:16:37]   capacity 8 GPU, in-flight 1, free 7
+[17:19:39] round 183: complete 8/9, in-flight 1, todo 1
+[17:19:40]   capacity 8 GPU, in-flight 1, free 7
+[17:22:41] round 184: complete 8/9, in-flight 1, todo 1
+[17:22:42]   capacity 8 GPU, in-flight 1, free 7
+[17:25:43] round 185: complete 8/9, in-flight 1, todo 1
+[17:25:44]   capacity 8 GPU, in-flight 1, free 7
+[17:28:46] round 186: complete 8/9, in-flight 1, todo 1
+[17:28:47]   capacity 8 GPU, in-flight 1, free 7
+[17:31:48] round 187: complete 8/9, in-flight 1, todo 1
+[17:31:49]   capacity 8 GPU, in-flight 1, free 7
+[17:34:51] round 188: complete 8/9, in-flight 1, todo 1
+[17:34:51]   capacity 8 GPU, in-flight 1, free 7
+[17:37:53] round 189: complete 8/9, in-flight 1, todo 1
+[17:37:54]   capacity 8 GPU, in-flight 1, free 7
+[17:40:55] round 190: complete 8/9, in-flight 1, todo 1
+[17:40:56]   capacity 8 GPU, in-flight 1, free 7
+[17:43:58] round 191: complete 8/9, in-flight 1, todo 1
+[17:43:58]   capacity 8 GPU, in-flight 1, free 7
+[17:47:00] round 192: complete 8/9, in-flight 1, todo 1
+[17:47:01]   capacity 8 GPU, in-flight 1, free 7
+[17:50:02] round 193: complete 8/9, in-flight 1, todo 1
+[17:50:03]   capacity 8 GPU, in-flight 1, free 7
+[17:53:05] round 194: complete 8/9, in-flight 1, todo 1
+[17:53:06]   capacity 8 GPU, in-flight 1, free 7
+[17:56:07] round 195: complete 8/9, in-flight 1, todo 1
+[17:56:08]   capacity 8 GPU, in-flight 1, free 7
+[17:59:10] round 196: complete 8/9, in-flight 1, todo 1
+[17:59:10]   capacity 8 GPU, in-flight 1, free 7
+[18:02:12] round 197: complete 8/9, in-flight 1, todo 1
+[18:02:13]   capacity 8 GPU, in-flight 1, free 7
+[18:05:14] round 198: complete 8/9, in-flight 1, todo 1
+[18:05:15]   capacity 8 GPU, in-flight 1, free 7
+[18:08:17] round 199: complete 8/9, in-flight 1, todo 1
+[18:08:17]   capacity 8 GPU, in-flight 1, free 7
+[18:11:19] round 200: complete 8/9, in-flight 1, todo 1
+[18:11:20]   capacity 8 GPU, in-flight 1, free 7
+[18:14:20] orchestrator hit round cap

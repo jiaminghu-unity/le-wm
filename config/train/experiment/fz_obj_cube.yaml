@@ -1,0 +1,37 @@
+# @package _global_
+# Frozen-encoder ablation, arm obj on cube.
+#
+# The encoder+projector are loaded from lewm_k2_cube_obj_eff0.1_s3072/weights_epoch_10.pt and held fixed, so z is bit-identical
+# to that model's. Only the prediction MSE stays live -- SIGReg, L_obj and the aux
+# head all act on emb and would train nothing, so they are zero and
+# train_frozen.validate_frozen asserts it. The predictor, pred_proj and action_encoder start from scratch.
+#
+# Purpose: with the predictor training procedure IDENTICAL across the three arms, the
+# only variable left is the frozen embedding space. Writing A_m for this run and
+# orig_m for the co-trained model, the original gap splits exactly:
+#   (orig_obj - orig_base) = (A_obj - A_base) + (delta_obj - delta_base)
+# with delta_m = orig_m - A_m. The first term is the space, the second the predictor.
+
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_fz_obj_cube_s${seed}
+subdir: ${output_model_name}
+
+init_encoder_from: lewm_k2_cube_obj_eff0.1_s3072/weights_epoch_10.pt
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  sigreg:
+    weight: 0.0
+  obj:
+    weight: 0.0
+    # weight is 0, but train.py builds the q normalizer unconditionally and the
+    # stats file is looked up as <dataset>.q_stats.<q_variant>.json, so this still
+    # has to name the variant this task's stats were computed for
+    q_variant: cube_effector
+  aux:
+    weight: 0.0
