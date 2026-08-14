@@ -1,0 +1,24 @@
+# @package _global_
+# DINO-WM baseline on tworoom. No q, no SIGReg -- the frozen-encoder architecture has nothing
+# to collapse and consumes no privileged state. Same lance data, loader, frameskip,
+# history (3) and epochs (10) as the LeWM arms; model family is the only variable.
+# Caveat carried into reports: DINO-WM's paper trains ~100 epochs, so 10 may undertrain
+# it -- a bias AGAINST this baseline.
+defaults:
+  - override /model: prejepa
+  - override /data: tworoom_q
+
+output_model_name: dinowm_tworoom_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loader:
+  batch_size: 32   # 4 frames/sample through dinov2-small; 128 (lewm default) would OOM
+
+data:
+  dataset:
+    keys_to_load: [pixels, action]
+    keys_to_cache: [action]

@@ -1,0 +1,28 @@
+# DINO-WM (the package calls it PreJEPA): frozen pretrained DINOv2-small patch features,
+# a block-causal ViT predictor over (frames x patches) tokens, and a 10-d action
+# embedding tiled across patches -- the architecture of Zhou et al., arXiv:2411.04983,
+# as shipped in stable_worldmodel.wm.prejepa. No q, no SIGReg: the prediction targets
+# come from a frozen encoder, so there is nothing to collapse.
+#
+# dim = 384 (dinov2-small patches) + 10 (action embedding). extra_encoders.action.in_chans
+# is set at runtime from frameskip * action_dim, exactly as lewm's action encoder is.
+_target_: dinowm_model.DinoWM
+history_size: ${history_size}
+num_pred: ${num_preds}
+interpolate_pos_encoding: true
+encoder:
+  _target_: stable_worldmodel.wm.prejepa.module.create_backbone
+  name: dinov2_small
+predictor:
+  _target_: stable_worldmodel.wm.prejepa.module.CausalPredictor
+  num_patches: 256
+  num_frames: ${eval:'${num_preds} + ${history_size}'}
+  dim: 394
+  depth: 6
+  heads: 16
+  mlp_dim: 2048
+extra_encoders:
+  action:
+    _target_: stable_worldmodel.wm.prejepa.module.Embedder
+    in_chans: 10   # overwritten at runtime: frameskip * action_dim
+    emb_dim: 10

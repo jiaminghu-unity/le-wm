@@ -1,0 +1,24 @@
+# @package _global_
+# DINO-WM baseline on cube. No q, no SIGReg -- the frozen-encoder architecture has nothing
+# to collapse and consumes no privileged state. Same lance data, loader, frameskip,
+# history (3) and epochs (10) as the LeWM arms; model family is the only variable.
+# Caveat carried into reports: DINO-WM's paper trains ~100 epochs, so 10 may undertrain
+# it -- a bias AGAINST this baseline.
+defaults:
+  - override /model: prejepa
+  - override /data: ogb_cube
+
+output_model_name: dinowm_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loader:
+  batch_size: 32   # 4 frames/sample through dinov2-small; 128 (lewm default) would OOM
+
+# NOTE: cube keeps ogb_cube.yaml's full column list. Trimming keys_to_load to
+# [pixels, action] made LanceDataset.get_col_data('action') return zero fragments on
+# THIS lance (it was written by a different converter than the others); the full list is
+# what every lewm cube training used and is proven. The extra columns ride along unused.
