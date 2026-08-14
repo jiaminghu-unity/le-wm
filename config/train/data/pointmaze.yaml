@@ -1,0 +1,22 @@
+# DINO-WM's PointMaze (UMaze), converted to lance by scripts/ray_prep_pointmaze.sh.
+#
+# Trains from lance like every other task: lance stores one JPEG blob per frame while h5
+# stores raw uint8, so the two formats do NOT hold identical pixels, and mixing them would
+# add a second difference to every cross-task comparison.
+#
+# `pos` is the 2-d q source. `state` (4-d, x/y/vx/vy) rides along because the evaluation
+# protocol needs the full state to reset the simulator -- the same arrangement two-room has
+# with pos_agent and proprio.
+dataset:
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  name: pointmaze.lance
+  keys_to_load:
+    - pixels
+    - action
+    - state
+    - pos
+  keys_to_cache:
+    - action
+    - state
+    - pos

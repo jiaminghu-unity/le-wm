@@ -1,0 +1,25 @@
+# @package _global_
+# PointMaze (UMaze), L_obj on the 2-d position.
+#
+# HYPERPARAMETERS ARE NOT TUNED HERE, deliberately: tuning on a newly added task would make
+# its numbers incomparable to the other four. obj 0.1 is the value Push-T, Cube and two-room
+# all used (Reacher used 0.15). aux 0.1 is c5_qhead.yaml's own default, Cube's value, and
+# two-room's; Push-T used 0.3 and Reacher 0.4, so there is no consensus value to carry over.
+# Both were fixed before any PointMaze result existed. If the aux arm underperforms, an
+# untuned weight is a live explanation and will be reported as one.
+defaults:
+  - override /data: pointmaze
+
+output_model_name: lewm_p2_pointmaze_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: pointmaze_pos
+  aux:
+    weight: 0.0
