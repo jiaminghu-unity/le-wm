@@ -57,8 +57,11 @@ for round in $(seq 1 2000); do
       done
     done
   done
+  # gd is DROPPED from the dw grid by user decision (08-14): its dw seeds cost
+  # 10-20 h each and the solver is the weakest of the four everywhere. The dw arm
+  # reports cem/icem/mppi; the already-running tworoom gd job may finish its last
+  # seed but nothing gd is ever submitted again.
   SOLVERS="icem mppi cem"
-  [ "$sampling_left" = 0 ] && SOLVERS="icem mppi cem gd"
   left=0
   for t in pointmaze tworoom cube reacher pusht; do
     set -- $(row "$t"); EVS=$1; PFX=$2; EVP=$3; TARG=$4
@@ -86,8 +89,7 @@ for round in $(seq 1 2000); do
       break 2
     done
   done
-  # only a round that scanned ALL solvers (gd included) may declare completion
-  [ "$left" = 0 ] && [ "$sampling_left" = 0 ] && { log "ALL DINO-WM EVALS COMPLETE"; exit 0; }
+  [ "$left" = 0 ] && { log "ALL DINO-WM EVALS COMPLETE (cem/icem/mppi; gd dropped)"; exit 0; }
   sleep 240
 done
 log "round cap hit"; exit 1
