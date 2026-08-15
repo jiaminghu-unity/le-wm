@@ -44,13 +44,26 @@ row(){ case "$1" in
   pointmaze) echo "ray_eval_pointmaze.sh final_pointmaze_dw final_eval_pointmaze -";;
 esac; }
 
-log "start: RESERVE=$RESERVE GPU held back for interactive use"
+log "start: RESERVE=$RESERVE; solver priority icem/mppi > cem > gd (user, 08-14)"
 for round in $(seq 1 2000); do
+  # gd is gated: with spot capacity scarce and dw-gd seeds costing 10-20 h each,
+  # no gd job is submitted while any icem/mppi cell is still missing.
+  sampling_left=0
+  for t in pointmaze tworoom cube reacher pusht; do
+    set -- $(row "$t"); EVS=$1; PFX=$2; EVP=$3; TARG=$4
+    for slv in icem mppi; do
+      for s in $SEEDS; do
+        gcloud storage ls "$BUCKET/$EVP/${PFX}_${slv}_s${s}.csv" >/dev/null 2>&1 || sampling_left=1
+      done
+    done
+  done
+  SOLVERS="icem mppi cem"
+  [ "$sampling_left" = 0 ] && SOLVERS="icem mppi cem gd"
   left=0
   for t in pointmaze tworoom cube reacher pusht; do
     set -- $(row "$t"); EVS=$1; PFX=$2; EVP=$3; TARG=$4
     CK="dinowm_${t}_s3072"
-    for slv in cem icem mppi gd; do
+    for slv in $SOLVERS; do
       ok=1
       for s in $SEEDS; do
         gcloud storage ls "$BUCKET/$EVP/${PFX}_${slv}_s${s}.csv" >/dev/null 2>&1 || ok=0
@@ -73,7 +86,8 @@ for round in $(seq 1 2000); do
       break 2
     done
   done
-  [ "$left" = 0 ] && { log "ALL DINO-WM EVALS COMPLETE"; exit 0; }
+  # only a round that scanned ALL solvers (gd included) may declare completion
+  [ "$left" = 0 ] && [ "$sampling_left" = 0 ] && { log "ALL DINO-WM EVALS COMPLETE"; exit 0; }
   sleep 240
 done
 log "round cap hit"; exit 1
