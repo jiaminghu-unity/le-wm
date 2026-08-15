@@ -90,14 +90,21 @@ def main():
         del m
         if device == "cuda":
             torch.cuda.empty_cache()
-        z = finals[sh]
-        out["mlp"][key] = mlp_r2_per_dim(z, qs_sh, device).tolist()
+        # MLP input = the FULL set of PC coordinates (a lossless rotation; rank
+        # ~1499 for DINO-WM, ~192 for the LeWM arms), scaled by ONE global scalar
+        # from the fit half. Two failed variants documented so nobody retries them:
+        # raw 98304-d features (25M-param first layer vs 750 samples: R^2 -2..-11)
+        # and per-dim standardized scores (unit-scales the numerical-noise tail of
+        # the spectrum; the MLP then overfits noise and every arm degrades).
+        S = pc_scores(finals)[sh]
+        S = S / S[: N // 2].std()
+        out["mlp"][key] = mlp_r2_per_dim(S, qs_sh, device).tolist()
         # cross-check: ridge via PC scores, NEVER in feature space. Ridge is
         # rotation-invariant, so this equals full-space ridge -- while solving the
         # D x D system directly on DINO-WM's 98304-d features allocates a 77 GB
         # matrix (it OOM-killed this node on 08-15 and took a neighbouring GPU
         # job down with it).
-        out["linear_check"][key] = ridge_r2_per_dim(pc_scores(finals)[sh], qs_sh).tolist()
+        out["linear_check"][key] = ridge_r2_per_dim(S, qs_sh).tolist()
         print(f"{key:5s} mlp {np.mean(out['mlp'][key]):.4f}  "
               f"linear {np.mean(out['linear_check'][key]):.4f}", flush=True)
 
