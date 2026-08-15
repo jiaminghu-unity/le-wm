@@ -13,7 +13,7 @@ goal = 专家 +25 步,4 solver × 5 预算档 × 6 episode 种子 × 100 episode
 | 4 | Frozen-encoder | 优势在表示还是共训的 predictor | 3 臂 × 物理 3 任务 | ✅ | RESULTS_frozen.md |
 | 5 | 减半 q | 只给一半 q,SCALE/Aux 各如何 | 2 臂 × 物理 3 任务 | ✅ | RESULTS_half_q.md |
 | 6 | 规划成本函数 | MSE→L1/cosine 改变排序吗 | cem/icem × 3 任务 | ✅(36 格全 null) | RESULTS_cost_fn.md |
-| 7 | DINO-WM 基线 | 冻结通用特征 + 大 predictor 对比 | 4 solver × 5 任务 | 🔄 96/120(缺 gd) | eval_results/dinowm/ CSVs |
+| 7 | DINO-WM 基线 | 冻结通用特征 + 大 predictor 对比 | cem/icem/mppi × 5 任务(gd 弃测) | ✅ 90/90 | RESULTS_dinowm.md |
 | 10 | τ/rollerr 想象探针 | 想象质量与候选排序 | 4 模型 × 5 任务(20 格全齐) | ✅ | RESULTS_tau_rollerr.md |
 | 9 | 超参数剂量扫描 | λ_obj / w_aux 的敏感性 | Push-T λ×4+w×8+combo×4 · Reacher λ×3+w×3 · Cube λ×2+w×2+q 变体 | ✅(单种子探索) | RESULTS_hparam_sweeps.md |
 | 8 | 表示探针(非 SR) | 机制:q 在嵌入几何里的位置 | 4 模型 × 5 任务 | ✅ | RESULTS_scale_probes.md · p4nav · pcq_*.json |
