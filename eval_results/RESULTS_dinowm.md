@@ -164,6 +164,9 @@ SCALE 为各任务 canonical 全 q 臂。
 
 ## 读法
 
+> **mppi 列修正(2026-08-16)**:该列的跨模型对比被成本量纲混杂——LeWM 系 cost 为 192 维求和、DINO-WM 为 98304 维取均值,固定温度 0.5 下前者退化为 argmax-MPPI。温度匹配后(RESULTS_mppi_temp.md)物理三任务 LeWM 系全部反超 dw,导航差距回到 cem/icem 量级。本页 mppi 数字为出厂配置口径,跨模型解读以修正页为准。
+
+
 - **导航双任务 DINO-WM 碾压**:Two-Room overall +18.39 vs LeWM、+10.09 vs SCALE(均 p=0.031*);
   PointMaze +12.97 / +9.68(均 *)。低预算档差距最大(Two-Room cem T5:87.2 vs SCALE 71.0)。
 - **物理任务反转**:Push-T overall −7.87 vs LeWM(p=0.031*,cem T1 差 18.5pp);Reacher −0.15(ns)、

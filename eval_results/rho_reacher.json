@@ -1,0 +1,57 @@
+{
+ "task": "reacher",
+ "n": 1500,
+ "pairs": 1124250,
+ "rho": {
+  "base": {
+   "full_q": {
+    "pearson": 0.29695123149608676,
+    "spearman": 0.18148334513491943
+   },
+   "kept_shoulder_q": {
+    "pearson": 0.174977654448774,
+    "spearman": 0.07687961005767151
+   }
+  },
+  "obj": {
+   "full_q": {
+    "pearson": 0.5228593396183592,
+    "spearman": 0.5343168344981434
+   },
+   "kept_shoulder_q": {
+    "pearson": 0.33501735236991836,
+    "spearman": 0.2978429595302568
+   }
+  },
+  "obj_h": {
+   "full_q": {
+    "pearson": 0.4920246628958886,
+    "spearman": 0.4838427156543952
+   },
+   "kept_shoulder_q": {
+    "pearson": 0.461159083925329,
+    "spearman": 0.5619508337176891
+   }
+  },
+  "aux": {
+   "full_q": {
+    "pearson": 0.29232519652546646,
+    "spearman": 0.17483221760037634
+   },
+   "kept_shoulder_q": {
+    "pearson": 0.1679819725508732,
+    "spearman": 0.05169328433670506
+   }
+  },
+  "dw": {
+   "full_q": {
+    "pearson": 0.5163907290600435,
+    "spearman": 0.4616097356032365
+   },
+   "kept_shoulder_q": {
+    "pearson": 0.6924618143109119,
+    "spearman": 0.6823325867623261
+   }
+  }
+ }
+}
