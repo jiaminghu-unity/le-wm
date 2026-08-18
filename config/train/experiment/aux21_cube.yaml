@@ -1,0 +1,22 @@
+# @package _global_
+# AUX-21: the aux q-head on Cube with the 22-d full-configuration q
+# (cube_full_config, q_cube_full.py) -- every non-velocity, non-leaking state
+# quantity the dataset carries. Identical to k4_cube_qhead_eff (w=0.1) except the
+# q variant and the data file that loads its extra source columns. Trains through
+# train_cube_full.py, which merges the variant registry in-process.
+defaults:
+  - override /data: ogb_cube_full
+
+output_model_name: lewm_aux21_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_full_config
+  aux:
+    weight: 0.1
