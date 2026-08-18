@@ -37,7 +37,7 @@ if ! mountpoint -q "$SSD"; then
 fi
 export STABLEWM_HOME="$SSD/stable-wm"
 DS="$STABLEWM_HOME/datasets"; mkdir -p "$DS" "$SSD/eps" "$STABLEWM_HOME/checkpoints"
-echo "[env] mppi_t/$TASK/$CFG T={$TS} on $(hostname)"
+echo "[env] automet-eval/$TASK/$CFG metric=$METRIC on $(hostname)"
 
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd curl patchelf \
