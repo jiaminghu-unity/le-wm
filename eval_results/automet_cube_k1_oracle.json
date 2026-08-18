@@ -1,0 +1,6 @@
+{
+ "task": "cube",
+ "ckpt": "lewm_k1_cube_s3072/weights_epoch_10.pt",
+ "rho_vanilla": 0.08131054941762915,
+ "rho_oracle": 0.9356645501039548
+}
