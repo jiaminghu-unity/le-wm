@@ -59,10 +59,29 @@ def main():
     ap.add_argument("task", choices=list(TASKS))
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--out-tag", default=None)
+    ap.add_argument("--q-variant", default="canonical",
+                    choices=["canonical", "cube_full", "reacher_full"],
+                    help="cube_full: 22-d full-config q; reacher_full: joints cos/sin + finger xy (6-d)")
     args = ap.parse_args()
     tag = args.out_tag or f"{args.task}_oracle"
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    spec = TASKS[args.task]
+    spec = dict(TASKS[args.task])
+    if args.q_variant == "cube_full":
+        assert args.task == "cube"
+        import torch as _t
+        from q_cube_full import Q_VARIANTS_CUBE_FULL
+        builder, sources, _chk = Q_VARIANTS_CUBE_FULL["cube_full_config"]
+        spec["qcols"] = tuple(sources)
+        spec["build_q"] = lambda c: builder(*[_t.from_numpy(c[k]) for k in sources]).numpy()
+        print("[oracle] using 22-d cube_full_config q", flush=True)
+    elif args.q_variant == "reacher_full":
+        assert args.task == "reacher"
+        import torch as _t
+        from utils import build_q_reacher_joints_finger
+        spec["qcols"] = ("qpos", "finger_pos")
+        spec["build_q"] = lambda c: build_q_reacher_joints_finger(
+            _t.from_numpy(c["qpos"]), _t.from_numpy(c["finger_pos"])).numpy()
+        print("[oracle] using 6-d reacher joints+finger q", flush=True)
 
     dataset = swm.data.load_dataset(spec["lance"], keys_to_load=["pixels", *spec["qcols"]])
     n_ep = len(dataset.lengths)

@@ -80,6 +80,16 @@ def main():
         print(f"[automet] criterion verified: {got:g} == sum(M) {want:g}", flush=True)
         return model
 
+    env = None
+    for i, a2 in enumerate(sys.argv):
+        if a2 == "--env":
+            env = sys.argv[i + 1]
+    if env == "tworoom":
+        from scripts.tworoom_preset import register
+        register(budget_sweep.ENV_PRESETS)
+    elif env == "pointmaze":
+        from scripts.pointmaze_preset import register
+        register(budget_sweep.ENV_PRESETS)
     swm.wm.utils.load_pretrained = load_and_bless
     budget_sweep.main()
 
