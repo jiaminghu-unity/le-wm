@@ -1,11 +1,24 @@
 # DINO-WM 基线:四臂 SR 全网格
 
 四臂 = LeWM / SCALE / Aux / DINO-WM(冻结 DINOv2-small + CausalPredictor,与 LeWM 系同一
-10-epoch lance 训练管线,无 q、无 proprio)。求解器为 cem/icem/mppi;**gd 弃测**(用户决定,
-08-14:dw 的 gd 单 seed 10–20 h,且 gd 在全部任务上都是四个求解器里最弱的;LeWM 系三臂的
-gd 数据在主对比家族里)。每格 = 6 episode 种子 × 100 episodes 的均值 ± 种子间 SD。
+10-epoch lance 训练管线,无 q、无 proprio)。求解器为 cem/icem/mppi + gd(gd 曾于 08-14 弃测,
+后按用户要求以 seed 级作业于 08-18/19 补齐,30/30 完成;LeWM 系三臂的 gd 数据在主对比家族里)。
+headline 对比保持 3-solver 口径(cem/icem/mppi × 5 tier)不变;gd 单列于下节。每格 = 6 episode 种子 × 100 episodes 的均值 ± 种子间 SD。
 对比 = 各臂 15 格(3 solver × 5 tier)按种子配对的 overall 均值差,Wilcoxon 符号秩(n=6,最小 p=0.031)。
 SCALE 为各任务 canonical 全 q 臂。
+
+## DINO-WM gd(补测,6 种子 overall 均值 ± SD)
+
+| 任务 | dw gd |
+|---|---|
+| Push-T | 63.13 ± 3.03 |
+| Reacher | 61.73 ± 2.28 |
+| Cube | 58.33 ± 3.58 |
+| Two-Room | 96.17 ± 0.70 |
+| PointMaze | 95.37 ± 1.27 |
+
+与 dw 自身 3-solver 均值(headline 列)同型:导航两任务 gd 与 cem/icem 同高(≈96/95),
+物理三任务 gd 居中偏弱。数字由脚本自 final_*_dw_gd_s10[1-6].csv 生成。
 
 ## Headline(overall SR 均值与配对差)
 
