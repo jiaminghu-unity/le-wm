@@ -88,7 +88,7 @@ gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/c
 gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
 python scripts/automet_train.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" \
-  --out-tag "$TAG" 2>&1 | tee "$SSD/wtrain_$TAG.log"
+  --out-tag "$TAG" ${SPAN:+--span-lo "$SPAN" --span-hi "$SPAN"} 2>&1 | tee "$SSD/wtrain_$TAG.log"
 gcloud storage cp "eval_results/automet_$TAG.pt" "eval_results/automet_$TAG.json" "$BUCKET/eval/"
 gcloud storage cp "$SSD/wtrain_$TAG.log" "$BUCKET/eval/" || true
 echo "W TRAIN DONE $TAG"

@@ -73,11 +73,15 @@ def main():
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--steps", type=int, default=STEPS)
     ap.add_argument("--out-tag", default=None)
+    ap.add_argument("--span-lo", type=int, default=SPAN_LO,
+                    help="min tg-t1 in env steps; set lo=hi for a FIXED span")
+    ap.add_argument("--span-hi", type=int, default=SPAN_HI)
     args = ap.parse_args()
     tag = args.out_tag or f"{args.task}_{args.ckpt.split('/')[0]}"
     device = "cuda" if torch.cuda.is_available() else "cpu"
     spec = TASKS[args.task]
-    print(f"task={args.task} ckpt={args.ckpt} device={device}", flush=True)
+    print(f"task={args.task} ckpt={args.ckpt} device={device} "
+          f"span=[{args.span_lo},{args.span_hi}]", flush=True)
 
     dataset = swm.data.load_dataset(spec["lance"], keys_to_load=["pixels", *spec["qcols"]])
     n_ep = len(dataset.lengths)
@@ -119,7 +123,7 @@ def main():
         ig = np.empty(B, dtype=np.int64)
         for b, e in enumerate(eps):
             L = ep_len[int(e)]
-            span = rng.integers(SPAN_LO, min(SPAN_HI, L - 1) + 1)
+            span = rng.integers(args.span_lo, min(args.span_hi, L - 1) + 1)
             t1 = rng.integers(0, L - span)
             tg = t1 + span
             t2 = rng.integers(t1 + GAP, tg - GAP + 1) if tg - GAP >= t1 + GAP else t1 + 1
