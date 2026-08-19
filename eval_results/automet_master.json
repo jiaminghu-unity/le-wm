@@ -1,0 +1,423 @@
+{
+ "vanilla": {
+  "pusht": {
+   "sr": 70.5,
+   "n": 6
+  },
+  "reacher": {
+   "sr": 70.57,
+   "n": 6
+  },
+  "tworoom": {
+   "sr": 77.93,
+   "n": 6
+  },
+  "pointmaze": {
+   "sr": 82.13,
+   "n": 6
+  },
+  "cube_cem": {
+   "sr": 61.33,
+   "n": 6
+  },
+  "cube_icem": {
+   "sr": 65.33,
+   "n": 6
+  }
+ },
+ "rows": [
+  {
+   "section": "W",
+   "task": "pusht",
+   "label": "linear W",
+   "n_seeds": 6,
+   "sr": 64.6,
+   "sd": 2.63,
+   "vanilla": 70.5,
+   "delta": -5.9,
+   "p": 0.031,
+   "per_seed": {
+    "101": 62.8,
+    "102": 67.0,
+    "103": 63.8,
+    "104": 60.6,
+    "105": 66.4,
+    "106": 67.0
+   }
+  },
+  {
+   "section": "W",
+   "task": "reacher",
+   "label": "linear W",
+   "n_seeds": 6,
+   "sr": 69.9,
+   "sd": 1.55,
+   "vanilla": 70.57,
+   "delta": -0.67,
+   "p": 0.625,
+   "per_seed": {
+    "101": 69.8,
+    "102": 68.8,
+    "103": 70.8,
+    "104": 70.4,
+    "105": 72.0,
+    "106": 67.6
+   }
+  },
+  {
+   "section": "W",
+   "task": "cube",
+   "label": "linear W (k1, icem)",
+   "n_seeds": 6,
+   "sr": 65.33,
+   "sd": 4.25,
+   "vanilla": 65.33,
+   "delta": 0.0,
+   "p": 0.844,
+   "per_seed": {
+    "101": 68.4,
+    "102": 70.2,
+    "103": 62.2,
+    "104": 66.0,
+    "105": 58.6,
+    "106": 66.6
+   }
+  },
+  {
+   "section": "W",
+   "task": "cube",
+   "label": "linear W (k4/Aux, cem)",
+   "n_seeds": 6,
+   "sr": 63.4,
+   "sd": 3.28,
+   "vanilla": 61.33,
+   "delta": 2.07,
+   "p": 0.062,
+   "per_seed": {
+    "101": 64.8,
+    "102": 65.8,
+    "103": 61.8,
+    "104": 65.0,
+    "105": 57.4,
+    "106": 65.6
+   }
+  },
+  {
+   "section": "W",
+   "task": "tworoom",
+   "label": "linear W",
+   "n_seeds": 6,
+   "sr": 95.2,
+   "sd": 1.09,
+   "vanilla": 77.93,
+   "delta": 17.27,
+   "p": 0.031,
+   "per_seed": {
+    "101": 95.8,
+    "102": 95.6,
+    "103": 93.0,
+    "104": 95.6,
+    "105": 95.8,
+    "106": 95.4
+   }
+  },
+  {
+   "section": "W",
+   "task": "pointmaze",
+   "label": "linear W",
+   "n_seeds": 6,
+   "sr": 80.13,
+   "sd": 2.74,
+   "vanilla": 82.13,
+   "delta": -2.0,
+   "p": 0.156,
+   "per_seed": {
+    "101": 76.6,
+    "102": 84.8,
+    "103": 79.2,
+    "104": 81.2,
+    "105": 80.0,
+    "106": 79.0
+   }
+  },
+  {
+   "section": "NL",
+   "task": "pusht",
+   "label": "nonlinear phi",
+   "n_seeds": 6,
+   "sr": 55.7,
+   "sd": 4.72,
+   "vanilla": 70.5,
+   "delta": -14.8,
+   "p": 0.031,
+   "per_seed": {
+    "101": 51.2,
+    "102": 61.4,
+    "103": 54.4,
+    "104": 50.8,
+    "105": 61.4,
+    "106": 55.0
+   }
+  },
+  {
+   "section": "NL",
+   "task": "reacher",
+   "label": "nonlinear phi",
+   "n_seeds": 6,
+   "sr": 69.43,
+   "sd": 2.14,
+   "vanilla": 70.57,
+   "delta": -1.13,
+   "p": 0.688,
+   "per_seed": {
+    "101": 67.4,
+    "102": 68.2,
+    "103": 70.4,
+    "104": 73.2,
+    "105": 69.4,
+    "106": 68.0
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "pusht",
+   "label": "oracle (6-d q)",
+   "n_seeds": 6,
+   "sr": 51.93,
+   "sd": 4.63,
+   "vanilla": 70.5,
+   "delta": -18.57,
+   "p": 0.031,
+   "per_seed": {
+    "101": 52.2,
+    "102": 58.4,
+    "103": 49.2,
+    "104": 45.2,
+    "105": 51.2,
+    "106": 55.4
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "reacher",
+   "label": "oracle (6-d full q)",
+   "n_seeds": 6,
+   "sr": 52.6,
+   "sd": 3.68,
+   "vanilla": 70.57,
+   "delta": -17.97,
+   "p": 0.031,
+   "per_seed": {
+    "101": 53.6,
+    "102": 50.8,
+    "103": 50.6,
+    "104": 49.0,
+    "105": 59.4,
+    "106": 52.2
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "cube",
+   "label": "oracle (9-d, cem)",
+   "n_seeds": 6,
+   "sr": 64.7,
+   "sd": 2.66,
+   "vanilla": 61.33,
+   "delta": 3.37,
+   "p": 0.062,
+   "per_seed": {
+    "101": 66.0,
+    "102": 66.4,
+    "103": 63.0,
+    "104": 65.2,
+    "105": 60.2,
+    "106": 67.4
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "cube",
+   "label": "oracle (22-d, cem)",
+   "n_seeds": 6,
+   "sr": 65.97,
+   "sd": 2.11,
+   "vanilla": 61.33,
+   "delta": 4.63,
+   "p": 0.031,
+   "per_seed": {
+    "101": 68.2,
+    "102": 65.0,
+    "103": 65.2,
+    "104": 67.0,
+    "105": 62.6,
+    "106": 67.8
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "tworoom",
+   "label": "oracle (2-d q)",
+   "n_seeds": 6,
+   "sr": 95.87,
+   "sd": 1.21,
+   "vanilla": 77.93,
+   "delta": 17.93,
+   "p": 0.031,
+   "per_seed": {
+    "101": 96.4,
+    "102": 96.0,
+    "103": 93.8,
+    "104": 96.6,
+    "105": 97.2,
+    "106": 95.2
+   }
+  },
+  {
+   "section": "oracle",
+   "task": "pointmaze",
+   "label": "oracle (2-d q)",
+   "n_seeds": 6,
+   "sr": 73.47,
+   "sd": 3.96,
+   "vanilla": 82.13,
+   "delta": -8.67,
+   "p": 0.031,
+   "per_seed": {
+    "101": 67.8,
+    "102": 77.4,
+    "103": 73.6,
+    "104": 78.4,
+    "105": 72.4,
+    "106": 71.2
+   }
+  },
+  {
+   "section": "span",
+   "task": "pusht",
+   "label": "W span=10",
+   "n_seeds": 6,
+   "sr": 46.7,
+   "sd": 3.96,
+   "vanilla": 70.5,
+   "delta": -23.8,
+   "p": 0.031,
+   "per_seed": {
+    "101": 42.8,
+    "102": 50.6,
+    "103": 44.6,
+    "104": 42.4,
+    "105": 51.4,
+    "106": 48.4
+   }
+  },
+  {
+   "section": "span",
+   "task": "pusht",
+   "label": "W span=25",
+   "n_seeds": 6,
+   "sr": 64.57,
+   "sd": 4.03,
+   "vanilla": 70.5,
+   "delta": -5.93,
+   "p": 0.062,
+   "per_seed": {
+    "101": 58.0,
+    "102": 66.4,
+    "103": 63.4,
+    "104": 63.8,
+    "105": 70.2,
+    "106": 65.6
+   }
+  },
+  {
+   "section": "span",
+   "task": "pusht",
+   "label": "W span=40",
+   "n_seeds": 6,
+   "sr": 63.67,
+   "sd": 3.53,
+   "vanilla": 70.5,
+   "delta": -6.83,
+   "p": 0.031,
+   "per_seed": {
+    "101": 61.2,
+    "102": 67.0,
+    "103": 63.0,
+    "104": 58.4,
+    "105": 67.6,
+    "106": 64.8
+   }
+  },
+  {
+   "section": "blend",
+   "task": "pusht",
+   "label": "alpha=0.1",
+   "n_seeds": 1,
+   "sr": 67.2,
+   "sd": null,
+   "vanilla": 70.5,
+   "delta": -2.8,
+   "p": null,
+   "per_seed": {
+    "101": 67.2
+   }
+  },
+  {
+   "section": "blend",
+   "task": "pusht",
+   "label": "alpha=0.3",
+   "n_seeds": 1,
+   "sr": 66.2,
+   "sd": null,
+   "vanilla": 70.5,
+   "delta": -3.8,
+   "p": null,
+   "per_seed": {
+    "101": 66.2
+   }
+  },
+  {
+   "section": "blend",
+   "task": "pusht",
+   "label": "alpha=0.5",
+   "n_seeds": 1,
+   "sr": 65.0,
+   "sd": null,
+   "vanilla": 70.5,
+   "delta": -5.0,
+   "p": null,
+   "per_seed": {
+    "101": 65.0
+   }
+  },
+  {
+   "section": "blend",
+   "task": "tworoom",
+   "label": "alpha=0.1",
+   "n_seeds": 1,
+   "sr": 88.6,
+   "sd": null,
+   "vanilla": 77.93,
+   "delta": 13.0,
+   "p": null,
+   "per_seed": {
+    "101": 88.6
+   }
+  },
+  {
+   "section": "blend",
+   "task": "tworoom",
+   "label": "alpha=0.5",
+   "n_seeds": 1,
+   "sr": 95.2,
+   "sd": null,
+   "vanilla": 77.93,
+   "delta": 19.6,
+   "p": null,
+   "per_seed": {
+    "101": 95.2
+   }
+  }
+ ]
+}
