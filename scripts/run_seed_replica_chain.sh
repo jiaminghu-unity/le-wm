@@ -66,7 +66,7 @@ for round in $(seq 1 4000); do
     gcloud storage ls "$BUCKET/$pfx/$run/weights_epoch_10.pt" >/dev/null 2>&1 && continue
     left=1
     [ "$(nrun "$cmd")" != 0 ] && continue
-    [ "$(free)" -lt 1 ] && continue
+    [ "$(free)" -lt 2 ] && continue   # RESERVE=1: keep one GPU free for the user's interactive verification (2026-08-18)
     n=${ATT[$name]:-0}
     [ "$n" -ge 4 ] && { log "$name attempt cap"; continue; }
     # shellcheck disable=SC2086

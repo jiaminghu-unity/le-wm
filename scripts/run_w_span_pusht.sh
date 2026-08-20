@@ -25,10 +25,10 @@ for round in $(seq 1 1500); do
     tag="pusht_c1_Wd${SPAN}"; cfg="c1Wd${SPAN}"
     if ! gcloud storage ls "$BUCKET/eval/automet_$tag.pt" >/dev/null 2>&1; then
       left=1
-      [ "$(nrun "ray_automet_train_any.sh pusht ckpts lewm_c1_s3072 $tag")" != 0 ] && continue
+      [ "$(nrun "ray_automet_fit_W_any.sh pusht ckpts lewm_c1_s3072 $tag")" != 0 ] && continue
       [ "$(free)" -lt 1 ] && continue
       n=${ATT[f$SPAN]:-0}; [ "$n" -ge 4 ] && continue
-      id=$(sub env SPAN=$SPAN bash scripts/ray_automet_train_any.sh pusht ckpts lewm_c1_s3072 "$tag")
+      id=$(sub env SPAN=$SPAN bash scripts/ray_automet_fit_W_any.sh pusht ckpts lewm_c1_s3072 "$tag")
       [ -n "$id" ] && { ATT[f$SPAN]=$((n+1)); log "train d$SPAN -> $id"; }
       break
     fi

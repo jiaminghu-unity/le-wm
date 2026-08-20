@@ -18,7 +18,7 @@ Decision rule it feeds:
   * rho_oracle low   -> no quadratic metric can fix this frozen geometry ->
     the representation itself is the bottleneck; move task or touch representation.
 
-    usage: automet_oracle.py cube --ckpt lewm_k1_cube_s3072/weights_epoch_10.pt
+    usage: automet_fit_oracle.py cube --ckpt lewm_k1_cube_s3072/weights_epoch_10.pt
 """
 
 import argparse

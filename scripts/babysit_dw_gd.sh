@@ -39,7 +39,7 @@ for round in $(seq 1 3000); do
       left=1
       if [ "$TARG" != "-" ]; then pat="$EVS $TARG dw $CK gd $s"; else pat="$EVS dw $CK gd $s"; fi
       [ "$(nrun "$pat")" != 0 ] && continue
-      [ "$(free)" -lt 1 ] && continue
+      [ "$(free)" -lt 2 ] && continue   # RESERVE=1: keep one GPU free for the user's interactive verification (2026-08-18)
       k="${t}_s${s}"; n=${ATT[$k]:-0}
       [ "$n" -ge 5 ] && { log "$k attempt cap"; continue; }
       if [ "$TARG" != "-" ]; then

@@ -87,7 +87,7 @@ mkdir -p "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
 gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
 gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
-python scripts/automet_oracle.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" \
+python scripts/automet_fit_oracle.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" \
   --out-tag "$TAG" --q-variant "$QVAR" 2>&1 | tee "$SSD/oracle_$TAG.log"
 gcloud storage cp "eval_results/automet_$TAG.pt" "eval_results/automet_$TAG.json" "$BUCKET/eval/"
 gcloud storage cp "$SSD/oracle_$TAG.log" "$BUCKET/eval/" || true

@@ -11,12 +11,12 @@ space from trajectory temporal ordering.
         analogue of the linear version's trace normalisation.
 
 Everything else (triplet sampling, spans, data split, diagnostics) is identical to
-automet_train.py, so linear-vs-nonlinear differences are attributable to the metric
+automet_fit_W.py, so linear-vs-nonlinear differences are attributable to the metric
 class alone. Requested for pusht/reacher, where the linear W hurt; the pre-registered
 prediction (for the record) is that extra capacity amplifies the misaligned temporal
 signal rather than fixing it.
 
-    usage: automet_train_nl.py pusht --ckpt lewm_c1_s3072/weights_epoch_10.pt
+    usage: automet_fit_phi_nonlinear.py pusht --ckpt lewm_c1_s3072/weights_epoch_10.pt
 """
 
 import argparse
@@ -33,7 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import stable_worldmodel as swm  # noqa: E402
 from scripts.probe import SPLIT_SEED, TEST_EPISODE_FRAC, load_frames  # noqa: E402
 from scripts.probe_pc_q import TASKS  # noqa: E402
-from scripts.automet_train import encode_frames  # noqa: E402
+from scripts.automet_fit_W import encode_frames  # noqa: E402
 
 STEPS = 3000
 BATCH = 1024

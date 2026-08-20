@@ -130,7 +130,7 @@ order-acc 0.749),但 SR 后果天差地别:在 r1 上 W 找不到有行为后果
 
 ## 文件
 
-- 训练/评估:`scripts/automet_train.py`(线性)、`automet_train_nl.py`(非线性)、
-  `automet_oracle.py`、`budget_sweep_automet{,_nl}.py`、`ray_{automet_train,eval_automet}{,_nl}_any.sh`;
+- 训练/评估:`scripts/automet_fit_W.py`(线性)、`automet_fit_phi_nonlinear.py`(非线性)、
+  `automet_fit_oracle.py`、`budget_sweep_automet{,_nl}.py`、`ray_{automet_fit_W,eval_automet}{,_nl}_any.sh`;
   α 混合度量由线性 M 合成为 `automet_pusht_c1_Wa*.pt` 等文件后走同一 wrapper
 - 数字底账:`eval_results/automet_master.json`(本 md 全部 SR 行的生成源)

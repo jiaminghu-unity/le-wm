@@ -1,5 +1,5 @@
 """budget_sweep with the NONLINEAR AutoMetric planner cost:
-J(a) = ||phi(z_hat_H) - phi(z_g)||^2, phi loaded from --metric (automet_train_nl.py).
+J(a) = ||phi(z_hat_H) - phi(z_g)||^2, phi loaded from --metric (automet_fit_phi_nonlinear.py).
 Same wrapper contract as budget_sweep_automet.py; cem/icem only. Verified at load:
 with the residual MLP, phi(z) != z in general, but the criterion must equal the
 manually computed embedded distance on a random probe.
@@ -15,7 +15,7 @@ import stable_worldmodel as swm  # noqa: E402
 
 from scripts import budget_sweep  # noqa: E402
 from scripts.cost_variants import _terminal  # noqa: E402
-from scripts.automet_train_nl import Phi  # noqa: E402
+from scripts.automet_fit_phi_nonlinear import Phi  # noqa: E402
 
 _ALLOWED = {"cem", "icem"}
 

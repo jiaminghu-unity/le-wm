@@ -5,7 +5,7 @@ intervention re-blesses the loaded model so its criterion computes
 
     J(a) = (z_hat_H - z_g)^T  M  (z_hat_H - z_g)
 
-with M the trace-normalized metric learned by automet_train.py from trajectory
+with M the trace-normalized metric learned by automet_fit_W.py from trajectory
 temporal ordering alone (tr(M)=D; M=I recovers the shipped cost exactly). The
 metric file is passed via --metric and verified at load: a synthetic probe with a
 known M-distance must round-trip, and tr(M) must equal D.

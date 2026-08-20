@@ -39,10 +39,10 @@ for round in $(seq 1 2000); do
     gcloud storage ls "$BUCKET/eval/automet_$tag.pt" >/dev/null 2>&1 && fit_done=1
     if [ "$fit_done" = 0 ]; then
       left=1
-      [ "$(nrun "ray_automet_train_nl_any.sh $task")" != 0 ] && continue
+      [ "$(nrun "ray_automet_fit_phi_nonlinear_any.sh $task")" != 0 ] && continue
       [ "$(free)" -lt 1 ] && continue
       n=${ATT[fit_$task]:-0}; [ "$n" -ge 4 ] && { log "fit_$task cap"; continue; }
-      id=$(sub bash scripts/ray_automet_train_nl_any.sh "$task" "$ckp" "$ckdir" "$tag")
+      id=$(sub bash scripts/ray_automet_fit_phi_nonlinear_any.sh "$task" "$ckp" "$ckdir" "$tag")
       [ -n "$id" ] && { ATT[fit_$task]=$((n+1)); log "fit $task -> $id"; }
       break
     fi

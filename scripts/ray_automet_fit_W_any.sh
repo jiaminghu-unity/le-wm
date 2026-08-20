@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # AutoMetric W training (trajectory triplets, q-free) for any task.
-#   usage: ray_automet_train_any.sh <task> <ckpt_prefix> <ckpt_dir> <tag>
+#   usage: ray_automet_fit_W_any.sh <task> <ckpt_prefix> <ckpt_dir> <tag>
 # MPPI temperature-matched evaluation for the LeWM family.
 #   usage: ray_eval_mppi_t.sh <task> <cfgname> <ckpt_prefix> <ckpt_dir> <T-list> <seed-list>
 #     task        : pusht | reacher | cube | tworoom | pointmaze
@@ -87,7 +87,7 @@ mkdir -p "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
 gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
 gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
-python scripts/automet_train.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" \
+python scripts/automet_fit_W.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" \
   --out-tag "$TAG" ${SPAN:+--span-lo "$SPAN" --span-hi "$SPAN"} 2>&1 | tee "$SSD/wtrain_$TAG.log"
 gcloud storage cp "eval_results/automet_$TAG.pt" "eval_results/automet_$TAG.json" "$BUCKET/eval/"
 gcloud storage cp "$SSD/wtrain_$TAG.log" "$BUCKET/eval/" || true

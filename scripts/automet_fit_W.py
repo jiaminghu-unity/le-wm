@@ -23,7 +23,7 @@ ordering accuracy, and -- as pure diagnosis, never in training -- rho_W =
 Pearson(d_W pair distances, ||dq||^2) against the privileged q, compared with the
 vanilla metric's rho and SCALE's representation-level rho.
 
-    usage: automet_train.py cube --ckpt lewm_k1_cube_s3072/weights_epoch_10.pt
+    usage: automet_fit_W.py cube --ckpt lewm_k1_cube_s3072/weights_epoch_10.pt
 """
 
 import argparse

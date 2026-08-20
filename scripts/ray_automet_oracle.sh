@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # AutoMetric W-training launcher: frozen ckpt + trajectory triplets -> learned metric.
-#   usage: CKPT_PFX=ckpts CKPT_DIR=lewm_k1_cube_s3072 [TAG=...] ray_automet_train.sh <task>
+#   usage: CKPT_PFX=ckpts CKPT_DIR=lewm_k1_cube_s3072 [TAG=...] ray_automet_oracle.sh <task>
 # Generic LeWM physics-task trainer for the seed-replication study.
 #   usage: ray_train_replica.sh <pusht|reacher|cube> <hydra overrides...>
 #     e.g. ray_train_replica.sh pusht experiment=c1_baseline data=pusht seed=3073
@@ -60,7 +60,7 @@ mkdir -p "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
 gcloud storage cp "$BUCKET/$CKPT_PFX/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
 gcloud storage cp "$BUCKET/$CKPT_PFX/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
-python scripts/automet_oracle.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" ${TAG:+--out-tag "$TAG"} 2>&1 | tee "$SSD/automet_oracle_$TASK.log"
+python scripts/automet_fit_oracle.py "$TASK" --ckpt "$CKPT_DIR/weights_epoch_10.pt" ${TAG:+--out-tag "$TAG"} ${QVARIANT:+--q-variant "$QVARIANT"} 2>&1 | tee "$SSD/automet_oracle_$TASK.log"
 gcloud storage cp eval_results/automet_*.pt eval_results/automet_*.json "$BUCKET/eval/" || true
 gcloud storage cp "$SSD/automet_oracle_$TASK.log" "$BUCKET/eval/" || true
 echo "AUTOMET TRAIN DONE"
