@@ -18,6 +18,7 @@ goal = 专家 +25 步,4 solver × 5 预算档 × 6 episode 种子 × 100 episode
 | 10 | τ/rollerr 想象探针 | 想象质量与候选排序 | 4 模型 × 5 任务(20 格全齐) | ✅ | RESULTS_tau_rollerr.md |
 | 9 | 超参数剂量扫描 | λ_obj / w_aux 的敏感性 | Push-T λ×4+w×8+combo×4 · Reacher λ×3+w×3 · Cube λ×2+w×2+q 变体 | ✅(单种子探索) | RESULTS_hparam_sweeps.md |
 | 8 | 表示探针(非 SR) | 机制:q 在嵌入几何里的位置 | 4 模型 × 5 任务 | ✅ | RESULTS_scale_probes.md · p4nav · pcq_*.json |
+| 13 | SIGReg 必要性 × q-only 输入 | q 监督能否替代 SIGReg;感知无损上参照 | Push-T:c2p/c9/q1 × cem+icem | ✅ | RESULTS_sigreg_qinput.md · newarms_master.json |
 | 12 | AutoMetric 度量学习 | 冻结 LeWM 上 q-free 学规划度量能否提升 SR | 线性 W×5 任务 + 非线性 φ×2 + oracle×5 + 跨度/α 消融 | ✅ | RESULTS_automet.md · automet_master.json |
 
 ## 1. 主网格 headline(SR 差值,20 格均值,配对 Wilcoxon)
