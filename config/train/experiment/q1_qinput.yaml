@@ -1,0 +1,14 @@
+# @package _global_
+# Q1: q-only-input LeWM (PushT). Same training flow as C1 -- SIGReg 0.09, 10
+# epochs, same predictor/projector -- but the encoder consumes the normalized 6-d
+# physical q instead of pixels (model/lewm_qinput.yaml). Upper-reference for "how
+# much of planning SR is perception vs dynamics" on this task.
+defaults:
+  - override /model: lewm_qinput
+
+output_model_name: lewm_q1_qinput_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1

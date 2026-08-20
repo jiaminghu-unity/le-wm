@@ -1,0 +1,18 @@
+# @package _global_
+# C9: NO SIGReg, aux q-head only (PushT). Architecture identical to C1/C5
+# (projector kept); the only anti-collapse pressure is the aux q-regression head
+# at the canonical C5 weight 0.3. Companion to C2p (no SIGReg, L_obj only):
+# together they ask whether either q-supervision can replace SIGReg as the
+# regularizer. Watch train/eff_rank for collapse.
+output_model_name: lewm_c9_qhead_nosig0.3_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  sigreg:
+    weight: 0.0
+  aux:
+    weight: 0.3
