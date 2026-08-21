@@ -1,0 +1,15 @@
+# @package _global_
+# C10: SCALE with a distilled metric target (Push-T). Identical to C3 (SIGReg 0.09 +
+# L_obj 0.1, pixels) except L_obj aligns to the frozen q-only model's embedding of q
+# (projector output) instead of raw q -- run via train_qdistill.py, teacher from
+# $TEACHER_CKPT. Tests whether SCALE's gain is limited by its target metric.
+output_model_name: lewm_c10_qdistill0.1_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
