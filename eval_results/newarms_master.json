@@ -144,6 +144,24 @@
     "105": 74.7,
     "106": 72.6
    }
+  },
+  {
+   "cfg": "qdist",
+   "label": "metric-distilled SCALE (L_obj target = q-only model geometry)",
+   "cem": 74.73,
+   "icem": 69.57,
+   "combined": 72.15,
+   "delta_vs_c1": 4.95,
+   "p_vs_c1": 0.031,
+   "p_vs_c3": 0.062,
+   "per_seed_combined": {
+    "101": 70.4,
+    "102": 76.8,
+    "103": 70.8,
+    "104": 69.9,
+    "105": 73.8,
+    "106": 71.2
+   }
   }
  ]
 }
