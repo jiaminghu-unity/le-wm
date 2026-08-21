@@ -60,6 +60,25 @@
    表示几何问题,而非感知信息缺失。分档签名也一致:q1 富档略输(T1 90.2 vs 92.3)、
    穷档明显赢(T4 63.8 vs 57.0),与 SCALE 同型。
 
+## 归因:无 SIGReg 的 L_obj 臂死在哪(P4 探针 + 潜空间体检)
+
+20 起点 × 64 候选,与既有 P4 同口径(p4_pusht_newarms.json / zhealth_pusht_newarms.json):
+
+| 模型 | rollerr | (a)τ 想象vs编码 | (b)τ 编码vs物理 | (t)τ 总 | (t)regret | eff-rank | ‖z‖ | R²(z→q) |
+|---|---|---|---|---|---|---|---|---|
+| LeWM 基线(SIGReg0.09) | 0.0351 | 0.732 | 0.272 | 0.259 | 0.244 | 95.9 | 13.85 | 0.944 |
+| L_obj-only 无 SIGReg | **0.0182** | 0.769 | 0.182 | **0.025** | **0.633** | **5.0** | 0.50 | **0.9999** |
+| q-head-only 无 SIGReg | 0.0100 | 0.870 | 0.131 | 0.080 | 0.532 | 6.5 | 2.28 | 0.9985 |
+
+**结论:predict 无罪,死在成本几何。**rollerr 比基线低 48%、(a)τ 正常 → predictor 忠实;
+(b)τ 0.182、(t)τ 0.025≈随机、regret 0.633 反向选择 → 规划信号被毁。机制:没有 SIGReg 制衡,
+L_obj 把嵌入塌成 q 的线性拷贝(eff-rank 5.0,R²=0.9999,信息未丢、几何冗余全丢),
+L2 成本随之退化为 q 度量距离——即 AutoMetric 家族已六种子实证在 Push-T 上有害的 oracle 成本
+(oracle 51.9 vs vanilla 70.5;本臂 39.4 是同一死法的更重版本)。
+q-head-only 同样塌维(6.5)但只受"可解码"约束、距离几何仍由预测损失塑形,故 SR 保住——
+SIGReg 的精确角色:防止 L_obj 把嵌入做成字面上的 q 等距、防止成本退化为 oracle 度量。
+(τ 绝对值照例不可当 SR 用:q-head-only 的 (t)τ 也只有 0.080 而 SR 正常;τ 用于臂间归因。)
+
 ## 实现
 
 - q1 = `qjepa.py`(QJEPA:MLP(6→2048→192) 编码器,q 统计量存 buffer;规划走 env 原始
@@ -68,4 +87,4 @@
   + `ray_eval_qinput.sh`。train.py 未改动。
 - c9 = `experiment/c9_qhead_nosig.yaml`;c2p = 既有 `c2p_obj_projector.yaml` 首次开训。
 - 链:`scripts/run_pusht_newarms_chain.sh`;CSV:`gs://…/final_eval/final_pusht_{q1,c9,c2p}_*`。
-- 待补(如需机制):c2p 的 z eff-rank 塌缩证据(训练日志在被抢占 worker 上,需重算)。
+- 机制已补齐(见"归因"节);q-only 输入的同款探针(状态通道 P4)运行中,出结果后并入。
