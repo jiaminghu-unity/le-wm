@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# qdistill trainer: SCALE with the q-only model's geometry as the L_obj target.
+# q-only teacher trainer: replica launcher + reacher.lance staging (the q-input
+# configs read the lance dataset directly).
 #   usage: ray_train_replica.sh <pusht|reacher|cube> <hydra overrides...>
 #     e.g. ray_train_replica.sh pusht experiment=c1_baseline data=pusht seed=3073
 #
@@ -59,7 +60,7 @@ esac
 gcloud storage cp "$BUCKET/datasets/*.q_stats.*.json" "$DS/" 2>/dev/null || true
 gcloud storage cp "$BUCKET/datasets/ogbench/*.q_stats.*.json" "$DS/ogbench/" 2>/dev/null || true
 
-RUN=$(python train_qdistill.py --cfg job --resolve "$@" 2>/dev/null \
+RUN=$(python train.py --cfg job --resolve "$@" 2>/dev/null \
       | grep -E "^output_model_name:" | awk '{print $2}' | tr -d '\r')
 [ -n "$RUN" ] || { echo "FATAL: could not resolve output_model_name for: $*" >&2; exit 1; }
 echo "[replica] $TASK -> $RUN"
@@ -68,13 +69,7 @@ if gcloud storage ls "$BUCKET/ckpts/$RUN/weights_epoch_10.pt" >/dev/null 2>&1; t
 fi
 
 LOG="$SSD/train_$RUN.log"
-TEACHER="${TEACHER_CKPT:-lewm_q1_qinput_s3072/weights_epoch_10.pt}"
-TDIR="${TEACHER%%/*}"
-mkdir -p "$STABLEWM_HOME/checkpoints/$TDIR"
-gcloud storage cp "$BUCKET/ckpts/$TDIR/weights_epoch_10.pt" "$BUCKET/ckpts/$TDIR/config.json" \
-  "$STABLEWM_HOME/checkpoints/$TDIR/"
-export TEACHER_CKPT="$TEACHER"
-python train_qdistill.py "$@" 2>&1 | tee "$LOG"
+python train.py "$@" 2>&1 | tee "$LOG"
 
 CKDIR=$(find "$STABLEWM_HOME" outputs -type d -name "$RUN" 2>/dev/null | head -1)
 [ -n "$CKDIR" ] && [ -f "$CKDIR/weights_epoch_10.pt" ] || \

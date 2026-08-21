@@ -29,8 +29,8 @@ sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
 
 # name|gate-ckpt(empty=none)|run-dir|probe|command...
 TRAINS=(
-"teach_r||lewm_qinput_reacher_s${SEED}|experiment=q_qinput_reacher|bash scripts/ray_train_replica.sh reacher experiment=q_qinput_reacher seed=${SEED}"
-"teach_k||lewm_qinput_cube_s${SEED}|experiment=q_qinput_cube|bash scripts/ray_train_replica.sh cube experiment=q_qinput_cube seed=${SEED}"
+"teach_r||lewm_qinput_reacher_s${SEED}|experiment=q_qinput_reacher|bash scripts/ray_train_qteacher.sh reacher experiment=q_qinput_reacher seed=${SEED}"
+"teach_k||lewm_qinput_cube_s${SEED}|experiment=q_qinput_cube|bash scripts/ray_train_qteacher.sh cube experiment=q_qinput_cube seed=${SEED}"
 "dist_r|lewm_qinput_reacher_s${SEED}|lewm_qdistill_reacher0.15_s${SEED}|experiment=qdistill_reacher|env TEACHER_CKPT=lewm_qinput_reacher_s${SEED}/weights_epoch_10.pt bash scripts/ray_train_qdistill.sh reacher experiment=qdistill_reacher seed=${SEED}"
 "dist_k|lewm_qinput_cube_s${SEED}|lewm_qdistill_cube0.1_s${SEED}|experiment=qdistill_cube|env TEACHER_CKPT=lewm_qinput_cube_s${SEED}/weights_epoch_10.pt bash scripts/ray_train_qdistill.sh cube experiment=qdistill_cube seed=${SEED}"
 )
