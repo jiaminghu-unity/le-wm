@@ -1,0 +1,18 @@
+# @package _global_
+# q-only-input LeWM teacher (Cube): MLP encoder over the 9-d effector q
+# (cos2psi/sin2psi yaw), SIGReg 0.09, no L_obj/aux. Metric-distillation teacher.
+defaults:
+  - override /data: ogb_cube
+  - override /model: lewm_qinput_cube
+
+output_model_name: lewm_qinput_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_effector

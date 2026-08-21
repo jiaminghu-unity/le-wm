@@ -1,0 +1,34 @@
+# @package _global_
+# Metric-distilled SCALE (Reacher): pixel training, SIGReg + L_obj 0.15 aligned to
+# the frozen reacher q-only teacher's geometry (run via train_qdistill.py,
+# TEACHER_CKPT=lewm_qinput_reacher_s3072/...). Paired against
+# lewm_r2_reacher_paep_l015 (raw-q target, same weight/q_variant).
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_qdistill_reacher0.15_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    name: reacher.lance
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+
+loss:
+  obj:
+    weight: 0.15
+    q_variant: reacher_joints_only

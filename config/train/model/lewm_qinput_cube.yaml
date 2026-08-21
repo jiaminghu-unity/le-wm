@@ -1,0 +1,47 @@
+# LeWM with a q-vector input (cube): MLP over the 9-d canonical q; projector / predictor / action encoder are
+# byte-identical to model/lewm.yaml so the arm isolates the input modality alone.
+_target_: qjepa.QJEPA
+q_dim: 9
+q_stats_file: ogbench/cube_single_expert.lance.q_stats.cube_effector.json
+
+encoder:
+  _target_: module.MLP
+  input_dim: 9
+  hidden_dim: 2048
+  output_dim: ${embed_dim}
+
+predictor:
+  _target_: module.ARPredictor
+  num_frames: ${history_size}
+  input_dim: ${embed_dim}
+  hidden_dim: ${embed_dim}
+  output_dim: ${embed_dim}
+  depth: 6
+  heads: 16
+  mlp_dim: 2048
+  dim_head: 64
+  dropout: 0.1
+  emb_dropout: 0.0
+
+action_encoder:
+  _target_: module.Embedder
+  input_dim: ???
+  emb_dim: ${embed_dim}
+
+projector:
+  _target_: module.MLP
+  input_dim: ${embed_dim}
+  output_dim: ${embed_dim}
+  hidden_dim: 2048
+  norm_fn:
+    _target_: torch.nn.BatchNorm1d
+    _partial_: true
+
+pred_proj:
+  _target_: module.MLP
+  input_dim: ${embed_dim}
+  output_dim: ${embed_dim}
+  hidden_dim: 2048
+  norm_fn:
+    _target_: torch.nn.BatchNorm1d
+    _partial_: true
