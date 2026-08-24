@@ -115,6 +115,23 @@ ckpt:lewm_c10_qdistill0.1_s3072;CSV cfg tag:qdist。
 (3) 教师在专家数据流形上的 eff-rank 为 98.6(此前在随机动作终态上测得 38.6)——
 eff-rank 依赖数据分布,两个数字都对,记录在案防误读。
 
+## 小 latent 阶梯:q-only 输入的 D ∈ {8, 32, 192}
+
+只动 embed_dim(编码器输出/projector/predictor 宽度/动作嵌入同缩;ARPredictor 注意力
+内部维度 16×64 与 D 解耦)。cem+icem 合并 × 6 种子:
+
+| D | cem | icem | 合并 | Δ vs D=192 | p |
+|---|---|---|---|---|---|
+| 8 | 22.70 | 22.93 | **22.82** | −48.33 | 0.031* |
+| 32 | 67.70 | 64.90 | 66.30 | −4.85 | 0.031* |
+| 192 | 72.47 | 69.83 | 71.15 | — | — |
+
+**"容得下"远远不够**:D=8 > 内在维度 6 却崩到 22.8;D=32 显著低于 D=192 甚至低于像素基线。
+规划要的是流形有足够的环境维度去舒展(SIGReg 的"卷满"是功能件不是副产品)——回头解释了
+L_obj-only 无 SIGReg 的 5 维等距拷贝之惨。混淆注记:D 同时缩 predictor 残差流宽度,
+D=8 的崩塌可能含 predictor 容量成分;32 vs 192 的 −4.85 受此影响较小。
+ckpt:lewm_qinput_d{8,32}_s3072;CSV:final_pusht_q1d{8,32}_*。
+
 ## 归因:无 SIGReg 的 L_obj 臂死在哪(P4 探针 + 潜空间体检)
 
 20 起点 × 64 候选,与既有 P4 同口径(p4_pusht_newarms.json / zhealth_pusht_newarms.json):
