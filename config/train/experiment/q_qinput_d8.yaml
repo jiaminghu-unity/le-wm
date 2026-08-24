@@ -1,0 +1,16 @@
+# @package _global_
+# q-only-input LeWM with a SMALL latent (D=8; default is 192). Same MLP encoder
+# over the 6-d PushT q, SIGReg 0.09; embed_dim shrinks encoder output, projector,
+# predictor width and action embedding together (ARPredictor attention capacity is
+# heads x dim_head, independent of D). Question: does planning need the SPREAD
+# (room to unfold the 6-d manifold) or just capacity to contain it?
+defaults:
+  - override /model: lewm_qinput
+
+embed_dim: 8
+output_model_name: lewm_qinput_d8_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
