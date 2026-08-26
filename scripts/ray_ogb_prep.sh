@@ -55,6 +55,26 @@ echo "[gl] $GL"
 H5="$DS/${OUTNAME}.h5"
 LANCE="$DS/${OUTNAME}.lance"
 
+# ---- disk hygiene: this job needs ~40 GB headroom at lance finalize ----
+echo "[disk] before cleanup:"; df -h "$SSD" | tail -1
+du -sh "$STABLEWM_HOME/datasets"/* "$DS"/* 2>/dev/null | sort -h | tail -8 || true
+rm -rf "$DS"/smoke_*.lance "$DS"/*_play.h5 "$DS"/*_play.h5.tmp
+# stale outputs of OTHER prep tasks that never got uploaded stay (chain will finish
+# them); only re-claim big refetchable inputs when tight:
+FREE_GB=$(df -BG --output=avail "$SSD" | tail -1 | tr -dc '0-9')
+if [ "$FREE_GB" -lt 80 ]; then
+  echo "[disk] tight ($FREE_GB GB) — dropping refetchable datasets not needed here"
+  rm -f "$STABLEWM_HOME/datasets/pusht_expert_train.h5" "$STABLEWM_HOME/datasets/reacher.h5"
+  rm -rf "$STABLEWM_HOME/datasets/pusht_expert_train.lance" "$STABLEWM_HOME/datasets/reacher.lance" \
+         "$DS/cube_single_expert.lance"
+fi
+FREE_GB=$(df -BG --output=avail "$SSD" | tail -1 | tr -dc '0-9')
+if [ "$FREE_GB" -lt 80 ]; then
+  echo "[disk] still tight ($FREE_GB GB) — dropping the 102GB cube_single h5 (refetchable)"
+  rm -f "$DS/cube_single_expert.h5"
+fi
+echo "[disk] after cleanup:"; df -h "$SSD" | tail -1
+
 echo "[smoke] $TASK (self-collection via OGBench oracle)"
 rm -rf "$DS/smoke_${TASK}.lance"
 python scripts/ogb_collect_multiobj.py "$TASK" --out "$DS/smoke_${TASK}.lance" --smoke
