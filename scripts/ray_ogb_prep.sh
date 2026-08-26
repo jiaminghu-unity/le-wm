@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Prepare one OGBench multi-object dataset end to end on a GPU worker:
-# download state npz -> smoke (gates) -> replay-render 224x224 h5 -> lance -> GCS.
+# SELF-COLLECT at 224x224 with swm World + OGBench's official oracle (the Berkeley
+# npz host is down behind an infra-incident redirect, and self-collection is how
+# cube_single_expert was evidently produced) -> lance -> h5 -> GCS.
 #   usage: ray_ogb_prep.sh <cube_double|cube_triple|cube_quadruple|scene>
 # New GCS names only (datasets/ogbench/<task>_play.{h5,lance}); nothing existing
 # is touched. EGL rendering, same env stack as the eval workers.
@@ -19,7 +21,7 @@ if ! mountpoint -q "$SSD"; then
   sudo chmod a+w "$SSD"
 fi
 export STABLEWM_HOME="$SSD/stable-wm"
-DS="$STABLEWM_HOME/datasets/ogbench"; mkdir -p "$DS" "$SSD/ogb_raw"
+DS="$STABLEWM_HOME/datasets/ogbench"; mkdir -p "$DS"
 
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd \
@@ -40,11 +42,11 @@ uv pip install -q hdf5plugin ogbench -U datasets
 # working GL backend (same probe as the eval launchers)
 GL=egl
 for g in egl osmesa; do
-  if MUJOCO_GL=$g PYOPENGL_PLATFORM=$g python - <<'PY' >/dev/null 2>&1
+  if MUJOCO_GL=$g PYOPENGL_PLATFORM=$g python - <<'GLPROBE' >/dev/null 2>&1
 import mujoco
 m = mujoco.MjModel.from_xml_string("<mujoco><worldbody><geom type='box' size='.1 .1 .1'/></worldbody></mujoco>")
 r = mujoco.Renderer(m, 64, 64); r.update_scene(mujoco.MjData(m)); assert r.render().shape == (64, 64, 3)
-PY
+GLPROBE
   then GL=$g; break; fi
 done
 export MUJOCO_GL="$GL" PYOPENGL_PLATFORM="$GL"
@@ -53,29 +55,25 @@ echo "[gl] $GL"
 H5="$DS/${OUTNAME}.h5"
 LANCE="$DS/${OUTNAME}.lance"
 
-echo "[smoke] $TASK"
-python scripts/ogb_prep_multiobj.py "$TASK" --npz-dir "$SSD/ogb_raw" --out "$H5" --smoke
+echo "[smoke] $TASK (self-collection via OGBench oracle)"
+rm -rf "${LANCE}.smoke"
+python scripts/ogb_collect_multiobj.py "$TASK" --out "${LANCE}.smoke" --smoke
 
-echo "[render] $TASK full"
-time python scripts/ogb_prep_multiobj.py "$TASK" --npz-dir "$SSD/ogb_raw" --out "$H5"
+echo "[collect] $TASK full"
+rm -rf "$LANCE"
+time python scripts/ogb_collect_multiobj.py "$TASK" --out "$LANCE"
 
-echo "[convert] h5 -> lance"
-time python - <<PY
-import hdf5plugin  # noqa: F401
+echo "[convert] lance -> h5 (eval-side format)"
+export OUTNAME_ENV="$OUTNAME" DS_ENV="$DS"
+time python - <<'CONVEOF'
+import os
 from stable_worldmodel.data import convert
-convert("$H5", "$LANCE", dest_format="lance")
-PY
-
-echo "[verify] lance sample read"
-python - <<PY
-import stable_worldmodel as swm
-ds = swm.data.load_dataset("ogbench/${OUTNAME}.lance", keys_to_load=["pixels", "action", "qpos"])
-print("episodes:", len(ds.lengths), "frames:", int(sum(ds.lengths)))
-row = ds.get_row_data([0, 1])
-print("sample ok:", {k: getattr(v, "shape", type(v)) for k, v in row.items()})
-PY
+task = os.environ["OUTNAME_ENV"]
+ds = os.environ["DS_ENV"]
+convert(f"{ds}/{task}.lance", f"{ds}/{task}.h5", dest_format="hdf5")
+CONVEOF
 
 echo "[upload]"
-gcloud storage cp "$H5" "$BUCKET/datasets/ogbench/${OUTNAME}.h5"
 gcloud storage rsync -r "$LANCE" "$BUCKET/datasets/ogbench/${OUTNAME}.lance"
+gcloud storage cp "$H5" "$BUCKET/datasets/ogbench/${OUTNAME}.h5"
 echo "OGB PREP DONE $TASK"
