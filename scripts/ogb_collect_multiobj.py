@@ -32,16 +32,16 @@ from stable_worldmodel.envs.ogbench.expert_policy import ExpertPolicy  # noqa: E
 
 TASKS = {
     "cube_double": dict(env="swm/OGBCube-v0",
-                        env_kwargs=dict(env_type="double", ob_type="states", multiview=False,
+                        env_kwargs=dict(env_type="double", ob_type="states", multiview=False, mode="data_collection",
                                         visualize_info=False, terminate_at_goal=False)),
     "cube_triple": dict(env="swm/OGBCube-v0",
-                        env_kwargs=dict(env_type="triple", ob_type="states", multiview=False,
+                        env_kwargs=dict(env_type="triple", ob_type="states", multiview=False, mode="data_collection",
                                         visualize_info=False, terminate_at_goal=False)),
     "cube_quadruple": dict(env="swm/OGBCube-v0",
-                           env_kwargs=dict(env_type="quadruple", ob_type="states", multiview=False,
+                           env_kwargs=dict(env_type="quadruple", ob_type="states", multiview=False, mode="data_collection",
                                            visualize_info=False, terminate_at_goal=False)),
     "scene": dict(env="swm/OGBScene-v0",
-                  env_kwargs=dict(ob_type="states", multiview=False,
+                  env_kwargs=dict(ob_type="states", multiview=False, mode="data_collection",
                                   visualize_info=False, terminate_at_goal=False)),
 }
 
