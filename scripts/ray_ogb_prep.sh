@@ -63,17 +63,12 @@ echo "[collect] $TASK full"
 rm -rf "$LANCE"
 time python scripts/ogb_collect_multiobj.py "$TASK" --out "$LANCE"
 
-echo "[convert] lance -> h5 (eval-side format)"
-export OUTNAME_ENV="$OUTNAME" DS_ENV="$DS"
-time python - <<'CONVEOF'
-import os
-from stable_worldmodel.data import convert
-task = os.environ["OUTNAME_ENV"]
-ds = os.environ["DS_ENV"]
-convert(f"{ds}/{task}.lance", f"{ds}/{task}.h5", dest_format="hdf5")
-CONVEOF
+# h5 conversion deferred: raw-uint8 h5 is ~60GB/task and blew ENOSPC next to the
+# 102GB cube_single h5; training reads lance only. Convert on a clean worker when
+# the eval side for these tasks is wired.
+rm -f "$H5"
 
 echo "[upload]"
 gcloud storage rsync -r "$LANCE" "$BUCKET/datasets/ogbench/${OUTNAME}.lance"
-gcloud storage cp "$H5" "$BUCKET/datasets/ogbench/${OUTNAME}.h5"
+: # h5 upload deferred (see note above)
 echo "OGB PREP DONE $TASK"
