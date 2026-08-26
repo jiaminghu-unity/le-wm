@@ -88,7 +88,7 @@ for round in $(seq 1 8000); do
     left=1
     probe="$largs $sol ${seeds%% *}"
     [ "$(nrun "$probe")" != 0 ] && continue
-    [ "$(free)" -lt 2 ] && continue   # RESERVE=1 GPU for the user
+    [ "$(free)" -lt 1 ] && continue   # reserve lifted 2026-08-26 (user: 卡都用满)
     key="${head}_${sol}_${seeds%% *}"
     n=${ATT[$key]:-0}
     [ "$n" -ge 4 ] && { log "$key attempt cap"; continue; }
