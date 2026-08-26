@@ -56,8 +56,8 @@ H5="$DS/${OUTNAME}.h5"
 LANCE="$DS/${OUTNAME}.lance"
 
 echo "[smoke] $TASK (self-collection via OGBench oracle)"
-rm -rf "${LANCE}.smoke"
-python scripts/ogb_collect_multiobj.py "$TASK" --out "${LANCE}.smoke" --smoke
+rm -rf "$DS/smoke_${TASK}.lance"
+python scripts/ogb_collect_multiobj.py "$TASK" --out "$DS/smoke_${TASK}.lance" --smoke
 
 echo "[collect] $TASK full"
 rm -rf "$LANCE"
