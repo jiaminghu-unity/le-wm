@@ -132,6 +132,19 @@ L_obj-only 无 SIGReg 的 5 维等距拷贝之惨。混淆注记:D 同时缩 pre
 D=8 的崩塌可能含 predictor 容量成分;32 vs 192 的 −4.85 受此影响较小。
 ckpt:lewm_qinput_d{8,32}_s3072;CSV:final_pusht_q1d{8,32}_*。
 
+## q-only 教师的规划验证(Reacher/Cube,补测;budget_sweep_qinput_any)
+
+| 教师(特权 q 输入) | cem | icem | 备注 |
+|---|---|---|---|
+| Reacher(4 维关节 q) | 73.97 ± 3.49 | **83.63 ± 3.51** | icem 为该任务历史最高(> SCALE 全 q 81.13) |
+| Cube(9 维 effector q) | 50.23 ± 4.41 | 48.77 ± 5.50 | 低于基线 11+ 点;五档全平(预算不敏感,弱信号签名) |
+
+拆混淆的结论:(1) **Reacher 教师无罪**——教师本人 icem 最强,蒸馏学生的 icem 崩塌是
+Pearson 剖面对齐在像素学生上的传输损失,不是教师几何的固有脆性;
+(2) **Cube:度量与规划能力可分离**——教师自己不会规划(predictor 侧弱),
+但只借其 encode 度量的像素学生 +2.4* 于基线、反超教师 15 点。
+教师规划 SR = 度量 × 教师 predictor 的混合读数,不能单独当度量质量用。
+
 ## 归因:无 SIGReg 的 L_obj 臂死在哪(P4 探针 + 潜空间体检)
 
 20 起点 × 64 候选,与既有 P4 同口径(p4_pusht_newarms.json / zhealth_pusht_newarms.json):
