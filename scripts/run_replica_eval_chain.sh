@@ -15,8 +15,12 @@ L=/workspace/le-wm/eval_results/replica_eval_3073.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
 
-free(){ ray status 2>/dev/null | grep -oE "[0-9.]+/[0-9.]+ GPU" \
-  | awk -F'[/ ]' '{print int($2 - $1)}'; }
+free(){ python3 - <<'FREEPY' 2>/dev/null
+import ray
+ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
+print(int(ray.available_resources().get('GPU', 0)))
+FREEPY
+}
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
 import json,sys,urllib.request
 d=json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/'))
