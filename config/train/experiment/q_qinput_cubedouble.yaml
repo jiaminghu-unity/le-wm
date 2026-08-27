@@ -1,0 +1,18 @@
+# @package _global_
+# q-only-input LeWM (cube_double, FULL-CONFIG 27-d q: arm 17 + block 5 x 2).
+# Trained via train_qnative.py (q_ogb_multi variants registered at runtime).
+defaults:
+  - override /data: ogb_double
+  - override /model: lewm_qinput_cubedouble
+
+output_model_name: lewm_qinput_cubedouble_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_double_full

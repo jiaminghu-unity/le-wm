@@ -1,0 +1,18 @@
+# @package _global_
+# q-only-input LeWM (scene, FULL-CONFIG 26-d q: arm 17 + block 5 + drawer + window
+# + button states x2). Trained via train_qnative.py.
+defaults:
+  - override /data: ogb_scene
+  - override /model: lewm_qinput_scene
+
+output_model_name: lewm_qinput_scene_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: scene_full

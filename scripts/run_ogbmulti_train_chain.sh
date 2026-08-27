@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# OGB multi-object three-arm trainings (cube_double + scene, FULL-CONFIG q),
+# OGB multi-object Q-ONLY-INPUT trainings FIRST (user 2026-08-28: 先做 q-only)
+# -- cube_double 27-d / scene 26-d FULL-CONFIG q; the three pixel arms come later.
 # GATED on the seed-3073 replication being fully complete (mppi 132/132) --
 # user's sequencing: 复现做完了就可以搞这个.
 export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
@@ -29,14 +30,10 @@ sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
 mppi_done(){ [ "$(gcloud storage ls "$BUCKET"/final_eval*/final_*r73_mppi_s10?.csv 2>/dev/null | wc -l)" -ge 132 ]; }
 
 TRAINS=(
-"cd_base|lewm_cubedouble_base_s${SEED}|experiment=cubedouble_base|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_base seed=${SEED}"
-"cd_obj|lewm_cubedouble_obj0.1_s${SEED}|experiment=cubedouble_obj|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_obj seed=${SEED}"
-"cd_aux|lewm_cubedouble_aux0.1_s${SEED}|experiment=cubedouble_aux|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_aux seed=${SEED}"
-"sc_base|lewm_scene_base_s${SEED}|experiment=scene_base|bash scripts/ray_train_qnative.sh scene experiment=scene_base seed=${SEED}"
-"sc_obj|lewm_scene_obj0.1_s${SEED}|experiment=scene_obj|bash scripts/ray_train_qnative.sh scene experiment=scene_obj seed=${SEED}"
-"sc_aux|lewm_scene_aux0.1_s${SEED}|experiment=scene_aux|bash scripts/ray_train_qnative.sh scene experiment=scene_aux seed=${SEED}"
+"qi_cd|lewm_qinput_cubedouble_s${SEED}|experiment=q_qinput_cubedouble|bash scripts/ray_train_qnative.sh cube_double experiment=q_qinput_cubedouble seed=${SEED}"
+"qi_sc|lewm_qinput_scene_s${SEED}|experiment=q_qinput_scene|bash scripts/ray_train_qnative.sh scene experiment=q_qinput_scene seed=${SEED}"
 )
-log "start: OGB multi-object 3-arm trainings (gated on replication mppi 132/132)"
+log "start: OGB multi-object Q-ONLY trainings (gated on replication mppi 132/132)"
 until mppi_done; do log "waiting: replication mppi not yet 132/132"; sleep 600; done
 log "replication complete -> training phase begins"
 for round in $(seq 1 4000); do
@@ -55,7 +52,7 @@ for round in $(seq 1 4000); do
     else log "$name submit FAILED"; fi
     break
   done
-  [ "$left" = 0 ] && { log "ALL OGB-MULTI TRAININGS COMPLETE"; exit 0; }
+  [ "$left" = 0 ] && { log "OGB-MULTI Q-ONLY TRAININGS COMPLETE"; exit 0; }
   sleep 200
 done
 log "round cap"; exit 1
