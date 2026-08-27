@@ -7,11 +7,8 @@
 LOG=/workspace/le-wm/eval_results/head_selfheal.log
 ts(){ date -u '+%m-%d %H:%M:%S'; }
 
-if timeout 30 python3 -c "
-import ray
-ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
-ray.cluster_resources()" >/dev/null 2>&1; then
-  exit 0   # healthy
+if timeout 20 curl -sf "http://127.0.0.1:8265/api/v0/nodes?limit=1" >/dev/null 2>&1; then
+  exit 0   # healthy (dashboard + state API answering)
 fi
 
 echo "[$(ts)] ray unhealthy -> restarting" >> "$LOG"

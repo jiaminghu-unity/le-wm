@@ -9,9 +9,13 @@ L=/workspace/le-wm/eval_results/ogb_prep.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
 free(){ python3 - <<'FREEPY' 2>/dev/null
-import ray
-ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
-print(int(ray.available_resources().get('GPU', 0)))
+import json, urllib.request
+nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=100', timeout=20))
+rows = nodes.get('data',{}).get('result',{}).get('result',[])
+total = sum(n.get('resources_total',{}).get('GPU',0) for n in rows if n.get('state')=='ALIVE')
+jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
+used = sum(1 for j in jobs if j.get('status')=='RUNNING' and j.get('entrypoint_num_gpus'))
+print(max(int(total-used), 0))
 FREEPY
 }
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
