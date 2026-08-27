@@ -1,0 +1,20 @@
+# @package _global_
+# q-only-input LeWM with FULL-CONFIG q (Cube, 22-d: effector + gripper contact +
+# 5 free joints cos/sin-folded + block pos + block yaw cos/sin-4theta).
+# Tests whether the 9-d teacher's planning collapse was missing-state
+# (non-Markovian input) rather than q-input per se. Trained via train_qnative.py.
+defaults:
+  - override /data: ogb_cube
+  - override /model: lewm_qinput_full_cube
+
+output_model_name: lewm_qinput_full_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_full_config
