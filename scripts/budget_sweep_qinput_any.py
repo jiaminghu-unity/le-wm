@@ -1,5 +1,8 @@
-"""budget_sweep for q-input (QJEPA) models on REACHER and CUBE: planning consumes
-env state keys, not pixels. Companion to budget_sweep_qinput.py (pusht-only).
+"""budget_sweep for q-input (QJEPA) models on reacher/cube/tworoom/pointmaze:
+planning consumes env state keys, not pixels. The q builder is AUTO-SELECTED by
+(env, q_dim-of-checkpoint), so subset-q and native-full-q variants of the same task
+need no flags: reacher 4d joints; cube 9d effector / 22d full-config; tworoom 2d
+agent pos; pointmaze 4d native state (x,y,vx,vy).
 
 Per task the eval-path q is built from the same sources the training q_variant used:
   reacher : q = build_q_reacher_joints(infos['qpos'][..., :2])          (4-d)
@@ -55,13 +58,64 @@ def _q_cube(info):
     return build_q_cube_effector(eff, yaw, grip, blk)
 
 
-Q_BUILDERS = {"reacher": _q_reacher, "cube": _q_cube}
+from q_cube_full import build_q_cube_full  # noqa: E402
+
+
+def _q_cube_full(info):
+    return build_q_cube_full(
+        _get(info, ["proprio/effector_pos", "proprio_effector_pos"]),
+        _get(info, ["proprio/effector_yaw", "proprio_effector_yaw"]),
+        _get(info, ["proprio/gripper_opening", "proprio_gripper_opening"]),
+        _get(info, ["proprio/gripper_contact", "proprio_gripper_contact"]),
+        _get(info, ["proprio/joint_pos", "proprio_joint_pos"]),
+        _get(info, ["privileged/block_0_pos", "privileged_block_0_pos"]),
+        _get(info, ["privileged/block_0_yaw", "privileged_block_0_yaw"]),
+    )
+
+
+def _q_tworoom(info):
+    return _get(info, ["proprio", "pos_agent"])[..., :2]
+
+
+def _q_pointmaze(info):
+    return _get(info, ["state"])[..., :4]
+
+
+# (env, q_dim) -> builder;q_dim 从 ckpt 的 q_mean 读出,变体免旗标
+Q_BUILDERS = {
+    ("reacher", 4): _q_reacher,
+    ("cube", 9): _q_cube,
+    ("cube", 22): _q_cube_full,
+    ("tworoom", 2): _q_tworoom,
+    ("pointmaze", 4): _q_pointmaze,
+}
 
 
 def main():
     env = sys.argv[sys.argv.index("--env") + 1]
-    assert env in Q_BUILDERS, f"--env must be one of {sorted(Q_BUILDERS)}"
-    build_q = Q_BUILDERS[env]
+    envs_known = sorted({e for e, _ in Q_BUILDERS})
+    assert env in envs_known, f"--env must be one of {envs_known}"
+
+    if env == "tworoom":
+        from scripts.tworoom_preset import register
+        register(budget_sweep.ENV_PRESETS)
+    elif env == "pointmaze":
+        from scripts.pointmaze_preset import register
+        register(budget_sweep.ENV_PRESETS)
+
+    # q 构建输入必须是 RAW 值:去掉这些列上的 StandardScaler
+    _RAW = {"tworoom": ["proprio", "pos_agent"], "pointmaze": ["state", "pos"]}
+    if env in _RAW:
+        _orig_bp = budget_sweep.build_process
+
+        def build_process_raw(dataset, cols, _orig=_orig_bp, _drop=_RAW[env]):
+            process = _orig(dataset, cols)
+            for k in _drop:
+                process.pop(k, None); process.pop(f"goal_{k}", None)
+            print(f"[qinput-any] raw cols for {env}: dropped scalers {_drop}", flush=True)
+            return process
+
+        budget_sweep.build_process = build_process_raw
 
     if env == "cube":
         preset = dict(budget_sweep.ENV_PRESETS["cube"])
@@ -78,6 +132,11 @@ def main():
         model = _orig_load(ckpt, *a, **kw)
         assert isinstance(model, QJEPA), f"expected QJEPA, got {type(model)}"
         assert not bool((model.q_std == 1).all()), "q_std buffer untrained"
+        qdim = int(model.q_mean.numel())
+        key = (env, qdim)
+        assert key in Q_BUILDERS, f"no q builder for {key}; have {sorted(Q_BUILDERS)}"
+        build_q = Q_BUILDERS[key]
+        print(f"[qinput-any] builder = ({env}, {qdim}d)", flush=True)
         logged = {"done": False}
 
         class QInputEval(type(model)):

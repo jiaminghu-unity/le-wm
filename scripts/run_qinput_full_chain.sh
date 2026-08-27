@@ -30,6 +30,18 @@ TRAINS=(
 "qi_pointmaze||lewm_qinput_pointmaze_s${SEED}|experiment=q_qinput_pointmaze|bash scripts/ray_train_qnative.sh pointmaze experiment=q_qinput_pointmaze seed=${SEED}"
 )
 EVALS=()
+# cfg|run|launcher(+隐含 env 参数形式)|solver|seeds
+for spec in \
+  "cube|q1f|lewm_qinput_full_cube_s${SEED}|ray_eval_qinput_any.sh cube" \
+  "tworoom|q1|lewm_qinput_tworoom_s${SEED}|ray_eval_qinput_tworoom.sh" \
+  "pointmaze|q1|lewm_qinput_pointmaze_s${SEED}|ray_eval_qinput_pointmaze.sh"; do
+  IFS='|' read -r task cfg run largs <<< "$spec"
+  for sol in cem icem; do
+    EVALS+=("${task}|${cfg}|${run}|${largs}|${sol}|101 102 103")
+    EVALS+=("${task}|${cfg}|${run}|${largs}|${sol}|104 105 106")
+  done
+done
+declare -A OUTP=([cube]=final_eval [tworoom]=final_eval_tworoom [pointmaze]=final_eval_pointmaze)
 
 log "start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)"
 for round in $(seq 1 4000); do
@@ -73,7 +85,33 @@ for round in $(seq 1 4000); do
       break
     done
   fi
-  [ "$left" = 0 ] && { log "NATIVE-FULL TRAININGS COMPLETE"; exit 0; }
+  if [ "$left" = 0 ]; then
+    evleft=0
+    for cell in "${EVALS[@]}"; do
+      IFS='|' read -r task cfg run largs sol seeds <<< "$cell"
+      miss=0
+      for sd in $seeds; do
+        gcloud storage ls "$BUCKET/${OUTP[$task]}/final_${task}_${cfg}_${sol}_s${sd}.csv" >/dev/null 2>&1 || miss=1
+      done
+      [ "$miss" = 0 ] && continue
+      evleft=1
+      [ "$(nrun "${largs%% *} ${largs#* } $cfg $run $sol ${seeds%% *}")" != 0 ] 2>/dev/null && continue
+      [ "$(free)" -lt 1 ] && continue
+      key="ev_${task}_${sol}_${seeds%% *}"
+      n=${ATT[$key]:-0}
+      [ "$n" -ge 4 ] && { log "$key attempt cap"; continue; }
+      # shellcheck disable=SC2086
+      if [ "$task" = cube ]; then
+        id=$(sub bash scripts/ray_eval_qinput_any.sh cube "$cfg" "$run" "$sol" $seeds)
+      else
+        id=$(sub bash scripts/${largs} "$cfg" "$run" "$sol" $seeds)
+      fi
+      if [ -n "$id" ]; then ATT[$key]=$((n+1)); log "$key attempt $((n+1)) -> $id"
+      else log "$key submit FAILED"; fi
+      break
+    done
+    [ "$evleft" = 0 ] && { log "TRAININGS + EVALS ALL COMPLETE"; exit 0; }
+  fi
   sleep 240
 done
 log "round cap"; exit 1
