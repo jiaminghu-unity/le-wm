@@ -11,8 +11,16 @@ EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycac
 L=/workspace/le-wm/eval_results/qinput_full.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
-free(){ ray status 2>/dev/null | grep -oE "[0-9.]+/[0-9.]+ GPU" \
-  | awk -F'[/ ]' '{print int($2 - $1)}'; }
+free(){ python3 - <<'FREEPY' 2>/dev/null
+import json, urllib.request
+nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=100', timeout=20))
+rows = nodes.get('data',{}).get('result',{}).get('result',[])
+total = sum(n.get('resources_total',{}).get('GPU',0) for n in rows if n.get('state')=='ALIVE')
+jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
+used = sum(1 for j in jobs if j.get('status')=='RUNNING' and j.get('entrypoint_num_gpus'))
+print(max(int(total-used), 0))
+FREEPY
+}
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
 import json,sys,urllib.request
 d=json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/'))
