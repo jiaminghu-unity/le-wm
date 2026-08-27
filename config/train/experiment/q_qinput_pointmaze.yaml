@@ -1,0 +1,18 @@
+# @package _global_
+# q-only-input LeWM (PointMaze, NATIVE-FULL 4-d state = x/y/vx/vy: the ball has
+# momentum, so position-only would be non-Markovian). Trained via train_qnative.py.
+defaults:
+  - override /data: pointmaze
+  - override /model: lewm_qinput_pointmaze
+
+output_model_name: lewm_qinput_pointmaze_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: pointmaze_state_native

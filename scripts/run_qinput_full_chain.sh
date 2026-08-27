@@ -25,13 +25,13 @@ sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
 
 # name|gate-ckpt(empty=none)|run-dir|probe|command...
 TRAINS=(
-"full_pusht||lewm_qinput_full_pusht_s${SEED}|experiment=q_qinput_full_pusht|bash scripts/ray_train_qnative.sh pusht experiment=q_qinput_full_pusht data=pusht seed=${SEED}"
-"full_reacher||lewm_qinput_full_reacher_s${SEED}|experiment=q_qinput_full_reacher|bash scripts/ray_train_qnative.sh reacher experiment=q_qinput_full_reacher seed=${SEED}"
 "full_cube||lewm_qinput_full_cube_s${SEED}|experiment=q_qinput_full_cube|bash scripts/ray_train_qnative.sh cube experiment=q_qinput_full_cube seed=${SEED}"
+"qi_tworoom||lewm_qinput_tworoom_s${SEED}|experiment=q_qinput_tworoom|bash scripts/ray_train_qnative.sh tworoom experiment=q_qinput_tworoom seed=${SEED}"
+"qi_pointmaze||lewm_qinput_pointmaze_s${SEED}|experiment=q_qinput_pointmaze|bash scripts/ray_train_qnative.sh pointmaze experiment=q_qinput_pointmaze seed=${SEED}"
 )
 EVALS=()
 
-log "start: native-full q-only trainings (pusht 8d / reacher 6d / cube 22d)"
+log "start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)"
 for round in $(seq 1 4000); do
   left=0; submitted=0
   for spec in "${TRAINS[@]}"; do

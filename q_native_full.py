@@ -24,6 +24,13 @@ def build_q_pusht_native(state):
     return torch.cat([pos, torch.cos(theta), torch.sin(theta), vel], dim=-1)
 
 
+def build_q_pointmaze_native(state):
+    """PointMaze native-full: (..., 4) state = [x, y, vx, vy], used as-is (the ball
+    has momentum; position-only q is non-Markovian for the predictor)."""
+    return state[..., :4]
+
+
 Q_VARIANTS_NATIVE = {
     "pusht_state_native": (build_q_pusht_native, ["state"], ("state", 4, -3.15, 6.30)),
+    "pointmaze_state_native": (build_q_pointmaze_native, ["state"], ("state", 0, -1.0, 5.0)),
 }

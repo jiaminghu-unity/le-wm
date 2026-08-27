@@ -1,0 +1,18 @@
+# @package _global_
+# q-only-input LeWM (Two-Room, 2-d agent position -- the complete dynamics state
+# for this env: no momentum, doors static per episode). Trained via train_qnative.py.
+defaults:
+  - override /data: tworoom_q
+  - override /model: lewm_qinput_tworoom
+
+output_model_name: lewm_qinput_tworoom_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: tworoom_agent
