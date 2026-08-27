@@ -1,0 +1,21 @@
+# Self-collected scene (scripts/ogb_collect_multiobj.py; slash-named columns).
+dataset:
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  name: ogbench/scene_play.lance
+  keys_to_load:
+    - pixels
+    - action
+    - proprio/effector_pos
+    - proprio/effector_yaw
+    - proprio/gripper_opening
+    - proprio/gripper_contact
+    - proprio/joint_pos
+    - privileged/block_0_pos
+    - privileged/block_0_yaw
+    - privileged/drawer_pos
+    - privileged/window_pos
+    - privileged/button_0_state
+    - privileged/button_1_state
+  keys_to_cache:
+    - action

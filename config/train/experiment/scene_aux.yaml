@@ -1,0 +1,18 @@
+# @package _global_
+# scene: Aux (SIGReg + q-regression head 0.1 on FULL-CONFIG q).
+defaults:
+  - override /data: ogb_scene
+
+output_model_name: lewm_scene_aux0.1_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: scene_full
+  aux:
+    weight: 0.1

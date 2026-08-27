@@ -60,6 +60,14 @@ case "$TASK" in
   pointmaze)
     [ -d "$DS/pointmaze.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/pointmaze.lance" "$DS/pointmaze.lance" ;;
+  cube_double)
+    mkdir -p "$DS/ogbench"
+    [ -d "$DS/ogbench/cube_double_play.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/ogbench/cube_double_play.lance" "$DS/ogbench/cube_double_play.lance" ;;
+  scene)
+    mkdir -p "$DS/ogbench"
+    [ -d "$DS/ogbench/scene_play.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/ogbench/scene_play.lance" "$DS/ogbench/scene_play.lance" ;;
   *) echo "unknown task $TASK" >&2; exit 1 ;;
 esac
 # persisted q-stats, so replicas share the canonical normalizer bytes when available
