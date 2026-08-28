@@ -5,7 +5,8 @@
 # The one untested degree of freedom is the episode sample itself: this chain
 # pre-registers SIX FRESH episode sets (seeds 201-206, env_seed_base per the
 # 40000+(S-101)*10000 convention -> no collision with any existing set) and
-# re-evaluates all 8 pointmaze models (4 arms x both training seeds) on them,
+# re-evaluates the 6 LeWM pointmaze models (3 arms x both training seeds; DINO-WM
+# excluded per user 2026-08-28 -- it replicated cleanly) on them,
 # cem -> icem -> mppi. All outputs are NEW filenames (s201-206); nothing existing
 # is touched. nohup babysitter conventions.
 export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
@@ -47,7 +48,6 @@ MODELS=(
 "p1|lewm_p1_pointmaze_s3072"    "p1r73|lewm_p1_pointmaze_s3073"
 "p2|lewm_p2_pointmaze_s3072"    "p2r73|lewm_p2_pointmaze_s3073"
 "p5|lewm_p5_pointmaze_s3072"    "p5r73|lewm_p5_pointmaze_s3073"
-"dw|dinowm_pointmaze_s3072"     "dwr73|dinowm_pointmaze_s3073"
 )
 CELLS=()
 for sol in cem icem mppi; do
@@ -57,7 +57,7 @@ for sol in cem icem mppi; do
   done
 done
 
-log "start: pointmaze retest on fresh pre-registered sets s201-206, 8 models x 3 solvers"
+log "start: pointmaze retest on fresh pre-registered sets s201-206, 6 models x 3 solvers"
 for round in $(seq 1 8000); do
   # ---- phase 1: fresh episode sets ----
   if [ "$(sets_done)" != 1 ]; then
@@ -92,7 +92,7 @@ for round in $(seq 1 8000); do
     else log "$key submit FAILED"; fi
     break
   done
-  [ "$left" = 0 ] && { log "POINTMAZE RETEST COMPLETE (48 half-cells)"; exit 0; }
+  [ "$left" = 0 ] && { log "POINTMAZE RETEST COMPLETE (36 half-cells)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1

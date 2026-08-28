@@ -100,6 +100,21 @@ def main():
         from scripts.tworoom_preset import register
         register(budget_sweep.ENV_PRESETS)
     elif env == "pointmaze":
+        # 本文件顶部已 `from utils import ...`,sys.modules['utils'] 被 le-wm 占住;
+        # pmenv 的 point_maze_wrapper 还要 `from utils import aggregate_dct`,给缓存
+        # 模块注入垫片(与 ray_eval_pointmaze.sh 写进 pmenv/utils.py 的实现一致)。
+        import utils as _lewm_utils
+        if not hasattr(_lewm_utils, "aggregate_dct"):
+            import numpy as _np
+
+            def _aggregate_dct(dcts):
+                if not dcts:
+                    return {}
+                if not isinstance(dcts[0], dict):
+                    return _np.stack(dcts)
+                return {k: _np.stack([d[k] for d in dcts]) for k in dcts[0]}
+
+            _lewm_utils.aggregate_dct = _aggregate_dct
         from scripts.pointmaze_preset import register
         register(budget_sweep.ENV_PRESETS)
 
