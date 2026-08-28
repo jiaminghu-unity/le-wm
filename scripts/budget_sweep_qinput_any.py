@@ -78,7 +78,9 @@ def _q_tworoom(info):
 
 
 def _q_pointmaze(info):
-    return _get(info, ["state"])[..., :4]
+    # goal 侧经 goal_* 重映射后有 "state"(数据集列);实盘 env 步的同一 4 维
+    # (x,y,vx,vy) 放在 "observation" 里(DWMPointMazeEnv.observation_space)。
+    return _get(info, ["state", "observation"])[..., :4]
 
 
 # (env, q_dim) -> builder;q_dim 从 ckpt 的 q_mean 读出,变体免旗标
