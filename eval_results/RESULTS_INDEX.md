@@ -19,6 +19,7 @@ goal = 专家 +25 步,4 solver × 5 预算档 × 6 episode 种子 × 100 episode
 | 9 | 超参数剂量扫描 | λ_obj / w_aux 的敏感性 | Push-T λ×4+w×8+combo×4 · Reacher λ×3+w×3 · Cube λ×2+w×2+q 变体 | ✅(单种子探索) | RESULTS_hparam_sweeps.md |
 | 8 | 表示探针(非 SR) | 机制:q 在嵌入几何里的位置 | 4 模型 × 5 任务 | ✅ | RESULTS_scale_probes.md · p4nav · pcq_*.json |
 | 13 | SIGReg 必要性 × q-only 输入 | q 监督能否替代 SIGReg;感知无损上参照 | Push-T:c2p/c9/q1 × cem+icem | ✅ | RESULTS_sigreg_qinput.md · newarms_master.json |
+| 14 | seed-3073 复现 | 换训练种子后 22 模型结论是否成立 | 22 模型 × cem/icem/mppi × 2 训练种子(264 格) | ✅ 收官 2026-08-28 | RESULTS_replica3073.md · replica3073_3solver_final.json |
 | 12 | AutoMetric 度量学习 | 冻结 LeWM 上 q-free 学规划度量能否提升 SR | 线性 W×5 任务 + 非线性 φ×2 + oracle×5 + 跨度/α 消融 | ✅ | RESULTS_automet.md · automet_master.json |
 
 ## 1. 主网格 headline(SR 差值,20 格均值,配对 Wilcoxon)
@@ -43,6 +44,8 @@ goal = 专家 +25 步,4 solver × 5 预算档 × 6 episode 种子 × 100 episode
 - **AutoMetric**(RESULTS_automet.md):时间序三元组学度量,Two-Room +17.3*(超 SCALE、≈oracle/DINO-WM),Push-T 任何形式都受损(线性 −5.9* → 非线性 −14.8* → oracle −18.6*,容量剂量效应)——瓶颈是监督对齐不是度量容量;部署=任务级门控。
 - **DINO-WM**(进行中,cem/icem/mppi 接近齐):导航碾压(Two-Room cem T5 87.2 vs SCALE 71.0;PointMaze 各 solver 领先 7–17pp),物理落后(Push-T cem T1 73.8 vs LeWM 92.3);代价:训练 2.2×、规划 ~80×/步。
 - **探针**(RESULTS_scale_probes.md + 图库页):机制闭环——SCALE 把 q 压进谱头部(top-k 条形图),Aux 把 q 写进低方差尾部(全空间 R² 最高、头部与 LeWM 重合),L2 规划成本只听头部的,故 Aux SR 无效。
+
+- **seed-3073 复现**(RESULTS_replica3073.md):DINO-WM 全逐点复现;Cube/Two-Room 的 SCALE 双种子三/双求解器显著;Push-T SCALE icem+mppi 复现;Reacher 降级为方向一致不显著;PointMaze 两臂分歧(存档不上页)。
 
 ## 3. 结果文件地图
 
