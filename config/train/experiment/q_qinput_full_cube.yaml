@@ -4,7 +4,7 @@
 # Tests whether the 9-d teacher's planning collapse was missing-state
 # (non-Markovian input) rather than q-input per se. Trained via train_qnative.py.
 defaults:
-  - override /data: ogb_cube
+  - override /data: ogb_cube_full
   - override /model: lewm_qinput_full_cube
 
 output_model_name: lewm_qinput_full_cube_s${seed}
