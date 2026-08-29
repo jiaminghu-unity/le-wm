@@ -116,7 +116,8 @@ def install_lance_dispatch(budget_sweep):
 
     def dispatch(name, *a, keys_to_cache=None, cache_dir=None, keys_to_load=None, **kw):
         if str(name).endswith(".lance"):
-            root = Path(cache_dir) if cache_dir else Path(swm.data.utils.get_cache_dir())
+            # HDF5Dataset 自己在 cache 根下拼 datasets/ 子目录,这里同样拼上
+            root = Path(swm.data.utils.get_cache_dir(cache_dir, sub_folder="datasets"))
             return LanceDataset(path=str(root / name),
                                 keys_to_load=keys_to_load, keys_to_cache=keys_to_cache, **kw)
         return orig(name, *a, keys_to_cache=keys_to_cache, cache_dir=cache_dir,
