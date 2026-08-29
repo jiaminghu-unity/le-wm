@@ -72,6 +72,17 @@ _CUBE_COLS = ["proprio_effector_pos", "proprio_effector_yaw", "proprio_gripper_o
               "proprio_gripper_contact", "proprio_joint_pos",
               "privileged_block_0_pos", "privileged_block_0_yaw"]
 
+def _build_q_reacher(cols):
+    """joints cos/sin (4) + finger xy (2) [+ qvel (2) if the h5 carries it]."""
+    qp = cols["qpos"]
+    parts = [np.cos(qp[..., :1]), np.sin(qp[..., :1]),
+             np.cos(qp[..., 1:2]), np.sin(qp[..., 1:2]),
+             cols["finger_pos"][..., :2]]
+    if "qvel" in cols:
+        parts.append(cols["qvel"][..., :2])
+    return np.concatenate(parts, axis=-1)
+
+
 TASKS = {
     "pusht": dict(
         build_q=_build_q_pusht,
@@ -79,6 +90,14 @@ TASKS = {
         action_col="action",
         dim_names=["pusher_x", "pusher_y", "tblock_x", "tblock_y",
                    "cos_theta", "sin_theta", "vx", "vy"],
+    ),
+    "reacher": dict(
+        build_q=_build_q_reacher,
+        state_cols=["qpos", "finger_pos"],
+        optional_cols=["qvel"],
+        action_col="action",
+        dim_names=["cos_j0", "sin_j0", "cos_j1", "sin_j1", "finger_x", "finger_y"],
+        optional_dim_names=["qvel_0", "qvel_1"],
     ),
     "cube": dict(
         build_q=_build_q_cube_full,
@@ -122,6 +141,10 @@ class GatedActor(nn.Module):
 def load_samples(h5_path, spec):
     with h5py.File(h5_path, "r") as f:
         cols = {c: np.asarray(f[c], dtype=np.float64) for c in spec["state_cols"]}
+        for c in spec.get("optional_cols", []):
+            if c in f:
+                cols[c] = np.asarray(f[c], dtype=np.float64)
+                print(f"[data] optional column present: {c}", flush=True)
         action = np.asarray(f[spec["action_col"]], dtype=np.float64)
         ep_len, ep_off = f["ep_len"][:], f["ep_offset"][:]
     q = spec["build_q"](cols if len(spec["state_cols"]) > 1 else cols[spec["state_cols"][0]])
@@ -173,7 +196,10 @@ def main():
     an = np.clip((action - a_mean) / a_std, -10.0, 10.0)
 
     q_dim = qn.shape[-1]
-    names = spec["dim_names"]
+    names = list(spec["dim_names"])
+    extra = spec.get("optional_dim_names", [])
+    while len(names) < q_dim and extra:
+        names.append(extra[len(names) - len(spec["dim_names"])])
     assert len(names) == q_dim, (len(names), q_dim)
 
     qn_t = torch.tensor(qn, dtype=torch.float32, device=dev)
