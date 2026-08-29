@@ -73,6 +73,39 @@ def _q_cube_full(info):
     )
 
 
+from q_ogb_multi import build_q_cube_double_full, build_q_scene_full  # noqa: E402
+
+_ARM_KEYS = [["proprio/effector_pos", "proprio_effector_pos"],
+             ["proprio/effector_yaw", "proprio_effector_yaw"],
+             ["proprio/gripper_opening", "proprio_gripper_opening"],
+             ["proprio/gripper_contact", "proprio_gripper_contact"],
+             ["proprio/joint_pos", "proprio_joint_pos"]]
+
+
+def _q_cube_double(info):
+    arm = [_get(info, ks) for ks in _ARM_KEYS]
+    return build_q_cube_double_full(
+        *arm,
+        _get(info, ["privileged/block_0_pos", "privileged_block_0_pos"]),
+        _get(info, ["privileged/block_0_yaw", "privileged_block_0_yaw"]),
+        _get(info, ["privileged/block_1_pos", "privileged_block_1_pos"]),
+        _get(info, ["privileged/block_1_yaw", "privileged_block_1_yaw"]),
+    )
+
+
+def _q_scene(info):
+    arm = [_get(info, ks) for ks in _ARM_KEYS]
+    return build_q_scene_full(
+        *arm,
+        _get(info, ["privileged/block_0_pos", "privileged_block_0_pos"]),
+        _get(info, ["privileged/block_0_yaw", "privileged_block_0_yaw"]),
+        _get(info, ["privileged/drawer_pos", "privileged_drawer_pos"]),
+        _get(info, ["privileged/window_pos", "privileged_window_pos"]),
+        _get(info, ["privileged/button_0_state", "privileged_button_0_state"]),
+        _get(info, ["privileged/button_1_state", "privileged_button_1_state"]),
+    )
+
+
 def _q_tworoom(info):
     return _get(info, ["proprio", "pos_agent"])[..., :2]
 
@@ -90,6 +123,8 @@ Q_BUILDERS = {
     ("cube", 22): _q_cube_full,
     ("tworoom", 2): _q_tworoom,
     ("pointmaze", 4): _q_pointmaze,
+    ("cube_double", 27): _q_cube_double,
+    ("scene", 26): _q_scene,
 }
 
 
@@ -98,7 +133,11 @@ def main():
     envs_known = sorted({e for e, _ in Q_BUILDERS})
     assert env in envs_known, f"--env must be one of {envs_known}"
 
-    if env == "tworoom":
+    if env in ("cube_double", "scene"):
+        from scripts import ogbmulti_preset
+        ogbmulti_preset.register(budget_sweep.ENV_PRESETS)
+        ogbmulti_preset.install_lance_dispatch(budget_sweep)
+    elif env == "tworoom":
         from scripts.tworoom_preset import register
         register(budget_sweep.ENV_PRESETS)
     elif env == "pointmaze":
