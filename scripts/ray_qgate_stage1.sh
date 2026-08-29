@@ -33,7 +33,9 @@ if [ ! -f "$H5" ]; then
   if [ "$TAR" = 1 ]; then
     sudo apt-get install -y -q zstd >/dev/null 2>&1 || true
     time gcloud storage cat "$SRC" | zstd -dc --long=31 | tar -xf - -C "$SSD"
-    F=$(find "$SSD" -name "$H5NAME" | head -1); [ -n "$F" ] && [ "$F" != "$H5" ] && mv "$F" "$H5"
+    F=$(find "$SSD" -name "$H5NAME" 2>/dev/null | head -1 || true)
+    [ -n "$F" ] && [ "$F" != "$H5" ] && mv "$F" "$H5"
+    [ -f "$H5" ] || { echo "FATAL: $H5NAME not found after extract" >&2; exit 1; }
   else
     time gcloud storage cp "$SRC" "$H5"
   fi
