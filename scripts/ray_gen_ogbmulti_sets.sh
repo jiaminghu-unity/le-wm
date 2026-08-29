@@ -31,7 +31,7 @@ fi
 if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
 source "$SSD/.venv/bin/activate"
 uv pip install -q 'stable-worldmodel[train,format]'
-[ -d "$DS/$LANCE" ] || { echo "[data] rsync $LANCE"; time gcloud storage rsync -r "$BUCKET/datasets/ogbench/$LANCE" "$DS/$LANCE"; }
+echo "[data] rsync $LANCE"; time gcloud storage rsync -r "$BUCKET/datasets/ogbench/$LANCE" "$DS/$LANCE"
 
 for S in "${SEEDS[@]}"; do
   OUT="episodes_${TASK}_s${S}_100.json"

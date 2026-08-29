@@ -49,10 +49,9 @@ uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download
 uv pip install -q hdf5plugin -U datasets scikit-learn
 
 # ---- dataset (lance dir rsync) ----
-if [ ! -d "$DS/$LANCE" ]; then
-  echo "[data] rsync $LANCE"
-  time gcloud storage rsync -r "$BUCKET/datasets/ogbench/$LANCE" "$DS/$LANCE"
-fi
+# 无条件增量 rsync:目录存在≠完整(训练任务的中断 rsync 会留半截目录)
+echo "[data] rsync $LANCE"
+time gcloud storage rsync -r "$BUCKET/datasets/ogbench/$LANCE" "$DS/$LANCE"
 
 # ---- checkpoint ----
 gcloud storage cp "$BUCKET/ckpts/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
