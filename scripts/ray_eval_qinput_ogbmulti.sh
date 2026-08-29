@@ -89,7 +89,9 @@ init, goal, _ = _extract_init_goal(ds, [0], [10], 25)
 world = swm.World(env_name=p["env_name"], num_envs=1, image_shape=(224, 224),
                   max_episode_steps=100, **p["env_kwargs"])
 world.reset(seed=[30000])
-_apply_callables(world.envs, p["callables"], init, goal)
+merged = {**init, **goal}
+env_init = {k: v[0] for k, v in merged.items()}
+_apply_callables(world.envs.envs[0].unwrapped, p["callables"], env_init)
 import numpy as np
 obs, r, term, trunc, info = world.step(np.zeros_like(world.action_space.sample()))
 keys = sorted(k for k in (info[0] if isinstance(info, (list, tuple)) else info) if not str(k).startswith("goal"))
