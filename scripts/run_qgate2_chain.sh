@@ -76,11 +76,11 @@ PY
 TRAINS=(
 "qg|lewm_qgate_scale_cube_s${SEED}|experiment=qgate_scale_cube|env QGATE_GCS=$GSTAR bash scripts/ray_train_qgate2.sh cube experiment=qgate_scale_cube seed=${SEED}"
 "qa|lewm_qall_scale_cube_s${SEED}|experiment=qall_scale_cube|bash scripts/ray_train_qgate2.sh cube experiment=qall_scale_cube seed=${SEED}"
-"qs|lewm_qgates_scale_cube_s${SEED}|experiment=qgate_sharp_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.1.json bash scripts/ray_train_qgate2.sh cube experiment=qgate_sharp_scale_cube seed=${SEED}"
+"qs|lewm_qgate_sharp_scale_cube_s${SEED}|experiment=qgate_sharp_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.1.json bash scripts/ray_train_qgate2.sh cube experiment=qgate_sharp_scale_cube seed=${SEED}"
 "qm|lewm_qgate05_scale_cube_s${SEED}|experiment=qgate05_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.05.json bash scripts/ray_train_qgate2.sh cube experiment=qgate05_scale_cube seed=${SEED}"
 )
 EVALS=()
-for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgates_scale_cube_s${SEED}" "qm|lewm_qgate05_scale_cube_s${SEED}"; do
+for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgate_sharp_scale_cube_s${SEED}" "qm|lewm_qgate05_scale_cube_s${SEED}"; do
   IFS='|' read -r cfg run <<< "$spec"
   for sol in cem icem; do
     EVALS+=("$cfg|$run|$sol|101 102 103")
