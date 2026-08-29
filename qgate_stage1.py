@@ -1,0 +1,210 @@
+"""Stage 1 of automatic planning-state discovery for SCALE: learn a sparse gate g
+over simulator state variables from behavior alone.
+
+    [ Q_t (ungated, full context) ; g ⊙ (Q_{t+H} − Q_t) ]  →  MLP  →  a_t chunk
+
+Deliberately DECOUPLED from JEPA/LeWM: no images, no encoder, no z anywhere.
+Q_t is not gated (a controller legitimately needs the full current state); only
+the desired displacement is gated, so g answers "which dimensions of the desired
+change matter for deciding how the plan proceeds" -- exactly what SCALE's metric
+wants. The action MLP is a discovery tool and is discarded after g* is read out.
+
+Anti-shortcut machinery (the fixed-goal trap: if Q_t alone predicts a_t, sparsity
+kills every gate without meaning "no Q matters"):
+  * multi-horizon goals H ∈ {1,2,4,8} world-model steps (× frameskip raw frames);
+  * negative-goal ranking: log p(a_t | Q_t, gΔQ⁺) must beat an in-batch shuffled
+    goal's log p by margin m (hinge), weight γ;
+  * a goal-blind diagnostic NLL (ΔQ zeroed) is always reported -- if blind ≈ full,
+    the dataset lacks goal variation and g is not interpretable. Fail loudly.
+
+Outputs one JSON per run: named per-group gates over training, final g*, NLL /
+blind-NLL / rank-loss curves, normalization stats (needed by Stage 2's weighted
+metric d_{Q,g*}), and the exact config.
+
+    usage: qgate_stage1.py --task pusht --h5 <path> --lambda-sparse 0.01
+           [--gamma 1.0] [--margin 1.0] [--steps 8000] [--out out.json]
+"""
+
+import argparse
+import json
+import time
+from pathlib import Path
+
+import h5py
+import numpy as np
+import torch
+import torch.nn.functional as F
+from torch import nn
+
+FRAMESKIP = 5          # raw frames per world-model step (matches LeWM training)
+HORIZONS = (1, 2, 4, 8)  # goal offsets in world-model steps
+
+# task -> (build_q(state np array) -> Q, gate groups [(name, [q dims])], action_dim)
+def _build_q_pusht(state):
+    pos = state[..., :4]
+    th = state[..., 4:5]
+    vel = state[..., 5:7]
+    return np.concatenate([pos, np.cos(th), np.sin(th), vel], axis=-1)
+
+
+TASKS = {
+    "pusht": dict(
+        build_q=_build_q_pusht,
+        state_col="state",
+        action_col="action",
+        groups=[("pusher_x", [0]), ("pusher_y", [1]),
+                ("tblock_x", [2]), ("tblock_y", [3]),
+                ("tblock_theta", [4, 5]),
+                ("pusher_vx", [6]), ("pusher_vy", [7])],
+        action_dim=2,
+    ),
+}
+
+
+class GatedActor(nn.Module):
+    """[Q_t ; g⊙ΔQ] -> 3-layer MLP (LayerNorm+GELU, width 1024) -> diag Gaussian."""
+
+    def __init__(self, q_dim, n_groups, group_index, act_chunk_dim, width=1024):
+        super().__init__()
+        self.gate_logit = nn.Parameter(torch.full((n_groups,), 2.0))  # sigmoid(2)≈0.88, start open
+        self.register_buffer("group_index", group_index)  # (q_dim,) long: dim -> group
+        self.mlp = nn.Sequential(
+            nn.Linear(2 * q_dim, width), nn.LayerNorm(width), nn.GELU(),
+            nn.Linear(width, width), nn.LayerNorm(width), nn.GELU(),
+            nn.Linear(width, 2 * act_chunk_dim),
+        )
+        self.act_chunk_dim = act_chunk_dim
+
+    def gates(self):
+        return torch.sigmoid(self.gate_logit)
+
+    def log_prob(self, q_t, dq, a):
+        g = self.gates()[self.group_index]          # (q_dim,)
+        h = torch.cat([q_t, g * dq], dim=-1)
+        mu, log_std = self.mlp(h).chunk(2, dim=-1)
+        log_std = log_std.clamp(-5.0, 2.0)
+        nll = 0.5 * ((a - mu) / log_std.exp()) ** 2 + log_std
+        return -(nll + 0.5 * np.log(2 * np.pi)).sum(-1)  # (B,) log p(a|·)
+
+
+def load_samples(h5_path, spec):
+    with h5py.File(h5_path, "r") as f:
+        state = np.asarray(f[spec["state_col"]], dtype=np.float64)
+        action = np.asarray(f[spec["action_col"]], dtype=np.float64)
+        ep_len, ep_off = f["ep_len"][:], f["ep_offset"][:]
+    q = spec["build_q"](state)
+    max_h = max(HORIZONS) * FRAMESKIP
+    rows, goals = [], {h: [] for h in HORIZONS}
+    for L, O in zip(ep_len, ep_off):
+        n = int(L) - max_h - FRAMESKIP
+        if n <= 0:
+            continue
+        idx = O + np.arange(n)
+        rows.append(idx)
+    rows = np.concatenate(rows)
+    return q, action, rows
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--task", required=True, choices=sorted(TASKS))
+    ap.add_argument("--h5", required=True)
+    ap.add_argument("--lambda-sparse", type=float, required=True)
+    ap.add_argument("--gamma", type=float, default=1.0)
+    ap.add_argument("--margin", type=float, default=1.0)
+    ap.add_argument("--steps", type=int, default=8000)
+    ap.add_argument("--batch", type=int, default=4096)
+    ap.add_argument("--lr", type=float, default=1e-3)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
+
+    spec = TASKS[args.task]
+    dev = "cuda" if torch.cuda.is_available() else "cpu"
+    torch.manual_seed(args.seed)
+    rng = np.random.default_rng(args.seed)
+
+    q, action, rows = load_samples(args.h5, spec)
+    q_mean, q_std = q.mean(0), q.std(0) + 1e-8
+    qn = (q - q_mean) / q_std
+    a_dim = spec["action_dim"] * FRAMESKIP
+    a_mean = action.mean(0)
+    a_std = action.std(0) + 1e-8
+    an = (action - a_mean) / a_std
+
+    q_dim = qn.shape[-1]
+    group_index = torch.zeros(q_dim, dtype=torch.long)
+    for gi, (_, dims) in enumerate(spec["groups"]):
+        for d in dims:
+            group_index[d] = gi
+    names = [n for n, _ in spec["groups"]]
+
+    qn_t = torch.tensor(qn, dtype=torch.float32, device=dev)
+    an_t = torch.tensor(an, dtype=torch.float32, device=dev)
+    rows_t = torch.tensor(rows, device=dev)
+
+    model = GatedActor(q_dim, len(spec["groups"]), group_index.to(dev), a_dim).to(dev)
+    opt = torch.optim.Adam(model.parameters(), lr=args.lr)
+
+    hist = {"step": [], "nll": [], "nll_blind": [], "rank": [], "gates": []}
+    t0 = time.time()
+    for step in range(1, args.steps + 1):
+        sel = rows_t[torch.randint(0, len(rows_t), (args.batch,), device=dev)]
+        h = torch.tensor(rng.choice(HORIZONS, size=args.batch), device=dev)
+        q_t = qn_t[sel]
+        q_g = qn_t[sel + h * FRAMESKIP]
+        # action chunk: FRAMESKIP consecutive low-level actions from t
+        a = torch.stack([an_t[sel + i] for i in range(FRAMESKIP)], dim=1).flatten(1)
+        dq_pos = q_g - q_t
+        dq_neg = torch.roll(q_g, 1, dims=0) - q_t   # in-batch shuffled goal (other trajectory)
+
+        lp_pos = model.log_prob(q_t, dq_pos, a)
+        lp_neg = model.log_prob(q_t, dq_neg, a)
+        nll = -lp_pos.mean()
+        rank = F.relu(args.margin - (lp_pos - lp_neg)).mean()
+        g = model.gates()
+        loss = nll + args.gamma * rank + args.lambda_sparse * g.sum()
+        opt.zero_grad(set_to_none=True)
+        loss.backward()
+        opt.step()
+
+        if step % 200 == 0 or step == 1:
+            with torch.no_grad():
+                nll_blind = -model.log_prob(q_t, torch.zeros_like(dq_pos), a).mean()
+            hist["step"].append(step)
+            hist["nll"].append(round(float(nll), 4))
+            hist["nll_blind"].append(round(float(nll_blind), 4))
+            hist["rank"].append(round(float(rank), 4))
+            hist["gates"].append([round(float(x), 4) for x in g.detach().cpu()])
+            if step % 1000 == 0:
+                gs = ", ".join(f"{n}={v:.2f}" for n, v in zip(names, hist["gates"][-1]))
+                print(f"[{step}] nll={nll:.3f} blind={nll_blind:.3f} rank={rank:.3f} | {gs}",
+                      flush=True)
+
+    g_star = {n: round(float(v), 4) for n, v in zip(names, model.gates().detach().cpu())}
+    blind_gap = hist["nll_blind"][-1] - hist["nll"][-1]
+    verdict = ("OK" if blind_gap > 0.1 else
+               "WARNING: goal-blind NLL ~= full NLL -- dataset may lack goal variation; "
+               "g is NOT interpretable at this lambda")
+    out = {
+        "task": args.task, "lambda_sparse": args.lambda_sparse, "gamma": args.gamma,
+        "margin": args.margin, "steps": args.steps, "seed": args.seed,
+        "horizons_wm_steps": list(HORIZONS), "frameskip": FRAMESKIP,
+        "groups": {n: dims for n, dims in spec["groups"]},
+        "g_star": g_star,
+        "goal_blind_gap_nats": round(float(blind_gap), 4),
+        "verdict": verdict,
+        "q_mean": [round(float(x), 6) for x in q_mean],
+        "q_std": [round(float(x), 6) for x in q_std],
+        "history": hist,
+        "wallclock_s": round(time.time() - t0, 1),
+        "n_samples": int(len(rows)),
+    }
+    Path(args.out).write_text(json.dumps(out, ensure_ascii=False, indent=1))
+    print(f"[done] g* = {g_star}")
+    print(f"[done] goal-blind gap = {blind_gap:.3f} nats ({verdict})")
+    print(f"[done] wrote {args.out}")
+
+
+if __name__ == "__main__":
+    main()

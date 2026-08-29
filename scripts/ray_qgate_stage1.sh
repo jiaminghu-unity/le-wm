@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Stage-1 q-gate discovery (behavior -> sparse g over simulator variables).
+#   usage: ray_qgate_stage1.sh <task> [lambda ...]   (default lambdas: 0.003 0.01 0.03)
+# Cheap: no images, no encoder; minutes per lambda on one GPU.
+set -euo pipefail
+TASK="${1:?task}"; shift || true
+LAMBDAS=("${@:-}"); [ -z "${LAMBDAS[0]:-}" ] && LAMBDAS=(0.003 0.01 0.03)
+BUCKET=gs://prism-training-us/le-wm
+case "$TASK" in
+  pusht) H5NAME=pusht_expert_train.h5; SRC="$BUCKET/datasets/pusht_expert_train.h5" ;;
+  *) echo "task $TASK not wired yet" >&2; exit 1 ;;
+esac
+SSD=/mnt/disks/ssd0
+if ! mountpoint -q "$SSD"; then
+  dev=$(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1; exit}')
+  [ -n "$dev" ] || { echo "FATAL: no local NVMe" >&2; exit 1; }
+  sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
+  sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"
+  sudo chmod a+w "$SSD"
+fi
+if ! command -v uv >/dev/null; then
+  pip install -q uv
+  PATH="$(python3 -m site --user-base)/bin:$(python3 -c 'import sysconfig;print(sysconfig.get_path("scripts"))'):$PATH"
+  export PATH; hash -r
+fi
+if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
+source "$SSD/.venv/bin/activate"
+uv pip install -q torch numpy h5py hdf5plugin 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin
+H5="$SSD/$H5NAME"
+[ -f "$H5" ] || { echo "[data] fetching $H5NAME"; time gcloud storage cp "$SRC" "$H5"; }
+for L in "${LAMBDAS[@]}"; do
+  OUT="qgate_stage1_${TASK}_lam${L}.json"
+  if gcloud storage ls "$BUCKET/qgate/$OUT" >/dev/null 2>&1; then echo "[skip] $OUT"; continue; fi
+  python qgate_stage1.py --task "$TASK" --h5 "$H5" --lambda-sparse "$L" --out "$SSD/$OUT"
+  gcloud storage cp "$SSD/$OUT" "$BUCKET/qgate/$OUT"
+done
+echo "QGATE STAGE1 DONE $TASK"
