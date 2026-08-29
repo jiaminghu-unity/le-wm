@@ -66,7 +66,9 @@ PRESETS = {
         ],
         "callables": [
             {"method": "set_state",
-             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}}},
+             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"},
+                      "button_state_0": {"value": "privileged/button_0_state"},
+                      "button_state_1": {"value": "privileged/button_1_state"}}},
             {"method": "set_cube_target_pos",
              "args": {"cube_id": {"value": 0, "in_dataset": False},
                       "target_pos": {"value": "goal_privileged/block_0_pos"},
@@ -95,6 +97,12 @@ def _register_scene_eval_env():
     from stable_worldmodel.envs.ogbench.scene_env import SceneEnv
 
     class SceneEvalEnv(SceneEnv):
+        def set_state(self, qpos, qvel, **kw):
+            # dataset 的按钮列是 shape-(1,) float;set_state 期望 int 状态
+            kw = {k: (int(round(_scalar(v))) if k.startswith("button_state_") else v)
+                  for k, v in kw.items()}
+            super().set_state(qpos, qvel, **kw)
+
         def set_target_drawer_pos(self, target_pos):
             super().set_target_drawer_pos(_scalar(target_pos))
 
