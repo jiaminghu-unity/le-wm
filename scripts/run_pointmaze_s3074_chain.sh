@@ -47,7 +47,6 @@ MODELS=(
 "p1r74|lewm_p1_pointmaze_s${SEED}"
 "p2r74|lewm_p2_pointmaze_s${SEED}"
 "p5r74|lewm_p5_pointmaze_s${SEED}"
-"dwr74|dinowm_pointmaze_s${SEED}"
 )
 CELLS=()
 for sol in cem icem mppi; do
@@ -104,7 +103,7 @@ for round in $(seq 1 8000); do
     else log "$key submit FAILED"; fi
     submitted=1; break
   done
-  [ "$left" = 0 ] && { log "POINTMAZE S3074 TRAININGS + EVALS COMPLETE (96 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "POINTMAZE S3074 TRAININGS + EVALS COMPLETE (108 CSVs, DINO-WM dropped per user 2026-08-29)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
