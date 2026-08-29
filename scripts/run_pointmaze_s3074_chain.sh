@@ -11,7 +11,7 @@ export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
 cd /workspace/le-wm || exit 1
 SEED=3074
 BUCKET=gs://prism-training-us/le-wm
-EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycache__"]}'
+EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycache__"],"env_vars":{"RAY_JOB_START_TIMEOUT_SECONDS":"14400"}}'
 L=/workspace/le-wm/eval_results/pointmaze_s3074.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT

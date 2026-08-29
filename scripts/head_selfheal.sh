@@ -21,7 +21,7 @@ python3 -c "
 import ray
 from ray.autoscaler.sdk import request_resources
 ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
-request_resources(bundles=[{'GPU':1}]*8)" >> "$LOG" 2>&1 && echo "[$(ts)] ray restarted, 8-GPU request placed" >> "$LOG"
+request_resources(bundles=[{'GPU':1}]*16)" >> "$LOG" 2>&1 && echo "[$(ts)] ray restarted, 8-GPU request placed" >> "$LOG"
 
 # relaunch missing chains (idempotent: GCS done-checks make restarts free)
 for chain in run_pointmaze_s3074_chain run_qgate2_chain run_ogbmulti_lewm_chain; do
