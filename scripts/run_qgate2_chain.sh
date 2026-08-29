@@ -83,7 +83,7 @@ TRAINS=(
 EVALS=()
 for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgate_sharp_scale_cube_s${SEED}" "qm|lewm_qgate05_scale_cube_s${SEED}" "qg03|lewm_qgate03_scale_cube_s${SEED}"; do
   IFS='|' read -r cfg run <<< "$spec"
-  for sol in cem icem; do
+  for sol in cem icem mppi; do
     EVALS+=("$cfg|$run|$sol|101 102 103")
     EVALS+=("$cfg|$run|$sol|104 105 106")
   done
@@ -134,7 +134,7 @@ for round in $(seq 1 6000); do
     else log "$key submit FAILED"; fi
     submitted=1; break
   done
-  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (60 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (90 CSVs incl mppi)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
