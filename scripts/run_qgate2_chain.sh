@@ -78,9 +78,10 @@ TRAINS=(
 "qa|lewm_qall_scale_cube_s${SEED}|experiment=qall_scale_cube|bash scripts/ray_train_qgate2.sh cube experiment=qall_scale_cube seed=${SEED}"
 "qs|lewm_qgate_sharp_scale_cube_s${SEED}|experiment=qgate_sharp_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.1.json bash scripts/ray_train_qgate2.sh cube experiment=qgate_sharp_scale_cube seed=${SEED}"
 "qm|lewm_qgate05_scale_cube_s${SEED}|experiment=qgate05_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.05.json bash scripts/ray_train_qgate2.sh cube experiment=qgate05_scale_cube seed=${SEED}"
+"qg03|lewm_qgate03_scale_cube_s${SEED}|experiment=qgate03_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.03.json bash scripts/ray_train_qgate2.sh cube experiment=qgate03_scale_cube seed=${SEED}"
 )
 EVALS=()
-for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgate_sharp_scale_cube_s${SEED}" "qm|lewm_qgate05_scale_cube_s${SEED}"; do
+for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgate_sharp_scale_cube_s${SEED}" "qm|lewm_qgate05_scale_cube_s${SEED}" "qg03|lewm_qgate03_scale_cube_s${SEED}"; do
   IFS='|' read -r cfg run <<< "$spec"
   for sol in cem icem; do
     EVALS+=("$cfg|$run|$sol|101 102 103")
@@ -101,6 +102,7 @@ for round in $(seq 1 6000); do
     gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1 && continue
     left=1
     if [ "$name" = qm ] && ! gcloud storage ls "$BUCKET/qgate/qgate_stage1_cube_lam0.05.json" >/dev/null 2>&1; then continue; fi
+    if [ "$name" = qg03 ] && ! gcloud storage ls "$BUCKET/qgate/qgate_stage1_cube_lam0.03.json" >/dev/null 2>&1; then continue; fi
     [ "$(nrun "$probe")" != 0 ] && continue
     [ "$(free)" -lt 1 ] && continue
     n=${ATT[$name]:-0}
@@ -132,7 +134,7 @@ for round in $(seq 1 6000); do
     else log "$key submit FAILED"; fi
     submitted=1; break
   done
-  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (48 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (60 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
