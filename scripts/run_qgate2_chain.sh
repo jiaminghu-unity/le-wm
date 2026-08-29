@@ -76,9 +76,10 @@ PY
 TRAINS=(
 "qg|lewm_qgate_scale_cube_s${SEED}|experiment=qgate_scale_cube|env QGATE_GCS=$GSTAR bash scripts/ray_train_qgate2.sh cube experiment=qgate_scale_cube seed=${SEED}"
 "qa|lewm_qall_scale_cube_s${SEED}|experiment=qall_scale_cube|bash scripts/ray_train_qgate2.sh cube experiment=qall_scale_cube seed=${SEED}"
+"qs|lewm_qgates_scale_cube_s${SEED}|experiment=qgate_sharp_scale_cube|env QGATE_GCS=$BUCKET/qgate/qgate_stage1_cube_lam0.1.json bash scripts/ray_train_qgate2.sh cube experiment=qgate_sharp_scale_cube seed=${SEED}"
 )
 EVALS=()
-for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}"; do
+for spec in "qg|lewm_qgate_scale_cube_s${SEED}" "qa|lewm_qall_scale_cube_s${SEED}" "qs|lewm_qgates_scale_cube_s${SEED}"; do
   IFS='|' read -r cfg run <<< "$spec"
   for sol in cem icem; do
     EVALS+=("$cfg|$run|$sol|101 102 103")
@@ -129,7 +130,7 @@ for round in $(seq 1 6000); do
     else log "$key submit FAILED"; fi
     submitted=1; break
   done
-  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (24 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "AUTO-SCALE TRAININGS + EVALS COMPLETE (36 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
