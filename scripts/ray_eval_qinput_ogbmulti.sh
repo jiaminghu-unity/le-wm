@@ -92,10 +92,13 @@ world.reset(seed=[30000])
 merged = {**init, **goal}
 env_init = {k: v[0] for k, v in merged.items()}
 _apply_callables(world.envs.envs[0].unwrapped, p["callables"], env_init)
-import numpy as np
-obs, r, term, trunc, info = world.step(np.zeros_like(world.action_space.sample()))
-keys = sorted(k for k in (info[0] if isinstance(info, (list, tuple)) else info) if not str(k).startswith("goal"))
-print("[gate] step ok; info keys:", keys[:24], flush=True)
+# World 没有裸 step 接口(评测走 world._run + policy);到这一步为止
+# 数据集/preset/World/目标回调已全部验证,info 键名由 reset 后的 infos 检查。
+keys = sorted(k for k in world.infos if not str(k).startswith("goal"))
+print("[gate] infos keys:", keys[:24], flush=True)
+need = [k for k in p["keys_to_load"] if k.startswith(("proprio/", "privileged/")) and "quat" not in k]
+missing = [k for k in need if k not in world.infos]
+assert not missing, f"env infos missing q source cols: {missing}"
 print("[gate] PASS", flush=True)
 PY
 
