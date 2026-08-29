@@ -7,7 +7,8 @@ TASK="${1:?task}"; shift || true
 LAMBDAS=("${@:-}"); [ -z "${LAMBDAS[0]:-}" ] && LAMBDAS=(0.003 0.01 0.03)
 BUCKET=gs://prism-training-us/le-wm
 case "$TASK" in
-  pusht) H5NAME=pusht_expert_train.h5; SRC="$BUCKET/datasets/pusht_expert_train.h5" ;;
+  pusht) H5NAME=pusht_expert_train.h5; SRC="$BUCKET/datasets/pusht_expert_train.h5"; TAR=0 ;;
+  cube)  H5NAME=cube_single_expert.h5; SRC="$BUCKET/datasets/ogbench/cube_single_expert.tar.zst"; TAR=1 ;;
   *) echo "task $TASK not wired yet" >&2; exit 1 ;;
 esac
 SSD=/mnt/disks/ssd0
@@ -27,7 +28,16 @@ if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
 source "$SSD/.venv/bin/activate"
 uv pip install -q torch numpy h5py hdf5plugin 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin
 H5="$SSD/$H5NAME"
-[ -f "$H5" ] || { echo "[data] fetching $H5NAME"; time gcloud storage cp "$SRC" "$H5"; }
+if [ ! -f "$H5" ]; then
+  echo "[data] fetching $H5NAME"
+  if [ "$TAR" = 1 ]; then
+    sudo apt-get install -y -q zstd >/dev/null 2>&1 || true
+    time gcloud storage cat "$SRC" | zstd -dc --long=31 | tar -xf - -C "$SSD"
+    F=$(find "$SSD" -name "$H5NAME" | head -1); [ -n "$F" ] && [ "$F" != "$H5" ] && mv "$F" "$H5"
+  else
+    time gcloud storage cp "$SRC" "$H5"
+  fi
+fi
 for L in "${LAMBDAS[@]}"; do
   OUT="qgate_stage1_${TASK}_lam${L}.json"
   if gcloud storage ls "$BUCKET/qgate/$OUT" >/dev/null 2>&1; then echo "[skip] $OUT"; continue; fi

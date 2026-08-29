@@ -17,7 +17,7 @@ kills every gate without meaning "no Q matters"):
   * a goal-blind diagnostic NLL (ΔQ zeroed) is always reported -- if blind ≈ full,
     the dataset lacks goal variation and g is not interpretable. Fail loudly.
 
-Outputs one JSON per run: named per-group gates over training, final g*, NLL /
+Outputs one JSON per run: per-dimension gates over training, final g*, NLL /
 blind-NLL / rank-loss curves, normalization stats (needed by Stage 2's weighted
 metric d_{Q,g*}), and the exact config.
 
@@ -47,27 +47,59 @@ def _build_q_pusht(state):
     return np.concatenate([pos, np.cos(th), np.sin(th), vel], axis=-1)
 
 
+_CUBE_ARM_JOINTS = [0, 1, 2, 3, 5]  # = utils.CUBE_ARM_JOINTS (joint 4 frozen)
+
+
+def _build_q_cube_full(cols):
+    """22-d cube full-config q, numpy mirror of q_cube_full.build_q_cube_full."""
+    eff, yaw = cols["proprio_effector_pos"], cols["proprio_effector_yaw"]
+    parts = [eff[..., :3],
+             np.cos(2.0 * yaw[..., :1]), np.sin(2.0 * yaw[..., :1]),
+             cols["proprio_gripper_opening"][..., :1],
+             cols["proprio_gripper_contact"][..., :1]]
+    jp = cols["proprio_joint_pos"]
+    for i in _CUBE_ARM_JOINTS:
+        parts += [np.cos(jp[..., i:i + 1]), np.sin(jp[..., i:i + 1])]
+    parts += [cols["privileged_block_0_pos"][..., :3],
+              np.cos(4.0 * cols["privileged_block_0_yaw"][..., :1]),
+              np.sin(4.0 * cols["privileged_block_0_yaw"][..., :1])]
+    q = np.concatenate(parts, axis=-1)
+    assert q.shape[-1] == 22, q.shape
+    return q
+
+
+_CUBE_COLS = ["proprio_effector_pos", "proprio_effector_yaw", "proprio_gripper_opening",
+              "proprio_gripper_contact", "proprio_joint_pos",
+              "privileged_block_0_pos", "privileged_block_0_yaw"]
+
 TASKS = {
     "pusht": dict(
         build_q=_build_q_pusht,
-        state_col="state",
+        state_cols=["state"],
         action_col="action",
-        groups=[("pusher_x", [0]), ("pusher_y", [1]),
-                ("tblock_x", [2]), ("tblock_y", [3]),
-                ("tblock_theta", [4, 5]),
-                ("pusher_vx", [6]), ("pusher_vy", [7])],
-        action_dim=2,
+        dim_names=["pusher_x", "pusher_y", "tblock_x", "tblock_y",
+                   "cos_theta", "sin_theta", "vx", "vy"],
+    ),
+    "cube": dict(
+        build_q=_build_q_cube_full,
+        state_cols=_CUBE_COLS,
+        action_col="action",
+        dim_names=["eff_x", "eff_y", "eff_z", "cos2psi", "sin2psi",
+                   "grip_open", "grip_contact",
+                   "cos_j0", "sin_j0", "cos_j1", "sin_j1", "cos_j2", "sin_j2",
+                   "cos_j3", "sin_j3", "cos_j5", "sin_j5",
+                   "block_x", "block_y", "block_z", "cos4th", "sin4th"],
     ),
 }
 
 
 class GatedActor(nn.Module):
-    """[Q_t ; g⊙ΔQ] -> 3-layer MLP (LayerNorm+GELU, width 1024) -> diag Gaussian."""
+    """[Q_t ; g⊙ΔQ] -> 3-layer MLP (LayerNorm+GELU, width 1024) -> diag Gaussian.
+    One independent gate per q DIMENSION (no manual grouping)."""
 
-    def __init__(self, q_dim, n_groups, group_index, act_chunk_dim, width=1024):
+    def __init__(self, q_dim, act_chunk_dim, width=1024):
         super().__init__()
-        self.gate_logit = nn.Parameter(torch.full((n_groups,), 2.0))  # sigmoid(2)≈0.88, start open
-        self.register_buffer("group_index", group_index)  # (q_dim,) long: dim -> group
+        self.gate_logit = nn.Parameter(torch.full((q_dim,), 2.0))  # sigmoid(2)≈0.88, start open
         self.mlp = nn.Sequential(
             nn.Linear(2 * q_dim, width), nn.LayerNorm(width), nn.GELU(),
             nn.Linear(width, width), nn.LayerNorm(width), nn.GELU(),
@@ -79,7 +111,7 @@ class GatedActor(nn.Module):
         return torch.sigmoid(self.gate_logit)
 
     def log_prob(self, q_t, dq, a):
-        g = self.gates()[self.group_index]          # (q_dim,)
+        g = self.gates()                             # (q_dim,)
         h = torch.cat([q_t, g * dq], dim=-1)
         mu, log_std = self.mlp(h).chunk(2, dim=-1)
         log_std = log_std.clamp(-5.0, 2.0)
@@ -89,10 +121,10 @@ class GatedActor(nn.Module):
 
 def load_samples(h5_path, spec):
     with h5py.File(h5_path, "r") as f:
-        state = np.asarray(f[spec["state_col"]], dtype=np.float64)
+        cols = {c: np.asarray(f[c], dtype=np.float64) for c in spec["state_cols"]}
         action = np.asarray(f[spec["action_col"]], dtype=np.float64)
         ep_len, ep_off = f["ep_len"][:], f["ep_offset"][:]
-    q = spec["build_q"](state)
+    q = spec["build_q"](cols if len(spec["state_cols"]) > 1 else cols[spec["state_cols"][0]])
     max_h = max(HORIZONS) * FRAMESKIP
     rows, goals = [], {h: [] for h in HORIZONS}
     for L, O in zip(ep_len, ep_off):
@@ -127,23 +159,20 @@ def main():
     q, action, rows = load_samples(args.h5, spec)
     q_mean, q_std = q.mean(0), q.std(0) + 1e-8
     qn = (q - q_mean) / q_std
-    a_dim = spec["action_dim"] * FRAMESKIP
+    a_dim = action.shape[-1] * FRAMESKIP  # action-chunk dim inferred from data
     a_mean = action.mean(0)
     a_std = action.std(0) + 1e-8
     an = (action - a_mean) / a_std
 
     q_dim = qn.shape[-1]
-    group_index = torch.zeros(q_dim, dtype=torch.long)
-    for gi, (_, dims) in enumerate(spec["groups"]):
-        for d in dims:
-            group_index[d] = gi
-    names = [n for n, _ in spec["groups"]]
+    names = spec["dim_names"]
+    assert len(names) == q_dim, (len(names), q_dim)
 
     qn_t = torch.tensor(qn, dtype=torch.float32, device=dev)
     an_t = torch.tensor(an, dtype=torch.float32, device=dev)
     rows_t = torch.tensor(rows, device=dev)
 
-    model = GatedActor(q_dim, len(spec["groups"]), group_index.to(dev), a_dim).to(dev)
+    model = GatedActor(q_dim, a_dim).to(dev)
     opt = torch.optim.Adam(model.parameters(), lr=args.lr)
 
     hist = {"step": [], "nll": [], "nll_blind": [], "rank": [], "gates": []}
@@ -190,7 +219,7 @@ def main():
         "task": args.task, "lambda_sparse": args.lambda_sparse, "gamma": args.gamma,
         "margin": args.margin, "steps": args.steps, "seed": args.seed,
         "horizons_wm_steps": list(HORIZONS), "frameskip": FRAMESKIP,
-        "groups": {n: dims for n, dims in spec["groups"]},
+        "dim_names": names,
         "g_star": g_star,
         "goal_blind_gap_nats": round(float(blind_gap), 4),
         "verdict": verdict,
