@@ -1,0 +1,21 @@
+# @package _global_
+# AUTO-SCALE (Stage 2 of automatic planning-state discovery): L_obj on the 22-d
+# full-config q rescaled by sqrt(g*) from qgate_stage1 -- i.e. SCALE supervised by
+# the discovered weighted metric d_{Q,g*}. Runs through train_qgate2.py with
+# QGATE_JSON set. Same obj weight as the manual cube SCALE arms (0.1).
+defaults:
+  - override /data: ogb_cube_full
+
+output_model_name: lewm_qgate_scale_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_full_config
+  aux:
+    weight: 0.0
