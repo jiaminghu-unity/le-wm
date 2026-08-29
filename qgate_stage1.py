@@ -83,6 +83,48 @@ def _build_q_reacher(cols):
     return np.concatenate(parts, axis=-1)
 
 
+def _arm17_np(cols):
+    yaw = cols["proprio/effector_yaw"]
+    psi2 = 2.0 * yaw.reshape(*yaw.shape[:-1], -1)[..., :1]
+    jp = cols["proprio/joint_pos"]
+    joints = jp.reshape(*jp.shape[:-1], -1)[..., :5]
+    flat = lambda k: cols[k].reshape(*cols[k].shape[:-1], -1)[..., :1]
+    return np.concatenate([
+        cols["proprio/effector_pos"][..., :3],
+        np.cos(psi2), np.sin(psi2),
+        flat("proprio/gripper_opening"), flat("proprio/gripper_contact"),
+        np.cos(joints), np.sin(joints),
+    ], axis=-1)
+
+
+def _block5_np(cols, i):
+    yaw = cols[f"privileged/block_{i}_yaw"]
+    th4 = 4.0 * yaw.reshape(*yaw.shape[:-1], -1)[..., :1]
+    return np.concatenate([cols[f"privileged/block_{i}_pos"][..., :3],
+                           np.cos(th4), np.sin(th4)], axis=-1)
+
+
+def _build_q_cube_double(cols):
+    q = np.concatenate([_arm17_np(cols), _block5_np(cols, 0), _block5_np(cols, 1)], axis=-1)
+    assert q.shape[-1] == 27, q.shape
+    return q
+
+
+def _build_q_scene(cols):
+    flat = lambda k: cols[k].reshape(*cols[k].shape[:-1], -1)[..., :1]
+    q = np.concatenate([_arm17_np(cols), _block5_np(cols, 0),
+                        flat("privileged/drawer_pos"), flat("privileged/window_pos"),
+                        flat("privileged/button_0_state"), flat("privileged/button_1_state")], axis=-1)
+    assert q.shape[-1] == 26, q.shape
+    return q
+
+
+_ARM_SRC_SLASH = ["proprio/effector_pos", "proprio/effector_yaw", "proprio/gripper_opening",
+                  "proprio/gripper_contact", "proprio/joint_pos"]
+_ARM_NAMES = (["eff_x", "eff_y", "eff_z", "cos2psi", "sin2psi", "grip_open", "grip_contact"]
+              + [f"cos_j{i}" for i in range(5)] + [f"sin_j{i}" for i in range(5)])
+_BLOCK_NAMES = lambda p: [f"{p}_x", f"{p}_y", f"{p}_z", f"{p}_cos4th", f"{p}_sin4th"]
+
 TASKS = {
     "pusht": dict(
         build_q=_build_q_pusht,
@@ -104,6 +146,21 @@ TASKS = {
         state_cols=["qpos", "finger_pos"],
         action_col="action",
         dim_names=["cos_j0", "sin_j0", "cos_j1", "sin_j1", "finger_x", "finger_y"],
+    ),
+    "cube_double": dict(
+        build_q=_build_q_cube_double, loader="lance",
+        state_cols=_ARM_SRC_SLASH + ["privileged/block_0_pos", "privileged/block_0_yaw",
+                                     "privileged/block_1_pos", "privileged/block_1_yaw"],
+        action_col="action",
+        dim_names=_ARM_NAMES + _BLOCK_NAMES("b0") + _BLOCK_NAMES("b1"),
+    ),
+    "scene": dict(
+        build_q=_build_q_scene, loader="lance",
+        state_cols=_ARM_SRC_SLASH + ["privileged/block_0_pos", "privileged/block_0_yaw",
+                                     "privileged/drawer_pos", "privileged/window_pos",
+                                     "privileged/button_0_state", "privileged/button_1_state"],
+        action_col="action",
+        dim_names=_ARM_NAMES + _BLOCK_NAMES("b0") + ["drawer", "window", "btn0", "btn1"],
     ),
     "cube": dict(
         build_q=_build_q_cube_full,
@@ -144,7 +201,30 @@ class GatedActor(nn.Module):
         return -(nll + 0.5 * np.log(2 * np.pi)).sum(-1)  # (B,) log p(a|·)
 
 
+def load_samples_lance(path, spec):
+    from stable_worldmodel.data.formats.lance import LanceDataset
+    need = spec["state_cols"] + [spec["action_col"]]
+    ds = LanceDataset(path=path, keys_to_load=need)
+    ep = np.asarray(ds.get_col_data("episode_idx")).reshape(-1)
+    st = np.asarray(ds.get_col_data("step_idx")).reshape(-1)
+    order = np.lexsort((st, ep))
+    assert (order == np.arange(len(ep))).all(), "lance rows not episode-major"
+    cols = {c: np.asarray(ds.get_col_data(c), dtype=np.float64) for c in spec["state_cols"]}
+    for c in list(cols):
+        if cols[c].ndim == 1:
+            cols[c] = cols[c][:, None]
+    action = np.asarray(ds.get_col_data(spec["action_col"]), dtype=np.float64)
+    q = spec["build_q"](cols)
+    max_h = max(HORIZONS) * FRAMESKIP
+    ok = np.zeros(len(ep), bool)
+    n = len(ep) - max_h - FRAMESKIP
+    ok[:n] = ep[:n] == ep[max_h + FRAMESKIP:]
+    return q, action, np.nonzero(ok)[0]
+
+
 def load_samples(h5_path, spec):
+    if spec.get("loader") == "lance":
+        return load_samples_lance(h5_path, spec)
     with h5py.File(h5_path, "r") as f:
         cols = {c: np.asarray(f[c], dtype=np.float64) for c in spec["state_cols"]}
         for c in spec.get("optional_cols", []):
