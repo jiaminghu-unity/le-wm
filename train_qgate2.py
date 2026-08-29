@@ -33,11 +33,19 @@ from lightning.pytorch.loggers import CSVLogger, WandbLogger
 from omegaconf import OmegaConf, open_dict
 
 import q_cube_full
+import q_native_full
+import q_ogb_multi
+import q_pointmaze
+import q_reacher_full
+import q_tworoom
 import utils
 
-clash = set(q_cube_full.Q_VARIANTS_CUBE_FULL) & set(utils.Q_VARIANTS)
-assert not clash, f"variant collision: {clash}"
-utils.Q_VARIANTS.update(q_cube_full.Q_VARIANTS_CUBE_FULL)
+for _mod in (q_cube_full.Q_VARIANTS_CUBE_FULL, q_native_full.Q_VARIANTS_NATIVE,
+             q_tworoom.Q_VARIANTS_TWOROOM, q_pointmaze.Q_VARIANTS_POINTMAZE,
+             q_reacher_full.Q_VARIANTS_REACHER_FULL, q_ogb_multi.Q_VARIANTS_OGB_MULTI):
+    clash = set(_mod) & set(utils.Q_VARIANTS)
+    assert not clash, f"variant collision: {clash}"
+    utils.Q_VARIANTS.update(_mod)
 
 from train import lejepa_forward, validate_config  # noqa: E402
 from module import SIGReg  # noqa: E402

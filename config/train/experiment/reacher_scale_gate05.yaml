@@ -1,0 +1,35 @@
+# @package _global_
+# GATED full-q SCALE: L_obj on sqrt(g*) x q with the lambda=0.5 Stage-1 gate
+# (train_qgate2.py, QGATE_GCS injected by the chain). Derived from reacher_scale_native.yaml.
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_reacher_scale_gate05_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+      - qvel
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+      - qvel
+
+loss:
+  obj:
+    weight: 0.15
+    q_variant: reacher_native_full
+  aux:
+    weight: 0.0
