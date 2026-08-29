@@ -157,12 +157,20 @@ def main():
     rng = np.random.default_rng(args.seed)
 
     q, action, rows = load_samples(args.h5, spec)
-    q_mean, q_std = q.mean(0), q.std(0) + 1e-8
-    qn = (q - q_mean) / q_std
+    for name, arr in (("q", q), ("action", action)):
+        n_bad = int(np.size(arr) - np.isfinite(arr).sum())
+        if n_bad:
+            print(f"[data] WARNING: {n_bad} non-finite values in {name}, zero-filled", flush=True)
+    q = np.nan_to_num(q, nan=0.0, posinf=0.0, neginf=0.0)
+    action = np.nan_to_num(action, nan=0.0, posinf=0.0, neginf=0.0)
+    # std 下限:近似常数维不许把标准化值炸上天(NaN 事故 2026-08-29 的根因候选)
+    q_mean, q_std = q.mean(0), np.maximum(q.std(0), 1e-3)
+    qn = np.clip((q - q_mean) / q_std, -10.0, 10.0)
+    print("[data] q per-dim std:", np.round(q.std(0), 5).tolist(), flush=True)
     a_dim = action.shape[-1] * FRAMESKIP  # action-chunk dim inferred from data
     a_mean = action.mean(0)
-    a_std = action.std(0) + 1e-8
-    an = (action - a_mean) / a_std
+    a_std = np.maximum(action.std(0), 1e-3)
+    an = np.clip((action - a_mean) / a_std, -10.0, 10.0)
 
     q_dim = qn.shape[-1]
     names = spec["dim_names"]
@@ -195,7 +203,15 @@ def main():
         loss = nll + args.gamma * rank + args.lambda_sparse * g.sum()
         opt.zero_grad(set_to_none=True)
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
+        if step <= 5 or step % 200 == 0:
+            if not torch.isfinite(loss):
+                print(f"FATAL: non-finite loss at step {step} "
+                      f"(nll={float(nll)}, rank={float(rank)}); "
+                      f"batch |q| max={float(q_t.abs().max())}, |a| max={float(a.abs().max())}",
+                      flush=True)
+                raise SystemExit(3)
 
         if step % 200 == 0 or step == 1:
             with torch.no_grad():

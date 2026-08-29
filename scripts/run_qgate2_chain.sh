@@ -49,13 +49,19 @@ def fetch(lam):
 cands = {lam: fetch(lam) for lam in ("0.01","0.003","0.03")}
 if any(v is None for v in cands.values()):
     print(0); sys.exit()
+import math
+def usable(p):
+    gs = list(p["g_star"].values())
+    return p["verdict"] == "OK" and all(isinstance(v, (int, float)) and math.isfinite(v) for v in gs)
 choice, reason = None, ""
-for lam in ("0.01","0.003"):
-    if cands[lam]["verdict"] == "OK":
-        choice, reason = lam, f"lambda={lam} verdict OK (blind gap {cands[lam]['goal_blind_gap_nats']})"
+for lam in ("0.01","0.003","0.03"):
+    if usable(cands[lam]):
+        choice, reason = lam, f"lambda={lam} verdict OK, gates finite (blind gap {cands[lam]['goal_blind_gap_nats']})"
         break
 if choice is None:
-    choice, reason = "0.01", "WARNING: no lambda passed the goal-blind check; using 0.01 anyway"
+    # 绝不拿不可解释/非有限的 gate 去训练:拒绝放行,链子继续等
+    print("[pick] REFUSED: no lambda has verdict OK with finite gates", file=__import__("sys").stderr, flush=True)
+    print(0); __import__("sys").exit()
 payload = cands[choice]; payload["chosen_lambda"] = choice; payload["choice_reason"] = reason
 open("/tmp/g_star_cube.json","w").write(json.dumps(payload, ensure_ascii=False, indent=1))
 subprocess.run(["gcloud","storage","cp","/tmp/g_star_cube.json",f"{B}/qgate/g_star_cube.json"],
