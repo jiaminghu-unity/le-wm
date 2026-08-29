@@ -99,6 +99,12 @@ TASKS = {
         dim_names=["cos_j0", "sin_j0", "cos_j1", "sin_j1", "finger_x", "finger_y"],
         optional_dim_names=["qvel_0", "qvel_1"],
     ),
+    "reacher_novel": dict(  # 对照:Q_t 不含 qvel(检验"速度冗余"解释)
+        build_q=_build_q_reacher,
+        state_cols=["qpos", "finger_pos"],
+        action_col="action",
+        dim_names=["cos_j0", "sin_j0", "cos_j1", "sin_j1", "finger_x", "finger_y"],
+    ),
     "cube": dict(
         build_q=_build_q_cube_full,
         state_cols=_CUBE_COLS,

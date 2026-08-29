@@ -10,6 +10,7 @@ case "$TASK" in
   pusht) H5NAME=pusht_expert_train.h5; SRC="$BUCKET/datasets/pusht_expert_train.h5"; TAR=0 ;;
   cube)  H5NAME=cube_single_expert.h5; SRC="$BUCKET/datasets/ogbench/cube_single_expert.tar.zst"; TAR=1 ;;
   reacher) H5NAME=reacher.h5; SRC="$BUCKET/datasets/reacher.h5"; TAR=0 ;;
+  reacher_novel) H5NAME=reacher.h5; SRC="$BUCKET/datasets/reacher.h5"; TAR=0 ;;
   *) echo "task $TASK not wired yet" >&2; exit 1 ;;
 esac
 SSD=/mnt/disks/ssd0
