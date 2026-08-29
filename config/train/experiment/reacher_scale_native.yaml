@@ -1,0 +1,35 @@
+# @package _global_
+# SCALE on Reacher's COMPLETE native q (8-d: joints cos/sin + finger + qvel,
+# reacher_native_full). L_obj weight matches the reacher full-q SCALE arm (0.15).
+defaults:
+  - override /data: dmc
+
+output_model_name: lewm_reacher_scale_native_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+data:
+  dataset:
+    keys_to_load:
+      - pixels
+      - action
+      - observation
+      - qpos
+      - finger_pos
+      - qvel
+    keys_to_cache:
+      - action
+      - observation
+      - qpos
+      - finger_pos
+      - qvel
+
+loss:
+  obj:
+    weight: 0.15
+    q_variant: reacher_native_full
+  aux:
+    weight: 0.0

@@ -1,0 +1,17 @@
+# @package _global_
+# SCALE on Push-T's COMPLETE native q (8-d incl velocities, pusht_state_native).
+# Same L_obj weight as the canonical pusht SCALE arm (0.1); only the q variant
+# differs (canonical uses the 6-d velocity-free subset).
+output_model_name: lewm_pusht_scale_native_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: pusht_state_native
+  aux:
+    weight: 0.0
