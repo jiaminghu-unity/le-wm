@@ -16,7 +16,7 @@ from scripts import budget_sweep, ogbmulti_preset  # noqa: E402
 
 def main():
     env = sys.argv[sys.argv.index("--env") + 1]
-    assert env in ("cube_double", "scene"), env
+    assert env in ("cube_double", "cube_triple", "cube_quadruple", "scene", "puzzle_3x3"), env
     ogbmulti_preset.register(budget_sweep.ENV_PRESETS)
     ogbmulti_preset.install_lance_dispatch(budget_sweep)
     budget_sweep.main()

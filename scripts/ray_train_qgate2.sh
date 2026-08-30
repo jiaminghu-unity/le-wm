@@ -63,6 +63,14 @@ case "$TASK" in
   pointmaze)
     [ -d "$DS/pointmaze.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/pointmaze.lance" "$DS/pointmaze.lance" ;;
+  cube_triple)
+    mkdir -p "$DS/ogbench"
+    [ -d "$DS/ogbench/cube_triple_play.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/ogbench/cube_triple_play.lance" "$DS/ogbench/cube_triple_play.lance" ;;
+  cube_quadruple)
+    mkdir -p "$DS/ogbench"
+    [ -d "$DS/ogbench/cube_quadruple_play.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/ogbench/cube_quadruple_play.lance" "$DS/ogbench/cube_quadruple_play.lance" ;;
   cube_double)
     mkdir -p "$DS/ogbench"
     [ -d "$DS/ogbench/cube_double_play.lance" ] || \

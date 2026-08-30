@@ -1,0 +1,23 @@
+# Self-collected cube_quadruple (scripts/ogb_collect_multiobj.py; slash-named columns).
+dataset:
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  name: ogbench/cube_quadruple_play.lance
+  keys_to_load:
+    - pixels
+    - action
+    - proprio/effector_pos
+    - proprio/effector_yaw
+    - proprio/gripper_opening
+    - proprio/gripper_contact
+    - proprio/joint_pos
+    - privileged/block_0_pos
+    - privileged/block_0_yaw
+    - privileged/block_1_pos
+    - privileged/block_1_yaw
+    - privileged/block_2_pos
+    - privileged/block_2_yaw
+    - privileged/block_3_pos
+    - privileged/block_3_yaw
+  keys_to_cache:
+    - action
