@@ -33,6 +33,17 @@ export STABLEWM_HOME="$SSD/stable-wm"
 DS="$STABLEWM_HOME/datasets${SUB:+/$SUB}"
 mkdir -p "$DS" "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
 echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
+# reacher.h5 alone is 90G: if the NVMe is crowded with other tasks' staged data,
+# purge datasets that are not this task's before downloading (all re-fetchable).
+if [ ! -f "$DS/$H5NAME" ]; then
+  FREE_G=$(df --output=avail -BG "$SSD" | tail -1 | tr -dc 0-9)
+  if [ "${FREE_G:-0}" -lt 130 ]; then
+    echo "[env] free=${FREE_G}G < 130G -> purging other staged datasets"
+    find "$STABLEWM_HOME/datasets" -mindepth 1 -maxdepth 2 ! -name "$H5NAME" \
+         ! -path "*/$H5NAME*" -print -exec rm -rf {} + 2>/dev/null || true
+    df -h --output=avail "$SSD" | tail -1
+  fi
+fi
 
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd \
