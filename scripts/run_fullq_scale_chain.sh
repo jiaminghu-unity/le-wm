@@ -43,6 +43,7 @@ TRAINS=(
 "rc_scn|lewm_reacher_scale_native_s${SEED}|experiment=reacher_scale_native|bash scripts/ray_train_qnative.sh reacher experiment=reacher_scale_native seed=${SEED}"
 "cd_obj|lewm_cubedouble_obj0.1_s${SEED}|experiment=cubedouble_obj|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_obj seed=${SEED}"
 "sc_obj|lewm_scene_obj0.1_s${SEED}|experiment=scene_obj|bash scripts/ray_train_qnative.sh scene experiment=scene_obj seed=${SEED}"
+"cb_n100|lewm_cube_noise100_s${SEED}|experiment=cube_noise100_scale|bash scripts/ray_train_qnative.sh cube experiment=cube_noise100_scale seed=${SEED}"
 )
 # task|cfg|run|launcher-args(env included)|out-prefix
 EVALS=()
@@ -50,9 +51,11 @@ for spec in \
   "pusht|objnat|lewm_pusht_scale_native_s${SEED}|ray_eval_final.sh pusht|final_eval" \
   "reacher|objnat|lewm_reacher_scale_native_s${SEED}|ray_eval_final.sh reacher|final_eval" \
   "cube_double|obj|lewm_cubedouble_obj0.1_s${SEED}|ray_eval_ogbmulti.sh cube_double|final_eval_ogbmulti" \
-  "scene|obj|lewm_scene_obj0.1_s${SEED}|ray_eval_ogbmulti.sh scene|final_eval_ogbmulti"; do
+  "scene|obj|lewm_scene_obj0.1_s${SEED}|ray_eval_ogbmulti.sh scene|final_eval_ogbmulti" \
+  "cube|n100|lewm_cube_noise100_s${SEED}|ray_eval_final.sh cube|final_eval"; do
   IFS='|' read -r task cfg run largs outp <<< "$spec"
-  for sol in cem icem; do
+  SOLS="cem icem"; [ "$task" = cube ] && SOLS="cem icem mppi"
+  for sol in $SOLS; do
     EVALS+=("${task}|${cfg}|${run}|${largs}|${outp}|${sol}|101 102 103")
     EVALS+=("${task}|${cfg}|${run}|${largs}|${outp}|${sol}|104 105 106")
   done
@@ -96,7 +99,7 @@ for round in $(seq 1 8000); do
     else log "$key submit FAILED"; fi
     submitted=1; break
   done
-  [ "$left" = 0 ] && { log "FULL-Q SCALE TRAININGS + EVALS COMPLETE (64 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "FULL-Q SCALE TRAININGS + EVALS COMPLETE (5 trains, 66 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1

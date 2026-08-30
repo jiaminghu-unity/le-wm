@@ -22,12 +22,13 @@ import q_native_full
 import q_ogb_multi
 import q_pointmaze
 import q_reacher_full
+import q_cube_noise
 import q_tworoom
 import utils
 
 _ALL = (q_cube_full.Q_VARIANTS_CUBE_FULL, q_native_full.Q_VARIANTS_NATIVE,
         q_tworoom.Q_VARIANTS_TWOROOM, q_pointmaze.Q_VARIANTS_POINTMAZE,
-        q_reacher_full.Q_VARIANTS_REACHER_FULL,
+        q_reacher_full.Q_VARIANTS_REACHER_FULL, q_cube_noise.Q_VARIANTS_CUBE_NOISE,
         q_ogb_multi.Q_VARIANTS_OGB_MULTI)
 for mod in _ALL:
     clash = set(mod) & set(utils.Q_VARIANTS)
