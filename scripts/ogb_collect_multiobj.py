@@ -100,7 +100,8 @@ def main():
             assert px.std() > 5, "pixels look constant"
     needed = [k for k in keys if "effector" in k or "block" in k or k in ("qpos", "qvel", "action")]
     print(f"[verify] state-ish columns present: {needed}", flush=True)
-    assert any("block" in k for k in keys) and "action" in keys, "missing q/action columns"
+    marker = "button" if args.task.startswith("puzzle") else "block"
+    assert any(marker in k for k in keys) and "action" in keys, "missing q/action columns"
     print("[done]", flush=True)
 
 
