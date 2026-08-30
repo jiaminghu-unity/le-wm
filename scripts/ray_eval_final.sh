@@ -31,8 +31,6 @@ if ! mountpoint -q "$SSD"; then
 fi
 export STABLEWM_HOME="$SSD/stable-wm"
 DS="$STABLEWM_HOME/datasets${SUB:+/$SUB}"
-mkdir -p "$DS" "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
-echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 # reacher.h5 alone is 90G: if the NVMe is crowded with other tasks' staged data,
 # purge datasets that are not this task's before downloading (all re-fetchable).
 if [ ! -f "$DS/$H5NAME" ]; then
@@ -45,6 +43,8 @@ if [ ! -f "$DS/$H5NAME" ]; then
     df -h --output=avail "$SSD" | tail -1
   fi
 fi
+mkdir -p "$DS" "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
+echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd \
