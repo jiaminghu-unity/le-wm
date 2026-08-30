@@ -24,7 +24,7 @@ ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
 request_resources(bundles=[{'GPU':1}]*16)" >> "$LOG" 2>&1 && echo "[$(ts)] ray restarted, 8-GPU request placed" >> "$LOG"
 
 # relaunch missing chains (idempotent: GCS done-checks make restarts free)
-for chain in run_qgate2_chain run_fullq_scale_chain run_gatedq_scale_chain; do
+for chain in run_gatedq_scale_chain run_tq_scale_chain; do
   if ! ps -eo cmd | grep -q "[b]ash scripts/${chain}.sh"; then
     cd /workspace/le-wm && nohup bash "scripts/${chain}.sh" > /dev/null 2>&1 &
     echo "[$(ts)] relaunched $chain" >> "$LOG"
