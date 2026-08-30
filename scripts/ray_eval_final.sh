@@ -38,9 +38,10 @@ echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD
 if [ ! -f "$DS/$H5NAME" ]; then
   FREE_G=$(df --output=avail -BG "$SSD" | tail -1 | tr -dc 0-9)
   if [ "${FREE_G:-0}" -lt 130 ]; then
-    echo "[env] free=${FREE_G}G < 130G -> purging other staged datasets"
+    echo "[env] free=${FREE_G}G < 130G -> purging other staged datasets + stale partial downloads"
+    rm -f "$DS/${H5NAME}_.gstmp" "$DS"/*.gstmp 2>/dev/null || true
     find "$STABLEWM_HOME/datasets" -mindepth 1 -maxdepth 2 ! -name "$H5NAME" \
-         ! -path "*/$H5NAME*" -print -exec rm -rf {} + 2>/dev/null || true
+         -print -exec rm -rf {} + 2>/dev/null || true
     df -h --output=avail "$SSD" | tail -1
   fi
 fi
