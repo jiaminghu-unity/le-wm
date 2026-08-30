@@ -41,16 +41,16 @@ sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
 TRAINS=(
 "pt_scn|lewm_pusht_scale_native_s${SEED}|experiment=pusht_scale_native|bash scripts/ray_train_qnative.sh pusht experiment=pusht_scale_native seed=${SEED}"
 "rc_scn|lewm_reacher_scale_native_s${SEED}|experiment=reacher_scale_native|bash scripts/ray_train_qnative.sh reacher experiment=reacher_scale_native seed=${SEED}"
-"cd_obj|lewm_cubedouble_obj_s${SEED}|experiment=cubedouble_obj|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_obj seed=${SEED}"
-"sc_obj|lewm_scene_obj_s${SEED}|experiment=scene_obj|bash scripts/ray_train_qnative.sh scene experiment=scene_obj seed=${SEED}"
+"cd_obj|lewm_cubedouble_obj0.1_s${SEED}|experiment=cubedouble_obj|bash scripts/ray_train_qnative.sh cube_double experiment=cubedouble_obj seed=${SEED}"
+"sc_obj|lewm_scene_obj0.1_s${SEED}|experiment=scene_obj|bash scripts/ray_train_qnative.sh scene experiment=scene_obj seed=${SEED}"
 )
 # task|cfg|run|launcher-args(env included)|out-prefix
 EVALS=()
 for spec in \
   "pusht|objnat|lewm_pusht_scale_native_s${SEED}|ray_eval_final.sh pusht|final_eval" \
   "reacher|objnat|lewm_reacher_scale_native_s${SEED}|ray_eval_final.sh reacher|final_eval" \
-  "cube_double|obj|lewm_cubedouble_obj_s${SEED}|ray_eval_ogbmulti.sh cube_double|final_eval_ogbmulti" \
-  "scene|obj|lewm_scene_obj_s${SEED}|ray_eval_ogbmulti.sh scene|final_eval_ogbmulti"; do
+  "cube_double|obj|lewm_cubedouble_obj0.1_s${SEED}|ray_eval_ogbmulti.sh cube_double|final_eval_ogbmulti" \
+  "scene|obj|lewm_scene_obj0.1_s${SEED}|ray_eval_ogbmulti.sh scene|final_eval_ogbmulti"; do
   IFS='|' read -r task cfg run largs outp <<< "$spec"
   for sol in cem icem; do
     EVALS+=("${task}|${cfg}|${run}|${largs}|${outp}|${sol}|101 102 103")
