@@ -30,6 +30,9 @@ os.environ.setdefault("MUJOCO_GL", "egl")
 import stable_worldmodel as swm  # noqa: E402
 from stable_worldmodel.envs.ogbench.expert_policy import ExpertPolicy  # noqa: E402
 
+import swm_ext.register  # noqa: E402,F401  (adds swm/OGBPuzzle-v0)
+from swm_ext.expert_policy import PuzzleExpertPolicy  # noqa: E402
+
 TASKS = {
     "cube_double": dict(env="swm/OGBCube-v0",
                         env_kwargs=dict(env_type="double", ob_type="states", multiview=False, mode="data_collection",
@@ -43,6 +46,9 @@ TASKS = {
     "scene": dict(env="swm/OGBScene-v0",
                   env_kwargs=dict(ob_type="states", multiview=False, mode="data_collection",
                                   visualize_info=False, terminate_at_goal=False)),
+    "puzzle_3x3": dict(env="swm/OGBPuzzle-v0",
+                       env_kwargs=dict(env_type="3x3", ob_type="states", multiview=False, mode="data_collection",
+                                       visualize_info=False, terminate_at_goal=False)),
 }
 
 
@@ -71,7 +77,8 @@ def main():
     n_ep = 2 if args.smoke else args.episodes
     world = swm.World(env_name=spec["env"], num_envs=1, image_shape=(224, 224),
                       max_episode_steps=args.steps, **spec["env_kwargs"])
-    policy = ExpertPolicy(policy_type="markov_oracle", seed=args.seed)
+    pol_cls = PuzzleExpertPolicy if args.task.startswith("puzzle") else ExpertPolicy
+    policy = pol_cls(policy_type="markov_oracle", seed=args.seed)
     world.set_policy(policy)
 
     out = Path(args.out)

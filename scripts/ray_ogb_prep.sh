@@ -8,7 +8,7 @@
 # is touched. EGL rendering, same env stack as the eval workers.
 set -euo pipefail
 
-TASK="${1:?cube_double|cube_triple|cube_quadruple|scene}"
+TASK="${1:?cube_double|cube_triple|cube_quadruple|scene|puzzle_3x3}"
 BUCKET=gs://prism-training-us/le-wm
 OUTNAME="${TASK}_play"
 
