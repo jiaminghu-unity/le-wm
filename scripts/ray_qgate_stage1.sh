@@ -13,6 +13,9 @@ case "$TASK" in
   reacher_novel) H5NAME=reacher.h5; SRC="$BUCKET/datasets/reacher.h5"; TAR=0 ;;
   cube_double) LANCE=cube_double_play.lance ;;
   scene)       LANCE=scene_play.lance ;;
+  cube_triple)    LANCE=cube_triple_play.lance ;;
+  cube_quadruple) LANCE=cube_quadruple_play.lance ;;
+  puzzle_3x3)     LANCE=puzzle_3x3_play.lance ;;
   *) echo "task $TASK not wired yet" >&2; exit 1 ;;
 esac
 SSD=/mnt/disks/ssd0
@@ -31,7 +34,7 @@ fi
 if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
 source "$SSD/.venv/bin/activate"
 uv pip install -q torch numpy h5py hdf5plugin 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin
-[ -n "${LANCE:-}" ] && uv pip install -q 'stable-worldmodel[format]' 
+[ -n "${LANCE:-}" ] && uv pip install -q 'stable-worldmodel[format]' opencv-python-headless 
 if [ -n "${LANCE:-}" ]; then
   H5="$SSD/stable-wm/datasets/ogbench/$LANCE"
   mkdir -p "$(dirname "$H5")"
