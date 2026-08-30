@@ -2,6 +2,9 @@
 # STRESS TEST: SCALE on the 22-d cube full-config q padded to 100 dims with iid
 # standard-Gaussian noise (resampled per load). Same obj weight as SCALE-All;
 # the only difference vs qall_scale_cube is the 78 pure-noise metric dims.
+defaults:
+  - override /data: ogb_cube_full
+
 output_model_name: lewm_cube_noise100_s${seed}
 subdir: ${output_model_name}
 
