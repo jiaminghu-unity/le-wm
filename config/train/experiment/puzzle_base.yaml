@@ -13,4 +13,4 @@ trainer:
 loss:
   obj:
     weight: 0.0
-    q_variant: scene_full
+    q_variant: puzzle_3x3_full
