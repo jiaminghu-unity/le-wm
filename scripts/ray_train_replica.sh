@@ -46,7 +46,9 @@ case "$TASK" in
     [ -d "$DS/pusht_expert_train.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/pusht_expert_train.lance" "$DS/pusht_expert_train.lance" ;;
   reacher)
-    [ -f "$DS/reacher.h5" ] || gcloud storage cp "$BUCKET/datasets/reacher.h5" "$DS/" ;;
+    [ -f "$DS/reacher.h5" ] || gcloud storage cp "$BUCKET/datasets/reacher.h5" "$DS/"
+    [ -d "$DS/reacher.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/reacher.lance" "$DS/reacher.lance" ;;
   cube)
     mkdir -p "$DS/ogbench"
     [ -d "$DS/ogbench/cube_single_expert.lance" ] || \
