@@ -13,6 +13,8 @@ Scene extras: drawer_pos, window_pos (slide positions), button states x2.
 Registered at runtime by train_qnative.py; utils.Q_VARIANTS untouched.
 """
 
+from functools import partial
+
 import torch
 
 
@@ -54,6 +56,24 @@ def build_q_scene_full(eff_pos, eff_yaw, grip_open, grip_contact, joint_pos,
 _ARM_SRC = ["proprio/effector_pos", "proprio/effector_yaw", "proprio/gripper_opening",
             "proprio/gripper_contact", "proprio/joint_pos"]
 
+def _build_cube_n(n, *cols):
+    """Module-level (picklable for DataLoader workers; a closure is not)."""
+    arm = _arm17(*cols[:5])
+    blocks = [_block5(cols[5 + 2 * i], cols[6 + 2 * i]) for i in range(n)]
+    q = torch.cat([arm] + blocks, dim=-1)
+    assert q.shape[-1] == 17 + 5 * n, q.shape
+    return q
+
+
+def build_q_puzzle_full(*cols):
+    import torch
+    arm = _arm17(*cols[:5])
+    btns = [c.reshape(*c.shape[:-1], -1)[..., :1] for c in cols[5:14]]
+    q = torch.cat([arm] + btns, dim=-1)
+    assert q.shape[-1] == 26, q.shape
+    return q
+
+
 Q_VARIANTS_OGB_MULTI = {
     "cube_double_full": (
         build_q_cube_double_full,
@@ -68,4 +88,13 @@ Q_VARIANTS_OGB_MULTI = {
                     "privileged/button_0_state", "privileged/button_1_state"],
         ("proprio/effector_yaw", 0, -3.15, 3.15),
     ),
+    "cube_triple_full": (partial(_build_cube_n, 3),
+        _ARM_SRC + [c for i in range(3) for c in (f"privileged/block_{i}_pos", f"privileged/block_{i}_yaw")],
+        ("proprio/effector_yaw", 0, -3.15, 3.15)),
+    "cube_quadruple_full": (partial(_build_cube_n, 4),
+        _ARM_SRC + [c for i in range(4) for c in (f"privileged/block_{i}_pos", f"privileged/block_{i}_yaw")],
+        ("proprio/effector_yaw", 0, -3.15, 3.15)),
+    "puzzle_3x3_full": (build_q_puzzle_full,
+        _ARM_SRC + [f"privileged/button_{i}_state" for i in range(9)],
+        ("proprio/effector_yaw", 0, -3.15, 3.15)),
 }
