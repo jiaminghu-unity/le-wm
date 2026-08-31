@@ -57,8 +57,9 @@ for round in $(seq 1 9000); do
       continue
     fi
     # phase 1: trainings
-    for arm in obj g01 g03 g05 g10; do
+    for arm in base obj g01 g03 g05 g10; do
       case $arm in
+        base) run="lewm_${cfg}_base_s${SEED}"; exp="${cfg}_base"; gate="" ;;
         obj) run="lewm_${cfg}_obj0.1_s${SEED}"; exp="${cfg}_obj"; gate="" ;;
         *)   g=${arm#g}; run="lewm_${cfg}_scale_gate${g}_s${SEED}"; exp="${cfg}_scale_gate${g}"
              case $g in 01) lam=0.01;; 03) lam=0.03;; 05) lam=0.05;; 10) lam=0.1;; esac
@@ -89,7 +90,7 @@ for round in $(seq 1 9000); do
       done
     done
   done
-  [ "$left" = 0 ] && { log "TRIPLE/QUAD STAGE-2 COMPLETE (10 arms, 120 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "TRIPLE/QUAD STAGE-2 COMPLETE (12 arms, 144 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
