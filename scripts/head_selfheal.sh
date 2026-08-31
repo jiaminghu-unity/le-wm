@@ -29,7 +29,7 @@ request_resources(bundles=[{'GPU':1}]*16)" >> "$LOG" 2>&1 && echo "[$(ts)] ray r
 gcloud auth list 2>/dev/null | grep -q '^\*' || \
   gcloud config set account prism-training-sa@unity-prism-dev.iam.gserviceaccount.com 2>/dev/null
 
-for chain in run_gatedq_scale_chain run_tq_scale_chain; do
+for chain in run_replica3074_chain; do
   if ! ps -eo cmd | grep -q "[b]ash scripts/${chain}.sh"; then
     cd /workspace/le-wm && nohup bash "scripts/${chain}.sh" > /dev/null 2>&1 &
     echo "[$(ts)] relaunched $chain" >> "$LOG"
