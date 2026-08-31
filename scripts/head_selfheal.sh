@@ -24,6 +24,11 @@ ray.init(address='auto', ignore_reinit_error=True, log_to_driver=False)
 request_resources(bundles=[{'GPU':1}]*16)" >> "$LOG" 2>&1 && echo "[$(ts)] ray restarted, 8-GPU request placed" >> "$LOG"
 
 # relaunch missing chains (idempotent: GCS done-checks make restarts free)
+# gcloud active account can vanish under concurrent invocations (sqlite config
+# contention, seen 2026-08-30/31); restore it before the chain checks below.
+gcloud auth list 2>/dev/null | grep -q '^\*' || \
+  gcloud config set account prism-training-sa@unity-prism-dev.iam.gserviceaccount.com 2>/dev/null
+
 for chain in run_gatedq_scale_chain run_tq_scale_chain; do
   if ! ps -eo cmd | grep -q "[b]ash scripts/${chain}.sh"; then
     cd /workspace/le-wm && nohup bash "scripts/${chain}.sh" > /dev/null 2>&1 &
