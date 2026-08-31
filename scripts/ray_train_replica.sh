@@ -46,6 +46,17 @@ case "$TASK" in
     [ -d "$DS/pusht_expert_train.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/pusht_expert_train.lance" "$DS/pusht_expert_train.lance" ;;
   reacher)
+    # h5 + lance 共 ~180G:空间不足先清其他任务的暂存(全部可重拉)与半截下载
+    if [ ! -f "$DS/reacher.h5" ] || [ ! -d "$DS/reacher.lance" ]; then
+      FREE_G=$(df --output=avail -BG /mnt/disks/ssd0 | tail -1 | tr -dc 0-9)
+      if [ "${FREE_G:-0}" -lt 200 ]; then
+        echo "[env] free=${FREE_G}G < 200G -> purge other staged datasets"
+        rm -f "$DS"/*.gstmp 2>/dev/null || true
+        find "$DS" -mindepth 1 -maxdepth 1 ! -name "reacher.h5" ! -name "reacher.lance" \
+             -print -exec rm -rf {} + 2>/dev/null || true
+        df -h --output=avail /mnt/disks/ssd0 | tail -1
+      fi
+    fi
     [ -f "$DS/reacher.h5" ] || gcloud storage cp "$BUCKET/datasets/reacher.h5" "$DS/"
     [ -d "$DS/reacher.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/reacher.lance" "$DS/reacher.lance" ;;
