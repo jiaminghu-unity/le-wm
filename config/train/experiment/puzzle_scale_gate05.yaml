@@ -1,0 +1,16 @@
+# @package _global_
+# puzzle_3x3: SCALE (SIGReg + L_obj 0.1 on FULL-CONFIG q, weight carried from the cube family).
+defaults:
+  - override /data: ogb_puzzle
+
+output_model_name: lewm_puzzle_scale_gate05_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: puzzle_3x3_full

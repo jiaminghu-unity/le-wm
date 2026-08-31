@@ -1,0 +1,24 @@
+# Self-collected puzzle_3x3 (scripts/ogb_collect_multiobj.py; slash-named columns).
+dataset:
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  name: ogbench/puzzle_3x3_play.lance
+  keys_to_load:
+    - pixels
+    - action
+    - proprio/effector_pos
+    - proprio/effector_yaw
+    - proprio/gripper_opening
+    - proprio/gripper_contact
+    - proprio/joint_pos
+    - privileged/button_0_state
+    - privileged/button_1_state
+    - privileged/button_2_state
+    - privileged/button_3_state
+    - privileged/button_4_state
+    - privileged/button_5_state
+    - privileged/button_6_state
+    - privileged/button_7_state
+    - privileged/button_8_state
+  keys_to_cache:
+    - action

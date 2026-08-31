@@ -25,6 +25,11 @@ _ARM = ["proprio/effector_pos", "proprio/effector_yaw", "proprio/gripper_opening
         "proprio/gripper_contact", "proprio/joint_pos"]
 _COMMON_KEYS = ["pixels", "action", "qpos", "qvel"] + _ARM
 
+try:
+    import swm_ext.register  # noqa: F401  (adds swm/OGBPuzzle-v0 for the puzzle preset)
+except Exception as _e:  # pragma: no cover
+    print(f"[preset] swm_ext register unavailable: {_e}")
+
 PRESETS = {
     "cube_double": {
         "env_name": "swm/OGBCube-v0",
@@ -114,6 +119,57 @@ PRESETS = {
              "args": {"cube_id": {"value": 3, "in_dataset": False},
                       "target_pos": {"value": "goal_privileged/block_3_pos"},
                       "target_quat": {"value": "goal_privileged/block_3_quat"}}},
+        ],
+    },
+    "puzzle_3x3": {
+        "env_name": "swm/OGBPuzzle-v0",
+        "env_kwargs": {
+            "env_type": "3x3", "ob_type": "states", "multiview": False,
+            "visualize_info": False, "terminate_at_goal": True,
+        },
+        "dataset": "ogbench/puzzle_3x3_play.lance",
+        "process_cols": ["action"],
+        "keys_to_load": _COMMON_KEYS + [
+            "privileged/button_0_state",
+            "privileged/button_1_state",
+            "privileged/button_2_state",
+            "privileged/button_3_state",
+            "privileged/button_4_state",
+            "privileged/button_5_state",
+            "privileged/button_6_state",
+            "privileged/button_7_state",
+            "privileged/button_8_state",
+        ],
+        "callables": [
+            {"method": "set_state",
+             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 0, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_0_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 1, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_1_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 2, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_2_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 3, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_3_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 4, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_4_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 5, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_5_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 6, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_6_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 7, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_7_state"}}},
+            {"method": "set_target_button_state",
+             "args": {"button_id": {"value": 8, "in_dataset": False},
+                      "target_state": {"value": "goal_privileged/button_8_state"}}},
         ],
     },
     "scene": {
