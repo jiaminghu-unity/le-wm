@@ -142,7 +142,7 @@ PRESETS = {
         ],
         "callables": [
             {"method": "set_state",
-             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}}},
+             "args": {"qpos": {"value": "qpos"}, "qvel": {"value": "qvel"}, "button_state_0": {"value": "privileged/button_0_state"}, "button_state_1": {"value": "privileged/button_1_state"}, "button_state_2": {"value": "privileged/button_2_state"}, "button_state_3": {"value": "privileged/button_3_state"}, "button_state_4": {"value": "privileged/button_4_state"}, "button_state_5": {"value": "privileged/button_5_state"}, "button_state_6": {"value": "privileged/button_6_state"}, "button_state_7": {"value": "privileged/button_7_state"}, "button_state_8": {"value": "privileged/button_8_state"}}},
             {"method": "set_target_button_state",
              "args": {"button_id": {"value": 0, "in_dataset": False},
                       "target_state": {"value": "goal_privileged/button_0_state"}}},
