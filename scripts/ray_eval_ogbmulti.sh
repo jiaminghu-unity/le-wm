@@ -15,6 +15,9 @@ OUTP="$BUCKET/final_eval_ogbmulti"
 case "$TASK" in
   cube_double) LANCE=cube_double_play.lance ;;
   scene)       LANCE=scene_play.lance ;;
+  cube_triple)    LANCE=cube_triple_play.lance ;;
+  cube_quadruple) LANCE=cube_quadruple_play.lance ;;
+  puzzle_3x3)     LANCE=puzzle_3x3_play.lance ;;
   *) echo "unknown task $TASK" >&2; exit 1 ;;
 esac
 
