@@ -53,7 +53,8 @@ sudo apt-get install -y -q swig build-essential zstd \
 # The DL image ships the NVIDIA COMPUTE driver only: no libEGL_nvidia, no
 # 10_nvidia.json, so MUJOCO_GL=egl silently degrades to software rendering and the
 # env's pixels stop matching the dataset the model was trained on (MAE 4.83 vs 2.34).
-sudo apt-get install -y -q libnvidia-gl-580-server || true
+DRV=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | head -1 | cut -d. -f1)
+sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}-server" || sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}" || sudo apt-get install -y -q libnvidia-gl-580-server || true
 sudo usermod -aG render "$(id -un)" 2>/dev/null || true
 if ! command -v uv >/dev/null; then
   pip install -q uv
@@ -102,9 +103,11 @@ echo "[gl] $GL"
 # shifts. But the verdict is recorded next to the results instead of vanishing into the
 # job log, which is what let a failed cube gate go unnoticed.
 GATELOG="$SSD/render_gate_${TASK}.log"
-python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG" || \
-  echo "[warn] render fidelity gate FAILED — absolute SR not comparable to published numbers" \
-    | tee -a "$GATELOG"
+if ! python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG"; then
+  echo "[FATAL] render fidelity gate FAILED — aborting so no biased CSV is uploaded" | tee -a "$GATELOG"
+  gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
+  exit 41
+fi
 gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
 
 mkdir -p "$SSD/eps"

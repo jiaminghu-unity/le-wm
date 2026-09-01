@@ -42,7 +42,10 @@ echo "[env] mppi_t/$TASK/$CFG T={$TS} on $(hostname)"
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd curl patchelf \
   libosmesa6-dev libglew-dev libgl1-mesa-dev libglfw3 \
-  libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1
+  libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 \
+  libegl1 libegl-mesa0 libgles2 libglvnd0 libopengl0 libosmesa6
+DRV=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | head -1 | cut -d. -f1)
+sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}-server" || sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}" || true
 if [ "$TASK" = pointmaze ] && [ ! -d "$HOME/.mujoco/mujoco210" ]; then
   mkdir -p "$HOME/.mujoco"
   curl -fsSL https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz | tar -xz -C "$HOME/.mujoco"
@@ -86,6 +89,14 @@ gcloud storage cp "$BUCKET/$CKP/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoin
 RC=0
 IFS=',' read -ra TARR <<< "$TS"
 IFS=',' read -ra SARR <<< "$SEEDLIST"
+# render fidelity gate (hard abort: a soft-rendered worker biases SR ~20pp on reacher)
+GATELOG="$SSD/render_gate_${TASK}.log"
+if ! python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG"; then
+  echo "[FATAL] render fidelity gate FAILED — aborting" | tee -a "$GATELOG"
+  gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
+  exit 41
+fi
+
 for T in "${TARR[@]}"; do
   for S in "${SARR[@]}"; do
     EPSNAME="episodes_${TASK}_s${S}_100.json"

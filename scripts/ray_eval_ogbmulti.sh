@@ -38,7 +38,8 @@ sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd \
   libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 \
   libegl1 libegl-mesa0 libgles2 libglvnd0 libopengl0 libosmesa6 libosmesa6-dev
-sudo apt-get install -y -q libnvidia-gl-580-server || true
+DRV=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | head -1 | cut -d. -f1)
+sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}-server" || sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}" || sudo apt-get install -y -q libnvidia-gl-580-server || true
 sudo usermod -aG render "$(id -un)" 2>/dev/null || true
 if ! command -v uv >/dev/null; then
   pip install -q uv
