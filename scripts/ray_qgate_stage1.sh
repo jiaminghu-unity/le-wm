@@ -54,10 +54,17 @@ if [ -z "${LANCE:-}" ] && [ ! -f "$H5" ]; then
     time gcloud storage cp "$SRC" "$H5"
   fi
 fi
+# QGATE_VARIANT: "" (默认 l1+hinge) | "l2" | "infonce" | "l2_infonce"
+SFX=""; EXTRA=()
+case "${QGATE_VARIANT:-}" in
+  l2)         SFX="_l2";        EXTRA=(--reg l2) ;;
+  infonce)    SFX="_nce";       EXTRA=(--rank infonce --neg-k 255 --batch 1024) ;;
+  l2_infonce) SFX="_l2nce";     EXTRA=(--reg l2 --rank infonce --neg-k 255 --batch 1024) ;;
+esac
 for L in "${LAMBDAS[@]}"; do
-  OUT="qgate_stage1_${TASK}_lam${L}.json"
+  OUT="qgate_stage1_${TASK}${SFX}_lam${L}.json"
   if gcloud storage ls "$BUCKET/qgate/$OUT" >/dev/null 2>&1; then echo "[skip] $OUT"; continue; fi
-  python qgate_stage1.py --task "$TASK" --h5 "$H5" --lambda-sparse "$L" --out "$SSD/$OUT"
+  python qgate_stage1.py --task "$TASK" --h5 "$H5" --lambda-sparse "$L" "${EXTRA[@]}" --out "$SSD/$OUT"
   gcloud storage cp "$SSD/$OUT" "$BUCKET/qgate/$OUT"
 done
 echo "QGATE STAGE1 DONE $TASK"
