@@ -1,0 +1,17 @@
+# @package _global_
+# GATED full-q SCALE: L_obj on sqrt(g*) x q with the lambda=0.10 Stage-1 gate
+# (train_qgate2.py, QGATE_GCS injected by the chain). Derived from cubedouble_obj.yaml.
+defaults:
+  - override /data: ogb_double
+
+output_model_name: lewm_cubedouble_nce_gate10_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_double_full
