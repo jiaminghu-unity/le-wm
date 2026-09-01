@@ -42,12 +42,13 @@ Q=$BUCKET/qgate
 log "start: L2-gate Auto-SCALE cube, 4 arms"
 for round in $(seq 1 9000); do
   left=0
-  for fam in l2 nce; do
+  for fam in l2 nce cmb; do
    for g in 01 03 05 10; do
     case $g in 01) lam=0.01;; 03) lam=0.03;; 05) lam=0.05;; 10) lam=0.1;; esac
     case $fam in
       l2)  cfg="ql2g${g}";  gate="$Q/qgate_stage1_cube_l2_lam${lam}.json" ;;
       nce) cfg="qnceg${g}"; gate="$Q/qgate_stage1_cube_nce_lam${lam}.json" ;;
+      cmb) cfg="qcmbg${g}"; gate="$Q/qgate_stage1_cube_l2nce_lam${lam}.json" ;;
     esac
     run="lewm_${cfg}_scale_cube_s${SEED}"
     if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
@@ -69,7 +70,7 @@ for round in $(seq 1 9000); do
     done
    done
   done
-  [ "$left" = 0 ] && { log "VARIANT-GATE AUTO-SCALE COMPLETE (8 arms, 144 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "VARIANT-GATE AUTO-SCALE COMPLETE (12 arms, 216 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
