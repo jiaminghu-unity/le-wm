@@ -110,6 +110,21 @@ def _build_q_cube_double(cols):
     return q
 
 
+def _make_build_q_cube_n(n):
+    def build(cols):
+        q = np.concatenate([_arm17_np(cols)] + [_block5_np(cols, i) for i in range(n)], axis=-1)
+        assert q.shape[-1] == 17 + 5 * n, q.shape
+        return q
+    return build
+
+
+def _build_q_puzzle(cols):
+    flat = lambda k: cols[k].reshape(*cols[k].shape[:-1], -1)[..., :1]
+    q = np.concatenate([_arm17_np(cols)] + [flat(f"privileged/button_{i}_state") for i in range(9)], axis=-1)
+    assert q.shape[-1] == 26, q.shape
+    return q
+
+
 def _build_q_scene(cols):
     flat = lambda k: cols[k].reshape(*cols[k].shape[:-1], -1)[..., :1]
     q = np.concatenate([_arm17_np(cols), _block5_np(cols, 0),
@@ -161,6 +176,24 @@ TASKS = {
                                      "privileged/button_0_state", "privileged/button_1_state"],
         action_col="action",
         dim_names=_ARM_NAMES + _BLOCK_NAMES("b0") + ["drawer", "window", "btn0", "btn1"],
+    ),
+    "cube_triple": dict(
+        build_q=_make_build_q_cube_n(3), loader="lance",
+        state_cols=_ARM_SRC_SLASH + ["privileged/block_0_pos", "privileged/block_0_yaw"] + ["privileged/block_1_pos", "privileged/block_1_yaw"] + ["privileged/block_2_pos", "privileged/block_2_yaw"],
+        action_col="action",
+        dim_names=_ARM_NAMES + _BLOCK_NAMES("b0") + _BLOCK_NAMES("b1") + _BLOCK_NAMES("b2"),
+    ),
+    "cube_quadruple": dict(
+        build_q=_make_build_q_cube_n(4), loader="lance",
+        state_cols=_ARM_SRC_SLASH + ["privileged/block_0_pos", "privileged/block_0_yaw"] + ["privileged/block_1_pos", "privileged/block_1_yaw"] + ["privileged/block_2_pos", "privileged/block_2_yaw"] + ["privileged/block_3_pos", "privileged/block_3_yaw"],
+        action_col="action",
+        dim_names=_ARM_NAMES + _BLOCK_NAMES("b0") + _BLOCK_NAMES("b1") + _BLOCK_NAMES("b2") + _BLOCK_NAMES("b3"),
+    ),
+    "puzzle_3x3": dict(
+        build_q=_build_q_puzzle, loader="lance",
+        state_cols=_ARM_SRC_SLASH + [f"privileged/button_{i}_state" for i in range(9)],
+        action_col="action",
+        dim_names=_ARM_NAMES + [f"btn{i}" for i in range(9)],
     ),
     "cube": dict(
         build_q=_build_q_cube_full,
@@ -252,6 +285,13 @@ def main():
     ap.add_argument("--h5", required=True)
     ap.add_argument("--lambda-sparse", type=float, required=True)
     ap.add_argument("--gamma", type=float, default=1.0)
+    ap.add_argument("--reg", choices=["l1", "l2"], default="l1",
+                    help="gate sparsity penalty: l1 = lambda*sum(g) (drives gates to zero), "
+                         "l2 = lambda*sum(g^2) (shrinks without zeroing)")
+    ap.add_argument("--rank", choices=["hinge", "infonce"], default="hinge",
+                    help="goal-identifiability loss: hinge = single-negative margin (K=1, m nats), "
+                         "infonce = 1 positive vs --neg-k in-batch negatives at tau=1")
+    ap.add_argument("--neg-k", type=int, default=255)
     ap.add_argument("--margin", type=float, default=1.0)
     ap.add_argument("--steps", type=int, default=8000)
     ap.add_argument("--batch", type=int, default=4096)
@@ -308,11 +348,29 @@ def main():
         dq_neg = torch.roll(q_g, 1, dims=0) - q_t   # in-batch shuffled goal (other trajectory)
 
         lp_pos = model.log_prob(q_t, dq_pos, a)
-        lp_neg = model.log_prob(q_t, dq_neg, a)
         nll = -lp_pos.mean()
-        rank = F.relu(args.margin - (lp_pos - lp_neg)).mean()
+        if args.rank == "hinge":
+            lp_neg = model.log_prob(q_t, dq_neg, a)
+            rank = F.relu(args.margin - (lp_pos - lp_neg)).mean()
+        else:
+            # InfoNCE at tau=1 (logp is already in nats): 1 positive vs K in-batch
+            # negatives (goal displacements of K other samples, rolled indices),
+            # scored in ONE batched forward -- run with --batch <= 1024 so the
+            # (B*(K+1)) activation footprint stays a few GB.
+            B = q_t.shape[0]
+            K = min(args.neg_k, B - 1)
+            idx = (torch.arange(B, device=dev)[:, None]
+                   + torch.arange(1, K + 1, device=dev)[None, :]) % B      # (B, K)
+            dq_all = torch.cat([dq_pos[:, None, :], q_g[idx] - q_t[:, None, :]], dim=1)  # (B, 1+K, d)
+            q_rep = q_t[:, None, :].expand(-1, K + 1, -1)
+            a_rep = a[:, None, :].expand(-1, K + 1, -1)
+            logits = model.log_prob(q_rep.reshape(B * (K + 1), -1),
+                                    dq_all.reshape(B * (K + 1), -1),
+                                    a_rep.reshape(B * (K + 1), -1)).view(B, K + 1)
+            rank = F.cross_entropy(logits, torch.zeros(B, dtype=torch.long, device=dev))
         g = model.gates()
-        loss = nll + args.gamma * rank + args.lambda_sparse * g.sum()
+        reg = g.sum() if args.reg == "l1" else (g * g).sum()
+        loss = nll + args.gamma * rank + args.lambda_sparse * reg
         opt.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -345,6 +403,7 @@ def main():
                "g is NOT interpretable at this lambda")
     out = {
         "task": args.task, "lambda_sparse": args.lambda_sparse, "gamma": args.gamma,
+        "reg": args.reg, "rank_loss": args.rank, "neg_k": (args.neg_k if args.rank == "infonce" else 1),
         "margin": args.margin, "steps": args.steps, "seed": args.seed,
         "horizons_wm_steps": list(HORIZONS), "frameskip": FRAMESKIP,
         "dim_names": names,
