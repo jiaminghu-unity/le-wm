@@ -42,29 +42,34 @@ Q=$BUCKET/qgate
 log "start: L2-gate Auto-SCALE cube, 4 arms"
 for round in $(seq 1 9000); do
   left=0
-  for g in 01 03 05 10; do
+  for fam in l2 nce; do
+   for g in 01 03 05 10; do
     case $g in 01) lam=0.01;; 03) lam=0.03;; 05) lam=0.05;; 10) lam=0.1;; esac
-    run="lewm_ql2g${g}_scale_cube_s${SEED}"
-    gate="$Q/qgate_stage1_cube_l2_lam${lam}.json"
+    case $fam in
+      l2)  cfg="ql2g${g}";  gate="$Q/qgate_stage1_cube_l2_lam${lam}.json" ;;
+      nce) cfg="qnceg${g}"; gate="$Q/qgate_stage1_cube_nce_lam${lam}.json" ;;
+    esac
+    run="lewm_${cfg}_scale_cube_s${SEED}"
     if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
       left=1
-      try "tr_ql2g${g}" env QGATE_GCS="$gate" bash scripts/ray_train_qgate2.sh cube experiment="ql2g${g}_scale_cube" seed=$SEED
+      try "tr_${cfg}" env QGATE_GCS="$gate" bash scripts/ray_train_qgate2.sh cube experiment="${cfg}_scale_cube" seed=$SEED
       continue
     fi
     for sol in cem icem mppi; do
       for seeds in "101 102 103" "104 105 106"; do
         miss=0
         for s in $seeds; do
-          gcloud storage ls "$BUCKET/final_eval/final_cube_ql2g${g}_${sol}_s${s}.csv" >/dev/null 2>&1 || miss=1
+          gcloud storage ls "$BUCKET/final_eval/final_cube_${cfg}_${sol}_s${s}.csv" >/dev/null 2>&1 || miss=1
         done
         [ "$miss" = 0 ] && continue
         left=1
         # shellcheck disable=SC2086
-        try "ev_ql2g${g}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh cube "ql2g${g}" "$run" "$sol" $seeds
+        try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh cube "${cfg}" "$run" "$sol" $seeds
       done
     done
+   done
   done
-  [ "$left" = 0 ] && { log "L2-GATE AUTO-SCALE COMPLETE (4 arms, 72 CSVs)"; exit 0; }
+  [ "$left" = 0 ] && { log "VARIANT-GATE AUTO-SCALE COMPLETE (8 arms, 144 CSVs)"; exit 0; }
   sleep 240
 done
 log "round cap"; exit 1
