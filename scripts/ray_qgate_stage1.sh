@@ -35,6 +35,17 @@ if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
 source "$SSD/.venv/bin/activate"
 uv pip install -q torch numpy h5py hdf5plugin 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin
 [ -n "${LANCE:-}" ] && uv pip install -q 'stable-worldmodel[format]' opencv-python-headless 
+# crowded NVMe guard: qgate stages big files (reacher.h5 90G, cube tar ~50G, lance sets)
+FREE_G=$(df --output=avail -BG "$SSD" | tail -1 | tr -dc 0-9)
+if [ "${FREE_G:-0}" -lt 150 ]; then
+  echo "[env] free=${FREE_G}G < 150G -> purge other staged datasets + stale partials"
+  rm -f "$SSD"/*.gstmp "$SSD/stable-wm/datasets"/*.gstmp 2>/dev/null || true
+  KEEP="${LANCE:-$H5NAME}"
+  find "$SSD/stable-wm/datasets" -mindepth 1 -maxdepth 2 ! -name "$KEEP" ! -path "*/$KEEP/*" \
+       -print -exec rm -rf {} + 2>/dev/null || true
+  find "$SSD" -maxdepth 1 -name "*.h5" ! -name "$KEEP" -delete 2>/dev/null || true
+  df -h --output=avail "$SSD" | tail -1
+fi
 if [ -n "${LANCE:-}" ]; then
   H5="$SSD/stable-wm/datasets/ogbench/$LANCE"
   mkdir -p "$(dirname "$H5")"
