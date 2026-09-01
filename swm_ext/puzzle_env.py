@@ -192,7 +192,7 @@ class PuzzleEnv(ManipSpaceEnv):
         if button_data:
             button_states = np.asarray(
                 [button_data[i] for i in range(self._num_buttons)]
-            ).round().astype(int)  # dataset values arrive as floats; states index a one-hot
+            ).reshape(-1).round().astype(int)  # dataset values arrive as float (1,)-vectors
             self._cur_button_states = button_states.copy()
 
         self._apply_button_states()
