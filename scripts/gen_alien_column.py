@@ -87,27 +87,19 @@ def main():
         alien[rows] = sq[srow[np.arange(len(rows)) % len(srow)]]
     print(f"[alien] cube: {len(c_ids)} episodes, {len(c_ep)} frames filled", flush=True)
 
-    tbl = pa.table({
-        "episode_idx": pa.array(c_ep),
-        "step_idx": pa.array(c_st),
-        "alien_q": pa.array(list(alien), type=pa.list_(pa.float32(), 26)),
-    })
-    try:
-        ds3 = lance.dataset(args.cube)
-        ds3.merge(tbl, left_on=["episode_idx", "step_idx"],
-                  right_on=["episode_idx", "step_idx"])
-        print("[alien] lance multi-key merge ok", flush=True)
-    except Exception as e:
-        print(f"[alien] multi-key merge unsupported ({e}); falling back to add_columns", flush=True)
-        state = {"off": 0}
-        def udf(batch):
-            off = state["off"]; m = len(batch)
-            out = pa.array(list(alien[off:off + m]), type=pa.list_(pa.float32(), 26))
-            state["off"] = off + m
-            return pa.record_batch([out], names=["alien_q"])
-        ds3 = lance.dataset(args.cube)
-        ds3.add_columns(udf, read_columns=["episode_idx"])
-        print("[alien] add_columns ok", flush=True)
+    # add_columns udf keyed on (episode_idx, step_idx) carried by each batch —
+    # exact per-row addressing, immune to fragment/batch boundary drift (a
+    # sequential-offset udf died on a 912!=911 batch split). Global row of
+    # (e, s) = searchsorted(c_ep, e) + s since the dataset is episode-major.
+    def udf(batch):
+        ep = np.asarray(batch.column("episode_idx")).astype(np.int64)
+        st = np.asarray(batch.column("step_idx")).astype(np.int64)
+        idx = np.searchsorted(c_ep, ep) + st
+        out = pa.array(list(alien[idx]), type=pa.list_(pa.float32(), 26))
+        return pa.record_batch([out], names=["alien_q"])
+    ds3 = lance.dataset(args.cube)
+    ds3.add_columns(udf, read_columns=["episode_idx", "step_idx"])
+    print("[alien] add_columns (keyed) ok", flush=True)
 
     chk = LanceDataset(path=args.cube, keys_to_load=["alien_q"])
     a = np.asarray(chk.get_col_data("alien_q"))
