@@ -268,6 +268,11 @@ def load_samples(h5_path, spec):
         ep_len, ep_off = f["ep_len"][:], f["ep_offset"][:]
     q = spec["build_q"](cols if len(spec["state_cols"]) > 1 else cols[spec["state_cols"][0]])
     max_h = max(HORIZONS) * FRAMESKIP
+    if getattr(load_samples, "_max_eps", 0):
+        rng_ep = np.random.default_rng(load_samples._data_seed)
+        keep = rng_ep.choice(len(ep_len), size=min(load_samples._max_eps, len(ep_len)), replace=False)
+        ep_len, ep_off = ep_len[sorted(keep)], ep_off[sorted(keep)]
+        print(f"[data] episode subsample: {len(ep_len)} episodes (seed {load_samples._data_seed})", flush=True)
     rows, goals = [], {h: [] for h in HORIZONS}
     for L, O in zip(ep_len, ep_off):
         n = int(L) - max_h - FRAMESKIP
@@ -292,6 +297,9 @@ def main():
                     help="goal-identifiability loss: hinge = single-negative margin (K=1, m nats), "
                          "infonce = 1 positive vs --neg-k in-batch negatives at tau=1")
     ap.add_argument("--neg-k", type=int, default=255)
+    ap.add_argument("--max-episodes", type=int, default=0,
+                    help="subsample this many WHOLE episodes (0 = all); for the data-efficiency study")
+    ap.add_argument("--data-seed", type=int, default=0, help="episode-subsample RNG seed")
     ap.add_argument("--margin", type=float, default=1.0)
     ap.add_argument("--steps", type=int, default=8000)
     ap.add_argument("--batch", type=int, default=4096)
@@ -305,6 +313,8 @@ def main():
     torch.manual_seed(args.seed)
     rng = np.random.default_rng(args.seed)
 
+    load_samples._max_eps = args.max_episodes
+    load_samples._data_seed = args.data_seed
     q, action, rows = load_samples(args.h5, spec)
     for name, arr in (("q", q), ("action", action)):
         n_bad = int(np.size(arr) - np.isfinite(arr).sum())
@@ -404,6 +414,7 @@ def main():
     out = {
         "task": args.task, "lambda_sparse": args.lambda_sparse, "gamma": args.gamma,
         "reg": args.reg, "rank_loss": args.rank, "neg_k": (args.neg_k if args.rank == "infonce" else 1),
+        "max_episodes": args.max_episodes, "data_seed": args.data_seed,
         "margin": args.margin, "steps": args.steps, "seed": args.seed,
         "horizons_wm_steps": list(HORIZONS), "frameskip": FRAMESKIP,
         "dim_names": names,
