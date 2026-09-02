@@ -14,10 +14,11 @@ if ! mountpoint -q "$SSD"; then
   sudo chmod a+w "$SSD"
 fi
 cd "$(dirname "$0")/.." || exit 1
-if [ ! -x "$SSD/.venv/bin/python" ]; then
-  command -v uv >/dev/null || pip install -q uv
-  uv venv --python=3.10 "$SSD/.venv"
-fi
+command -v uv >/dev/null || {
+  pip install -q uv
+  PATH="$(python3 -m site --user-base)/bin:$(python3 -c 'import sysconfig;print(sysconfig.get_path("scripts"))'):$PATH"
+}
+[ -x "$SSD/.venv/bin/python" ] || uv venv --python=3.10 "$SSD/.venv"
 source "$SSD/.venv/bin/activate"
 uv pip install -q torch numpy h5py hdf5plugin scipy 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin scipy
 H5="$SSD/cube_single_expert.h5"
