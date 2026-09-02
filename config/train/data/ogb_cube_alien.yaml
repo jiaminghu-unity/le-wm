@@ -1,0 +1,42 @@
+# ogb_cube plus the full-config-q source columns (block yaw + gripper contact).
+# NEW FILE for the aux21 ablation; ogb_cube.yaml itself is untouched.
+# OGBench-Cube with the physical-state columns L_obj / the aux head need.
+# Identical to ogb.yaml plus the q source columns. Every cube experiment uses this
+# file — including the baseline — so the dataloader is byte-identical across all
+# runs and any difference between them comes from the loss alone (same convention
+# as r1_reacher_baseline, where qpos/finger_pos ride along unused).
+# Trains from lance (JPEG q95), matching the Push-T and Reacher rounds so all three
+# tasks share one data pipeline. DECLARED DEVIATION: upstream ogb.yaml specifies h5.
+# Forced by throughput, measured not guessed: the shipped h5 chunks pixels at
+# (100,224,224,3)=15 MB, so a 4-frame clip decompresses 100 frames (~25x read
+# amplification) -- 6 dataloader workers pinned at 100% CPU, GPU starved to ~27%
+# util, 2.0 it/s. Lance stores one JPEG blob per frame, no amplification.
+# Lossiness is common-mode across all 8 runs, so the paired comparisons are unaffected.
+dataset:
+  name: ogbench/cube_alien.lance
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  keys_to_load:
+    - pixels
+    - action
+    - observation
+    - proprio_effector_pos
+    - proprio_effector_yaw
+    - proprio_gripper_opening
+    - proprio_joint_pos
+    - privileged_block_0_pos
+    - privileged_block_0_yaw
+    - proprio_gripper_contact
+    - alien_q
+  keys_to_cache:
+    - action
+    - observation
+    - proprio_effector_pos
+    - proprio_effector_yaw
+    - proprio_gripper_opening
+    - proprio_joint_pos
+    - privileged_block_0_pos
+    - privileged_block_0_yaw
+    - proprio_gripper_contact
+  keys_to_merge:
+    proprio: proprio

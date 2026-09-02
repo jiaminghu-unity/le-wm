@@ -67,6 +67,10 @@ case "$TASK" in
     mkdir -p "$DS/ogbench"
     [ -d "$DS/ogbench/puzzle_3x3_play.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/ogbench/puzzle_3x3_play.lance" "$DS/ogbench/puzzle_3x3_play.lance" ;;
+  cube_alien)
+    mkdir -p "$DS/ogbench"
+    [ -d "$DS/ogbench/cube_alien.lance" ] || \
+      gcloud storage rsync -r "$BUCKET/datasets/ogbench/cube_alien.lance" "$DS/ogbench/cube_alien.lance" ;;
   cube_triple)
     mkdir -p "$DS/ogbench"
     [ -d "$DS/ogbench/cube_triple_play.lance" ] || \

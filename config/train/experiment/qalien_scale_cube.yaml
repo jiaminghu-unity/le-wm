@@ -1,0 +1,19 @@
+# @package _global_
+# SCALE-All control arm: identical run with QGATE_JSON unset (identity scale) --
+# ungated L_obj on the full 22-d config q. The critical control for Auto-SCALE.
+defaults:
+  - override /data: ogb_cube_alien
+
+output_model_name: lewm_qalien_scale_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_alien48
+  aux:
+    weight: 0.0

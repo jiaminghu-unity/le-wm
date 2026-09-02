@@ -195,6 +195,24 @@ TASKS = {
         action_col="action",
         dim_names=_ARM_NAMES + [f"btn{i}" for i in range(9)],
     ),
+    "cube_alien": dict(
+        build_q=lambda cols: np.concatenate(
+            [_build_q_cube_full({k.replace("/", "_") if False else k: v for k, v in cols.items()}),
+             cols["alien_q"].reshape(len(cols["alien_q"]), -1)[:, :26]], axis=-1),
+        loader="lance",
+        state_cols=_CUBE_COLS + ["alien_q"],
+        action_col="action",
+        dim_names=["eff_x", "eff_y", "eff_z", "cos2psi", "sin2psi",
+                   "grip_open", "grip_contact",
+                   "cos_j0", "sin_j0", "cos_j1", "sin_j1", "cos_j2", "sin_j2",
+                   "cos_j3", "sin_j3", "cos_j5", "sin_j5",
+                   "block_x", "block_y", "block_z", "cos4th", "sin4th"]
+                  + [f"alien_{n}" for n in
+                     ["eff_x","eff_y","eff_z","cos2psi","sin2psi","grip_open","grip_contact",
+                      "cos_j0","cos_j1","cos_j2","cos_j3","cos_j4",
+                      "sin_j0","sin_j1","sin_j2","sin_j3","sin_j4",
+                      "b_x","b_y","b_z","cos4th","sin4th","drawer","window","btn0","btn1"]],
+    ),
     "cube": dict(
         build_q=_build_q_cube_full,
         state_cols=_CUBE_COLS,

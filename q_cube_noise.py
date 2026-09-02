@@ -22,6 +22,16 @@ def build_q_cube_noise100(*cols):
     return torch.cat([q22, noise], dim=-1)
 
 
+def build_q_cube_alien48(*cols):
+    """22-d cube full-config q + 26-d ALIEN block (real scene trajectories,
+    episode-paired at data-build time; stored as the dataset column alien_q)."""
+    q22 = _build22(*cols[:-1])
+    alien = cols[-1]
+    alien = alien.reshape(*alien.shape[:-1], -1)[..., :26]
+    return torch.cat([q22, alien.to(q22.dtype)], dim=-1)
+
+
 Q_VARIANTS_CUBE_NOISE = {
     "cube_full_noise100": (build_q_cube_noise100, list(_COLS), _UNIT),
+    "cube_alien48": (build_q_cube_alien48, list(_COLS) + ["alien_q"], _UNIT),
 }

@@ -16,6 +16,7 @@ case "$TASK" in
   cube_triple)    LANCE=cube_triple_play.lance ;;
   cube_quadruple) LANCE=cube_quadruple_play.lance ;;
   puzzle_3x3)     LANCE=puzzle_3x3_play.lance ;;
+  cube_alien)     LANCE=cube_alien.lance ;;
   *) echo "task $TASK not wired yet" >&2; exit 1 ;;
 esac
 SSD=/mnt/disks/ssd0
