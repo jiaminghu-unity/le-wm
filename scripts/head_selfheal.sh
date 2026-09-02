@@ -26,6 +26,27 @@ request_resources(bundles=[{'GPU':1}]*16)" >> "$LOG" 2>&1 && echo "[$(ts)] ray r
 # relaunch missing chains (idempotent: GCS done-checks make restarts free)
 # gcloud active account can vanish under concurrent invocations (sqlite config
 # contention, seen 2026-08-30/31); restore it before the chain checks below.
+# persistent failure watch (survives Claude sessions): new FAILED ray jobs and
+# idle-cluster-with-pending-work both append to the alert file the next session
+# reads first thing.
+ALERT=/workspace/le-wm/eval_results/ALERTS.log
+SEEN=/workspace/le-wm/eval_results/.selfheal_seen
+touch "$SEEN"
+python3 - "$SEEN" "$ALERT" <<'PYW' 2>/dev/null
+import json,sys,urllib.request,datetime
+seen=set(open(sys.argv[1]).read().split())
+try:
+    jobs=json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/',timeout=20))
+except Exception:
+    jobs=[]
+new=[j for j in jobs if j.get('status')=='FAILED' and j.get('submission_id') not in seen]
+ts=datetime.datetime.utcnow().strftime('%m-%d %H:%M')
+with open(sys.argv[2],'a') as a, open(sys.argv[1],'a') as f:
+    for j in new:
+        a.write(f"[{ts}] FAILED {j['submission_id']} :: {(j.get('entrypoint') or '')[-90:]}\n")
+        f.write(j['submission_id']+'\n')
+PYW
+
 gcloud auth list 2>/dev/null | grep -q '^\*' || \
   gcloud config set account prism-training-sa@unity-prism-dev.iam.gserviceaccount.com 2>/dev/null
 
