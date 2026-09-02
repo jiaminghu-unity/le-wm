@@ -22,7 +22,12 @@ command -v uv >/dev/null || {
 source "$SSD/.venv/bin/activate"
 uv pip install -q torch numpy h5py hdf5plugin scipy 2>/dev/null || uv pip install -q torch numpy h5py hdf5plugin scipy
 H5="$SSD/cube_single_expert.h5"
-if [ ! -f "$H5" ]; then
+# node-level lock: several dataeff jobs share one worker NVMe and the same $H5;
+# unlocked concurrent stage+untar corrupts the extraction (short writes / ENOSPC)
+exec 9>"$SSD/.cube_stage.lock"
+flock 9
+if [ ! -f "$H5.ok" ]; then
+  rm -f "$H5"
   FREE_G=$(df --output=avail -BG "$SSD" | tail -1 | tr -dc 0-9)
   [ "${FREE_G:-0}" -lt 120 ] && { rm -f "$SSD"/*.gstmp; find "$SSD/stable-wm/datasets" -mindepth 1 -maxdepth 2 -print -exec rm -rf {} + 2>/dev/null || true; }
   gcloud storage cp "$BUCKET/datasets/ogbench/cube_single_expert.tar.zst" "$SSD/"
@@ -30,6 +35,8 @@ if [ ! -f "$H5" ]; then
   find "$SSD" -name "cube_single_expert.h5" -exec mv {} "$H5" \; 2>/dev/null || true
 fi
 [ -f "$H5" ] || { echo "FATAL: cube h5 missing" >&2; exit 1; }
+touch "$H5.ok"
+flock -u 9
 for L in 0.01 0.1; do
   OUT="qgate_dataeff_cube_nce_N${N}_r${DS}_lam${L}.json"
   if gcloud storage ls "$BUCKET/qgate_dataeff/$OUT" >/dev/null 2>&1; then echo "[skip] $OUT"; continue; fi
