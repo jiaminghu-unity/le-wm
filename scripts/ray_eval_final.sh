@@ -18,8 +18,14 @@ case "$TASK" in
   pusht)   H5NAME=pusht_expert_train.h5; SRC="$BUCKET/datasets/pusht_expert_train.h5"; SUB="" ;;
   reacher) H5NAME=reacher.h5;            SRC="$BUCKET/datasets/reacher.h5";            SUB="" ;;
   cube)    H5NAME=cube_single_expert.h5; SRC="$BUCKET/datasets/ogbench/cube_single_expert.tar.zst"; SUB="ogbench" ;;
+  cube_pip) H5NAME=cube_single_expert.h5; SRC="$BUCKET/datasets/ogbench/cube_single_expert.tar.zst"; SUB="ogbench" ;;
   *) echo "unknown task $TASK" >&2; exit 1 ;;
 esac
+# cube_pip rides cube protocol end-to-end: same episode sets, same output naming
+# (final_cube_<cfg>_*, expected by run_pip_chain), same render-fidelity gate on the
+# BASE env (the wrapper only composites the corner after render).
+GATETASK="$TASK"; OUTTASK="$TASK"; EPSTASK="$TASK"
+if [ "$TASK" = "cube_pip" ]; then GATETASK=cube; OUTTASK=cube; EPSTASK=cube; fi
 
 SSD=/mnt/disks/ssd0
 if ! mountpoint -q "$SSD"; then
@@ -102,8 +108,12 @@ echo "[gl] $GL"
 # Non-fatal for SR: paired comparisons survive a renderer offset, only absolute SR
 # shifts. But the verdict is recorded next to the results instead of vanishing into the
 # job log, which is what let a failed cube gate go unnoticed.
-GATELOG="$SSD/render_gate_${TASK}.log"
-if ! python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG"; then
+if [ "$TASK" = "cube_pip" ]; then
+  [ -f "$SSD/pip_eval_clips.npz" ] || gcloud storage cp "$BUCKET/datasets/ogbench/pip_eval_clips.npz" "$SSD/"
+  export PIP_CLIPS="$SSD/pip_eval_clips.npz"
+fi
+GATELOG="$SSD/render_gate_${GATETASK}.log"
+if ! python scripts/check_render_fidelity.py "$GATETASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG"; then
   echo "[FATAL] render fidelity gate FAILED — aborting so no biased CSV is uploaded" | tee -a "$GATELOG"
   gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
   exit 41
@@ -114,8 +124,8 @@ mkdir -p "$SSD/eps"
 RC=0
 for S in "${SEEDS[@]}"; do
   # EPS_N lets a run point at a set that is not the usual 100 episodes
-  EPSNAME="episodes_${TASK}_s${S}_${EPS_N:-100}.json"
-  OUT="final_${TASK}_${CFG}_${SOLVER}_s${S}${EPS_N:+_$EPS_N}.csv"
+  EPSNAME="episodes_${EPSTASK}_s${S}_${EPS_N:-100}.json"
+  OUT="final_${OUTTASK}_${CFG}_${SOLVER}_s${S}${EPS_N:+_$EPS_N}.csv"
   if gcloud storage ls "$OUTP/$OUT" >/dev/null 2>&1; then
     echo "[skip] $OUT already in GCS"; continue
   fi
@@ -132,5 +142,5 @@ for S in "${SEEDS[@]}"; do
   [ "$rc" -ne 0 ] && RC=$rc
   [ -f "$SSD/$OUT" ] && gcloud storage cp "$SSD/$OUT" "$OUTP/$OUT"
 done
-echo "[done] rc=$RC -> $OUTP/final_${TASK}_${CFG}_${SOLVER}_s*.csv"
+echo "[done] rc=$RC -> $OUTP/final_${OUTTASK}_${CFG}_${SOLVER}_s*.csv"
 exit $RC

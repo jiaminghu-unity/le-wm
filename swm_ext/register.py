@@ -14,12 +14,16 @@ from stable_worldmodel.envs import register
 
 
 def register_envs():
-    if 'swm/OGBPuzzle-v0' in gym.registry:
+    if 'swm/OGBCubePiP-v0' in gym.registry:
         return
 
     register(
         id='swm/OGBPuzzle-v0',
         entry_point='swm_ext.puzzle_env:PuzzleEnv',
+    )
+    register(
+        id='swm/OGBCubePiP-v0',
+        entry_point='swm_ext.pip_cube_env:PiPCubeEnv',
     )
 
 

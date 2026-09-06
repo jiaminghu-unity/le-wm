@@ -123,6 +123,11 @@ ENV_PRESETS = {
     },
 }
 
+# cube_pip: identical protocol/states to cube, but every rendered frame carries the
+# bottom-left 48px scene clip (swm_ext.pip_cube_env), matching cube_pip.lance training
+# frames. Episode specs and states come from the SAME cube h5 (state columns identical).
+ENV_PRESETS["cube_pip"] = {**ENV_PRESETS["cube"], "env_name": "swm/OGBCubePiP-v0"}
+
 
 class GDSolverPatched(swm.solver.GradientSolver):
     """Upstream 0.1.1 bug workaround: GradientSolver.init_action only moves the
@@ -250,6 +255,8 @@ def main():
     args = ap.parse_args()
     config_name, ckpt = args.config
     preset = ENV_PRESETS[args.env]
+    if args.env == "cube_pip":
+        import swm_ext.register  # noqa: F401  (registers swm/OGBCubePiP-v0)
 
     payload = Path(args.episodes_json).read_text()
     episodes_hash = hashlib.sha256(payload.encode()).hexdigest()[:12]
