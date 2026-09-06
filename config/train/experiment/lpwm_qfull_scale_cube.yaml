@@ -1,0 +1,30 @@
+# @package _global_
+# LpWM arm (arXiv:2608.22764) under the UNCHANGED LeWM architecture/recipe:
+# SIGReg -> RDMReg (Rectified-Laplace p=1 target, mu=-1, b=1/sqrt(2)) and
+# RepReLU on encoder/predictor outputs. Everything else byte-identical, so the
+# comparison isolates the representation regularizer x SCALE interaction.
+defaults:
+  - override /data: ogb_cube_full
+
+output_model_name: lewm_lpwmq_scale_cube_s${seed}
+subdir: ${output_model_name}
+
+model:
+  rep_relu: true
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  sigreg:
+    type: rdmreg
+    kwargs:
+      num_proj: 1024
+      mu: -1.0
+      b: 0.7071067811865476
+  obj:
+    weight: 0.1
+    q_variant: cube_full_config
+  aux:
+    weight: 0.0

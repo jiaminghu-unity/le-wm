@@ -17,8 +17,11 @@ class JEPA(nn.Module):
         action_encoder,
         projector=None,
         pred_proj=None,
+        rep_relu=False,
     ):
         super().__init__()
+        # LpWM sparsity switch (parameter-free -> checkpoint layout unchanged)
+        self.rep_relu = rep_relu
 
         self.encoder = encoder
         self.predictor = predictor
@@ -37,6 +40,9 @@ class JEPA(nn.Module):
         output = self.encoder(pixels, interpolate_pos_encoding=True)
         pixels_emb = output.last_hidden_state[:, 0]  # cls token
         emb = self.projector(pixels_emb)
+        if self.rep_relu:
+            from module import rep_relu as _rr
+            emb = _rr(emb)
         info["emb"] = rearrange(emb, "(b t) d -> b t d", b=b)
 
         if "action" in info:
@@ -51,6 +57,9 @@ class JEPA(nn.Module):
         """
         preds = self.predictor(emb, act_emb)
         preds = self.pred_proj(rearrange(preds, "b t d -> (b t) d"))
+        if self.rep_relu:
+            from module import rep_relu as _rr
+            preds = _rr(preds)
         preds = rearrange(preds, "(b t) d -> b t d", b=emb.size(0))
         return preds
 

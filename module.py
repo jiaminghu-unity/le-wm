@@ -35,6 +35,43 @@ class SIGReg(torch.nn.Module):
         statistic = (err @ self.weights) * proj.size(-2)
         return statistic.mean() # average over projections and time
     
+def rep_relu(x):
+    """LpWM RepReLU (arXiv:2608.22764): forward = ReLU (exact zeros -> sparse,
+    non-negative codes), backward = GeLU gradient (straight-through):
+    sg(ReLU(x)) + GeLU(x) - sg(GeLU(x))."""
+    g = F.gelu(x)
+    return (F.relu(x) - g).detach() + g
+
+
+class RDMReg(torch.nn.Module):
+    """Rectified Distribution Matching Regularizer (LpWM, arXiv:2608.22764).
+
+    Same random-unit-projection sketch as SIGReg, but the target is the projection
+    of an iid Rectified-Laplace (p=1) product distribution, matched with the
+    1-d sliced 2-Wasserstein distance (sorted-quantile MSE over the batch dim).
+    Target samples carry no grad. Defaults: mu=-1, scale b = sigma = 1/sqrt(2)
+    (paper: GN_p(mu, sigma), p=1, sigma=1/sqrt(2), mu swept in {0,-1,-2}).
+    """
+
+    def __init__(self, num_proj=1024, mu=-1.0, b=0.7071067811865476, **_unused):
+        super().__init__()
+        self.num_proj = num_proj
+        self.mu = mu
+        self.b = b
+
+    def forward(self, proj):
+        """proj: (T, B, D) — matches SIGReg's calling convention."""
+        T, B, D = proj.shape
+        A = torch.randn(D, self.num_proj, device=proj.device)
+        A = A.div_(A.norm(p=2, dim=0))
+        zp = proj @ A  # (T, B, P)
+        with torch.no_grad():
+            u = torch.rand(T, B, D, device=proj.device).clamp_(1e-7, 1 - 1e-7)
+            lap = self.mu - self.b * torch.sign(u - 0.5) * torch.log1p(-2 * (u - 0.5).abs())
+            yp = lap.clamp_min(0.0) @ A  # rectified target, projected
+        w2 = (zp.sort(dim=1).values - yp.sort(dim=1).values).pow(2).mean()
+        return w2
+
 class FeedForward(nn.Module):
     """FeedForward network used in Transformers"""
 

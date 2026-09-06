@@ -11,7 +11,7 @@ from lightning.pytorch.loggers import CSVLogger, WandbLogger
 from omegaconf import OmegaConf, open_dict
 
 from lobj import obj_loss
-from module import MLP, SIGReg
+from module import MLP, SIGReg, RDMReg
 from utils import (
     SaveCkptCallback,
     WithEpisodeIdx,
@@ -230,7 +230,8 @@ def run(cfg):
     data_module = spt.data.DataModule(train=train, val=val)
     module_kwargs = dict(
         model=world_model,
-        sigreg=SIGReg(**cfg.loss.sigreg.kwargs),
+        sigreg=(RDMReg if cfg.loss.sigreg.get("type", "sigreg") == "rdmreg" else SIGReg)(
+            **cfg.loss.sigreg.kwargs),
         forward=partial(lejepa_forward, cfg=cfg),
         optim=optimizers,
     )
