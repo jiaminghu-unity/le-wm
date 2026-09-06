@@ -50,7 +50,7 @@ for _mod in (q_cube_full.Q_VARIANTS_CUBE_FULL, q_native_full.Q_VARIANTS_NATIVE,
     utils.Q_VARIANTS.update(_mod)
 
 from train import lejepa_forward, validate_config  # noqa: E402
-from module import SIGReg  # noqa: E402
+from module import RDMReg, SIGReg  # noqa: E402
 from utils import (  # noqa: E402
     SaveCkptCallback,
     WithEpisodeIdx,
@@ -132,7 +132,8 @@ def run(cfg):
     data_module = spt.data.DataModule(train=train, val=val)
     world_model = spt.Module(
         model=world_model,
-        sigreg=SIGReg(**cfg.loss.sigreg.kwargs),
+        sigreg=(RDMReg if cfg.loss.sigreg.get("type", "sigreg") == "rdmreg" else SIGReg)(
+            **cfg.loss.sigreg.kwargs),
         forward=partial(qgate2_forward, cfg=cfg, scale=scale),
         optim=optimizers,
     )
