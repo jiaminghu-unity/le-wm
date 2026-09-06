@@ -1,0 +1,19 @@
+# @package _global_
+# PiP arm (g10): visible structured distractor — SCALE on 48-d concat q over
+# picture-in-picture observations. gated 版由 QGATE_GCS 在提交时注入。
+defaults:
+  - override /data: ogb_cube_pip
+
+output_model_name: lewm_pipg10_scale_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_alien48
+  aux:
+    weight: 0.0

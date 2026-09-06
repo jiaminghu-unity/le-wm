@@ -1,0 +1,19 @@
+# @package _global_
+# PiP baseline: vanilla LeWM on the picture-in-picture cube dataset (no metric
+# loss).控制臂:若与干净基线打平,证明贴图未伤害主任务观测。
+defaults:
+  - override /data: ogb_cube_pip
+
+output_model_name: lewm_pipbase_cube_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.0
+    q_variant: cube_alien48
+  aux:
+    weight: 0.0
