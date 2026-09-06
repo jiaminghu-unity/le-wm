@@ -23,36 +23,34 @@ for name in ["cube_single_expert.lance", "scene_play.lance"]:
     out[name] = {"rows": n, "cols": row}
     print(name, n, json.dumps(row), flush=True)
 
-# motion heatmap over sampled cube frames
+# motion heatmap over sampled cube frames (pixels = encoded image bytes)
+from PIL import Image
+def dec(b):
+    return np.asarray(Image.open(io.BytesIO(b)).convert("RGB"), dtype=np.int16)
 ds = lance.dataset(f"{B}/cube_single_expert.lance")
-obs_col = next(c for c in ds.schema.names if "observation" in c or c == "obs")
 n = ds.count_rows()
 idx = np.linspace(0, n - 2, 400).astype(int)
 heat = None
 for i in idx:
-    t = ds.take([int(i), int(i) + 1], columns=[obs_col])
-    fr = [np.asarray(x) for x in t.column(obs_col).to_numpy(zero_copy_only=False)]
-    a, b = [f.reshape(-1) for f in fr]
-    side = int(round((len(a) / 3) ** 0.5))
-    A = np.asarray(fr[0]).reshape(side, side, 3).astype(np.int16)
-    Bm = np.asarray(fr[1]).reshape(side, side, 3).astype(np.int16)
+    t = ds.take([int(i), int(i) + 1], columns=["pixels"])
+    raw = t.column("pixels").to_pylist()
+    A, Bm = dec(raw[0]), dec(raw[1])
     d = np.abs(A - Bm).mean(-1)
     heat = d if heat is None else np.maximum(heat, d)
+print("cube img shape", A.shape, flush=True)
 np.save("/tmp/pip_heat.npy", heat)
 # corner occupancy (fraction of heatmap mass), 64px corners
 s = heat.shape[0]; k = max(16, s * 64 // 224)
 corners = {"TL": heat[:k, :k], "TR": heat[:k, -k:], "BL": heat[-k:, :k], "BR": heat[-k:, -k:]}
 print("side", s, "patch", k, {c: round(float(v.max()), 1) for c, v in corners.items()}, flush=True)
 try:
-    from PIL import Image
     Image.fromarray((heat / heat.max() * 255).astype(np.uint8)).save("/tmp/pip_heat.png")
     Image.fromarray(A.astype(np.uint8)).save("/tmp/pip_cube_sample.png")
     ds2 = lance.dataset(f"{B}/scene_play.lance")
-    oc2 = next(c for c in ds2.schema.names if "observation" in c or c == "obs")
-    t2 = ds2.take([100], columns=[oc2])
-    f2 = np.asarray(t2.column(oc2).to_numpy(zero_copy_only=False)[0])
-    side2 = int(round((f2.size / 3) ** 0.5))
-    Image.fromarray(f2.reshape(side2, side2, 3).astype(np.uint8)).save("/tmp/pip_scene_sample.png")
+    t2 = ds2.take([100], columns=["pixels"])
+    f2 = dec(t2.column("pixels").to_pylist()[0])
+    print("scene img shape", f2.shape, flush=True)
+    Image.fromarray(f2.astype(np.uint8)).save("/tmp/pip_scene_sample.png")
 except Exception as e:
     print("PNG save failed:", e, flush=True)
 print("PROBE DONE", flush=True)
