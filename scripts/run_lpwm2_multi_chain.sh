@@ -55,7 +55,7 @@ for round in $(seq 1 9000); do
     "scene scene $Q/qgate_stage1_scene_nce_lam0.1.json ogbmulti final_eval_ogbmulti cem,icem"; do
     set -- $spec; task=$1; cfg=$2; gate=$3; evkind=$4; evdir=$5; sols=$6
     for arm in base q g10; do
-      name="lpwm${arm}_${cfg}"
+      name="lpwm2${arm}_${cfg}"
       run="lewm_${name}_s${SEED}"
       if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
         left=1
