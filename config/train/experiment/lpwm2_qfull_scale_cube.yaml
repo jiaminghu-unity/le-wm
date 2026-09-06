@@ -1,0 +1,33 @@
+# @package _global_
+# LpWM v2 = FAITHFUL official recipe (lpwm_swm/config/lpwm.yaml): RDMReg weight
+# 10.0, mu=0, sigma=1/sqrt2, rms-normalized rectified target, TemporalJaccard 0.1
+# (their cube setting), RepReLU on both heads. Architecture/epochs stay OURS.
+defaults:
+  - override /data: ogb_cube_full
+
+output_model_name: lewm_lpwm2q_scale_cube_s${seed}
+subdir: ${output_model_name}
+
+model:
+  rep_relu: true
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  sigreg:
+    type: rdmreg
+    weight: 10.0
+    kwargs:
+      num_proj: 1024
+      mu: 0.0
+      b: 0.7071067811865476
+      rms_norm: true
+  temporal_jaccard:
+    weight: 0.1
+  obj:
+    weight: 0.1
+    q_variant: cube_full_config
+  aux:
+    weight: 0.0

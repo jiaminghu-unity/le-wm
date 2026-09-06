@@ -53,11 +53,21 @@ class RDMReg(torch.nn.Module):
     (paper: GN_p(mu, sigma), p=1, sigma=1/sqrt(2), mu swept in {0,-1,-2}).
     """
 
-    def __init__(self, num_proj=1024, mu=-1.0, b=0.7071067811865476, **_unused):
+    def __init__(self, num_proj=1024, mu=-1.0, b=0.7071067811865476,
+                 rms_norm=False, **_unused):
         super().__init__()
         self.num_proj = num_proj
         self.mu = mu
         self.b = b
+        # official target_dist_rms_norm: divide the rectified target by the sqrt of
+        # its second moment (decouples sparsity level from feature scale). Second
+        # moment computed numerically once (matches lpwm_swm's closed form).
+        self.rms = 1.0
+        if rms_norm:
+            import numpy as _np
+            _r = _np.random.default_rng(0)
+            _y = _np.maximum(_r.laplace(mu, b, 10_000_000), 0.0)
+            self.rms = float(_np.sqrt((_y ** 2).mean() + 1e-12))
 
     def forward(self, proj):
         """proj: (T, B, D) — matches SIGReg's calling convention."""
@@ -68,9 +78,24 @@ class RDMReg(torch.nn.Module):
         with torch.no_grad():
             u = torch.rand(T, B, D, device=proj.device).clamp_(1e-7, 1 - 1e-7)
             lap = self.mu - self.b * torch.sign(u - 0.5) * torch.log1p(-2 * (u - 0.5).abs())
-            yp = lap.clamp_min(0.0) @ A  # rectified target, projected
+            yp = (lap.clamp_min(0.0) / self.rms) @ A  # rectified target, projected
         w2 = (zp.sort(dim=1).values - yp.sort(dim=1).values).pow(2).mean()
         return w2
+
+class TemporalJaccardLoss(torch.nn.Module):
+    """Official LpWM add-on (lpwm_swm/loss.py): soft support-stability between
+    consecutive frames for non-negative codes.
+    loss = mean(1 - sum_d min(a,b) / (sum_d max(a,b) + eps)) over (B, T-1)."""
+
+    def __init__(self, eps=1e-8):
+        super().__init__()
+        self.eps = eps
+
+    def forward(self, emb):
+        a, b = emb[:, :-1, :], emb[:, 1:, :]
+        jac = torch.minimum(a, b).sum(-1) / (torch.maximum(a, b).sum(-1) + self.eps)
+        return (1.0 - jac).mean()
+
 
 class FeedForward(nn.Module):
     """FeedForward network used in Transformers"""

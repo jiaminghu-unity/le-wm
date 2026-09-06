@@ -73,6 +73,15 @@ def lejepa_forward(self, batch, stage, cfg):
         output["sigreg_loss"] = self.sigreg(emb.transpose(0, 1))
         loss = loss + lambd * output["sigreg_loss"]
 
+    # official LpWM cube add-on: temporal support-stability (weight 0 elsewhere)
+    lambd_tj = cfg.loss.get("temporal_jaccard", {}).get("weight", 0.0) if hasattr(cfg.loss, "get") else 0.0
+    if lambd_tj and lambd_tj > 0:
+        from module import TemporalJaccardLoss
+        if not hasattr(self, "_tjac"):
+            self._tjac = TemporalJaccardLoss()
+        output["tjac_loss"] = self._tjac(emb)
+        loss = loss + lambd_tj * output["tjac_loss"]
+
     # auxiliary q-regression head (information-injection control): same q, same
     # tensor as SIGReg/L_obj, but supervises DECODABILITY instead of geometry.
     # Head lives outside JEPA and is discarded at eval time.
