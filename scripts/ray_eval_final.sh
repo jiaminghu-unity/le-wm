@@ -75,14 +75,30 @@ uv pip install -q hdf5plugin -U datasets scikit-learn
 
 # ---- dataset ----
 H5="$DS/$H5NAME"
-if [ ! -f "$H5" ]; then
-  echo "[data] fetching $TASK"
-  if [ "$TASK" = cube ]; then
-    time gcloud storage cat "$SRC" | zstd -dc --long=31 | tar -xf - -C "$DS"
+# node-level lock + integrity sentinel: concurrent same-node stagings corrupt the
+# file, and a bad path choice must never leave a poisoned $H5 behind. A pre-.ok
+# file is signature-checked once (rescues nodes staged before this fix and kills
+# any tar-bytes-as-h5 leftovers).
+exec 9>"$DS/.stage_${H5NAME}.lock"
+flock 9
+if [ -f "$H5" ] && [ ! -f "$H5.ok" ]; then
+  if python -c "import h5py,sys;h5py.File(sys.argv[1],'r').close()" "$H5" 2>/dev/null; then
+    touch "$H5.ok"
   else
-    time gcloud storage cp "$SRC" "$H5"
+    echo "[data] $H5 exists but is not valid hdf5 -> purging"; rm -f "$H5"
   fi
 fi
+if [ ! -f "$H5.ok" ]; then
+  rm -f "$H5"
+  echo "[data] fetching $TASK"
+  case "$SRC" in
+    *.tar.zst) time gcloud storage cat "$SRC" | zstd -dc --long=31 | tar -xf - -C "$DS" ;;
+    *)         time gcloud storage cp "$SRC" "$H5" ;;
+  esac
+  python -c "import h5py,sys;h5py.File(sys.argv[1],'r').close()" "$H5"
+  touch "$H5.ok"
+fi
+flock -u 9
 ls -la "$H5"
 
 # ---- checkpoint ----
