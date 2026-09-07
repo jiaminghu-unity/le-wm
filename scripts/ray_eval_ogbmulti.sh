@@ -34,6 +34,12 @@ DS="$STABLEWM_HOME/datasets/ogbench"
 mkdir -p "$DS" "$STABLEWM_HOME/checkpoints/$CKPT_DIR" "$SSD/eps"
 echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 
+# dpkg lock wait: fresh workers run unattended-upgrades at boot and hold the
+# lock for a few minutes; apt-get then fails the whole job (transient class).
+for i in $(seq 1 60); do
+  sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 || break
+  echo "[apt] dpkg lock held, waiting ($i/60)"; sleep 10
+done
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd \
   libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 \
