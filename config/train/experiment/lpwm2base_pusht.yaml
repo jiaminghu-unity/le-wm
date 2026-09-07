@@ -1,7 +1,8 @@
 # @package _global_
 # LpWM OFFICIAL recipe (lpwm_swm/config/lpwm.yaml): RDMReg weight 10.0, mu=0,
 # sigma=1/sqrt2, rms-normalized rectified target, RepReLU both heads;
-# TemporalJaccard 0.1 on OGBench-family (their cube setting), off for pusht.
+# PushT: reg weight 0.5 = the paper Deep-AdaLN cell (reproduce_pusht.sh);
+# rms_norm off to match the main-repo PushT recipe; TemporalJaccard off.
 output_model_name: lewm_lpwm2base_pusht_s${seed}
 subdir: ${output_model_name}
 
@@ -15,12 +16,12 @@ trainer:
 loss:
   sigreg:
     type: rdmreg
-    weight: 10.0
+    weight: 0.5
     kwargs:
       num_proj: 1024
       mu: 0.0
       b: 0.7071067811865476
-      rms_norm: true
+      rms_norm: false
   temporal_jaccard:
     weight: 0.0
   obj:
