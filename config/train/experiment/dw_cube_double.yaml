@@ -1,12 +1,12 @@
 # @package _global_
-# DINO-WM on scene (frozen dinov2, train_dinowm.py entrypoint — NOT train.py).
+# DINO-WM on cube_double (frozen dinov2, train_dinowm.py entrypoint — NOT train.py).
 # Mirrors dw_cube.yaml: same data/loader/frameskip/history/epochs as the LeWM arms.
 # Undertraining caveat as ever: paper ~100 epochs vs our 10, bias AGAINST this arm.
 defaults:
   - override /model: prejepa
-  - override /data: ogb_scene
+  - override /data: ogb_double
 
-output_model_name: dinowm_scene_s${seed}
+output_model_name: dinowm_cube_double_s${seed}
 subdir: ${output_model_name}
 
 trainer:

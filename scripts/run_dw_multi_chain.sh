@@ -43,12 +43,14 @@ for round in $(seq 1 9000); do
   left=0
   for spec in "cube_double cubedouble" "cube_triple cubetriple" "cube_quadruple cubequadruple" "scene scene"; do
     set -- $spec; task=$1; cfg=$2
-    run="dinowm_${cfg}_s${SEED}"
-    if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+    run="dinowm_${task}_s${SEED}"
+    if ! gcloud storage ls "$BUCKET/ckpts_dinowm/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
       left=1
-      try "tr_dw_${cfg}" bash scripts/ray_train_qnative.sh "$task" experiment="dw_${cfg}" seed=$SEED
+      try "tr_dw_${cfg}" bash scripts/ray_train_dinowm.sh "$task"
       continue
     fi
+    # eval launchers read ckpts/; mirror the trained ckpt there once
+    gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1 ||       gcloud storage cp -r "$BUCKET/ckpts_dinowm/$run" "$BUCKET/ckpts/"
     for sol in cem icem; do
       for seeds in "101 102 103" "104 105 106"; do
         miss=0

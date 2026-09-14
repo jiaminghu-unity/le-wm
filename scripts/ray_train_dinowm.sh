@@ -11,6 +11,10 @@ case "$TASK" in
   cube)      DSNAME=ogbench/cube_single_expert.lance ;;
   tworoom)   DSNAME=tworoom.lance ;;
   pointmaze) DSNAME=pointmaze.lance ;;
+  cube_double)    DSNAME=ogbench/cube_double_play.lance ;;
+  cube_triple)    DSNAME=ogbench/cube_triple_play.lance ;;
+  cube_quadruple) DSNAME=ogbench/cube_quadruple_play.lance ;;
+  scene)          DSNAME=ogbench/scene_play.lance ;;
   *) echo "unknown task $TASK" >&2; exit 1 ;;
 esac
 EXP="dw_${TASK}"
