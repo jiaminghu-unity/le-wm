@@ -187,7 +187,10 @@ def run(cfg):
         swm.data.utils.get_cache_dir(cache_dir, sub_folder="datasets"),
         f"{dataset_name}.q_stats.{q_variant}.json",
     )
-    transforms.append(get_q_normalizer(dataset, q_stats_path, q_variant))
+    # q feeds only L_obj / the aux head; with both at 0 (e.g. DINO-WM arms, whose
+    # datasets may lack the default variant's source columns) skip building it.
+    if cfg.loss.obj.weight > 0 or cfg.loss.aux.weight > 0:
+        transforms.append(get_q_normalizer(dataset, q_stats_path, q_variant))
 
     with open_dict(cfg):
         for col in cfg.data.dataset.keys_to_load:
