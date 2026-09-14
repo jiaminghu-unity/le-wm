@@ -33,6 +33,18 @@ export STABLEWM_HOME="$SSD/stable-wm"
 DS="$STABLEWM_HOME/datasets"; mkdir -p "$DS"
 echo "[env] dinowm/$TASK on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 
+# NVML health: unattended-upgrades can replace the userspace NVIDIA libs under a
+# live node -> "Driver/library version mismatch" and every GPU step dies. Try a
+# kernel-module reload; if the GPU is busy or reload fails, abort loudly so the
+# retry lands on a healthy node. Also hold nvidia packages against auto-upgrade.
+if ! nvidia-smi >/dev/null 2>&1; then
+  echo "[gpu] NVML broken ($(nvidia-smi 2>&1 | head -1)) -> reloading modules"
+  sudo systemctl stop unattended-upgrades 2>/dev/null || true
+  sudo rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia 2>/dev/null || true
+  sudo modprobe nvidia 2>/dev/null || true
+  nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
+fi
+dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
