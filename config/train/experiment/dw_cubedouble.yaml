@@ -1,0 +1,17 @@
+# @package _global_
+# DINO-WM on cubedouble (frozen dinov2 encoder). Mirrors dw_cube.yaml: same data/loader/
+# frameskip/history/epochs as the LeWM arms, model family is the only variable.
+# Same undertraining caveat (paper ~100 epochs vs our 10, bias AGAINST this arm).
+defaults:
+  - override /model: prejepa
+  - override /data: ogb_double
+
+output_model_name: dinowm_cubedouble_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loader:
+  batch_size: 32
