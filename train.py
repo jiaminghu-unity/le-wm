@@ -148,7 +148,7 @@ def lejepa_forward(self, batch, stage, cfg):
 
 
 def validate_config(cfg):
-    if cfg.loss.sigreg.weight > 0 and cfg.model.projector is None:
+    if cfg.loss.sigreg.weight > 0 and cfg.model.get('projector', None) is None:
         raise ValueError(
             "SIGReg requires the MLP projector: a final-LayerNorm embedding lives on "
             "a norm-sqrt(D) shell, incompatible with the isotropic Gaussian target. "

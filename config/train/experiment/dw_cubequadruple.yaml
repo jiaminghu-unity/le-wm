@@ -15,3 +15,11 @@ trainer:
 
 loader:
   batch_size: 32
+
+loss:
+  sigreg:
+    weight: 0.0
+  obj:
+    weight: 0.0
+  aux:
+    weight: 0.0
