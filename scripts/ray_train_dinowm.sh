@@ -46,6 +46,19 @@ source "$SSD/.venv/bin/activate"
 uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
 uv pip install -q hdf5plugin -U datasets transformers
+# shared-venv poison guard: another job type may have installed a torch build
+# that cannot see CUDA on this node -> rebuild the venv once and reinstall.
+if ! python -c "import torch; assert torch.cuda.is_available()" 2>/dev/null; then
+  echo "[env] torch cannot see CUDA -> rebuilding venv"
+  deactivate || true
+  rm -rf "$SSD/.venv"
+  uv venv --python=3.10 "$SSD/.venv"
+  source "$SSD/.venv/bin/activate"
+  uv pip install -q 'stable-worldmodel[train,env,format]'
+  uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
+  uv pip install -q hdf5plugin -U datasets transformers
+  python -c "import torch; assert torch.cuda.is_available()" || { echo "FATAL: still no CUDA"; exit 1; }
+fi
 
 if [ ! -d "$DS/$DSNAME" ]; then
   echo "[data] fetching $DSNAME"; mkdir -p "$(dirname "$DS/$DSNAME")"
