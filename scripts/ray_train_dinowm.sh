@@ -4,7 +4,8 @@
 # Written fresh (no string-derivation). Checkpoints go to ckpts_dinowm/<RUN>/, with RUN
 # resolved from the composed hydra config, never hardcoded.
 set -euo pipefail
-TASK="${1:?usage: ray_train_dinowm.sh <task>}"
+TASK="${1:?usage: ray_train_dinowm.sh <task> [seed]}"
+SEED="${2:-3072}"
 case "$TASK" in
   pusht)     DSNAME=pusht_expert_train.lance ;;
   reacher)   DSNAME=reacher.lance ;;
@@ -78,14 +79,14 @@ if [ ! -d "$DS/$DSNAME" ]; then
 fi
 du -sh "$DS/$DSNAME"
 
-RUN=$(python train_dinowm.py --cfg job --resolve "experiment=$EXP" 2>/dev/null \
+RUN=$(python train_dinowm.py --cfg job --resolve "experiment=$EXP" "seed=$SEED" 2>/dev/null \
       | grep -E "^output_model_name:" | awk '{print $2}' | tr -d '\r')
 [ -n "$RUN" ] || { echo "FATAL: could not resolve output_model_name for $EXP" >&2; exit 1; }
 LOG="$SSD/train_$RUN.log"; : > "$LOG"
 echo "[train] experiment=$EXP -> $RUN" | tee -a "$LOG"
 export HYDRA_FULL_ERROR=1
 set +e
-python train_dinowm.py "experiment=$EXP" 2>&1 | tee -a "$LOG"
+python train_dinowm.py "experiment=$EXP" "seed=$SEED" 2>&1 | tee -a "$LOG"
 rc=${PIPESTATUS[0]}
 set -e
 echo "[train] exit $rc" | tee -a "$LOG"
