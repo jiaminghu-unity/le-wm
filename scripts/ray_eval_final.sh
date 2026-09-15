@@ -89,11 +89,19 @@ if ! command -v uv >/dev/null; then
   PATH="$(python3 -m site --user-base)/bin:$(python3 -c 'import sysconfig;print(sysconfig.get_path("scripts"))'):$PATH"
   export PATH; hash -r
 fi
-if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
-source "$SSD/.venv/bin/activate"
+# Reacher renders must match the dataset stack: mujoco 3.12 (2026-08-20) changed
+# the checker-floor rendering, so reacher.h5 (rendered under 3.11) disagrees with
+# any 3.12+ env by a constant MAE ~17.9 — proven by version-sweep probes 2026-09-15.
+# Reacher therefore evaluates in a dedicated venv pinned to the collection stack;
+# every other task keeps the shared venv (their fidelity gates pass on current).
+VENVDIR="$SSD/.venv"
+if [ "$TASK" = reacher ]; then VENVDIR="$SSD/.venv_r311"; fi
+if [ ! -x "$VENVDIR/bin/python" ]; then uv venv --python=3.10 "$VENVDIR"; fi
+source "$VENVDIR/bin/activate"
 uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
 uv pip install -q hdf5plugin -U datasets scikit-learn
+[ "$TASK" = reacher ] && uv pip install -q 'mujoco==3.11.0' 'dm_control==1.0.44' 
 
 # ---- dataset ----
 H5="$DS/$H5NAME"
