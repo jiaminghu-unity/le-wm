@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# Paper ablations round (2026-09-22, seed 3072):
+#   (A) L_obj / aux weight sweeps on cube + pusht:
+#       cube  obj  w in {0.03, 0.3, 1.0}  (0.1 exists as k2)   eval cfg k2_l003/l03/l1
+#       cube  aux  w in {0.3, 1.0}        (0.1 exists as k4)   eval cfg k4_l03/l1
+#       pusht obj  w in {0.03, 0.3, 1.0}  (0.1 exists as c3)   eval cfg c3_l003/l03/l1
+#       pusht aux  w in {0.1, 1.0}        (0.3 exists as c5)   eval cfg c5_l01/l1
+#       evals: cem/icem x 6 seeds -> final_eval/
+#   (B) mppi temperature sweep: T in {8,32,64,128,256,512} x {baseline, SCALE}
+#       x {pusht, reacher, cube, tworoom, pointmaze}; paper-protocol held-out
+#       seeds 102-106; existing (cfg,T) cells skip via done-check.
+export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
+cd /workspace/le-wm || exit 1
+SEED=3072
+BUCKET=gs://prism-training-us/le-wm
+EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycache__"]}'
+L=/workspace/le-wm/eval_results/ablation.log
+log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
+declare -A ATT
+free(){ python3 - <<'FREEPY' 2>/dev/null
+import json, urllib.request
+nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=100', timeout=20))
+rows = nodes.get('data',{}).get('result',{}).get('result',[])
+total = sum(n.get('resources_total',{}).get('GPU',0) for n in rows if n.get('state')=='ALIVE')
+jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
+used = sum(1 for j in jobs if j.get('status') in ('RUNNING','PENDING')
+           and ('scripts/ray_' in (j.get('entrypoint') or '') or j.get('entrypoint_num_gpus')))
+print(max(int(total-used), 0))
+FREEPY
+}
+nrun(){ python3 - "$1" <<'PY' 2>/dev/null
+import json,sys,urllib.request
+d=json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/'))
+print(sum(1 for j in d if j['status'] in ('RUNNING','PENDING') and sys.argv[1] in (j.get('entrypoint') or '')))
+PY
+}
+sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
+  --working-dir /workspace/le-wm --runtime-env-json "$EXC" -- "$@" 2>&1 \
+  | grep -oE "raysubmit_[A-Za-z0-9]+" | head -1; }
+try(){ local key=$1; shift
+  [ "$(nrun "$*")" != 0 ] && return 1
+  [ "$(free)" -lt 1 ] && return 1
+  local n=${ATT[$key]:-0}
+  [ "$n" -ge 4 ] && { log "$key attempt cap"; return 1; }
+  local id; id=$(sub "$@")
+  if [ -n "$id" ]; then ATT[$key]=$((n+1)); log "$key attempt $((n+1)) -> $id"; else log "$key submit FAILED"; fi
+}
+wtag(){ echo "l$(echo "$1" | tr -d '.' | sed 's/^0*//;s/^$/0/' )"; }  # 0.03->l003? see below
+# weight -> label: 0.03 -> l003, 0.1 -> l01, 0.3 -> l03, 1.0 -> l1  (match legacy c3_l01/c5_l03)
+lbl(){ case "$1" in 0.03) echo l003;; 0.1) echo l01;; 0.3) echo l03;; 1.0) echo l1;; *) echo "l$1";; esac; }
+log "start: paper ablations (weight sweeps + mppi-T sweep)"
+for round in $(seq 1 9000); do
+  left=0
+  # ---- (A) weight sweeps ----
+  for spec in \
+    "cube k2_cube_obj_eff loss.obj.weight lewm_k2_cube_obj_eff{W}_s${SEED} k2 0.03 0.3 1.0" \
+    "cube k4_cube_qhead_eff loss.aux.weight lewm_k4_cube_qhead_eff{W}_s${SEED} k4 0.3 1.0" \
+    "pusht c3_sig_plus_obj loss.obj.weight lewm_c3_sig_obj{W}_s${SEED} c3 0.03 0.3 1.0" \
+    "pusht c5_qhead loss.aux.weight lewm_c5_qhead{W}_s${SEED} c5 0.1 1.0"; do
+    set -- $spec; task=$1; exp=$2; key=$3; runpat=$4; short=$5; shift 5
+    for W in "$@"; do
+      run="${runpat/\{W\}/$W}"
+      cfg="${short}_$(lbl $W)"
+      if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+        left=1
+        try "tr_${cfg}" bash scripts/ray_train_qnative.sh "$task" experiment="$exp" seed=$SEED "$key=$W"
+        continue
+      fi
+      for sol in cem icem; do
+        for seeds in "101 102 103" "104 105 106"; do
+          miss=0
+          for s in $seeds; do
+            gcloud storage ls "$BUCKET/final_eval/final_${task}_${cfg}_${sol}_s${s}.csv" >/dev/null 2>&1 || miss=1
+          done
+          [ "$miss" = 0 ] && continue
+          left=1
+          # shellcheck disable=SC2086
+          try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh "$task" "$cfg" "$run" "$sol" $seeds
+        done
+      done
+    done
+  done
+  # ---- (B) mppi temperature sweep ----
+  for spec in \
+    "pusht c1 ckpts lewm_c1_s${SEED}" \
+    "pusht c3_l01 ckpts lewm_c3_sig_obj0.1_s${SEED}" \
+    "reacher r1 ckpts lewm_r1_reacher_s${SEED}" \
+    "reacher r2_l015 ckpts lewm_r2_reacher_paep_l015_s${SEED}" \
+    "cube k1 ckpts lewm_k1_cube_s${SEED}" \
+    "cube k2_l01 ckpts lewm_k2_cube_obj_eff0.1_s${SEED}" \
+    "tworoom t1 ckpts_tworoom lewm_t1_tworoom_s${SEED}" \
+    "tworoom t2_l01 ckpts_tworoom lewm_t2_tworoom_obj0.1_s${SEED}" \
+    "pointmaze p1 ckpts_pointmaze lewm_p1_pointmaze_s${SEED}" \
+    "pointmaze p2_l01 ckpts_pointmaze lewm_p2_pointmaze_s${SEED}"; do
+    set -- $spec; task=$1; cfg=$2; ckp=$3; run=$4
+    for T in 8 32 64 128 256 512; do
+      m=0
+      for s in 102 103 104 105 106; do
+        gcloud storage ls "$BUCKET/final_eval_mppi_t/final_${task}_${cfg}_mppiT${T}_s${s}.csv" >/dev/null 2>&1 || m=1
+      done
+      [ "$m" = 0 ] && continue
+      left=1
+      try "mp_${task}_${cfg}_T${T}" bash scripts/ray_eval_mppi_t.sh "$task" "$cfg" "$ckp" "$run" "$T" 102,103,104,105,106
+    done
+  done
+  [ "$left" = 0 ] && { log "ABLATIONS COMPLETE"; exit 0; }
+  sleep 240
+done
+log "round cap"; exit 1
