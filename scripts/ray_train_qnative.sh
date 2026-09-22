@@ -37,6 +37,16 @@ if ! command -v uv >/dev/null; then
   export PATH; hash -r
 fi
 if [ ! -x "$SSD/.venv/bin/python" ]; then uv venv --python=3.10 "$SSD/.venv"; fi
+# space guard: workers accumulate staged datasets across campaigns; below 150G
+# free, purge caches and datasets (all re-fetchable) before installing/staging.
+FREE_G=$(df --output=avail -BG "$SSD" 2>/dev/null | tail -1 | tr -dc 0-9)
+if [ "${FREE_G:-0}" -lt 150 ]; then
+  echo "[env] free=${FREE_G}G <150G -> purging caches + staged datasets"
+  rm -rf "$SSD"/*.gstmp "$SSD"/alien "$SSD"/pip "$SSD"/qgate_dataeff_* 2>/dev/null || true
+  rm -rf "$HOME/.cache/uv" "$HOME/.cache/pip" "$SSD/.cache" 2>/dev/null || true
+  find "$SSD/stable-wm/datasets" -mindepth 1 -maxdepth 2 -print -exec rm -rf {} + 2>/dev/null || true
+  df -h --output=avail "$SSD" | tail -1
+fi
 source "$SSD/.venv/bin/activate"
 uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
