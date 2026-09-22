@@ -155,7 +155,7 @@ for round in $(seq 1 9000); do
   # reacher: paper q = joints-only; full = native 8d (joints cos/sin + finger + qvel)
   run="lewm_r2_reacher_nativeq_s${SEED}"; cfg="r2_natq"
   if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
-    left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r2_reacher_paep seed=$SEED "loss.obj.q_variant=reacher_native_full" "output_model_name=$run"
+    left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r2_reacher_paep seed=$SEED "loss.obj.q_variant=reacher_native_full" "data=dmc_native" "output_model_name=$run"
   else
     for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
       miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval/final_reacher_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done

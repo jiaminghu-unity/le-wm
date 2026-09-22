@@ -1,0 +1,19 @@
+# dmc.yaml + the native-q source columns (qpos/finger_pos/qvel) explicitly loaded —
+# the lance-backed reacher dataset serves only keys_to_load, unlike the old h5 path.
+dataset:
+  num_steps: ${eval:'${num_preds} + ${history_size}'}
+  frameskip: 5
+  name: reacher.h5
+  keys_to_load:
+    - pixels
+    - action
+    - observation
+    - qpos
+    - finger_pos
+    - qvel
+  keys_to_cache:
+    - action
+    - observation
+    - qpos
+    - finger_pos
+    - qvel
