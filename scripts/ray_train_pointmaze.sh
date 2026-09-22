@@ -20,6 +20,8 @@
 set -euo pipefail
 
 ARM="${1:?usage: ray_train_pointmaze.sh <base|obj|aux>}"
+shift || true
+EXTRA=("$@")   # hydra overrides forwarded to train_*.py (weight sweeps)
 case "$ARM" in base|obj|aux) ;; *) echo "arm must be base, obj or aux" >&2; exit 1 ;; esac
 TASK=pointmaze
 BUCKET=gs://prism-training-us/le-wm
@@ -69,7 +71,7 @@ uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download
 uv pip install -q hdf5plugin -U datasets
 python -c "import torch; print('[torch]', torch.__version__, 'cuda', torch.cuda.is_available())"
 
-RUN=$(python train_pointmaze.py --cfg job --resolve "experiment=$EXP" 2>/dev/null \
+RUN=$(python train_pointmaze.py --cfg job --resolve "experiment=$EXP" "${EXTRA[@]}" 2>/dev/null \
       | grep -E "^output_model_name:" | awk '{print $2}' | tr -d '\r')
 [ -n "$RUN" ] || { echo "FATAL: could not resolve output_model_name for $EXP" >&2; exit 1; }
 echo "[run] experiment=$EXP  ->  $RUN"
@@ -139,7 +141,7 @@ fi
 export HYDRA_FULL_ERROR=1
 echo "[train] experiment=$EXP -> $RUN" | tee -a "$LOG"
 set +e
-python train_pointmaze.py "experiment=$EXP" 2>&1 | tee -a "$LOG"
+python train_pointmaze.py "experiment=$EXP" "${EXTRA[@]}" 2>&1 | tee -a "$LOG"
 rc=${PIPESTATUS[0]}
 set -e
 echo "[train] exit $rc" | tee -a "$LOG"

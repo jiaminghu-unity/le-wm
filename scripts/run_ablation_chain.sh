@@ -80,6 +80,70 @@ for round in $(seq 1 9000); do
       done
     done
   done
+  # ---- (A2) weight sweeps: reacher / tworoom / pointmaze ----
+  # reacher obj (r2, literal name -> explicit output_model_name), paper 0.15 kept as its own row
+  for W in 0.03 0.1 0.3 1.0; do
+    cfg="r2_$(lbl $W)"; run="lewm_r2_reacher_paep_$(lbl $W)_s${SEED}"
+    if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+      left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r2_reacher_paep seed=$SEED "loss.obj.weight=$W" "output_model_name=$run"
+    else
+      for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+        miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval/final_reacher_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+        [ "$miss" = 0 ] && continue; left=1
+        # shellcheck disable=SC2086
+        try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh reacher "$cfg" "$run" "$sol" $seeds
+      done; done
+    fi
+  done
+  # reacher aux (r5, templated name), paper 0.4 exists
+  for W in 0.1 0.3 1.0; do
+    cfg="r5_$(lbl $W)"; run="lewm_r5_qhead${W}_s${SEED}"
+    if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+      left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r5_qhead seed=$SEED "loss.aux.weight=$W"
+    else
+      for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+        miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval/final_reacher_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+        [ "$miss" = 0 ] && continue; left=1
+        # shellcheck disable=SC2086
+        try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh reacher "$cfg" "$run" "$sol" $seeds
+      done; done
+    fi
+  done
+  # tworoom obj/aux (templated names; dedicated launcher+eval, ckpts_tworoom)
+  for spec in "obj t2_tworoom_obj loss.obj.weight lewm_t2_tworoom_obj{W}_s${SEED} t2 0.03 0.3 1.0"               "aux t5_tworoom_qhead loss.aux.weight lewm_t5_tworoom_qhead{W}_s${SEED} t5 0.3 1.0"; do
+    set -- $spec; arm=$1; exp=$2; key=$3; runpat=$4; short=$5; shift 5
+    for W in "$@"; do
+      run="${runpat/\{W\}/$W}"; cfg="${short}_$(lbl $W)"
+      if ! gcloud storage ls "$BUCKET/ckpts_tworoom/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+        left=1; try "tr_${cfg}" bash scripts/ray_train_tworoom.sh "$arm" "$key=$W" "seed=$SEED"
+      else
+        for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+          miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval_tworoom/final_tworoom_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+          [ "$miss" = 0 ] && continue; left=1
+          # shellcheck disable=SC2086
+          try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_tworoom.sh "$cfg" "$run" "$sol" $seeds
+        done; done
+      fi
+    done
+  done
+  # pointmaze obj/aux (literal names -> explicit output_model_name)
+  for spec in "obj p2_pointmaze_obj loss.obj.weight p2 0.03 0.3 1.0"               "aux p5_pointmaze_qhead loss.aux.weight p5 0.3 1.0"; do
+    set -- $spec; arm=$1; exp=$2; key=$3; short=$4; shift 4
+    for W in "$@"; do
+      cfg="${short}_$(lbl $W)"; run="lewm_${short}_pointmaze_$(lbl $W)_s${SEED}"
+      if ! gcloud storage ls "$BUCKET/ckpts_pointmaze/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+        left=1; try "tr_${cfg}" bash scripts/ray_train_pointmaze.sh "$arm" "$key=$W" "seed=$SEED" "output_model_name=$run"
+      else
+        for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+          miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval_pointmaze/final_pointmaze_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+          [ "$miss" = 0 ] && continue; left=1
+          # shellcheck disable=SC2086
+          try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_pointmaze.sh "$cfg" "$run" "$sol" $seeds
+        done; done
+      fi
+    done
+  done
+
   # ---- (B) mppi temperature sweep ----
   for spec in \
     "pusht c1 ckpts lewm_c1_s${SEED}" \

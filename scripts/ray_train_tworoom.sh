@@ -20,6 +20,8 @@
 set -euo pipefail
 
 ARM="${1:?usage: ray_train_tworoom.sh <base|obj|aux>}"
+shift || true
+EXTRA=("$@")   # hydra overrides forwarded to train_*.py (weight sweeps)
 case "$ARM" in base|obj|aux) ;; *) echo "arm must be base, obj or aux" >&2; exit 1 ;; esac
 TASK=tworoom
 BUCKET=gs://prism-training-us/le-wm
@@ -119,7 +121,7 @@ fi
 export HYDRA_FULL_ERROR=1
 echo "[train] experiment=$EXP -> $RUN" | tee -a "$LOG"
 set +e
-python train_tworoom.py "experiment=$EXP" 2>&1 | tee -a "$LOG"
+python train_tworoom.py "experiment=$EXP" "${EXTRA[@]}" 2>&1 | tee -a "$LOG"
 rc=${PIPESTATUS[0]}
 set -e
 echo "[train] exit $rc" | tee -a "$LOG"
