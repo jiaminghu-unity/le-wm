@@ -48,7 +48,7 @@ try(){ local key=$1; shift
   [ "$(nrun "$*")" != 0 ] && return 1
   [ "$(free)" -lt 1 ] && return 1
   local n=${ATT[$key]:-0}
-  [ "$n" -ge 12 ] && { log "$key attempt cap"; return 1; }
+  [ "$n" -ge 99 ] && { log "$key attempt cap"; return 1; }
   local id; id=$(sub "$@")
   if [ -n "$id" ]; then ATT[$key]=$((n+1)); log "$key attempt $((n+1)) -> $id"; else log "$key submit FAILED"; fi
 }
