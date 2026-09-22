@@ -20,12 +20,19 @@ declare -A ATT
 # capacity-targeted submission: submit up to TARGET(30) concurrent jobs so the
 # queue creates GPU demand and the autoscaler grows toward max_workers=32.
 # Occasional 900s pending-timeouts while nodes boot are absorbed by retries.
+# dynamic target: current GPU capacity + 4 queued (steady scale-up pressure
+# without mass 900s pending-timeouts during a zone stockout), capped at 30.
 free(){ python3 - <<'FREEPY' 2>/dev/null
-import json, urllib.request
+import json, urllib.request, subprocess
+try:
+    out=subprocess.run(['ray','list','nodes','--format','json'],capture_output=True,text=True,timeout=30).stdout
+    cap=int(sum((r.get('resources_total') or {}).get('GPU',0) for r in json.loads(out) if r.get('state')=='ALIVE'))
+except Exception:
+    cap=8
 jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
 used = sum(1 for j in jobs if j.get('status') in ('RUNNING','PENDING')
            and ('scripts/ray_' in (j.get('entrypoint') or '') or j.get('entrypoint_num_gpus')))
-print(max(30-used, 0))
+print(max(min(cap+4,30)-used, 0))
 FREEPY
 }
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
