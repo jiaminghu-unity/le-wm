@@ -32,7 +32,7 @@ except Exception:
 jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
 used = sum(1 for j in jobs if j.get('status') in ('RUNNING','PENDING')
            and ('scripts/ray_' in (j.get('entrypoint') or '') or j.get('entrypoint_num_gpus')))
-print(max(min(cap+4,30)-used, 0))
+print(max(min(cap+8,30)-used, 0))
 FREEPY
 }
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
@@ -48,7 +48,7 @@ try(){ local key=$1; shift
   [ "$(nrun "$*")" != 0 ] && return 1
   [ "$(free)" -lt 1 ] && return 1
   local n=${ATT[$key]:-0}
-  [ "$n" -ge 8 ] && { log "$key attempt cap"; return 1; }
+  [ "$n" -ge 12 ] && { log "$key attempt cap"; return 1; }
   local id; id=$(sub "$@")
   if [ -n "$id" ]; then ATT[$key]=$((n+1)); log "$key attempt $((n+1)) -> $id"; else log "$key submit FAILED"; fi
 }
@@ -201,6 +201,6 @@ for round in $(seq 1 9000); do
     done
   done
   [ "$left" = 0 ] && { log "ABLATIONS COMPLETE"; exit 0; }
-  sleep 240
+  sleep 60
 done
 log "round cap"; exit 1
