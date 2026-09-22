@@ -56,3 +56,12 @@ for chain in run_alien_chain; do
     echo "[$(ts)] relaunched $chain" >> "$LOG"
   fi
 done
+
+# ablation keep-alive (2026-09-22): the ablation chain must never stay dead while
+# incomplete — restart it whenever missing. Session-independent by design.
+if ! grep -q "ABLATIONS COMPLETE" /workspace/le-wm/eval_results/ablation.log 2>/dev/null; then
+  if ! pgrep -f "scripts/run_ablation_chain.sh" >/dev/null 2>&1; then
+    echo "[selfheal $(date -u '+%m-%d %H:%M')] ablation chain dead -> restarting" >> /workspace/le-wm/eval_results/ALERTS.log
+    cd /workspace/le-wm && nohup bash scripts/run_ablation_chain.sh >> eval_results/ablation.log 2>&1 &
+  fi
+fi
