@@ -144,6 +144,32 @@ for round in $(seq 1 9000); do
     done
   done
 
+  # ---- (A3) full-q arms: paper-q vs full/native-q (only where they differ) ----
+  # reacher: paper q = joints-only; full = native 8d (joints cos/sin + finger + qvel)
+  run="lewm_r2_reacher_nativeq_s${SEED}"; cfg="r2_natq"
+  if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+    left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r2_reacher_paep seed=$SEED "loss.obj.q_variant=reacher_native_full" "output_model_name=$run"
+  else
+    for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+      miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval/final_reacher_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+      [ "$miss" = 0 ] && continue; left=1
+      # shellcheck disable=SC2086
+      try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_final.sh reacher "$cfg" "$run" "$sol" $seeds
+    done; done
+  fi
+  # pointmaze: paper q = pos 2d; full = state native 4d (pos+vel)
+  run="lewm_p2_pointmaze_nativeq_s${SEED}"; cfg="p2_natq"
+  if ! gcloud storage ls "$BUCKET/ckpts_pointmaze/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
+    left=1; try "tr_${cfg}" bash scripts/ray_train_pointmaze.sh obj "loss.obj.q_variant=pointmaze_state_native" "seed=$SEED" "output_model_name=$run"
+  else
+    for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
+      miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval_pointmaze/final_pointmaze_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done
+      [ "$miss" = 0 ] && continue; left=1
+      # shellcheck disable=SC2086
+      try "ev_${cfg}_${sol}_${seeds%% *}" bash scripts/ray_eval_pointmaze.sh "$cfg" "$run" "$sol" $seeds
+    done; done
+  fi
+
   # ---- (B) mppi temperature sweep ----
   for spec in \
     "pusht c1 ckpts lewm_c1_s${SEED}" \
