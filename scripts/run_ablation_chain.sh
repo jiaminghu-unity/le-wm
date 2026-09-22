@@ -47,16 +47,16 @@ try(){ local key=$1; shift
 }
 wtag(){ echo "l$(echo "$1" | tr -d '.' | sed 's/^0*//;s/^$/0/' )"; }  # 0.03->l003? see below
 # weight -> label: 0.03 -> l003, 0.1 -> l01, 0.3 -> l03, 1.0 -> l1  (match legacy c3_l01/c5_l03)
-lbl(){ case "$1" in 0.03) echo l003;; 0.1) echo l01;; 0.3) echo l03;; 1.0) echo l1;; *) echo "l$1";; esac; }
+lbl(){ case "$1" in 0.03) echo l003;; 0.1) echo l01;; 0.15) echo l015;; 0.3) echo l03;; 0.4) echo l04;; 1.0) echo l1;; *) echo "l$1";; esac; }
 log "start: paper ablations (weight sweeps + mppi-T sweep)"
 for round in $(seq 1 9000); do
   left=0
   # ---- (A) weight sweeps ----
   for spec in \
-    "cube k2_cube_obj_eff loss.obj.weight lewm_k2_cube_obj_eff{W}_s${SEED} k2 0.03 0.3 1.0" \
-    "cube k4_cube_qhead_eff loss.aux.weight lewm_k4_cube_qhead_eff{W}_s${SEED} k4 0.3 1.0" \
-    "pusht c3_sig_plus_obj loss.obj.weight lewm_c3_sig_obj{W}_s${SEED} c3 0.03 0.3 1.0" \
-    "pusht c5_qhead loss.aux.weight lewm_c5_qhead{W}_s${SEED} c5 0.1 1.0"; do
+    "cube k2_cube_obj_eff loss.obj.weight lewm_k2_cube_obj_eff{W}_s${SEED} k2 0.03 0.15 0.3 1.0" \
+    "cube k4_cube_qhead_eff loss.aux.weight lewm_k4_cube_qhead_eff{W}_s${SEED} k4 0.3 0.4 1.0" \
+    "pusht c3_sig_plus_obj loss.obj.weight lewm_c3_sig_obj{W}_s${SEED} c3 0.03 0.15 0.3 1.0" \
+    "pusht c5_qhead loss.aux.weight lewm_c5_qhead{W}_s${SEED} c5 0.1 0.4 1.0"; do
     set -- $spec; task=$1; exp=$2; key=$3; runpat=$4; short=$5; shift 5
     for W in "$@"; do
       run="${runpat/\{W\}/$W}"
@@ -110,7 +110,7 @@ for round in $(seq 1 9000); do
     fi
   done
   # tworoom obj/aux (templated names; dedicated launcher+eval, ckpts_tworoom)
-  for spec in "obj t2_tworoom_obj loss.obj.weight lewm_t2_tworoom_obj{W}_s${SEED} t2 0.03 0.3 1.0"               "aux t5_tworoom_qhead loss.aux.weight lewm_t5_tworoom_qhead{W}_s${SEED} t5 0.3 1.0"; do
+  for spec in "obj t2_tworoom_obj loss.obj.weight lewm_t2_tworoom_obj{W}_s${SEED} t2 0.03 0.15 0.3 1.0"               "aux t5_tworoom_qhead loss.aux.weight lewm_t5_tworoom_qhead{W}_s${SEED} t5 0.3 0.4 1.0"; do
     set -- $spec; arm=$1; exp=$2; key=$3; runpat=$4; short=$5; shift 5
     for W in "$@"; do
       run="${runpat/\{W\}/$W}"; cfg="${short}_$(lbl $W)"
@@ -127,7 +127,7 @@ for round in $(seq 1 9000); do
     done
   done
   # pointmaze obj/aux (literal names -> explicit output_model_name)
-  for spec in "obj p2_pointmaze_obj loss.obj.weight p2 0.03 0.3 1.0"               "aux p5_pointmaze_qhead loss.aux.weight p5 0.3 1.0"; do
+  for spec in "obj p2_pointmaze_obj loss.obj.weight p2 0.03 0.15 0.3 1.0"               "aux p5_pointmaze_qhead loss.aux.weight p5 0.3 0.4 1.0"; do
     set -- $spec; arm=$1; exp=$2; key=$3; short=$4; shift 4
     for W in "$@"; do
       cfg="${short}_$(lbl $W)"; run="lewm_${short}_pointmaze_$(lbl $W)_s${SEED}"
