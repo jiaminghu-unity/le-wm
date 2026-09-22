@@ -17,15 +17,15 @@ EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycac
 L=/workspace/le-wm/eval_results/ablation.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
+# capacity-targeted submission: submit up to TARGET(30) concurrent jobs so the
+# queue creates GPU demand and the autoscaler grows toward max_workers=32.
+# Occasional 900s pending-timeouts while nodes boot are absorbed by retries.
 free(){ python3 - <<'FREEPY' 2>/dev/null
 import json, urllib.request
-nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=100', timeout=20))
-rows = nodes.get('data',{}).get('result',{}).get('result',[])
-total = sum(n.get('resources_total',{}).get('GPU',0) for n in rows if n.get('state')=='ALIVE')
 jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
 used = sum(1 for j in jobs if j.get('status') in ('RUNNING','PENDING')
            and ('scripts/ray_' in (j.get('entrypoint') or '') or j.get('entrypoint_num_gpus')))
-print(max(int(total-used), 0))
+print(max(30-used, 0))
 FREEPY
 }
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
@@ -41,7 +41,7 @@ try(){ local key=$1; shift
   [ "$(nrun "$*")" != 0 ] && return 1
   [ "$(free)" -lt 1 ] && return 1
   local n=${ATT[$key]:-0}
-  [ "$n" -ge 4 ] && { log "$key attempt cap"; return 1; }
+  [ "$n" -ge 8 ] && { log "$key attempt cap"; return 1; }
   local id; id=$(sub "$@")
   if [ -n "$id" ]; then ATT[$key]=$((n+1)); log "$key attempt $((n+1)) -> $id"; else log "$key submit FAILED"; fi
 }
