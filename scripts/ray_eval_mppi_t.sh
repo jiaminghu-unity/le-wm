@@ -98,12 +98,16 @@ RC=0
 IFS=',' read -ra TARR <<< "$TS"
 IFS=',' read -ra SARR <<< "$SEEDLIST"
 # render fidelity gate (hard abort: a soft-rendered worker biases SR ~20pp on reacher)
+case "$TASK" in reacher|pusht|cube)
 GATELOG="$SSD/render_gate_${TASK}.log"
 if ! python scripts/check_render_fidelity.py "$TASK" 8 --max-mae 3.0 2>&1 | tee "$GATELOG"; then
   echo "[FATAL] render fidelity gate FAILED — aborting" | tee -a "$GATELOG"
   gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
   exit 41
 fi
+  ;;
+  *) echo "[gate] fidelity checker has no $TASK branch — skipping (its dedicated eval launcher carries no gate either)";;
+esac
 
 for T in "${TARR[@]}"; do
   for S in "${SARR[@]}"; do
