@@ -1,0 +1,58 @@
+On branch model-ckpts
+nothing to commit, working tree clean
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File ckpts_half/lewm_hq_aux_pusht_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_aux21_cube_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k2_cube_obj_eff0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k7_cube_obj_eff0.2_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_aux_reacher_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c5_qhead0.3_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k1_cube_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_obj_cube_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c3_sig_obj0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k1_cube_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k4_cube_qhead_eff0.1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_obj_cube_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r1_reacher_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r2_reacher_paep_l015_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c2p_obj0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k6_cube_combo_o0.1a0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r1_reacher_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r2_reacher_paep_l015_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r5_qhead0.4_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_r5_qhead0.4_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c6_o01a03_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c9_qhead_nosig0.3_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c5_qhead0.3_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k2_cube_obj_eff0.1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_k4_cube_qhead_eff0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_aux_cube_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts/lewm_c3_sig_obj0.1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+remote: 
+remote: Create a pull request for 'model-ckpts' on GitHub by visiting:        
+remote:      https://github.com/jiaminghu-unity/le-wm/pull/new/model-ckpts        
+remote: 
+pushed batch 2 (30 dirs)
+remote: warning: See https://gh.io/lfs for more information.        
+remote: warning: File ckpts_half/lewm_hq_obj_reacher_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t2_tworoom_obj0.1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p1_pointmaze_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p1_pointmaze_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p2_pointmaze_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p2_pointmaze_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t1_tworoom_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t5_tworoom_qhead0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_obj_reacher_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p5_pointmaze_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t2_tworoom_obj0.1_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t5_tworoom_qhead0.1_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_half/lewm_hq_obj_pusht_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_pointmaze/lewm_p5_pointmaze_s3073/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: File ckpts_tworoom/lewm_t1_tworoom_s3072/weights_epoch_10.pt is 68.94 MB; this is larger than GitHub's recommended maximum file size of 50.00 MB        
+remote: warning: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+pushed batch 3 (45 dirs)
+ALL PUSHED (45 dirs)
+3.1G	/workspace/le-wm-ckpts

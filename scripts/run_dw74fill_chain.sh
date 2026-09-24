@@ -15,7 +15,7 @@ log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
 free(){ python3 - <<'FREEPY' 2>/dev/null
 import json, urllib.request
-nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=100', timeout=20))
+nodes = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/v0/nodes?limit=500', timeout=20))
 rows = nodes.get('data',{}).get('result',{}).get('result',[])
 total = sum(n.get('resources_total',{}).get('GPU',0) for n in rows if n.get('state')=='ALIVE')
 jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))

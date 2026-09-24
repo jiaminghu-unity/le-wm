@@ -1,0 +1,7 @@
+[08-21 07:05:21] start: qdistill (train -> cem/icem x 6 seeds)
+[08-21 07:05:25] train qdist attempt 1 -> raysubmit_WYRQGJWBinaR27R9
+[08-21 16:29:42] ev_qdist_cem_101 attempt 1 -> raysubmit_Q9r1qFHgcrjgSjSS
+[08-21 16:33:55] ev_qdist_cem_104 attempt 1 -> raysubmit_672hEhHeJ31XUrKC
+[08-21 16:38:13] ev_qdist_icem_101 attempt 1 -> raysubmit_7VtPiyt3YWeQkKZb
+[08-21 16:42:35] ev_qdist_icem_104 attempt 1 -> raysubmit_HCjf9pHyyy4CMc9S
+[08-21 17:08:36] QDISTILL COMPLETE

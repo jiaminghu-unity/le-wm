@@ -1,0 +1,21 @@
+[08-21 20:07:16] start: qdistill reacher+cube (2 teachers -> 2 students -> cem/icem x 6)
+[08-21 20:07:20] teach_r attempt 1 -> raysubmit_Q7ZG9E4LKALwLUmb
+[08-21 20:11:26] teach_r attempt 2 -> raysubmit_PEiJyFq8TiBGQVDY
+[08-21 20:15:31] teach_r attempt 3 -> raysubmit_PB7Tdw3xMDvQSZbw
+[08-21 20:19:36] teach_r attempt 4 -> raysubmit_Fwd4PGAE5mjjAB3b
+[08-21 20:23:40] teach_r attempt cap
+[08-21 20:23:44] teach_k attempt 1 -> raysubmit_iXBpbWWSRwGWvEpx
+[08-21 20:27:47] teach_r attempt cap
+[08-21 20:29:10] start: qdistill reacher+cube (2 teachers -> 2 students -> cem/icem x 6)
+[08-21 20:29:15] teach_r attempt 1 -> raysubmit_fndKf3krwgmqqmbB
+[08-22 03:23:47] dist_r attempt 1 -> raysubmit_QrYv6EQB8zQTF6kZ
+[08-22 03:36:29] dist_k attempt 1 -> raysubmit_qfpJ8HBasZFm1Ucx
+[08-22 12:16:38] ev_reacher_cem_101 attempt 1 -> raysubmit_iD2jLnLxgFDFYB67
+[08-22 12:20:55] ev_reacher_cem_104 attempt 1 -> raysubmit_ZJ4A8nKYNxvW3tFi
+[08-22 12:25:18] ev_reacher_icem_101 attempt 1 -> raysubmit_tUakX3e3Wf7YKKfN
+[08-22 12:29:44] ev_reacher_icem_104 attempt 1 -> raysubmit_zzUBCzTu55RkPikK
+[08-22 12:34:15] ev_cube_cem_101 attempt 1 -> raysubmit_PSeWhZmc5JdPCFmh
+[08-22 13:21:41] ev_cube_cem_104 attempt 1 -> raysubmit_5MM92Rb7hVK4x2Mz
+[08-22 13:26:21] ev_cube_icem_101 attempt 1 -> raysubmit_MjYNfRrXYGeSzptw
+[08-22 13:31:05] ev_cube_icem_104 attempt 1 -> raysubmit_E5h4TXtBHwiCaUpv
+[08-22 14:13:24] QDISTILL R+K COMPLETE

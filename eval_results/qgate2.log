@@ -1,0 +1,56 @@
+[08-29 08:53:41] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[pick] WARNING: no lambda passed the goal-blind check; using 0.01 anyway
+[08-29 08:53:48] g_star_cube.json chosen and staged
+[08-29 08:53:50] qg attempt 1 -> raysubmit_5kSe2NPV4Yf9pJaz
+[08-29 08:56:05] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[pick] lambda=0.01 verdict OK, gates finite (blind gap 424.2633)
+[08-29 09:08:25] g_star_cube.json chosen and staged
+[08-29 09:08:28] qg attempt 1 -> raysubmit_RDJLLn5qa2kjyUVw
+[08-29 09:13:09] qa attempt 1 -> raysubmit_wThAJetxbS6twdWq
+[08-29 09:21:51] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 09:21:57] qs attempt 1 -> raysubmit_yLk2kzAdChHaq4jp
+[08-29 12:00:25] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 12:38:02] qm attempt 1 -> raysubmit_QGwh35r5e2WUUbyC
+[08-29 12:54:06] qm attempt 2 -> raysubmit_tAWCK21Lgdcuw7nk
+[08-29 17:06:13] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 18:21:48] qs attempt 1 -> raysubmit_nxm6gF3LbRDCaYEN
+[08-29 18:27:17] qs submit FAILED
+[08-29 18:32:22] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 18:32:35] ev_qg_cem_101 attempt 1 -> raysubmit_fV5rzpZ6Zn7XBkHg
+[08-29 18:36:52] ev_qg_cem_104 attempt 1 -> raysubmit_zUufYSiPJrJK8LnN
+[08-29 18:41:14] ev_qg_icem_101 attempt 1 -> raysubmit_Amdgew1tn8TzQAfB
+[08-29 18:45:42] ev_qg_icem_104 attempt 1 -> raysubmit_qVs28h6JkUpgrGvi
+[08-29 18:50:13] ev_qa_cem_101 attempt 1 -> raysubmit_6hcw1GHdT1pjRD2n
+[08-29 18:54:49] ev_qa_cem_104 attempt 1 -> raysubmit_QkhmpHPnWzawUegQ
+[08-29 18:59:30] ev_qa_icem_101 attempt 1 -> raysubmit_xf1BXepEKkkFnt8w
+[08-29 19:04:17] ev_qa_icem_104 attempt 1 -> raysubmit_XFqaacwHk1KqqR14
+[08-29 19:09:08] ev_qs_cem_101 attempt 1 -> raysubmit_2X26xzzS1CTmz7BC
+[08-29 19:14:03] ev_qs_cem_104 attempt 1 -> raysubmit_xCP5QE9eiKWBBsFz
+[08-29 19:19:01] ev_qs_icem_101 attempt 1 -> raysubmit_AWSXCc5dLgBUvc2A
+[08-29 19:24:03] ev_qs_icem_104 attempt 1 -> raysubmit_cSnEA2Y7qHrN9RGg
+[08-29 19:26:39] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 19:26:50] qg03 attempt 1 -> raysubmit_Vm1B8Jqx22ETXmrG
+[08-29 21:28:00] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 21:28:30] ev_qg_mppi_101 attempt 1 -> raysubmit_zgwbXzjTMPEZKD5y
+[08-29 21:33:05] ev_qg_mppi_104 attempt 1 -> raysubmit_7NtUWXzY1PGAjJ8Q
+[08-29 21:37:58] ev_qa_mppi_101 attempt 1 -> raysubmit_zY3e691Y775MkJS9
+[08-29 21:42:57] ev_qa_mppi_104 attempt 1 -> raysubmit_VekaW2x7RzW7REaQ
+[08-29 21:48:19] ev_qs_mppi_101 attempt 1 -> raysubmit_EQn8uyeqNbGHCiLa
+[08-29 21:52:27] qm attempt 1 -> raysubmit_BXZyCczZCw61Zvjy
+[08-29 21:56:54] start: Stage-2 Auto-SCALE cube (qg gated + qa ungated control) at seed 3072
+[08-29 22:16:52] ev_qa_mppi_101 attempt 1 -> raysubmit_SLTU3VcsCU4DuZEL
+[08-29 22:53:15] ev_qa_mppi_104 attempt 1 -> raysubmit_DYMhvf9AMnBfHFb9
+[08-29 23:04:43] ev_qs_mppi_104 attempt 1 -> raysubmit_pkrTKMiRwuy59TYp
+[08-30 04:43:57] ev_qg03_cem_101 attempt 1 -> raysubmit_fzQLkdKfhEScTQ1V
+[08-30 04:49:41] ev_qg03_cem_104 attempt 1 -> raysubmit_mrcx9Xngps9HwWYS
+[08-30 05:19:47] ev_qg03_icem_101 attempt 1 -> raysubmit_vJ77t6xpLS9xaw6j
+[08-30 05:25:41] ev_qg03_icem_104 attempt 1 -> raysubmit_DrcjFefE2kx1A2Wt
+[08-30 05:31:39] ev_qg03_mppi_101 attempt 1 -> raysubmit_rRGQS4dLRcAgVqtU
+[08-30 05:37:41] ev_qg03_mppi_104 attempt 1 -> raysubmit_GJJDX6n6b1JYEXdT
+[08-30 06:36:47] ev_qm_cem_101 attempt 1 -> raysubmit_fLccKzcdiWqUYeHA
+[08-30 06:42:05] ev_qm_cem_104 attempt 1 -> raysubmit_VQGzFZQHy18bvFpT
+[08-30 06:47:26] ev_qm_icem_101 attempt 1 -> raysubmit_2NTkSsL2g1GizT6R
+[08-30 06:52:54] ev_qm_icem_104 attempt 1 -> raysubmit_ird7C1PTmq4akKMD
+[08-30 06:58:27] ev_qm_mppi_101 attempt 1 -> raysubmit_HXvB1Phjxn2agBRK
+[08-30 07:04:05] ev_qm_mppi_104 attempt 1 -> raysubmit_aEUETSxk7CvQfD4S
+[08-30 07:51:04] AUTO-SCALE TRAININGS + EVALS COMPLETE (90 CSVs incl mppi)

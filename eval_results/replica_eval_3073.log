@@ -1,0 +1,144 @@
+[08-20 23:46:52] staging dinowm_pusht_s3073 -> ckpts/
+[08-20 23:46:56] staging dinowm_reacher_s3073 -> ckpts/
+[08-20 23:47:00] staging dinowm_cube_s3073 -> ckpts/
+[08-20 23:47:05] staging dinowm_tworoom_s3073 -> ckpts_tworoom/
+[08-20 23:47:09] staging dinowm_pointmaze_s3073 -> ckpts_pointmaze/
+[08-20 23:47:11] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-20 23:47:19] final_pusht_c1r73_cem_101 attempt 1 -> raysubmit_Ppp7uNJhqg1tshBm
+[08-20 23:50:54] final_pusht_c1r73_cem_104 attempt 1 -> raysubmit_gw19bJPExeV8QMnX
+[08-20 23:54:34] final_pusht_c3r73_cem_101 attempt 1 -> raysubmit_uDeprhwtHzrJBB3C
+[08-20 23:58:21] final_pusht_c3r73_cem_104 attempt 1 -> raysubmit_TFfNWuBaMnP7JJ9X
+[08-21 00:13:38] final_reacher_r2r73_mppi_104 attempt 1 -> raysubmit_vVkwN7VvEukkJJ9Y
+[08-21 00:17:29] final_pusht_c5r73_cem_101 attempt 1 -> raysubmit_Bj6n4ZzzbcMGXMMQ
+[08-21 00:21:25] final_pusht_c5r73_cem_104 attempt 1 -> raysubmit_qPYQdw8WMz2QU6zc
+[08-21 00:25:27] final_pusht_dwr73_cem_101 attempt 1 -> raysubmit_WtuTx1mFkV3x2fZF
+[08-21 00:39:36] final_pusht_dwr73_mppi_104 attempt 1 -> raysubmit_LQ3M3giyrs143HND
+[08-21 13:22:02] final_pusht_dwr73_cem_104 attempt 1 -> raysubmit_M5rXzabQL5nMqXeZ
+[08-21 13:25:54] final_reacher_r1r73_cem_101 attempt 1 -> raysubmit_LxRqJaJKbFPGEWZ6
+[08-21 14:00:47] final_tworoom_t1r73_icem_104 attempt 1 -> raysubmit_TkRG8mrxg6r7gcHF
+[08-21 14:06:40] final_tworoom_dwr73_cem_104 attempt 1 -> raysubmit_7BfH6WJtHa6YtqNm
+[08-21 14:23:34] final_reacher_r1r73_cem_104 attempt 1 -> raysubmit_ieLJDkdecRXYDwq6
+[08-21 14:54:57] final_tworoom_t1r73_cem_104 attempt 1 -> raysubmit_efaqcuGeAKSCrghi
+[08-21 15:19:02] final_cube_k1r73_mppi_104 attempt 1 -> raysubmit_DJ3t2cdfSUPxdYkS
+[08-21 16:09:32] final_cube_k2r73_mppi_104 attempt 1 -> raysubmit_MVMJU2X31qXkfU1S
+[08-21 17:06:39] final_cube_dwr73_cem_104 attempt 1 -> raysubmit_GFU63rKPemtxehsH
+[08-21 17:10:39] final_reacher_hqor73_cem_101 attempt 1 -> raysubmit_BgK2pLM1q1zrN5xW
+[08-21 17:40:24] final_reacher_hqor73_cem_104 attempt 1 -> raysubmit_t6FYsfKPmYipkXAR
+[08-21 18:10:18] final_reacher_r5r73_cem_101 attempt 1 -> raysubmit_VfiPQNsiKda7JEM2
+[08-21 18:40:17] final_reacher_r5r73_cem_104 attempt 1 -> raysubmit_7kwLRx2NLxi47wgH
+[08-21 19:10:50] final_reacher_r2r73_cem_101 attempt 1 -> raysubmit_WdJayKuZhiwdciBj
+[08-21 19:39:04] final_reacher_r2r73_icem_104 attempt 1 -> raysubmit_4QqqJhTgGnubPhqg
+[08-21 20:06:51] final_reacher_r5r73_icem_104 attempt 1 -> raysubmit_6cmtEvWjBB7jJQqX
+[08-21 20:34:59] final_cube_hqor73_icem_104 attempt 1 -> raysubmit_PgSDpEd3G99ptkaJ
+[08-21 21:17:39] final_cube_k2r73_cem_104 attempt 1 -> raysubmit_niiTARXFTZtmG6Rq
+[08-21 22:00:05] final_tworoom_t2r73_cem_101 attempt 1 -> raysubmit_kntEGvSiPdsuFuDH
+[08-21 22:23:20] final_reacher_r1r73_mppi_101 attempt 1 -> raysubmit_Mi1G4AJKhrqSXVrd
+[08-21 22:59:44] final_reacher_r5r73_mppi_101 attempt 1 -> raysubmit_6yaeqpU1GGPtfmBa
+[08-21 23:35:53] final_reacher_r1r73_mppi_104 attempt 1 -> raysubmit_GUPEtYeCB5mXL218
+[08-22 00:11:54] final_reacher_dwr73_mppi_101 attempt 1 -> raysubmit_7ifYMnrZSCNC9VuL
+[08-22 00:41:04] final_reacher_dwr73_cem_104 attempt 1 -> raysubmit_gN21K2h9CsCDidMq
+[08-22 17:13:13] final_reacher_r2r73_cem_104 attempt 1 -> raysubmit_jhQmKTaRuRjxwEct
+[08-22 17:18:09] final_reacher_dwr73_cem_101 attempt 1 -> raysubmit_PjcMuhTZY1WyvGJz
+[08-22 17:23:17] final_cube_k1r73_cem_101 attempt 1 -> raysubmit_M9tpaNmNt3RRwAA5
+[08-22 17:28:32] final_cube_k1r73_cem_104 attempt 1 -> raysubmit_H1pKaY7yiiwyPk6v
+[08-22 18:09:41] final_cube_hqor73_cem_101 attempt 1 -> raysubmit_d1F8bRsKsXc3Rg4E
+[08-22 18:15:03] final_cube_hqor73_cem_104 attempt 1 -> raysubmit_1n1N2MrzEws2HTgX
+[08-22 18:20:31] final_cube_k4r73_cem_101 attempt 1 -> raysubmit_jYCZxsMX1wtTSiJR
+[08-22 18:59:24] final_tworoom_t5r73_icem_104 attempt 1 -> raysubmit_jrgAgDWACQc18HKC
+[08-22 19:04:10] final_cube_k4r73_cem_104 attempt 1 -> raysubmit_EQRE5VBV6ZaVvEtc
+[08-22 19:08:59] final_cube_k2r73_cem_101 attempt 1 -> raysubmit_QzRU38hSvukSCvqr
+[08-22 19:51:59] final_cube_dwr73_cem_101 attempt 1 -> raysubmit_w75ncd4SsYhyNyKd
+[08-22 19:57:03] final_tworoom_t1r73_cem_101 attempt 1 -> raysubmit_A5GtQBfAscckAU7H
+[08-22 20:02:17] final_tworoom_t2r73_cem_104 attempt 1 -> raysubmit_W1iAvht6iQUv3X1s
+[08-22 20:21:43] final_pusht_dwr73_icem_104 attempt 1 -> raysubmit_hX6wArG2BrKDrufm
+[08-22 20:27:01] final_tworoom_t5r73_cem_101 attempt 1 -> raysubmit_sDJxRqMaYWJsaft4
+[08-22 20:48:39] final_pointmaze_p2r73_icem_101 attempt 1 -> raysubmit_kHJmhChk5dd21TGd
+[08-22 21:19:13] final_tworoom_t5r73_cem_104 attempt 1 -> raysubmit_1zUcPWdi5sJAF3H2
+[08-22 21:40:49] final_pointmaze_p2r73_icem_104 attempt 1 -> raysubmit_UYBcRK5RXLRfPs5i
+[08-22 22:11:21] final_tworoom_dwr73_cem_101 attempt 1 -> raysubmit_6HeSAiELvNLYNR1t
+[08-23 08:39:44] final_pusht_c1r73_icem_104 attempt 1 -> raysubmit_EKiSFMVCKbw7mp6J
+[08-23 09:04:51] final_pusht_dwr73_icem_101 attempt 1 -> raysubmit_EPbcPfKWaPtPZ12w
+[08-23 09:57:37] final_pointmaze_p1r73_cem_101 attempt 1 -> raysubmit_5KkgMVrTk9zVsmJz
+[08-23 10:04:22] final_pointmaze_p1r73_cem_104 attempt 1 -> raysubmit_3mYPakvzMnwjnAzr
+[08-23 10:32:42] final_tworoom_dwr73_icem_101 attempt 1 -> raysubmit_D4ku9j5wFQkUPzT1
+[08-23 10:39:32] final_pointmaze_p2r73_cem_101 attempt 1 -> raysubmit_WEnRm4kL7eZ1gNC5
+[08-23 11:05:30] final_tworoom_t1r73_mppi_101 attempt 1 -> raysubmit_LLTAXBXnLXK3D1HW
+[08-23 11:31:51] final_cube_k4r73_icem_101 attempt 1 -> raysubmit_yNUXrTe1usGSXvwg
+[08-23 12:15:36] final_pusht_c5r73_icem_104 attempt 1 -> raysubmit_6maFDsrjkb3hUZ9P
+[08-23 12:39:46] final_pointmaze_p2r73_mppi_104 attempt 1 -> raysubmit_mPPN8wY3QVzj3X2E
+[08-23 13:09:34] final_pointmaze_p2r73_cem_104 attempt 1 -> raysubmit_E383aYhVqHiWBj8e
+[08-23 13:39:24] final_pointmaze_p5r73_cem_101 attempt 1 -> raysubmit_Gugpu4wmHdyfJEk6
+[08-23 14:09:11] final_pointmaze_p5r73_cem_104 attempt 1 -> raysubmit_DcstBywT9rNRD8hT
+[08-23 14:33:05] final_pointmaze_p5r73_mppi_101 attempt 1 -> raysubmit_8S6gK3vJqz3HxBd2
+[08-23 15:02:58] final_pointmaze_dwr73_cem_101 attempt 1 -> raysubmit_xQmgTGcLtfKgWS7G
+[08-23 23:16:38] final_reacher_r5r73_icem_101 attempt 1 -> raysubmit_SmVgjmGZgpmvzLyA
+[08-23 23:22:35] final_pointmaze_dwr73_cem_104 attempt 1 -> raysubmit_TQQRVa6YPKDWPFjZ
+[08-23 23:28:35] final_pusht_c1r73_icem_101 attempt 1 -> raysubmit_CpUgpLN3W8xBvMtq
+[08-23 23:59:16] final_pusht_c3r73_icem_101 attempt 1 -> raysubmit_iSHgvad7ycnu22GG
+[08-24 00:05:12] final_pusht_c3r73_icem_104 attempt 1 -> raysubmit_LkGZjYMXR3P3DRWT
+[08-24 00:34:12] final_pusht_c5r73_icem_101 attempt 1 -> raysubmit_HhR4crCifGVsEGTk
+[08-24 00:40:24] final_reacher_r1r73_icem_101 attempt 1 -> raysubmit_cqn6sy9JtHtL82TH
+[08-24 01:09:37] final_reacher_r1r73_icem_104 attempt 1 -> raysubmit_LY7GR9EpQd959RUp
+[08-24 01:15:55] final_reacher_hqor73_icem_101 attempt 1 -> raysubmit_YjjApcZ2z1Z6NnLV
+[08-24 01:45:18] final_reacher_hqor73_icem_104 attempt 1 -> raysubmit_pgYhcm91kCx8iZCm
+[08-24 01:51:52] final_reacher_r2r73_icem_101 attempt 1 -> raysubmit_deGkRBSYkUji8nh3
+[08-24 02:10:38] final_cube_k2r73_icem_104 attempt 1 -> raysubmit_XbbSGtrJyu8av9KE
+[08-24 02:20:32] final_cube_hqor73_mppi_101 attempt 1 -> raysubmit_RGHwSTNdvjUgVPBA
+[08-24 02:27:11] final_reacher_dwr73_icem_101 attempt 1 -> raysubmit_3EXCUpBSDUgfcf2f
+[08-24 02:48:51] final_cube_dwr73_mppi_101 attempt 1 -> raysubmit_9BicKtWevjR1qjeL
+[08-24 17:01:11] final_reacher_r5r73_mppi_104 attempt 1 -> raysubmit_6e2tnFKdUSZeQNWv
+[08-24 17:43:46] final_reacher_dwr73_icem_104 attempt 1 -> raysubmit_je6MZy7um6J9Jq5Y
+[08-24 19:14:54] final_cube_k1r73_icem_101 attempt 1 -> raysubmit_ppkMkTq9tyb1A3TW
+[08-24 19:22:07] final_cube_k1r73_icem_104 attempt 1 -> raysubmit_6jgt1qmYwUz5DygX
+[08-24 19:29:20] final_cube_hqor73_icem_101 attempt 1 -> raysubmit_xY89VnaMjCVqfwXd
+[08-24 20:14:46] final_cube_k4r73_icem_104 attempt 1 -> raysubmit_2Pb1dAgekjpnMQMy
+[08-24 20:24:43] final_cube_k2r73_icem_101 attempt 1 -> raysubmit_fday27yKCKh2wYjr
+[08-24 20:34:51] final_cube_dwr73_icem_101 attempt 1 -> raysubmit_rYUXKwS9t7VPMarX
+[08-25 10:14:58] final_cube_dwr73_icem_104 attempt 1 -> raysubmit_F8ZFupfh6MTL4KuT
+[08-25 10:22:26] final_tworoom_t1r73_icem_101 attempt 1 -> raysubmit_pCxq11EGW1vK1r4t
+[08-25 10:42:21] final_pointmaze_p5r73_icem_101 attempt 1 -> raysubmit_nSRmyQEZuNhyB8W6
+[08-25 10:49:58] final_tworoom_t2r73_icem_101 attempt 1 -> raysubmit_5vLuszm6XMuJHgBk
+[08-25 10:57:36] final_tworoom_t2r73_icem_104 attempt 1 -> raysubmit_hdHBhZA2Bdx7A3FA
+[08-25 11:07:45] final_cube_k2r73_mppi_101 attempt 1 -> raysubmit_6Y8A5ZSKpwfAmdMy
+[08-25 11:16:14] final_pointmaze_dwr73_icem_104 attempt 1 -> raysubmit_CbDXAq3FRgtwTxnT
+[08-25 11:23:56] final_tworoom_t5r73_icem_101 attempt 1 -> raysubmit_r4ZgAYR7t2wa9cY3
+[08-25 11:44:34] final_reacher_hqor73_mppi_101 attempt 1 -> raysubmit_AJcxuYmpjSpq3Xuz
+[08-25 11:52:25] final_tworoom_dwr73_icem_104 attempt 1 -> raysubmit_SFwSZbaMiXEiqJsM
+[08-25 12:23:24] final_pointmaze_p1r73_icem_101 attempt 1 -> raysubmit_ZMUcbBSXZYFsTKvs
+[08-25 12:54:25] final_pointmaze_p1r73_icem_104 attempt 1 -> raysubmit_fF8nzRXeBU745xsX
+[08-25 13:25:44] final_pointmaze_p5r73_icem_104 attempt 1 -> raysubmit_9tgLi7R6hq1hVhk9
+[08-25 13:56:55] final_pointmaze_dwr73_icem_101 attempt 1 -> raysubmit_xYUQpDsCfdSzh4y9
+[08-25 22:04:13] final_reacher_dwr73_mppi_104 attempt 1 -> raysubmit_eSYktL93YvD6tR6j
+[08-26 02:25:28] final_pusht_c1r73_mppi_101 attempt 1 -> raysubmit_82ue9XnYhr2cJYZG
+[08-26 02:36:31] final_pusht_c1r73_mppi_104 attempt 1 -> raysubmit_ic1jZfzGvGG3qLLj
+[08-26 02:44:45] final_pusht_c3r73_mppi_101 attempt 1 -> raysubmit_SBwpTnfKTNKMNRzd
+[08-26 03:15:16] final_pusht_c3r73_mppi_104 attempt 1 -> raysubmit_Q3AtNqTPZ2jrtZgy
+[08-26 03:23:42] final_pusht_c5r73_mppi_101 attempt 1 -> raysubmit_TDrXpsLt2bSsfqgL
+[08-26 03:32:16] final_pusht_c5r73_mppi_104 attempt 1 -> raysubmit_x4wLAqtQ7DSichr2
+[08-26 03:48:12] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-26 09:09:00] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-26 09:14:21] final_pusht_dwr73_mppi_101 attempt 1 -> raysubmit_DMhSQssACrppwLhv
+[08-26 10:08:01] final_cube_k4r73_mppi_104 attempt 1 -> raysubmit_KKaesJq13CR6fx9v
+[08-26 10:49:58] final_cube_dwr73_mppi_104 attempt 1 -> raysubmit_iU5DWDEGnDYysJ1g
+[08-26 12:28:59] final_tworoom_t2r73_mppi_101 attempt 1 -> raysubmit_fUPfSDr8GTkzvN3i
+[08-26 13:13:29] final_tworoom_t2r73_mppi_104 attempt 1 -> raysubmit_G7kB8LxtxKyQpWaA
+[08-26 15:30:33] final_tworoom_t5r73_mppi_101 attempt 1 -> raysubmit_bwj64GLshrCKky6t
+[08-26 15:51:23] final_tworoom_t5r73_mppi_104 attempt 1 -> raysubmit_cqN5NmfrGk6DfhNH
+[08-26 16:01:33] final_tworoom_dwr73_mppi_101 attempt 1 -> raysubmit_25AdNbZ7qZFCsEY9
+[08-26 16:11:47] final_tworoom_dwr73_mppi_104 attempt 1 -> raysubmit_uMdNGDpbZCBceGMF
+[08-26 17:17:13] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-26 17:33:20] final_pointmaze_p1r73_mppi_101 attempt 1 -> raysubmit_zUMTqwveGKKNPEzu
+[08-26 17:52:56] final_pointmaze_p1r73_mppi_104 attempt 1 -> raysubmit_bFTbQfRA3z4me5EL
+[08-26 18:12:29] final_pointmaze_p2r73_mppi_101 attempt 1 -> raysubmit_MGgDvMe7pnET2wED
+[08-26 18:32:27] final_pointmaze_p5r73_mppi_104 attempt 1 -> raysubmit_mcSKsArV7tGkkPsG
+[08-26 18:52:28] final_pointmaze_dwr73_mppi_101 attempt 1 -> raysubmit_1AJ76wMQ3viyXKh1
+[08-26 23:31:32] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-27 01:23:13] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-27 01:29:31] final_tworoom_dwr73_mppi_101 attempt 1 -> raysubmit_iNRUJ2rdgUUt8Pey
+[08-27 01:39:15] final_tworoom_dwr73_mppi_104 attempt 1 -> raysubmit_Y6diz6gJripscx73
+[08-27 01:49:21] final_pointmaze_dwr73_mppi_101 attempt 1 -> raysubmit_qFuFCb7Dcf6fknTs
+[08-27 18:29:36] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-27 18:36:06] final_tworoom_dwr73_mppi_104 attempt 1 -> raysubmit_tYaFfgXYQG93yjiS
+[08-27 18:46:25] final_pointmaze_dwr73_mppi_104 attempt 1 -> raysubmit_6NAc6QJzzrzvbjLH
+[08-27 23:15:40] start: 3073 replication eval, 22 models x cem/icem/mppi, RESERVE=1
+[08-28 05:35:55] ALL 3073 REPLICATION EVALS COMPLETE

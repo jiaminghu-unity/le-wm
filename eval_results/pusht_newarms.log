@@ -1,0 +1,17 @@
+[08-20 10:43:22] start: pusht new arms (3 trainings -> cem/icem x 6 seeds each)
+[08-20 10:43:27] train q1 attempt 1 -> raysubmit_Hd2Q6psKKG55TNUL
+[08-20 10:47:34] train c9 attempt 1 -> raysubmit_FbbV5vZuabH9CWt2
+[08-20 10:51:44] train c2p attempt 1 -> raysubmit_YUPirHd7arusTR2Q
+[08-20 18:15:02] ev_q1_cem_101 attempt 1 -> raysubmit_7TxM667gx5X4hdKW
+[08-20 18:19:17] ev_q1_cem_104 attempt 1 -> raysubmit_hbz1StdqcZvBJftz
+[08-20 18:23:37] ev_q1_icem_101 attempt 1 -> raysubmit_Gv5bUM8x3uNnyQkr
+[08-20 18:28:01] ev_q1_icem_104 attempt 1 -> raysubmit_dut6VnYufM5Cs1KB
+[08-20 19:49:12] ev_c9_cem_101 attempt 1 -> raysubmit_cAPqx5SW4mQv1neh
+[08-20 19:53:44] ev_c9_cem_104 attempt 1 -> raysubmit_H8dssiJkBJA7Mnv5
+[08-20 19:58:21] ev_c9_icem_101 attempt 1 -> raysubmit_6K5Nm69LKHS6LTRr
+[08-20 20:03:02] ev_c9_icem_104 attempt 1 -> raysubmit_jawevauxAk7dHi6V
+[08-20 20:50:16] ev_c2p_cem_101 attempt 1 -> raysubmit_9Ey6UqC9P8k3Y6QK
+[08-20 20:55:05] ev_c2p_cem_104 attempt 1 -> raysubmit_LbR5ftk7kzpUF7zf
+[08-20 20:59:58] ev_c2p_icem_101 attempt 1 -> raysubmit_tabDXxnLZCTpTFvb
+[08-20 21:04:56] ev_c2p_icem_104 attempt 1 -> raysubmit_pXPRu3bXM9pF8Spi
+[08-20 21:34:30] ALL PUSHT NEW-ARM RUNS COMPLETE

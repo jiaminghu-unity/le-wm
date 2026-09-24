@@ -1,0 +1,79 @@
+[07:03:56] arm t1 -> lewm_t1_tworoom_s3072
+[07:03:58] arm t2 -> lewm_t2_tworoom_obj0.1_s3072
+[07:04:00] arm t5 -> lewm_t5_tworoom_qhead0.1_s3072
+[07:04:03] round 1: complete 0/12, running 0, todo 12
+[07:04:06]   submitted t1 cem -> raysubmit_iXzQG3e3FqGUQMsn (attempt 1)
+[07:04:08]   submitted t1 icem -> raysubmit_Djhnwf7d68im7Snt (attempt 1)
+[07:04:10]   submitted t1 mppi -> raysubmit_reRcgxMMUs6MWEKk (attempt 1)
+[07:04:11]   submitted t1 gd -> raysubmit_xncgdEHcskHS6V9w (attempt 1)
+[07:04:13]   submitted t2 cem -> raysubmit_xXfJJWfXcRVxaaFZ (attempt 1)
+[07:04:15]   submitted t2 icem -> raysubmit_xxNGTEiBnZmi8fmv (attempt 1)
+[07:04:16]   submitted t2 mppi -> raysubmit_5tNZfMqkFxb3bbaR (attempt 1)
+[07:04:18]   submitted t2 gd -> raysubmit_5LfAzVM5rFVNRdBn (attempt 1)
+[07:07:21] round 2: complete 0/12, running 8, todo 12
+[07:10:25] round 3: complete 0/12, running 8, todo 12
+[07:13:30] round 4: complete 0/12, running 8, todo 12
+[07:16:34] round 5: complete 0/12, running 8, todo 12
+[07:19:38] round 6: complete 0/12, running 8, todo 12
+[07:22:43] round 7: complete 0/12, running 8, todo 12
+[07:25:47] round 8: complete 0/12, running 8, todo 12
+[07:28:51] round 9: complete 0/12, running 8, todo 12
+[07:31:55] round 10: complete 0/12, running 8, todo 12
+[07:34:59] round 11: complete 0/12, running 8, todo 12
+[07:38:04] round 12: complete 0/12, running 8, todo 12
+[07:41:08] round 13: complete 2/12, running 6, todo 10
+[07:41:13]   submitted t5 cem -> raysubmit_t24h877VRzaAdkWs (attempt 1)
+[07:41:14]   submitted t5 icem -> raysubmit_yTJfBfGNpeLNq4ki (attempt 1)
+[07:44:17] round 14: complete 3/12, running 7, todo 9
+[07:44:23]   submitted t5 mppi -> raysubmit_yRWgVT3ZLdFaNezz (attempt 1)
+[07:47:25] round 15: complete 3/12, running 8, todo 9
+[07:50:30] round 16: complete 4/12, running 7, todo 8
+[07:50:34]   submitted t5 gd -> raysubmit_bemUZbPGajgjPdjn (attempt 1)
+[07:53:37] round 17: complete 4/12, running 8, todo 8
+[07:56:41] round 18: complete 4/12, running 8, todo 8
+[07:59:46] round 19: complete 6/12, running 6, todo 6
+[08:02:52] round 20: complete 6/12, running 6, todo 6
+[08:05:58] round 21: complete 6/12, running 6, todo 6
+[08:09:04] round 22: complete 6/12, running 6, todo 6
+[08:12:10] round 23: complete 6/12, running 6, todo 6
+[08:15:17] round 24: complete 6/12, running 6, todo 6
+[08:18:23] round 25: complete 6/12, running 6, todo 6
+[08:21:28] round 26: complete 6/12, running 6, todo 6
+[08:24:34] round 27: complete 7/12, running 5, todo 5
+[08:27:40] round 28: complete 8/12, running 4, todo 4
+[08:30:46] round 29: complete 8/12, running 4, todo 4
+[08:33:52] round 30: complete 8/12, running 4, todo 4
+[08:36:57] round 31: complete 8/12, running 4, todo 4
+[08:40:02] round 32: complete 9/12, running 3, todo 3
+[08:43:07] round 33: complete 9/12, running 3, todo 3
+[08:46:12] round 34: complete 9/12, running 3, todo 3
+[08:49:17] round 35: complete 9/12, running 3, todo 3
+[08:52:21] round 36: complete 9/12, running 3, todo 3
+[08:55:27] round 37: complete 9/12, running 3, todo 3
+[08:58:32] round 38: complete 9/12, running 3, todo 3
+[09:01:36] round 39: complete 9/12, running 3, todo 3
+[09:04:39] round 40: complete 9/12, running 3, todo 3
+[09:07:43] round 41: complete 9/12, running 3, todo 3
+[09:10:46] round 42: complete 9/12, running 3, todo 3
+[09:13:49] round 43: complete 9/12, running 3, todo 3
+[09:16:52] round 44: complete 9/12, running 3, todo 3
+[09:19:55] round 45: complete 9/12, running 3, todo 3
+[09:22:58] round 46: complete 9/12, running 3, todo 3
+[09:26:01] round 47: complete 9/12, running 3, todo 3
+[09:29:04] round 48: complete 10/12, running 2, todo 2
+[09:32:07] round 49: complete 11/12, running 1, todo 1
+[09:35:10] round 50: complete 11/12, running 1, todo 1
+[09:38:12] round 51: complete 11/12, running 1, todo 1
+[09:41:15] round 52: complete 11/12, running 1, todo 1
+[09:44:18] round 53: complete 11/12, running 1, todo 1
+[09:47:21] round 54: complete 11/12, running 1, todo 1
+[09:50:23] round 55: complete 11/12, running 1, todo 1
+[09:53:26] round 56: complete 11/12, running 1, todo 1
+[09:56:29] round 57: complete 11/12, running 1, todo 1
+[09:59:31] round 58: complete 11/12, running 1, todo 1
+[10:02:34] round 59: complete 11/12, running 1, todo 1
+[10:05:37] round 60: complete 11/12, running 1, todo 1
+[10:08:40] round 61: complete 11/12, running 1, todo 1
+[10:11:42] round 62: complete 11/12, running 1, todo 1
+[10:14:45] round 63: complete 12/12, running 0, todo 0
+[10:14:45] TWOROOM SR SWEEP COMPLETE

@@ -13,7 +13,7 @@ EXPECT_SHA=3725d6a01abd492164441ef0a27e588f52b94a118fab56b96987b1a34a6c2600
 # ---- local NVMe (375 GB, unmounted on the DL image; boot disk is too small) ----
 SSD=/mnt/disks/ssd0
 if ! mountpoint -q "$SSD"; then
-  dev=$(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1; exit}')
+  dev=""; for d in $(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1}'); do [ -z "$(lsblk -no MOUNTPOINT "$d" | tr -d '[:space:]')" ] || continue; dev="$d"; break; done
   [ -n "$dev" ] || { echo "FATAL: no local NVMe found" >&2; exit 1; }
   sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
   sudo mkdir -p "$SSD"

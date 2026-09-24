@@ -1,0 +1,393 @@
+[08-27 07:39:30] start: native-full q-only trainings (pusht 8d / reacher 6d / cube 22d)
+[08-27 07:39:32] full_pusht attempt 1 -> raysubmit_xCsk8fMgPHeW5SNL
+[08-27 07:43:35] full_pusht attempt 2 -> raysubmit_4egPqPjJ9SnqmUR2
+[08-27 07:47:38] full_pusht attempt 3 -> raysubmit_yuYjyBqnmDikuGbi
+[08-27 07:51:40] full_pusht attempt 4 -> raysubmit_V83WkfQ2P6UqPWzX
+[08-27 07:54:25] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-27 07:54:28] full_cube attempt 1 -> raysubmit_n64sG8bhjgV9QWYx
+[08-27 08:01:24] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-27 18:29:01] qi_pointmaze attempt 1 -> raysubmit_FEHkxVDz27ubyeJF
+[08-27 18:29:30] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-27 18:29:33] full_cube attempt 1 -> raysubmit_nYxvqEa7fvcaWgxU
+[08-27 18:33:37] qi_tworoom attempt 1 -> raysubmit_kRCFLDTGJdpXQH5V
+[08-27 18:37:40] full_cube attempt 2 -> raysubmit_QiYLzBgNgZDmV9EE
+[08-27 18:41:43] full_cube attempt 3 -> raysubmit_hGNqVQ34tQvLP4rZ
+[08-27 18:45:45] full_cube attempt 4 -> raysubmit_LBjCkHiJfQdqfzP2
+[08-27 18:49:47] full_cube attempt cap
+[08-27 18:49:50] qi_tworoom attempt 2 -> raysubmit_V6fswq1eqFmvrQqQ
+[08-27 18:53:52] full_cube attempt cap
+[08-27 18:53:55] qi_tworoom attempt 3 -> raysubmit_TCDc6JadTeJE3dzS
+[08-27 18:57:57] full_cube attempt cap
+[08-27 18:58:00] qi_tworoom attempt 4 -> raysubmit_cs9Jv2Pif52Zk8YG
+[08-27 19:02:02] full_cube attempt cap
+[08-27 19:02:04] qi_tworoom attempt cap
+[08-27 19:02:06] qi_pointmaze attempt 1 -> raysubmit_SBc5N2rZD6giQfv8
+[08-27 19:06:08] full_cube attempt cap
+[08-27 19:06:10] qi_tworoom attempt cap
+[08-27 19:06:13] qi_pointmaze attempt 2 -> raysubmit_ZpSFQ538MU3kxA7Z
+[08-27 19:10:15] full_cube attempt cap
+[08-27 19:10:17] qi_tworoom attempt cap
+[08-27 19:10:20] qi_pointmaze attempt 3 -> raysubmit_q8Vw3rcR1iVanQ7L
+[08-27 19:14:22] full_cube attempt cap
+[08-27 19:14:24] qi_tworoom attempt cap
+[08-27 19:14:27] qi_pointmaze attempt 4 -> raysubmit_MdfTyjWHyUTKcshr
+[08-27 19:18:29] full_cube attempt cap
+[08-27 19:18:30] qi_tworoom attempt cap
+[08-27 19:18:32] qi_pointmaze attempt cap
+[08-27 19:22:47] full_cube attempt cap
+[08-27 19:22:49] qi_tworoom attempt cap
+[08-27 19:22:51] qi_pointmaze attempt cap
+[08-27 19:27:07] full_cube attempt cap
+[08-27 19:27:09] qi_tworoom attempt cap
+[08-27 19:27:11] qi_pointmaze attempt cap
+[08-27 19:31:27] full_cube attempt cap
+[08-27 19:31:29] qi_tworoom attempt cap
+[08-27 19:31:31] qi_pointmaze attempt cap
+[08-27 19:35:46] full_cube attempt cap
+[08-27 19:35:48] qi_tworoom attempt cap
+[08-27 19:35:50] qi_pointmaze attempt cap
+[08-27 19:40:06] full_cube attempt cap
+[08-27 19:40:08] qi_tworoom attempt cap
+[08-27 19:40:10] qi_pointmaze attempt cap
+[08-27 19:44:25] full_cube attempt cap
+[08-27 19:44:27] qi_tworoom attempt cap
+[08-27 19:44:29] qi_pointmaze attempt cap
+[08-27 19:48:45] full_cube attempt cap
+[08-27 19:48:46] qi_tworoom attempt cap
+[08-27 19:48:48] qi_pointmaze attempt cap
+[08-27 19:53:03] full_cube attempt cap
+[08-27 19:53:05] qi_tworoom attempt cap
+[08-27 19:53:07] qi_pointmaze attempt cap
+[08-27 19:57:23] full_cube attempt cap
+[08-27 19:57:25] qi_tworoom attempt cap
+[08-27 19:57:27] qi_pointmaze attempt cap
+[08-27 20:01:43] full_cube attempt cap
+[08-27 20:01:45] qi_tworoom attempt cap
+[08-27 20:01:47] qi_pointmaze attempt cap
+[08-27 20:06:02] full_cube attempt cap
+[08-27 20:06:04] qi_tworoom attempt cap
+[08-27 20:06:06] qi_pointmaze attempt cap
+[08-27 20:10:22] full_cube attempt cap
+[08-27 20:10:24] qi_tworoom attempt cap
+[08-27 20:10:26] qi_pointmaze attempt cap
+[08-27 20:14:41] full_cube attempt cap
+[08-27 20:14:43] qi_tworoom attempt cap
+[08-27 20:14:45] qi_pointmaze attempt cap
+[08-27 20:19:01] full_cube attempt cap
+[08-27 20:19:03] qi_tworoom attempt cap
+[08-27 20:19:05] qi_pointmaze attempt cap
+[08-27 20:23:21] full_cube attempt cap
+[08-27 20:23:23] qi_tworoom attempt cap
+[08-27 20:23:25] qi_pointmaze attempt cap
+[08-27 20:27:41] full_cube attempt cap
+[08-27 20:27:43] qi_tworoom attempt cap
+[08-27 20:27:45] qi_pointmaze attempt cap
+[08-27 20:32:00] full_cube attempt cap
+[08-27 20:32:02] qi_tworoom attempt cap
+[08-27 20:32:04] qi_pointmaze attempt cap
+[08-27 20:36:19] full_cube attempt cap
+[08-27 20:36:21] qi_tworoom attempt cap
+[08-27 20:36:23] qi_pointmaze attempt cap
+[08-27 20:40:39] full_cube attempt cap
+[08-27 20:40:41] qi_tworoom attempt cap
+[08-27 20:40:43] qi_pointmaze attempt cap
+[08-27 20:44:58] full_cube attempt cap
+[08-27 20:45:00] qi_tworoom attempt cap
+[08-27 20:45:02] qi_pointmaze attempt cap
+[08-27 20:49:19] full_cube attempt cap
+[08-27 20:49:21] qi_tworoom attempt cap
+[08-27 20:49:23] qi_pointmaze attempt cap
+[08-27 20:53:38] full_cube attempt cap
+[08-27 20:53:40] qi_tworoom attempt cap
+[08-27 20:53:42] qi_pointmaze attempt cap
+[08-27 20:57:58] full_cube attempt cap
+[08-27 20:58:00] qi_tworoom attempt cap
+[08-27 20:58:02] qi_pointmaze attempt cap
+[08-27 21:02:17] full_cube attempt cap
+[08-27 21:02:19] qi_tworoom attempt cap
+[08-27 21:02:21] qi_pointmaze attempt cap
+[08-27 21:06:37] full_cube attempt cap
+[08-27 21:06:39] qi_tworoom attempt cap
+[08-27 21:06:41] qi_pointmaze attempt cap
+[08-27 21:10:56] full_cube attempt cap
+[08-27 21:10:58] qi_tworoom attempt cap
+[08-27 21:11:00] qi_pointmaze attempt cap
+[08-27 21:15:16] full_cube attempt cap
+[08-27 21:15:18] qi_tworoom attempt cap
+[08-27 21:15:20] qi_pointmaze attempt cap
+[08-27 21:19:36] full_cube attempt cap
+[08-27 21:19:38] qi_tworoom attempt cap
+[08-27 21:19:40] qi_pointmaze attempt cap
+[08-27 21:23:56] full_cube attempt cap
+[08-27 21:23:58] qi_tworoom attempt cap
+[08-27 21:24:00] qi_pointmaze attempt cap
+[08-27 21:28:15] full_cube attempt cap
+[08-27 21:28:17] qi_tworoom attempt cap
+[08-27 21:28:19] qi_pointmaze attempt cap
+[08-27 21:32:35] full_cube attempt cap
+[08-27 21:32:37] qi_tworoom attempt cap
+[08-27 21:32:39] qi_pointmaze attempt cap
+[08-27 21:36:54] full_cube attempt cap
+[08-27 21:36:56] qi_tworoom attempt cap
+[08-27 21:36:58] qi_pointmaze attempt cap
+[08-27 21:41:14] full_cube attempt cap
+[08-27 21:41:16] qi_tworoom attempt cap
+[08-27 21:41:18] qi_pointmaze attempt cap
+[08-27 21:45:34] full_cube attempt cap
+[08-27 21:45:36] qi_tworoom attempt cap
+[08-27 21:45:38] qi_pointmaze attempt cap
+[08-27 21:49:53] full_cube attempt cap
+[08-27 21:49:55] qi_tworoom attempt cap
+[08-27 21:49:57] qi_pointmaze attempt cap
+[08-27 21:54:13] full_cube attempt cap
+[08-27 21:54:15] qi_tworoom attempt cap
+[08-27 21:54:17] qi_pointmaze attempt cap
+[08-27 21:58:33] full_cube attempt cap
+[08-27 21:58:35] qi_tworoom attempt cap
+[08-27 21:58:37] qi_pointmaze attempt cap
+[08-27 22:02:53] full_cube attempt cap
+[08-27 22:02:55] qi_tworoom attempt cap
+[08-27 22:02:57] qi_pointmaze attempt cap
+[08-27 22:07:12] full_cube attempt cap
+[08-27 22:07:14] qi_tworoom attempt cap
+[08-27 22:07:16] qi_pointmaze attempt cap
+[08-27 22:11:33] full_cube attempt cap
+[08-27 22:11:35] qi_tworoom attempt cap
+[08-27 22:11:37] qi_pointmaze attempt cap
+[08-27 22:15:52] full_cube attempt cap
+[08-27 22:15:54] qi_tworoom attempt cap
+[08-27 22:15:56] qi_pointmaze attempt cap
+[08-27 22:20:12] full_cube attempt cap
+[08-27 22:20:14] qi_tworoom attempt cap
+[08-27 22:20:16] qi_pointmaze attempt cap
+[08-27 22:24:31] full_cube attempt cap
+[08-27 22:24:33] qi_tworoom attempt cap
+[08-27 22:24:35] qi_pointmaze attempt cap
+[08-27 22:28:51] full_cube attempt cap
+[08-27 22:28:53] qi_tworoom attempt cap
+[08-27 22:28:55] qi_pointmaze attempt cap
+[08-27 22:33:11] full_cube attempt cap
+[08-27 22:33:13] qi_tworoom attempt cap
+[08-27 22:33:15] qi_pointmaze attempt cap
+[08-27 22:37:31] full_cube attempt cap
+[08-27 22:37:33] qi_tworoom attempt cap
+[08-27 22:37:35] qi_pointmaze attempt cap
+[08-27 22:41:50] full_cube attempt cap
+[08-27 22:41:52] qi_tworoom attempt cap
+[08-27 22:41:54] qi_pointmaze attempt cap
+[08-27 22:46:10] full_cube attempt cap
+[08-27 22:46:12] qi_tworoom attempt cap
+[08-27 22:46:14] qi_pointmaze attempt cap
+[08-27 22:50:29] full_cube attempt cap
+[08-27 22:50:31] qi_tworoom attempt cap
+[08-27 22:50:33] qi_pointmaze attempt cap
+[08-27 22:54:49] full_cube attempt cap
+[08-27 22:54:51] qi_tworoom attempt cap
+[08-27 22:54:53] qi_pointmaze attempt cap
+[08-27 22:59:09] full_cube attempt cap
+[08-27 22:59:11] qi_tworoom attempt cap
+[08-27 22:59:13] qi_pointmaze attempt cap
+[08-27 23:03:29] full_cube attempt cap
+[08-27 23:03:31] qi_tworoom attempt cap
+[08-27 23:03:33] qi_pointmaze attempt cap
+[08-27 23:07:49] full_cube attempt cap
+[08-27 23:07:51] qi_tworoom attempt cap
+[08-27 23:07:53] qi_pointmaze attempt cap
+[08-27 23:12:08] full_cube attempt cap
+[08-27 23:12:10] qi_tworoom attempt cap
+[08-27 23:12:12] qi_pointmaze attempt cap
+[08-27 23:15:35] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-27 23:15:38] full_cube attempt 1 -> raysubmit_D825pLMrvSwk2ijV
+[08-27 23:16:05] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-27 23:16:09] qi_tworoom attempt 1 -> raysubmit_agNdatWwSEDR1kEZ
+[08-27 23:20:11] full_cube attempt 1 -> raysubmit_PLeq8xXG6xr1wfuh
+[08-27 23:24:13] full_cube attempt 2 -> raysubmit_PXygKpfUtRaS8TVT
+[08-27 23:28:15] full_cube attempt 3 -> raysubmit_ptfHgaTBPryZwVXf
+[08-27 23:32:17] full_cube attempt 4 -> raysubmit_JZdYCCuGBqtufiaM
+[08-27 23:36:18] full_cube attempt cap
+[08-27 23:36:21] qi_tworoom attempt 2 -> raysubmit_qRwQ7xyfELXBY16k
+[08-27 23:40:22] full_cube attempt cap
+[08-27 23:40:24] qi_tworoom attempt 3 -> raysubmit_b6i8jRdHkbk7qFhu
+[08-27 23:44:25] full_cube attempt cap
+[08-27 23:44:28] qi_tworoom attempt 4 -> raysubmit_Ggu1u1ajpLRkGd39
+[08-27 23:48:29] full_cube attempt cap
+[08-27 23:48:30] qi_tworoom attempt cap
+[08-27 23:48:32] qi_pointmaze attempt 1 -> raysubmit_6LSsXhw4743UXQEr
+[08-27 23:52:34] full_cube attempt cap
+[08-27 23:52:35] qi_tworoom attempt cap
+[08-27 23:52:37] qi_pointmaze attempt 2 -> raysubmit_YyR6C3FVW2FFfnZr
+[08-27 23:56:39] full_cube attempt cap
+[08-27 23:56:40] qi_tworoom attempt cap
+[08-27 23:56:42] qi_pointmaze attempt 3 -> raysubmit_8fqSHXBVyCgTYcvr
+[08-28 00:00:44] full_cube attempt cap
+[08-28 00:00:45] qi_tworoom attempt cap
+[08-28 00:00:47] qi_pointmaze attempt 4 -> raysubmit_fBj1KdMNm9n1X5pJ
+[08-28 00:04:48] full_cube attempt cap
+[08-28 00:04:50] qi_tworoom attempt cap
+[08-28 00:04:51] qi_pointmaze attempt cap
+[08-28 00:09:05] full_cube attempt cap
+[08-28 00:09:07] qi_tworoom attempt cap
+[08-28 00:09:08] qi_pointmaze attempt cap
+[08-28 00:12:29] start: q-only trainings v2 (cube 22d full-config / tworoom 2d / pointmaze 4d native)
+[08-28 00:12:31] full_cube attempt 1 -> raysubmit_2WUUMNxvKPKh2ji8
+[08-28 00:16:34] qi_tworoom attempt 1 -> raysubmit_TsAFt18YeqTsqeTY
+[08-28 00:20:36] full_cube attempt 2 -> raysubmit_WG2SxuSQBHA4nVDJ
+[08-28 00:24:41] qi_pointmaze attempt 1 -> raysubmit_bDApQsUn8nbknZTk
+[08-28 00:28:43] full_cube attempt 3 -> raysubmit_JiKUEuCuj3CeGScz
+[08-28 00:37:02] full_cube attempt 4 -> raysubmit_LvE2Sa4KupMpA8rr
+[08-28 00:45:21] full_cube attempt cap
+[08-28 00:49:39] full_cube attempt cap
+[08-28 00:53:56] full_cube attempt cap
+[08-28 00:58:13] full_cube attempt cap
+[08-28 01:02:30] full_cube attempt cap
+[08-28 01:06:48] full_cube attempt cap
+[08-28 01:11:05] full_cube attempt cap
+[08-28 01:15:22] full_cube attempt cap
+[08-28 01:19:39] full_cube attempt cap
+[08-28 01:23:56] full_cube attempt cap
+[08-28 01:28:13] full_cube attempt cap
+[08-28 01:32:30] full_cube attempt cap
+[08-28 01:36:47] full_cube attempt cap
+[08-28 01:41:04] full_cube attempt cap
+[08-28 01:45:22] full_cube attempt cap
+[08-28 01:49:39] full_cube attempt cap
+[08-28 01:53:55] full_cube attempt cap
+[08-28 01:58:13] full_cube attempt cap
+[08-28 02:02:30] full_cube attempt cap
+[08-28 02:06:47] full_cube attempt cap
+[08-28 02:11:05] full_cube attempt cap
+[08-28 02:15:21] full_cube attempt cap
+[08-28 02:19:39] full_cube attempt cap
+[08-28 02:23:55] full_cube attempt cap
+[08-28 02:28:13] full_cube attempt cap
+[08-28 02:32:30] full_cube attempt cap
+[08-28 02:36:47] full_cube attempt cap
+[08-28 02:41:05] full_cube attempt cap
+[08-28 02:45:22] full_cube attempt cap
+[08-28 02:49:39] full_cube attempt cap
+[08-28 02:53:57] full_cube attempt cap
+[08-28 02:58:14] full_cube attempt cap
+[08-28 03:02:31] full_cube attempt cap
+[08-28 03:06:48] full_cube attempt cap
+[08-28 03:11:05] full_cube attempt cap
+[08-28 03:15:22] full_cube attempt cap
+[08-28 03:19:40] full_cube attempt cap
+[08-28 03:23:57] full_cube attempt cap
+[08-28 03:28:13] full_cube attempt cap
+[08-28 03:32:30] full_cube attempt cap
+[08-28 03:36:47] full_cube attempt cap
+[08-28 03:41:04] full_cube attempt cap
+[08-28 03:45:21] full_cube attempt cap
+[08-28 03:49:39] full_cube attempt cap
+[08-28 03:53:56] full_cube attempt cap
+[08-28 03:58:12] full_cube attempt cap
+[08-28 04:02:30] full_cube attempt cap
+[08-28 04:06:46] full_cube attempt cap
+[08-28 04:11:04] full_cube attempt cap
+[08-28 04:15:22] full_cube attempt cap
+[08-28 04:19:38] full_cube attempt cap
+[08-28 04:23:55] full_cube attempt cap
+[08-28 04:28:12] full_cube attempt cap
+[08-28 04:32:29] full_cube attempt cap
+[08-28 04:36:47] full_cube attempt cap
+[08-28 04:41:04] full_cube attempt cap
+[08-28 04:45:21] full_cube attempt cap
+[08-28 04:49:38] full_cube attempt cap
+[08-28 04:53:55] full_cube attempt cap
+[08-28 04:58:12] full_cube attempt cap
+[08-28 05:02:30] full_cube attempt cap
+[08-28 05:06:47] full_cube attempt cap
+[08-28 05:11:05] full_cube attempt cap
+[08-28 05:15:22] full_cube attempt cap
+[08-28 05:19:39] full_cube attempt cap
+[08-28 05:23:56] full_cube attempt cap
+[08-28 05:28:14] full_cube attempt cap
+[08-28 05:32:31] full_cube attempt cap
+[08-28 05:36:48] full_cube attempt cap
+[08-28 05:41:05] full_cube attempt cap
+[08-28 05:45:22] full_cube attempt cap
+[08-28 05:49:38] full_cube attempt cap
+[08-28 05:53:56] full_cube attempt cap
+[08-28 05:58:12] full_cube attempt cap
+[08-28 06:02:29] full_cube attempt cap
+[08-28 06:06:46] full_cube attempt cap
+[08-28 06:11:03] full_cube attempt cap
+[08-28 06:15:20] full_cube attempt cap
+[08-28 06:19:37] full_cube attempt cap
+[08-28 06:23:54] full_cube attempt cap
+[08-28 06:28:11] full_cube attempt cap
+[08-28 06:32:28] full_cube attempt cap
+[08-28 06:36:45] full_cube attempt cap
+[08-28 06:39:31] start: q-only v3 (trainings + evals; stale pusht eval block removed, eval scheduling ungated)
+[08-28 06:39:33] full_cube attempt 1 -> raysubmit_xsN8bwvWEkprxSrQ
+[08-28 06:44:53] ev_tworoom_cem_101 attempt 1 -> raysubmit_J1hTrHNSwCMDinz9
+[08-28 06:49:25] ev_tworoom_cem_104 attempt 1 -> raysubmit_GcFu5KEepxjbv5Wg
+[08-28 06:54:01] ev_tworoom_icem_101 attempt 1 -> raysubmit_8Yjx4aiXYuQgQyxk
+[08-28 06:58:43] ev_tworoom_icem_104 attempt 1 -> raysubmit_hppHNE7SNhBGniMz
+[08-28 07:03:30] ev_pointmaze_cem_101 attempt 1 -> raysubmit_KdvRsYCNuHZDjyAd
+[08-28 07:08:12] ev_pointmaze_cem_101 attempt 2 -> raysubmit_aBFciHqw2m5j4cmT
+[08-28 07:12:53] ev_pointmaze_cem_101 attempt 3 -> raysubmit_f5dEWAYKJN2497rj
+[08-28 07:17:33] ev_pointmaze_cem_101 attempt 4 -> raysubmit_9ZuCT9Kt4DZGrKjq
+[08-28 07:22:12] ev_pointmaze_cem_101 attempt cap
+[08-28 07:22:17] ev_pointmaze_cem_104 attempt 1 -> raysubmit_YWznRQSz4SgtKbs4
+[08-28 07:26:56] ev_pointmaze_cem_101 attempt cap
+[08-28 07:27:01] ev_pointmaze_cem_104 attempt 2 -> raysubmit_DzH4sVKWaxUVV6TN
+[08-28 07:31:40] ev_pointmaze_cem_101 attempt cap
+[08-28 07:31:46] ev_pointmaze_cem_104 attempt 3 -> raysubmit_adXEMGQU6ApE3f3m
+[08-28 07:36:25] ev_pointmaze_cem_101 attempt cap
+[08-28 07:36:30] ev_pointmaze_cem_104 attempt 4 -> raysubmit_5yB3PdcFNCCLtGuq
+[08-28 07:41:09] ev_pointmaze_cem_101 attempt cap
+[08-28 07:41:14] ev_pointmaze_cem_104 attempt cap
+[08-28 07:41:20] ev_pointmaze_icem_101 attempt 1 -> raysubmit_w8ymCFSPApGbQM62
+[08-28 07:45:58] ev_pointmaze_cem_101 attempt cap
+[08-28 07:46:03] ev_pointmaze_cem_104 attempt cap
+[08-28 07:46:08] ev_pointmaze_icem_101 attempt 2 -> raysubmit_xy8Wy7bWpcdwZzmQ
+[08-28 07:50:47] ev_pointmaze_cem_101 attempt cap
+[08-28 07:50:51] ev_pointmaze_cem_104 attempt cap
+[08-28 07:50:57] ev_pointmaze_icem_101 attempt 3 -> raysubmit_YCFFLyvL2sDdQH5B
+[08-28 07:55:35] ev_pointmaze_cem_101 attempt cap
+[08-28 07:55:40] ev_pointmaze_cem_104 attempt cap
+[08-28 07:55:45] ev_pointmaze_icem_101 attempt 4 -> raysubmit_UWzeKYmW4B8YsBuY
+[08-28 08:00:23] ev_pointmaze_cem_101 attempt cap
+[08-28 08:00:28] ev_pointmaze_cem_104 attempt cap
+[08-28 08:00:33] ev_pointmaze_icem_101 attempt cap
+[08-28 08:00:38] ev_pointmaze_icem_104 attempt 1 -> raysubmit_FyLdnYSLeHeXyzvt
+[08-28 08:05:17] ev_pointmaze_cem_101 attempt cap
+[08-28 08:05:21] ev_pointmaze_cem_104 attempt cap
+[08-28 08:05:26] ev_pointmaze_icem_101 attempt cap
+[08-28 08:05:31] ev_pointmaze_icem_104 attempt 2 -> raysubmit_usmDDhMdb5GecLNq
+[08-28 08:10:10] ev_pointmaze_cem_101 attempt cap
+[08-28 08:10:14] ev_pointmaze_cem_104 attempt cap
+[08-28 08:10:19] ev_pointmaze_icem_101 attempt cap
+[08-28 08:10:24] ev_pointmaze_icem_104 attempt 3 -> raysubmit_pSJaEpCaNjD82VE8
+[08-28 08:15:03] ev_pointmaze_cem_101 attempt cap
+[08-28 08:15:08] ev_pointmaze_cem_104 attempt cap
+[08-28 08:15:12] ev_pointmaze_icem_101 attempt cap
+[08-28 08:15:18] ev_pointmaze_icem_104 attempt 4 -> raysubmit_2Ryn53s1E84DqFHQ
+[08-28 08:19:57] ev_pointmaze_cem_101 attempt cap
+[08-28 08:20:01] ev_pointmaze_cem_104 attempt cap
+[08-28 08:20:06] ev_pointmaze_icem_101 attempt cap
+[08-28 08:20:11] ev_pointmaze_icem_104 attempt cap
+[08-28 08:24:50] ev_pointmaze_cem_101 attempt cap
+[08-28 08:24:54] ev_pointmaze_cem_104 attempt cap
+[08-28 08:24:59] ev_pointmaze_icem_101 attempt cap
+[08-28 08:25:03] ev_pointmaze_icem_104 attempt cap
+[08-28 08:29:43] ev_pointmaze_cem_101 attempt cap
+[08-28 08:29:48] ev_pointmaze_cem_104 attempt cap
+[08-28 08:29:52] ev_pointmaze_icem_101 attempt cap
+[08-28 08:29:57] ev_pointmaze_icem_104 attempt cap
+[08-28 08:33:15] start: q-only v3 (trainings + evals; stale pusht eval block removed, eval scheduling ungated)
+[08-28 08:33:56] ev_pointmaze_cem_101 attempt 1 -> raysubmit_Nk8hMRKFPLMxCeNb
+[08-28 08:38:40] ev_pointmaze_cem_104 attempt 1 -> raysubmit_yNui6CLFFMuRsrtt
+[08-28 08:43:27] ev_pointmaze_icem_101 attempt 1 -> raysubmit_24rKEiduWmTYhfdx
+[08-28 08:48:19] ev_pointmaze_icem_104 attempt 1 -> raysubmit_SqmiEXEtPm45TPsb
+[08-28 09:47:49] start: q-only v3 (trainings + evals; stale pusht eval block removed, eval scheduling ungated)
+[08-28 09:48:33] ev_pointmaze_cem_101 attempt 1 -> raysubmit_BxsJc2FH9BMgDzhq
+[08-28 09:53:20] ev_pointmaze_cem_104 attempt 1 -> raysubmit_tPks2yidDNu8wShH
+[08-28 09:58:11] ev_pointmaze_icem_101 attempt 1 -> raysubmit_wW7j5cuW71nzJFfj
+[08-28 10:03:08] ev_pointmaze_icem_104 attempt 1 -> raysubmit_w7pjjPUkxr1CweuU
+[08-28 15:10:48] ev_cube_cem_101 attempt 1 -> raysubmit_KVZbDVhNqa7BpGni
+[08-28 15:15:01] ev_cube_cem_104 attempt 1 -> raysubmit_xK55ziCtnN7PjNK1
+[08-28 15:19:19] ev_cube_icem_101 attempt 1 -> raysubmit_CuLBfYnGEjVfhCXA
+[08-28 15:23:42] ev_cube_icem_104 attempt 1 -> raysubmit_h84X7fCWBuF6Jn6t
+[08-28 16:06:42] TRAININGS + EVALS ALL COMPLETE

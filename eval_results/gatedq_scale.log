@@ -1,0 +1,93 @@
+[08-29 21:25:14] start: gated full-q SCALE, 4 tasks x lambda {0.05, 0.1}
+[08-29 21:25:17] reacher lam0.1 gate attempt 1 -> raysubmit_JFLFe4DmVriaqBSB
+[08-29 21:25:20] pt_g05 attempt 1 -> raysubmit_YvB2YxhJy62chwCC
+[08-29 21:25:24] pt_g10 attempt 1 -> raysubmit_6jHhur47L9XbXmNK
+[08-29 21:25:28] rc_g05 attempt 1 -> raysubmit_P1hM6bG7sAnXHR16
+[08-29 21:25:34] cd_g05 attempt 1 -> raysubmit_LGhfHkm24FD4jagN
+[08-29 21:25:37] cd_g10 attempt 1 -> raysubmit_RmxmkzFsJHC6h1pe
+[08-29 21:25:41] sc_g05 attempt 1 -> raysubmit_Xhv9EM7BHFztxKfp
+[08-29 21:25:45] sc_g10 attempt 1 -> raysubmit_UjhCkyZXzUvwjw2d
+[08-29 21:32:32] rc_g10 attempt 1 -> raysubmit_iXAfqPJz558K93xt
+[08-29 21:53:22] sc_g05 attempt 2 -> raysubmit_w8bk7pSK42GFfFd5
+[08-29 21:56:54] start: gated full-q SCALE, 4 tasks x lambda {0.05, 0.1}
+[08-29 22:18:06] sc_g05 attempt 1 -> raysubmit_krRy7NWd3nbVxsaW
+[08-29 22:33:12] start: gated full-q SCALE, 4 tasks x lambda {0.05, 0.1}
+[08-29 22:40:34] sc_g05 attempt 1 -> raysubmit_J9A2gK78SNAmTB7C
+[08-29 23:22:02] cd_g05 attempt 1 -> raysubmit_kQxHKCtj7QPGXsfE
+[08-29 23:22:06] cd_g10 attempt 1 -> raysubmit_JV1fTjSYD1Uj7w6t
+[08-29 23:29:01] cd_g05 attempt 2 -> raysubmit_2jdQ3V5LWJyhZWT3
+[08-29 23:29:04] cd_g10 attempt 2 -> raysubmit_QzThqEWVWQGPtv4r
+[08-29 23:35:55] cd_g05 attempt 3 -> raysubmit_u3SCamZLiAemAhjg
+[08-29 23:35:59] cd_g10 attempt 3 -> raysubmit_1FTKTtAcfmE5aa73
+[08-29 23:36:05] sc_g10 attempt 1 -> raysubmit_6SrcJkPdJ55mGib6
+[08-29 23:42:48] cd_g05 attempt 4 -> raysubmit_pJHf3HbqQgHvSSHk
+[08-29 23:42:52] cd_g10 attempt 4 -> raysubmit_FgF91bcGAnCSDvCa
+[08-29 23:42:58] sc_g10 attempt 2 -> raysubmit_fS7bcTQ76swQZLRU
+[08-29 23:49:42] cd_g05 attempt cap
+[08-29 23:49:44] cd_g10 attempt cap
+[08-29 23:49:50] sc_g10 attempt 3 -> raysubmit_wqzuVkTm3h4biS9H
+[08-29 23:56:36] cd_g05 attempt cap
+[08-29 23:56:38] cd_g10 attempt cap
+[08-29 23:56:44] sc_g10 attempt 4 -> raysubmit_UC2XPWgzi2ZR8Jy8
+[08-30 00:03:29] cd_g05 attempt cap
+[08-30 00:03:31] cd_g10 attempt cap
+[08-30 00:03:36] sc_g10 attempt cap
+[08-30 00:10:13] cd_g05 attempt cap
+[08-30 00:10:15] cd_g10 attempt cap
+[08-30 00:10:20] sc_g10 attempt cap
+[08-30 00:16:58] cd_g05 attempt cap
+[08-30 00:17:01] cd_g10 attempt cap
+[08-30 00:17:06] sc_g10 attempt cap
+[08-30 00:23:39] cd_g05 attempt cap
+[08-30 00:23:42] cd_g10 attempt cap
+[08-30 00:23:47] sc_g10 attempt cap
+[08-30 00:30:17] cd_g05 attempt cap
+[08-30 00:30:20] cd_g10 attempt cap
+[08-30 00:30:25] sc_g10 attempt cap
+[08-30 00:36:54] cd_g05 attempt cap
+[08-30 00:36:57] cd_g10 attempt cap
+[08-30 00:37:01] sc_g10 attempt cap
+[08-30 00:43:37] cd_g05 attempt cap
+[08-30 00:43:39] cd_g10 attempt cap
+[08-30 00:43:43] sc_g05 attempt 2 -> raysubmit_vVZzmHD7TTJvpydK
+[08-30 00:43:46] sc_g10 attempt cap
+[08-30 00:45:22] start: gated full-q SCALE, 4 tasks x lambda {0.05, 0.1}
+[08-30 00:45:36] cd_g05 attempt 1 -> raysubmit_Btx4qPKaRnqH2Ezw
+[08-30 00:45:40] cd_g10 attempt 1 -> raysubmit_fKdR8kJTDFitMMgh
+[08-30 00:45:43] sc_g05 attempt 1 -> raysubmit_zXpsWUcCcEm6sL6X
+[08-30 00:45:47] sc_g10 attempt 1 -> raysubmit_gkEL2dY7cTi6B4tV
+[08-30 02:48:03] ev_cube_double_g05_cem_101 attempt 1 -> raysubmit_8SFbhKFceMYAnyWV
+[08-30 02:53:39] ev_cube_double_g05_cem_104 attempt 1 -> raysubmit_y82Cwd5hw6BEJp4U
+[08-30 02:59:19] ev_cube_double_g05_icem_101 attempt 1 -> raysubmit_tkdsqGury8mR8KSk
+[08-30 03:39:02] ev_cube_double_g05_icem_104 attempt 1 -> raysubmit_eYYbhwSaB3e4iSkr
+[08-30 03:44:50] ev_cube_double_g10_cem_101 attempt 1 -> raysubmit_E7ffBmNbZzipDHrd
+[08-30 03:50:42] ev_cube_double_g10_cem_104 attempt 1 -> raysubmit_5znunkfDDBiNhSCH
+[08-30 03:56:40] ev_cube_double_g10_icem_101 attempt 1 -> raysubmit_8LHURnSB8K7Jz1wh
+[08-30 04:29:19] ev_cube_double_g10_icem_104 attempt 1 -> raysubmit_L7KYRbgzErVUXk5G
+[08-30 04:35:20] ev_scene_g05_cem_101 attempt 1 -> raysubmit_zXrG5t9T9rGWUiWq
+[08-30 04:41:24] ev_scene_g05_cem_104 attempt 1 -> raysubmit_Ft8gWSNewp6bsxZZ
+[08-30 04:47:32] ev_scene_g05_icem_101 attempt 1 -> raysubmit_JC628wtHrUMXD92J
+[08-30 04:53:46] ev_scene_g05_icem_104 attempt 1 -> raysubmit_NbZn2UxVREfqyKXs
+[08-30 05:33:00] ev_scene_g10_cem_101 attempt 1 -> raysubmit_CG32ydQdkjkZXDND
+[08-30 05:39:23] ev_scene_g10_cem_104 attempt 1 -> raysubmit_t9rjXN3sANi7QHWP
+[08-30 05:45:49] ev_scene_g10_icem_101 attempt 1 -> raysubmit_8mvUzhqfLShbcY8z
+[08-30 05:52:16] ev_scene_g10_icem_104 attempt 1 -> raysubmit_fDXBSknPamPaaLYp
+[08-30 07:07:23] ev_pusht_g10_cem_101 attempt 1 -> raysubmit_6MG3gQPutKvyqXb5
+[08-30 07:12:06] ev_pusht_g10_cem_104 attempt 1 -> raysubmit_T6gEJqSnQbhwv5w3
+[08-30 07:16:52] ev_pusht_g10_icem_101 attempt 1 -> raysubmit_AyeNaW5nhEzHE9UX
+[08-30 07:21:47] ev_pusht_g10_icem_104 attempt 1 -> raysubmit_Qfw6DTLeEVVMfwiG
+[08-30 07:32:32] ev_pusht_g05_cem_101 attempt 1 -> raysubmit_vG2FZ5LMDD9pjFV6
+[08-30 07:36:55] ev_pusht_g05_cem_104 attempt 1 -> raysubmit_FTuAjpyguExcxk9T
+[08-30 07:41:23] ev_pusht_g05_icem_101 attempt 1 -> raysubmit_tn4G179ebXQmxEUk
+[08-30 07:45:56] ev_pusht_g05_icem_104 attempt 1 -> raysubmit_AAPkdfQs8CKUBKq7
+[08-30 14:27:24] ev_reacher_g10_cem_101 attempt 1 -> raysubmit_cizWw6SDtXcT9jha
+[08-30 14:32:33] ev_reacher_g10_cem_104 attempt 1 -> raysubmit_Rdy2NZAyCFPecB1e
+[08-30 14:37:46] ev_reacher_g10_icem_101 attempt 1 -> raysubmit_XT5wVntc6ee4764F
+[08-30 14:43:04] ev_reacher_g10_icem_104 attempt 1 -> raysubmit_FUwLGs9s1KthCHE8
+[08-30 14:48:22] ev_reacher_g10_icem_104 attempt 2 -> raysubmit_MGJTVMEMJPmknbyz
+[08-30 14:59:17] ev_reacher_g05_cem_101 attempt 1 -> raysubmit_kPjBCpc4yspt4Rag
+[08-30 15:04:05] ev_reacher_g05_cem_104 attempt 1 -> raysubmit_S1b11dca1CzaYQMu
+[08-30 15:08:58] ev_reacher_g05_icem_101 attempt 1 -> raysubmit_GN4qYkwy64MEREdW
+[08-30 15:13:57] ev_reacher_g05_icem_104 attempt 1 -> raysubmit_BYh477pjmiQ72AVN
+[08-30 15:19:03] ev_reacher_g10_cem_104 attempt 2 -> raysubmit_nyMK9uk1T5KiG55J
+[08-30 15:49:19] GATED FULL-Q SCALE COMPLETE (8 arms, 96 CSVs)

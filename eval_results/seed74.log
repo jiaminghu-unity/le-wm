@@ -1,0 +1,312 @@
+[09-15 06:28:42] start: seed-3074 round
+[09-15 06:28:42] start: seed-3074 round
+[09-15 06:28:45] bk_r1r74_cem_101 attempt 1 -> raysubmit_q11zQ6NVNCt8RdAL
+[09-15 06:28:45] bk_r1r74_cem_101 attempt 1 -> raysubmit_q11zQ6NVNCt8RdAL
+[09-15 06:28:49] bk_r1r74_cem_104 attempt 1 -> raysubmit_CWCasik4NcRMzmfW
+[09-15 06:28:49] bk_r1r74_cem_104 attempt 1 -> raysubmit_CWCasik4NcRMzmfW
+[09-15 06:28:52] bk_r1r74_icem_101 attempt 1 -> raysubmit_TcAgv282LPgwAUVQ
+[09-15 06:28:52] bk_r1r74_icem_101 attempt 1 -> raysubmit_TcAgv282LPgwAUVQ
+[09-15 06:28:57] bk_r1r74_icem_104 attempt 1 -> raysubmit_mrLjN641qEtjpsRC
+[09-15 06:28:57] bk_r1r74_icem_104 attempt 1 -> raysubmit_mrLjN641qEtjpsRC
+[09-15 06:35:45] bk_r1r74_cem_101 attempt 2 -> raysubmit_VWAmvMv644imvMWT
+[09-15 06:35:45] bk_r1r74_cem_101 attempt 2 -> raysubmit_VWAmvMv644imvMWT
+[09-15 06:35:49] bk_r1r74_cem_104 attempt 2 -> raysubmit_cfs83kabQ7CwdZzN
+[09-15 06:35:49] bk_r1r74_cem_104 attempt 2 -> raysubmit_cfs83kabQ7CwdZzN
+[09-15 06:35:52] bk_r1r74_icem_101 attempt 2 -> raysubmit_6as1gs2M1y5kcmvH
+[09-15 06:35:52] bk_r1r74_icem_101 attempt 2 -> raysubmit_6as1gs2M1y5kcmvH
+[09-15 06:35:56] bk_r1r74_icem_104 attempt 2 -> raysubmit_sDfhjL8u7Bbu2Rxn
+[09-15 06:35:56] bk_r1r74_icem_104 attempt 2 -> raysubmit_sDfhjL8u7Bbu2Rxn
+[09-15 06:36:23] bkm_r2r74 attempt 1 -> raysubmit_dAMPMWeZftxDqrhC
+[09-15 06:36:23] bkm_r2r74 attempt 1 -> raysubmit_dAMPMWeZftxDqrhC
+[09-15 06:36:26] bk_r5r74_cem_101 attempt 1 -> raysubmit_K96hnX4zvkiEhpqX
+[09-15 06:36:26] bk_r5r74_cem_101 attempt 1 -> raysubmit_K96hnX4zvkiEhpqX
+[09-15 06:36:30] bk_r5r74_cem_104 attempt 1 -> raysubmit_Te3TUmBayrR4fRwQ
+[09-15 06:36:30] bk_r5r74_cem_104 attempt 1 -> raysubmit_Te3TUmBayrR4fRwQ
+[09-15 06:38:09] tr74_qall_scale_cube attempt 1 -> raysubmit_8PVyKeS2UZE8sKXf
+[09-15 06:38:09] tr74_qall_scale_cube attempt 1 -> raysubmit_8PVyKeS2UZE8sKXf
+[09-15 06:38:12] tr74_qgate03_scale_cube attempt 1 -> raysubmit_iPryA8LTCCXtDwqb
+[09-15 06:38:12] tr74_qgate03_scale_cube attempt 1 -> raysubmit_iPryA8LTCCXtDwqb
+[09-15 06:42:55] bk_r1r74_cem_101 attempt 3 -> raysubmit_164trWqx1VZxAhTr
+[09-15 06:42:55] bk_r1r74_cem_101 attempt 3 -> raysubmit_164trWqx1VZxAhTr
+[09-15 06:42:59] bk_r1r74_cem_104 attempt 3 -> raysubmit_U6zJTNBHWAuMHqGG
+[09-15 06:42:59] bk_r1r74_cem_104 attempt 3 -> raysubmit_U6zJTNBHWAuMHqGG
+[09-15 06:43:29] bkm_r2r74 attempt 2 -> raysubmit_FMuhDTUQxySR17sX
+[09-15 06:43:29] bkm_r2r74 attempt 2 -> raysubmit_FMuhDTUQxySR17sX
+[09-15 06:45:19] tr74_dw_cube attempt 1 -> raysubmit_ts8dyrnMckutQs2t
+[09-15 06:45:19] tr74_dw_cube attempt 1 -> raysubmit_ts8dyrnMckutQs2t
+[09-15 06:50:03] bk_r1r74_cem_101 attempt 4 -> raysubmit_f6u49sCX15u4v4B5
+[09-15 06:50:03] bk_r1r74_cem_101 attempt 4 -> raysubmit_f6u49sCX15u4v4B5
+[09-15 06:57:02] bk_r1r74_cem_101 attempt cap
+[09-15 06:57:02] bk_r1r74_cem_101 attempt cap
+[09-15 06:57:05] bk_r1r74_cem_104 attempt 4 -> raysubmit_VJfyq6iguh4zyN7x
+[09-15 06:57:05] bk_r1r74_cem_104 attempt 4 -> raysubmit_VJfyq6iguh4zyN7x
+[09-15 06:57:35] bk_r5r74_cem_101 attempt 2 -> raysubmit_RTsRRySS2YJSBXtM
+[09-15 06:57:35] bk_r5r74_cem_101 attempt 2 -> raysubmit_RTsRRySS2YJSBXtM
+[09-15 06:59:17] tr74_cubedouble_base attempt 1 -> raysubmit_fLqUrf91HE6fsW8C
+[09-15 06:59:17] tr74_cubedouble_base attempt 1 -> raysubmit_fLqUrf91HE6fsW8C
+[09-15 07:04:02] bk_r1r74_cem_101 attempt cap
+[09-15 07:04:02] bk_r1r74_cem_101 attempt cap
+[09-15 07:04:04] bk_r1r74_cem_104 attempt cap
+[09-15 07:04:04] bk_r1r74_cem_104 attempt cap
+[09-15 07:04:08] bk_r1r74_icem_101 attempt 3 -> raysubmit_YmaSk1NFe2H1AT2c
+[09-15 07:04:08] bk_r1r74_icem_101 attempt 3 -> raysubmit_YmaSk1NFe2H1AT2c
+[09-15 07:11:00] bk_r1r74_cem_101 attempt cap
+[09-15 07:11:00] bk_r1r74_cem_101 attempt cap
+[09-15 07:11:02] bk_r1r74_cem_104 attempt cap
+[09-15 07:11:02] bk_r1r74_cem_104 attempt cap
+[09-15 07:11:05] bk_r1r74_icem_101 attempt 4 -> raysubmit_xbUL1McwtSYSLvQD
+[09-15 07:11:05] bk_r1r74_icem_101 attempt 4 -> raysubmit_xbUL1McwtSYSLvQD
+[09-15 07:11:48] bkm_r5r74 attempt 1 -> raysubmit_7qZjbx516CvyBSpq
+[09-15 07:11:48] bkm_r5r74 attempt 1 -> raysubmit_7qZjbx516CvyBSpq
+[09-15 07:13:15] tr74_cubedouble_obj attempt 1 -> raysubmit_RiCS32JVTCk5KQcB
+[09-15 07:13:15] tr74_cubedouble_obj attempt 1 -> raysubmit_RiCS32JVTCk5KQcB
+[09-15 08:36:34] ev74_cube_double_baser74_cem_101 attempt 1 -> raysubmit_HB9L18tBa78AXbEn
+[09-15 08:36:34] ev74_cube_double_baser74_cem_101 attempt 1 -> raysubmit_HB9L18tBa78AXbEn
+[09-15 08:40:14] start: seed-3074 round
+[09-15 08:40:14] start: seed-3074 round
+[09-15 09:09:11] bk_r1r74_cem_101 attempt 1 -> raysubmit_jicz18P6p2QVMkcq
+[09-15 09:09:11] bk_r1r74_cem_101 attempt 1 -> raysubmit_jicz18P6p2QVMkcq
+[09-15 09:32:16] bkm_r5r74 attempt 1 -> raysubmit_ga7YUUE3J7hHmhzY
+[09-15 09:32:16] bkm_r5r74 attempt 1 -> raysubmit_ga7YUUE3J7hHmhzY
+[09-15 09:38:45] bk_r1r74_cem_104 attempt 1 -> raysubmit_sQqzrG1cVs9DaEUU
+[09-15 09:38:45] bk_r1r74_cem_104 attempt 1 -> raysubmit_sQqzrG1cVs9DaEUU
+[09-15 09:38:49] bk_r1r74_icem_101 attempt 1 -> raysubmit_mHwHL2ZFU11kgq93
+[09-15 09:38:49] bk_r1r74_icem_101 attempt 1 -> raysubmit_mHwHL2ZFU11kgq93
+[09-15 09:56:22] tr74_dw_cube_quadruple attempt 1 -> raysubmit_ysFxZhqwfZpXkUdP
+[09-15 09:56:22] tr74_dw_cube_quadruple attempt 1 -> raysubmit_ysFxZhqwfZpXkUdP
+[09-15 10:03:04] ev74_cube_double_objr74_cem_104 attempt 1 -> raysubmit_ma3RrVG77pS3PBWq
+[09-15 10:03:04] ev74_cube_double_objr74_cem_104 attempt 1 -> raysubmit_ma3RrVG77pS3PBWq
+[09-15 10:07:55] bk_r1r74_icem_104 attempt 1 -> raysubmit_72aS7Bw9KCNdiE9x
+[09-15 10:07:55] bk_r1r74_icem_104 attempt 1 -> raysubmit_72aS7Bw9KCNdiE9x
+[09-15 10:08:20] bkm_r2r74 attempt 1 -> raysubmit_RMeFviJtC6b56Qck
+[09-15 10:08:20] bkm_r2r74 attempt 1 -> raysubmit_RMeFviJtC6b56Qck
+[09-15 10:22:22] bkm_r1r74 attempt 1 -> raysubmit_sDFuBi6pP46hxjSU
+[09-15 10:22:22] bkm_r1r74 attempt 1 -> raysubmit_sDFuBi6pP46hxjSU
+[09-15 10:31:36] ev74_cube_double_baser74_cem_104 attempt 1 -> raysubmit_FJjbN4Dmk8Vb2Khf
+[09-15 10:31:36] ev74_cube_double_baser74_cem_104 attempt 1 -> raysubmit_FJjbN4Dmk8Vb2Khf
+[09-15 10:44:03] bk_r2r74_cem_101 attempt 1 -> raysubmit_KgsfhqvcsGitcXW1
+[09-15 10:44:03] bk_r2r74_cem_101 attempt 1 -> raysubmit_KgsfhqvcsGitcXW1
+[09-15 10:58:54] bk_r2r74_cem_104 attempt 1 -> raysubmit_xx7641QM2yQfb1Qe
+[09-15 10:58:54] bk_r2r74_cem_104 attempt 1 -> raysubmit_xx7641QM2yQfb1Qe
+[09-15 11:06:15] bk_r2r74_icem_101 attempt 1 -> raysubmit_EaWTpxV9pTySjiEc
+[09-15 11:06:15] bk_r2r74_icem_101 attempt 1 -> raysubmit_EaWTpxV9pTySjiEc
+[09-15 11:13:33] bk_r2r74_icem_104 attempt 1 -> raysubmit_HSd7u4kmETbCZDCN
+[09-15 11:13:33] bk_r2r74_icem_104 attempt 1 -> raysubmit_HSd7u4kmETbCZDCN
+[09-15 11:15:40] ev74_cube_double_objr74_cem_101 attempt 1 -> raysubmit_R6aczp16253uta2L
+[09-15 11:15:40] ev74_cube_double_objr74_cem_101 attempt 1 -> raysubmit_R6aczp16253uta2L
+[09-15 11:21:06] bk_r5r74_cem_101 attempt 1 -> raysubmit_s8C1UR18T5EMXegb
+[09-15 11:21:06] bk_r5r74_cem_101 attempt 1 -> raysubmit_s8C1UR18T5EMXegb
+[09-15 11:22:58] ev74_cube_double_baser74_icem_101 attempt 1 -> raysubmit_LdxVkAtJ2LKRbNzW
+[09-15 11:22:58] ev74_cube_double_baser74_icem_101 attempt 1 -> raysubmit_LdxVkAtJ2LKRbNzW
+[09-15 11:28:29] bk_r5r74_cem_104 attempt 1 -> raysubmit_EXZnf3BcDPpyRX2g
+[09-15 11:28:29] bk_r5r74_cem_104 attempt 1 -> raysubmit_EXZnf3BcDPpyRX2g
+[09-15 11:30:19] ev74_cube_double_baser74_icem_104 attempt 1 -> raysubmit_kTX4NPB2U91Gesth
+[09-15 11:30:19] ev74_cube_double_baser74_icem_104 attempt 1 -> raysubmit_kTX4NPB2U91Gesth
+[09-15 11:30:42] tr74_cubetriple_obj attempt 1 -> raysubmit_hGbAB1sahZzKu1tY
+[09-15 11:30:42] tr74_cubetriple_obj attempt 1 -> raysubmit_hGbAB1sahZzKu1tY
+[09-15 11:43:21] bk_r5r74_icem_101 attempt 1 -> raysubmit_fqFR51Q8nAuyHwU4
+[09-15 11:43:21] bk_r5r74_icem_101 attempt 1 -> raysubmit_fqFR51Q8nAuyHwU4
+[09-15 11:50:46] bk_r5r74_icem_104 attempt 1 -> raysubmit_M82zc8DZpiE9C2B1
+[09-15 11:50:46] bk_r5r74_icem_104 attempt 1 -> raysubmit_M82zc8DZpiE9C2B1
+[09-15 11:52:47] ev74_cube_double_objr74_icem_101 attempt 1 -> raysubmit_rbF1QEgGFrD2fiip
+[09-15 11:52:47] ev74_cube_double_objr74_icem_101 attempt 1 -> raysubmit_rbF1QEgGFrD2fiip
+[09-15 12:07:40] ev74_cube_double_objr74_icem_104 attempt 1 -> raysubmit_y6LPFTR4haTxPfSF
+[09-15 12:07:40] ev74_cube_double_objr74_icem_104 attempt 1 -> raysubmit_y6LPFTR4haTxPfSF
+[09-15 12:07:43] tr74_cubedouble_nce_gate03 attempt 1 -> raysubmit_LH22aKetF11FZXbt
+[09-15 12:07:43] tr74_cubedouble_nce_gate03 attempt 1 -> raysubmit_LH22aKetF11FZXbt
+[09-15 12:15:20] tr74_dw_cube_triple attempt 1 -> raysubmit_AnRqR6HX8fWuWAiL
+[09-15 12:15:20] tr74_dw_cube_triple attempt 1 -> raysubmit_AnRqR6HX8fWuWAiL
+[09-15 12:22:37] tr74_dw_cube_double attempt 1 -> raysubmit_QtvDT3Q14j63W9SR
+[09-15 12:22:37] tr74_dw_cube_double attempt 1 -> raysubmit_QtvDT3Q14j63W9SR
+[09-15 12:22:40] tr74_cubetriple_base attempt 1 -> raysubmit_LCNFyghcwHxpXyVG
+[09-15 12:22:40] tr74_cubetriple_base attempt 1 -> raysubmit_LCNFyghcwHxpXyVG
+[09-15 12:30:09] tr74_cubetriple_scale_gate10 attempt 1 -> raysubmit_LqXfB4pPtdhvZ56A
+[09-15 12:30:09] tr74_cubetriple_scale_gate10 attempt 1 -> raysubmit_LqXfB4pPtdhvZ56A
+[09-15 12:45:03] tr74_cubequadruple_base attempt 1 -> raysubmit_wAE2mafjRJgud1Dm
+[09-15 12:45:03] tr74_cubequadruple_base attempt 1 -> raysubmit_wAE2mafjRJgud1Dm
+[09-15 12:59:53] tr74_cubequadruple_obj attempt 1 -> raysubmit_dkgy9fCPkSFS2HhS
+[09-15 12:59:53] tr74_cubequadruple_obj attempt 1 -> raysubmit_dkgy9fCPkSFS2HhS
+[09-15 13:22:06] tr74_cubequadruple_nce_gate01 attempt 1 -> raysubmit_x4JWAWiLawyDkQyh
+[09-15 13:22:06] tr74_cubequadruple_nce_gate01 attempt 1 -> raysubmit_x4JWAWiLawyDkQyh
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_quadruple_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_cube_quadruple_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_quadruple_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_cube_quadruple_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 5.7GiB/s
+[09-15 13:29:35] ev74_cube_triple_objr74_cem_101 attempt 1 -> raysubmit_M7KMrjGqT1diVJPx
+[09-15 13:29:35] ev74_cube_triple_objr74_cem_101 attempt 1 -> raysubmit_M7KMrjGqT1diVJPx
+[09-15 14:08:02] ev74_cube_double_agr74_cem_101 attempt 1 -> raysubmit_47kSg9RtVWRAx2PE
+[09-15 14:08:02] ev74_cube_double_agr74_cem_101 attempt 1 -> raysubmit_47kSg9RtVWRAx2PE
+[09-15 14:08:06] ev74_cube_double_agr74_cem_104 attempt 1 -> raysubmit_UeK6VqhxgUcPCBUd
+[09-15 14:08:06] ev74_cube_double_agr74_cem_104 attempt 1 -> raysubmit_UeK6VqhxgUcPCBUd
+[09-15 14:25:08] ev74_cube_quadruple_dwr74_cem_101 attempt 1 -> raysubmit_LdLizwKAwwet5nQL
+[09-15 14:25:08] ev74_cube_quadruple_dwr74_cem_101 attempt 1 -> raysubmit_LdLizwKAwwet5nQL
+[09-15 14:32:37] ev74_cube_double_agr74_icem_101 attempt 1 -> raysubmit_kSepc1tqXC7C3vUA
+[09-15 14:32:37] ev74_cube_double_agr74_icem_101 attempt 1 -> raysubmit_kSepc1tqXC7C3vUA
+[09-15 14:32:40] ev74_cube_double_agr74_icem_104 attempt 1 -> raysubmit_XDYT9EYpFBAHBFT5
+[09-15 14:32:40] ev74_cube_double_agr74_icem_104 attempt 1 -> raysubmit_XDYT9EYpFBAHBFT5
+[09-15 14:58:23] ev74_cube_triple_baser74_cem_101 attempt 1 -> raysubmit_BuRAeLnU5fcgqHgn
+[09-15 14:58:23] ev74_cube_triple_baser74_cem_101 attempt 1 -> raysubmit_BuRAeLnU5fcgqHgn
+[09-15 14:59:37] tr74_scene_base attempt 1 -> raysubmit_6JtGLWZQsf6YhBSp
+[09-15 14:59:37] tr74_scene_base attempt 1 -> raysubmit_6JtGLWZQsf6YhBSp
+[09-15 15:07:13] ev74_cube_triple_baser74_cem_104 attempt 1 -> raysubmit_FqUZCRXuBeFSNfti
+[09-15 15:07:13] ev74_cube_triple_baser74_cem_104 attempt 1 -> raysubmit_FqUZCRXuBeFSNfti
+[09-15 15:16:22] ev74_cube_triple_objr74_cem_104 attempt 1 -> raysubmit_2s11RQykkxi4nMUL
+[09-15 15:16:22] ev74_cube_triple_objr74_cem_104 attempt 1 -> raysubmit_2s11RQykkxi4nMUL
+[09-15 15:25:16] ev74_cube_triple_baser74_icem_101 attempt 1 -> raysubmit_pBK2WQVzgSJPdhKT
+[09-15 15:25:16] ev74_cube_triple_baser74_icem_101 attempt 1 -> raysubmit_pBK2WQVzgSJPdhKT
+[09-15 15:25:29] ev74_cube_triple_objr74_icem_101 attempt 1 -> raysubmit_1ettSCpGXJnSf2gE
+[09-15 15:25:29] ev74_cube_triple_objr74_icem_101 attempt 1 -> raysubmit_1ettSCpGXJnSf2gE
+[09-15 15:43:19] ev74_cube_triple_baser74_icem_104 attempt 1 -> raysubmit_pzhR3PF25zgpf6tW
+[09-15 15:43:19] ev74_cube_triple_baser74_icem_104 attempt 1 -> raysubmit_pzhR3PF25zgpf6tW
+[09-15 15:43:35] ev74_cube_triple_objr74_icem_104 attempt 1 -> raysubmit_2sja3h15Y3t7tCJD
+[09-15 15:43:35] ev74_cube_triple_objr74_icem_104 attempt 1 -> raysubmit_2sja3h15Y3t7tCJD
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_triple_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_cube_triple_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_triple_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_cube_triple_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 32.8GiB/s
+[09-15 15:51:29] ev74_cube_qar74_cem_101 attempt 1 -> raysubmit_S8pKFxYTsr3Hp6tZ
+[09-15 15:51:29] ev74_cube_qar74_cem_101 attempt 1 -> raysubmit_S8pKFxYTsr3Hp6tZ
+[09-15 15:51:32] ev74_cube_qar74_cem_104 attempt 1 -> raysubmit_HVHcY3tsV72CsjPS
+[09-15 15:51:32] ev74_cube_qar74_cem_104 attempt 1 -> raysubmit_HVHcY3tsV72CsjPS
+[09-15 15:51:36] ev74_cube_qar74_icem_101 attempt 1 -> raysubmit_AfThj3BwSH9crPfY
+[09-15 15:51:36] ev74_cube_qar74_icem_101 attempt 1 -> raysubmit_AfThj3BwSH9crPfY
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_double_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_cube_double_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_double_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_cube_double_s3074/weights_epoch_10.pt
+  
+
+
+Average throughput: 20.3GiB/s
+[09-15 16:01:44] ev74_cube_qar74_icem_104 attempt 1 -> raysubmit_7t6vYu397QAg91zG
+[09-15 16:01:44] ev74_cube_qar74_icem_104 attempt 1 -> raysubmit_7t6vYu397QAg91zG
+[09-15 16:11:53] evm74_cube_qar74 attempt 1 -> raysubmit_LujCUX6YQ56tLPPK
+[09-15 16:11:53] evm74_cube_qar74 attempt 1 -> raysubmit_LujCUX6YQ56tLPPK
+[09-15 16:11:59] ev74_cube_qg03r74_cem_101 attempt 1 -> raysubmit_Vbbjzew398JARwv5
+[09-15 16:11:59] ev74_cube_qg03r74_cem_101 attempt 1 -> raysubmit_Vbbjzew398JARwv5
+[09-15 16:12:02] ev74_cube_qg03r74_cem_104 attempt 1 -> raysubmit_b7eft6GJb74eV9pA
+[09-15 16:12:02] ev74_cube_qg03r74_cem_104 attempt 1 -> raysubmit_b7eft6GJb74eV9pA
+[09-15 16:32:08] ev74_cube_qg03r74_icem_101 attempt 1 -> raysubmit_v4LSVLSJgPzEE2dN
+[09-15 16:32:08] ev74_cube_qg03r74_icem_101 attempt 1 -> raysubmit_v4LSVLSJgPzEE2dN
+[09-15 16:32:11] ev74_cube_qg03r74_icem_104 attempt 1 -> raysubmit_Rfwxhp6qRYww7hLR
+[09-15 16:32:11] ev74_cube_qg03r74_icem_104 attempt 1 -> raysubmit_Rfwxhp6qRYww7hLR
+[09-15 16:42:32] evm74_cube_qg03r74 attempt 1 -> raysubmit_5Knk1R9y4ahV6qDA
+[09-15 16:42:32] evm74_cube_qg03r74 attempt 1 -> raysubmit_5Knk1R9y4ahV6qDA
+[09-15 16:43:30] ev74_cube_double_dwr74_cem_101 attempt 1 -> raysubmit_RwRHGQ6G3MSST4Tr
+[09-15 16:43:30] ev74_cube_double_dwr74_cem_101 attempt 1 -> raysubmit_RwRHGQ6G3MSST4Tr
+[09-15 16:43:34] ev74_cube_double_dwr74_cem_104 attempt 1 -> raysubmit_BCUMCwqkU8uJ429J
+[09-15 16:43:34] ev74_cube_double_dwr74_cem_104 attempt 1 -> raysubmit_BCUMCwqkU8uJ429J
+[09-15 16:43:37] ev74_cube_double_dwr74_icem_101 attempt 1 -> raysubmit_3f8UjAeaFCiXLKZA
+[09-15 16:43:37] ev74_cube_double_dwr74_icem_101 attempt 1 -> raysubmit_3f8UjAeaFCiXLKZA
+[09-15 16:53:45] ev74_cube_double_dwr74_icem_104 attempt 1 -> raysubmit_7NR8zMA8MYpivdMv
+[09-15 16:53:45] ev74_cube_double_dwr74_icem_104 attempt 1 -> raysubmit_7NR8zMA8MYpivdMv
+[09-15 16:54:24] ev74_cube_triple_agr74_cem_101 attempt 1 -> raysubmit_Zf2WqNqWD2Zji1PA
+[09-15 16:54:24] ev74_cube_triple_agr74_cem_101 attempt 1 -> raysubmit_Zf2WqNqWD2Zji1PA
+[09-15 17:04:45] ev74_cube_triple_agr74_cem_104 attempt 1 -> raysubmit_2h3ijJyBynhKWjv1
+[09-15 17:04:45] ev74_cube_triple_agr74_cem_104 attempt 1 -> raysubmit_2h3ijJyBynhKWjv1
+[09-15 17:04:56] ev74_cube_triple_dwr74_cem_101 attempt 1 -> raysubmit_MxUDEAksVHB28HVK
+[09-15 17:04:56] ev74_cube_triple_dwr74_cem_101 attempt 1 -> raysubmit_MxUDEAksVHB28HVK
+[09-15 17:15:55] ev74_cube_quadruple_agr74_cem_104 attempt 1 -> raysubmit_2MjxitPfGqRLsa46
+[09-15 17:15:55] ev74_cube_quadruple_agr74_cem_104 attempt 1 -> raysubmit_2MjxitPfGqRLsa46
+[09-15 17:25:20] ev74_cube_triple_agr74_cem_104 attempt 2 -> raysubmit_7hsWQLziefW5BgFG
+[09-15 17:25:20] ev74_cube_triple_agr74_cem_104 attempt 2 -> raysubmit_7hsWQLziefW5BgFG
+[09-15 17:25:23] ev74_cube_triple_agr74_icem_101 attempt 1 -> raysubmit_RRbyfyUAcixcsEgB
+[09-15 17:25:23] ev74_cube_triple_agr74_icem_101 attempt 1 -> raysubmit_RRbyfyUAcixcsEgB
+[09-15 17:46:07] ev74_cube_triple_agr74_icem_104 attempt 1 -> raysubmit_BeASWiW3kiGZutzx
+[09-15 17:46:07] ev74_cube_triple_agr74_icem_104 attempt 1 -> raysubmit_BeASWiW3kiGZutzx
+[09-15 17:56:34] ev74_cube_triple_dwr74_cem_104 attempt 1 -> raysubmit_Y4nWQgf2SCv7cKU2
+[09-15 17:56:34] ev74_cube_triple_dwr74_cem_104 attempt 1 -> raysubmit_Y4nWQgf2SCv7cKU2
+[09-15 18:06:59] ev74_cube_triple_dwr74_icem_101 attempt 1 -> raysubmit_CXwkaejfFrj6N9p3
+[09-15 18:06:59] ev74_cube_triple_dwr74_icem_101 attempt 1 -> raysubmit_CXwkaejfFrj6N9p3
+[09-15 18:17:19] ev74_cube_triple_dwr74_icem_104 attempt 1 -> raysubmit_kueHK7ULsFf2yQRY
+[09-15 18:17:19] ev74_cube_triple_dwr74_icem_104 attempt 1 -> raysubmit_kueHK7ULsFf2yQRY
+[09-15 18:17:24] ev74_cube_quadruple_baser74_cem_101 attempt 1 -> raysubmit_tFeuuuH794xijEPZ
+[09-15 18:17:24] ev74_cube_quadruple_baser74_cem_101 attempt 1 -> raysubmit_tFeuuuH794xijEPZ
+[09-15 18:38:30] ev74_cube_quadruple_baser74_cem_104 attempt 1 -> raysubmit_R1pg69PmaYdggX8z
+[09-15 18:38:30] ev74_cube_quadruple_baser74_cem_104 attempt 1 -> raysubmit_R1pg69PmaYdggX8z
+[09-15 18:38:34] ev74_cube_quadruple_baser74_icem_101 attempt 1 -> raysubmit_V1JxVi2ah9bspXBv
+[09-15 18:38:34] ev74_cube_quadruple_baser74_icem_101 attempt 1 -> raysubmit_V1JxVi2ah9bspXBv
+[09-15 19:10:35] ev74_cube_quadruple_baser74_icem_104 attempt 1 -> raysubmit_tUa6dkyszu6tjsaa
+[09-15 19:10:35] ev74_cube_quadruple_baser74_icem_104 attempt 1 -> raysubmit_tUa6dkyszu6tjsaa
+[09-15 19:31:29] ev74_cube_quadruple_objr74_cem_101 attempt 1 -> raysubmit_1FUAjhkFhFbbT4c9
+[09-15 19:31:29] ev74_cube_quadruple_objr74_cem_101 attempt 1 -> raysubmit_1FUAjhkFhFbbT4c9
+[09-15 19:31:33] ev74_cube_quadruple_objr74_cem_104 attempt 1 -> raysubmit_Q6SEv645nqCEEYgW
+[09-15 19:31:33] ev74_cube_quadruple_objr74_cem_104 attempt 1 -> raysubmit_Q6SEv645nqCEEYgW
+[09-15 20:03:22] ev74_cube_quadruple_objr74_icem_101 attempt 1 -> raysubmit_xr79dPkVWPdv3RuE
+[09-15 20:03:22] ev74_cube_quadruple_objr74_icem_101 attempt 1 -> raysubmit_xr79dPkVWPdv3RuE
+[09-15 20:03:26] ev74_cube_quadruple_objr74_icem_104 attempt 1 -> raysubmit_vcMzBfHvq59mSE7s
+[09-15 20:03:26] ev74_cube_quadruple_objr74_icem_104 attempt 1 -> raysubmit_vcMzBfHvq59mSE7s
+[09-15 20:24:44] ev74_cube_quadruple_agr74_cem_101 attempt 1 -> raysubmit_K5ssv4gCszFUHafA
+[09-15 20:24:44] ev74_cube_quadruple_agr74_cem_101 attempt 1 -> raysubmit_K5ssv4gCszFUHafA
+[09-15 20:24:52] ev74_cube_quadruple_agr74_icem_101 attempt 1 -> raysubmit_WqpsmaYX5R97m67k
+[09-15 20:24:52] ev74_cube_quadruple_agr74_icem_101 attempt 1 -> raysubmit_WqpsmaYX5R97m67k
+[09-15 20:56:35] ev74_cube_quadruple_agr74_icem_104 attempt 1 -> raysubmit_rw1WKWxwkLD1zdAJ
+[09-15 20:56:35] ev74_cube_quadruple_agr74_icem_104 attempt 1 -> raysubmit_rw1WKWxwkLD1zdAJ
+[09-15 20:56:44] ev74_cube_quadruple_dwr74_cem_104 attempt 1 -> raysubmit_xyEy1jU7cmygYfNK
+[09-15 20:56:44] ev74_cube_quadruple_dwr74_cem_104 attempt 1 -> raysubmit_xyEy1jU7cmygYfNK
+[09-15 21:18:05] ev74_cube_quadruple_dwr74_icem_101 attempt 1 -> raysubmit_4EP5kSjWMtqUUtmj
+[09-15 21:18:05] ev74_cube_quadruple_dwr74_icem_101 attempt 1 -> raysubmit_4EP5kSjWMtqUUtmj
+[09-15 21:18:08] ev74_cube_quadruple_dwr74_icem_104 attempt 1 -> raysubmit_ZS3KHdMSin31XUnb
+[09-15 21:18:08] ev74_cube_quadruple_dwr74_icem_104 attempt 1 -> raysubmit_ZS3KHdMSin31XUnb
+[09-15 21:50:09] ev74_scene_baser74_cem_101 attempt 1 -> raysubmit_XhJEHfc5dQu9YeXx
+[09-15 21:50:09] ev74_scene_baser74_cem_101 attempt 1 -> raysubmit_XhJEHfc5dQu9YeXx
+[09-15 22:43:48] ev74_scene_baser74_cem_104 attempt 1 -> raysubmit_2v5dhBwwiTnZ8VPf
+[09-15 22:43:48] ev74_scene_baser74_cem_104 attempt 1 -> raysubmit_2v5dhBwwiTnZ8VPf
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_cube_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_cube_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_cube_s3074/weights_epoch_10.pt
+  
+
+
+Average throughput: 16.9GiB/s
+[09-15 23:34:12] ev74_cube_dwr74_cem_101 attempt 1 -> raysubmit_DjiKec8kqNFgQ2ga
+[09-15 23:34:12] ev74_cube_dwr74_cem_101 attempt 1 -> raysubmit_DjiKec8kqNFgQ2ga
+[09-15 23:37:49] ev74_scene_baser74_icem_101 attempt 1 -> raysubmit_sXypisBttLw8Yb1g
+[09-15 23:37:49] ev74_scene_baser74_icem_101 attempt 1 -> raysubmit_sXypisBttLw8Yb1g
+[09-16 00:30:51] ev74_scene_baser74_icem_104 attempt 1 -> raysubmit_XQbru1tDSV7WyFEx
+[09-16 00:30:51] ev74_scene_baser74_icem_104 attempt 1 -> raysubmit_XQbru1tDSV7WyFEx
+[09-16 01:29:23] ev74_cube_dwr74_cem_104 attempt 1 -> raysubmit_t97ki9jN13hbZjA7
+[09-16 01:29:23] ev74_cube_dwr74_cem_104 attempt 1 -> raysubmit_t97ki9jN13hbZjA7
+[09-16 11:29:36] ev74_cube_dwr74_icem_101 attempt 1 -> raysubmit_c4p6CZfmPxydmxf2
+[09-16 11:29:36] ev74_cube_dwr74_icem_101 attempt 1 -> raysubmit_c4p6CZfmPxydmxf2
+[09-16 11:40:26] ev74_cube_dwr74_icem_104 attempt 1 -> raysubmit_hHSeNsWKfp4bk7sd
+[09-16 11:40:26] ev74_cube_dwr74_icem_104 attempt 1 -> raysubmit_hHSeNsWKfp4bk7sd
+[09-16 11:40:34] evm74_cube_dwr74 attempt 1 -> raysubmit_dUgzqjvvncaFYxSb
+[09-16 11:40:34] evm74_cube_dwr74 attempt 1 -> raysubmit_dUgzqjvvncaFYxSb
+[09-16 11:54:48] tr74_scene_obj attempt 1 -> raysubmit_FaPuP8zwZaXMsp5t
+[09-16 11:54:48] tr74_scene_obj attempt 1 -> raysubmit_FaPuP8zwZaXMsp5t
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_scene_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_scene_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_scene_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_scene_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 28.0GiB/s
+[09-16 12:05:50] tr74_scene_nce_gate05 attempt 1 -> raysubmit_GYcKt7TDUYpNQGMA
+[09-16 12:05:50] tr74_scene_nce_gate05 attempt 1 -> raysubmit_GYcKt7TDUYpNQGMA
+[09-16 12:27:48] ev74_scene_dwr74_cem_101 attempt 1 -> raysubmit_j4xxu7VWBc4jcnxq
+[09-16 12:27:48] ev74_scene_dwr74_cem_101 attempt 1 -> raysubmit_j4xxu7VWBc4jcnxq
+[09-16 13:12:01] ev74_scene_dwr74_cem_104 attempt 1 -> raysubmit_FNNnAnxEA7Q82Dyg
+[09-16 13:12:01] ev74_scene_dwr74_cem_104 attempt 1 -> raysubmit_FNNnAnxEA7Q82Dyg
+[09-16 13:55:59] ev74_scene_objr74_cem_101 attempt 1 -> raysubmit_chb7rDZVDDq8gv98
+[09-16 13:55:59] ev74_scene_objr74_cem_101 attempt 1 -> raysubmit_chb7rDZVDDq8gv98
+[09-16 14:18:44] ev74_scene_objr74_cem_104 attempt 1 -> raysubmit_ibRFvENZt8uzhszK
+[09-16 14:18:44] ev74_scene_objr74_cem_104 attempt 1 -> raysubmit_ibRFvENZt8uzhszK
+[09-16 14:30:19] ev74_scene_objr74_icem_101 attempt 1 -> raysubmit_tyrapFB9qxJY7y9E
+[09-16 14:30:19] ev74_scene_objr74_icem_101 attempt 1 -> raysubmit_tyrapFB9qxJY7y9E
+[09-16 14:30:23] ev74_scene_objr74_icem_104 attempt 1 -> raysubmit_mdpzCNN8y9GsyTqH
+[09-16 14:30:23] ev74_scene_objr74_icem_104 attempt 1 -> raysubmit_mdpzCNN8y9GsyTqH
+[09-16 14:53:35] ev74_scene_agr74_cem_101 attempt 1 -> raysubmit_pJHf11RcxX9nTQ5L
+[09-16 14:53:35] ev74_scene_agr74_cem_101 attempt 1 -> raysubmit_pJHf11RcxX9nTQ5L
+[09-16 15:05:10] ev74_scene_agr74_cem_104 attempt 1 -> raysubmit_c9ZMRLpciLV9dy5J
+[09-16 15:05:10] ev74_scene_agr74_cem_104 attempt 1 -> raysubmit_c9ZMRLpciLV9dy5J
+[09-16 15:16:46] ev74_scene_agr74_icem_101 attempt 1 -> raysubmit_1Zu8pGAuqcmHGDXr
+[09-16 15:16:46] ev74_scene_agr74_icem_101 attempt 1 -> raysubmit_1Zu8pGAuqcmHGDXr
+[09-16 15:28:20] ev74_scene_agr74_icem_104 attempt 1 -> raysubmit_Gf9nMuya1B8R8v2J
+[09-16 15:28:20] ev74_scene_agr74_icem_104 attempt 1 -> raysubmit_Gf9nMuya1B8R8v2J
+[09-16 15:28:29] ev74_scene_dwr74_icem_101 attempt 1 -> raysubmit_i2LK49aCfnYYNgXU
+[09-16 15:28:29] ev74_scene_dwr74_icem_101 attempt 1 -> raysubmit_i2LK49aCfnYYNgXU
+[09-16 15:28:33] ev74_scene_dwr74_icem_104 attempt 1 -> raysubmit_TYuHDEqp5zvFEQBJ
+[09-16 15:28:33] ev74_scene_dwr74_icem_104 attempt 1 -> raysubmit_TYuHDEqp5zvFEQBJ
+[09-17 11:53:25] SEED74 ROUND COMPLETE
+[09-17 11:53:25] SEED74 ROUND COMPLETE

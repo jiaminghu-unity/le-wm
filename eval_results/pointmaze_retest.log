@@ -1,0 +1,40 @@
+[08-28 08:26:06] start: pointmaze retest on fresh pre-registered sets s201-206, 8 models x 3 solvers
+[08-28 08:26:13] gen sets attempt 1 -> raysubmit_LnJv9AFYtRu9J2HT
+[08-28 08:33:15] start: pointmaze retest on fresh pre-registered sets s201-206, 6 models x 3 solvers
+[08-28 08:33:26] p1_cem_201 attempt 1 -> raysubmit_cBmaKxYM8zTkE6PV
+[08-28 08:37:41] p1_cem_204 attempt 1 -> raysubmit_ahx1HUg69kApHvGb
+[08-28 08:41:59] p1r73_cem_201 attempt 1 -> raysubmit_Q3pyWDfBqSNbvpqg
+[08-28 08:46:22] p1r73_cem_204 attempt 1 -> raysubmit_aCJShSWTDuSqEerQ
+[08-28 08:50:47] p2_cem_201 attempt 1 -> raysubmit_C1e4UZjSNttyGpc1
+[08-28 08:55:17] p2_cem_204 attempt 1 -> raysubmit_yEHfvN8kpQuuNe6w
+[08-28 08:59:48] p2r73_cem_201 attempt 1 -> raysubmit_YmLeYPYgkZCfHRpa
+[08-28 09:04:23] p2r73_cem_204 attempt 1 -> raysubmit_GnRDzasshVCLeYVH
+[08-28 09:09:03] p5_cem_201 attempt 1 -> raysubmit_6rySM9fmbjchGRT4
+[08-28 09:13:46] p5_cem_204 attempt 1 -> raysubmit_LQESf2JKdkRnp4Tm
+[08-28 09:18:30] p5r73_cem_201 attempt 1 -> raysubmit_Lbgv8WqddVTWgXw1
+[08-28 09:23:19] p5r73_cem_204 attempt 1 -> raysubmit_tpY1NtCrNmP5qaqL
+[08-28 09:28:12] p1_icem_201 attempt 1 -> raysubmit_k8VR5EbKvuR9xrHB
+[08-28 09:33:07] p1_icem_204 attempt 1 -> raysubmit_ptvvGzfgiHkcDULA
+[08-28 09:38:05] p1r73_icem_201 attempt 1 -> raysubmit_GLFwxawiiD95s5xG
+[08-28 09:43:09] p1r73_icem_204 attempt 1 -> raysubmit_eqGtfeCY8VtUcKUd
+[08-28 09:48:19] p2_icem_201 attempt 1 -> raysubmit_EwXR77H5darqgvui
+[08-28 09:53:29] p2_icem_204 attempt 1 -> raysubmit_FBBUHUuWJaaCQFaS
+[08-28 09:58:42] p2r73_icem_201 attempt 1 -> raysubmit_unStvgzZPfYsPYPF
+[08-28 10:03:59] p2r73_icem_204 attempt 1 -> raysubmit_yfs2m9EAn7KD4VwP
+[08-28 10:09:21] p5_icem_201 attempt 1 -> raysubmit_4U5gZMhE3rPYV1ec
+[08-28 10:14:45] p5_icem_204 attempt 1 -> raysubmit_MfGuHkwzthLNUY1R
+[08-28 10:20:09] p5r73_icem_201 attempt 1 -> raysubmit_NsdH7s7s988epx3A
+[08-28 10:25:37] p5r73_icem_204 attempt 1 -> raysubmit_yJFNY56q3HD1sye9
+[08-28 10:31:07] p1_mppi_201 attempt 1 -> raysubmit_tcULqMQcepi5KnwC
+[08-28 10:36:45] p1_mppi_204 attempt 1 -> raysubmit_LZepk9kVm18WSD6j
+[08-28 10:42:29] p1r73_mppi_201 attempt 1 -> raysubmit_1RyHX7e5u3EB8LGh
+[08-28 10:48:15] p1r73_mppi_204 attempt 1 -> raysubmit_xZam6dM6SuhjNu9D
+[08-28 10:54:00] p2_mppi_201 attempt 1 -> raysubmit_ppCMkXuRKeEtmRMK
+[08-28 10:59:48] p2_mppi_204 attempt 1 -> raysubmit_iaYYJXKvD8qHFWx4
+[08-28 11:05:40] p2r73_mppi_201 attempt 1 -> raysubmit_TAHAqsQeyL4nADh5
+[08-28 11:11:36] p2r73_mppi_204 attempt 1 -> raysubmit_5WUHMGBMs861cfvg
+[08-28 11:17:33] p5_mppi_201 attempt 1 -> raysubmit_3wGfEnx3Kx53NJEv
+[08-28 11:23:34] p5_mppi_204 attempt 1 -> raysubmit_gT4xcTnKwxweuVVZ
+[08-28 11:29:38] p5r73_mppi_201 attempt 1 -> raysubmit_4YMDfyFn9ahcShmk
+[08-28 11:35:48] p5r73_mppi_204 attempt 1 -> raysubmit_NE6GCU8rExBdEJnc
+[08-28 12:12:48] POINTMAZE RETEST COMPLETE (36 half-cells)

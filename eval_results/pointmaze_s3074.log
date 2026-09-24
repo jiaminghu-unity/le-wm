@@ -1,0 +1,78 @@
+[08-29 08:35:03] start: pointmaze s3074 (4 trainings -> 3 solvers x 2 episode grids)
+[08-29 08:35:05] pm74_base attempt 1 -> raysubmit_cfAhyg6Qhfcqc3Sf
+[08-29 08:42:42] pm74_obj attempt 1 -> raysubmit_C3dNLYMBhapf1D17
+[08-29 08:50:21] pm74_aux attempt 1 -> raysubmit_5xM9zHgP7BSUWQvf
+[08-29 08:58:04] pm74_dw attempt 1 -> raysubmit_azZYnhys6DUvkXFx
+[08-29 09:22:31] p1r74_icem_101 attempt 1 -> raysubmit_aBDWmDXdCeF89dJS
+[08-29 09:26:43] p1r74_cem_101 attempt 1 -> raysubmit_zSAKnJic4i7T6CX2
+[08-29 09:31:00] p1r74_cem_104 attempt 1 -> raysubmit_nU6xJ1PRL2qWMdJM
+[08-29 09:35:20] p1r74_cem_201 attempt 1 -> raysubmit_A1yd49kQnakUExwu
+[08-29 09:39:45] p1r74_cem_204 attempt 1 -> raysubmit_EfnFm7p4zKEyBY1F
+[08-29 09:44:14] p2r74_cem_101 attempt 1 -> raysubmit_gEczZBCe2QPFqne5
+[08-29 09:48:47] p2r74_cem_104 attempt 1 -> raysubmit_QdJXAex1MEkg6zqk
+[08-29 09:53:25] p2r74_cem_201 attempt 1 -> raysubmit_6Ds9hkc7EiyR7TSN
+[08-29 09:58:07] p2r74_cem_204 attempt 1 -> raysubmit_Aqc7VjQxY3vZmB82
+[08-29 10:02:51] p5r74_cem_101 attempt 1 -> raysubmit_KFdBFpsPic7rgW9t
+[08-29 10:07:40] p5r74_cem_104 attempt 1 -> raysubmit_YYAnACiwuXs77Uu2
+[08-29 10:12:31] p5r74_cem_201 attempt 1 -> raysubmit_VLeepd7XgYxGUXc3
+[08-29 10:17:25] p5r74_cem_204 attempt 1 -> raysubmit_fRT6wpvdRDEvHz7D
+[08-29 10:22:45] p1r74_icem_104 attempt 1 -> raysubmit_maLDJs4fwnyqdUdS
+[08-29 10:28:08] p1r74_icem_201 attempt 1 -> raysubmit_nzFLkRnk4fzTqPJX
+[08-29 10:33:32] p1r74_icem_204 attempt 1 -> raysubmit_TAiBWM7KKe62k5My
+[08-29 10:39:00] p2r74_icem_101 attempt 1 -> raysubmit_6nTbjYvDikJe8aWw
+[08-29 10:44:29] p2r74_icem_104 attempt 1 -> raysubmit_QgHnEcjeUgYKn2dS
+[08-29 10:48:35] staging dinowm_pointmaze_s3074 -> ckpts_pointmaze/
+[08-29 10:49:21] dwr74_cem_101 attempt 1 -> raysubmit_YiHr1NiBbeYpQNVy
+[08-29 10:54:15] dwr74_cem_104 attempt 1 -> raysubmit_Gh1XncQLTbVcLTFM
+[08-29 10:59:14] dwr74_cem_201 attempt 1 -> raysubmit_fWETF8L3ws5DdTNU
+[08-29 11:04:17] dwr74_cem_204 attempt 1 -> raysubmit_mzSQ7twJw8Xewxez
+[08-29 11:09:45] p2r74_icem_201 attempt 1 -> raysubmit_ew9drtzNmQBNERYX
+[08-29 11:15:16] p2r74_icem_204 attempt 1 -> raysubmit_zLrxk4RmWVCLkZKM
+[08-29 11:20:53] p5r74_icem_101 attempt 1 -> raysubmit_5X46DpRwSTgBEkTr
+[08-29 11:26:34] p5r74_icem_104 attempt 1 -> raysubmit_8eBHQi3jFn2UqVag
+[08-29 11:32:21] p5r74_icem_201 attempt 1 -> raysubmit_cHkDu2bUGWPuPULX
+[08-29 11:38:11] p5r74_icem_204 attempt 1 -> raysubmit_gqXqSbyfeSHEddQX
+[08-29 11:44:03] dwr74_icem_101 attempt 1 -> raysubmit_a9AhWgjpNwmM1sNq
+[08-29 11:50:03] dwr74_icem_104 attempt 1 -> raysubmit_bP5c3VrA3CRJaAyC
+[08-29 11:56:06] dwr74_icem_201 attempt 1 -> raysubmit_93VGqfnM9s4QpwwS
+[08-29 12:02:18] dwr74_icem_204 attempt 1 -> raysubmit_enwnvcEznjWc4a4p
+[08-29 12:08:26] dwr74_icem_204 attempt 2 -> raysubmit_ym8bFtDVtsN8kqbJ
+[08-29 12:14:34] p1r74_mppi_101 attempt 1 -> raysubmit_FGfj852HQXENfRXq
+[08-29 12:20:47] p1r74_mppi_104 attempt 1 -> raysubmit_Erc1fy9yJM4mzRsN
+[08-29 12:27:05] p1r74_mppi_201 attempt 1 -> raysubmit_ztQbVBut2LS8yT8H
+[08-29 12:33:30] p1r74_mppi_204 attempt 1 -> raysubmit_e1ERW5KbpEVCjNgc
+[08-29 12:40:00] p2r74_mppi_101 attempt 1 -> raysubmit_Kq2n2jXzQJGHsu1r
+[08-29 12:46:16] p1r74_mppi_201 attempt 2 -> raysubmit_7sdw45BRfajpnJe8
+[08-29 12:52:46] p2r74_mppi_104 attempt 1 -> raysubmit_9EiWngxRcYBAiqsP
+[08-29 12:59:18] p2r74_mppi_201 attempt 1 -> raysubmit_ibQa2uhdtvZ25TbJ
+[08-29 13:05:59] p2r74_mppi_204 attempt 1 -> raysubmit_VBEiKKbWVuWPwRT6
+[08-29 13:12:30] p2r74_mppi_104 attempt 2 -> raysubmit_4wibcDHmVmDJiuGw
+[08-29 13:19:00] p2r74_mppi_201 attempt 2 -> raysubmit_YvbTfNWg3aQVYGZu
+[08-29 13:25:35] p2r74_mppi_204 attempt 2 -> raysubmit_MUHxVkZMEHUB75W5
+[08-29 13:32:14] p5r74_mppi_101 attempt 1 -> raysubmit_U6wyj2rc9SYEhys4
+[08-29 13:38:57] p5r74_mppi_104 attempt 1 -> raysubmit_t1T9dfN5DCcZGxN4
+[08-29 13:45:42] p5r74_mppi_201 attempt 1 -> raysubmit_YZWAeg5NS1k8zVij
+[08-29 13:52:16] p5r74_mppi_101 attempt 2 -> raysubmit_wMsdB5hbFmPwHL5v
+[08-29 13:59:03] p5r74_mppi_204 attempt 1 -> raysubmit_PcfPhgxyyaABZq3s
+[08-29 14:05:47] p5r74_mppi_201 attempt 2 -> raysubmit_EgqQPgZGKyLyUJtg
+[08-29 14:12:36] dwr74_mppi_101 attempt 1 -> raysubmit_Qi63XULZJCizbL99
+[08-29 14:19:30] dwr74_mppi_104 attempt 1 -> raysubmit_3ZpW9JiBdzAgaAJr
+[08-29 14:26:12] p5r74_mppi_201 attempt 3 -> raysubmit_gMkjpWv42MskpLgd
+[08-29 14:33:01] dwr74_mppi_101 attempt 2 -> raysubmit_yc7VyArWZYcqAN6J
+[08-29 14:39:51] dwr74_mppi_104 attempt 2 -> raysubmit_EjLyj6bbLRwBqk72
+[08-29 14:46:48] dwr74_mppi_201 attempt 1 -> raysubmit_SqjZtZUMLxKm2KqA
+[08-29 14:53:37] dwr74_mppi_101 attempt 3 -> raysubmit_kJ8wa22gS7dNTefZ
+[08-29 15:00:28] dwr74_mppi_104 attempt 3 -> raysubmit_KGXsQruziNEyyGtg
+[08-29 15:07:29] dwr74_mppi_204 attempt 1 -> raysubmit_TND3ysJN9j8GdvWQ
+[08-29 15:14:17] dwr74_mppi_101 attempt 4 -> raysubmit_W3fzVDmKzmgB8RqB
+[08-29 15:28:16] dwr74_mppi_204 attempt 2 -> raysubmit_zaikDYSNUVZLL9jR
+[08-29 15:49:19] dwr74_mppi_204 attempt 3 -> raysubmit_JhFewTHPLWXkJ9WQ
+[08-29 16:10:21] dwr74_mppi_204 attempt 4 -> raysubmit_xsf8K1B1JKHSUApQ
+[08-29 16:31:22] dwr74_mppi_204 attempt cap
+[08-29 16:38:21] dwr74_mppi_204 attempt cap
+[08-29 16:45:23] dwr74_mppi_204 attempt cap
+[08-29 16:52:23] dwr74_mppi_204 attempt cap
+[08-29 16:59:23] dwr74_mppi_204 attempt cap
+[08-29 17:06:13] start: pointmaze s3074 (4 trainings -> 3 solvers x 2 episode grids)
+[08-29 17:09:06] start: pointmaze s3074 (4 trainings -> 3 solvers x 2 episode grids)
+[08-29 17:11:14] POINTMAZE S3074 TRAININGS + EVALS COMPLETE (108 CSVs, DINO-WM dropped per user 2026-08-29)

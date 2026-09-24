@@ -14,6 +14,9 @@ cd /workspace/le-wm || exit 1
 SEED=3072
 BUCKET=gs://prism-training-us/le-wm
 EXC='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycache__"]}'
+# trainings are pinned to A100 and may legitimately queue for hours behind running
+# arms — give them a 4h start timeout instead of the default 900s kill/resubmit churn
+EXC_TRAIN='{"excludes":["ckpts","eval_results","assets","artifacts",".git","**/__pycache__"],"env_vars":{"RAY_JOB_START_TIMEOUT_SECONDS":"14400"}}'
 L=/workspace/le-wm/eval_results/ablation.log
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" | tee -a "$L"; }
 declare -A ATT
@@ -25,14 +28,14 @@ declare -A ATT
 free(){ python3 - <<'FREEPY' 2>/dev/null
 import json, urllib.request, subprocess
 try:
-    out=subprocess.run(['ray','list','nodes','--format','json'],capture_output=True,text=True,timeout=30).stdout
+    out=subprocess.run(['ray','list','nodes','--format','json','--limit','500'],capture_output=True,text=True,timeout=30).stdout
     cap=int(sum((r.get('resources_total') or {}).get('GPU',0) for r in json.loads(out) if r.get('state')=='ALIVE'))
 except Exception:
     cap=8
 jobs = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=20))
 used = sum(1 for j in jobs if j.get('status') in ('RUNNING','PENDING')
            and ('scripts/ray_' in (j.get('entrypoint') or '') or j.get('entrypoint_num_gpus')))
-print(max(min(cap+8,30)-used, 0))
+print(max(min(cap+30,45)-used, 0))
 FREEPY
 }
 nrun(){ python3 - "$1" <<'PY' 2>/dev/null
@@ -41,8 +44,23 @@ d=json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/'))
 print(sum(1 for j in d if j['status'] in ('RUNNING','PENDING') and sys.argv[1] in (j.get('entrypoint') or '')))
 PY
 }
-sub(){ timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
-  --working-dir /workspace/le-wm --runtime-env-json "$EXC" -- "$@" 2>&1 \
+sub(){ local pin=()
+  # trainings are pinned to A100 (L4 is ~4x slower — L4 workers exist to absorb evals);
+  # non-cube evals are pinned to L4 so freed A100s always go to pending trainings
+  # (cube evals stay unpinned: 24G VRAM headroom unverified for the cube planner).
+  local env="$EXC"
+  case "$1 $2" in
+    "bash scripts/ray_train_tworoom.sh")
+      # A100 现货低谷期:tworoom 单臂仅 ~3h(A100)/ ~13h(L4),放 L4 上稳过等卡
+      pin=(--entrypoint-resources '{"accelerator_type:L4":0.001}'); env="$EXC_TRAIN";;
+    "bash scripts/ray_train_"*) pin=(--entrypoint-resources '{"accelerator_type:A100":0.001}'); env="$EXC_TRAIN";;
+    "bash scripts/ray_eval_pointmaze.sh"|"bash scripts/ray_eval_tworoom.sh")
+      pin=(--entrypoint-resources '{"accelerator_type:L4":0.001}');;
+    "bash scripts/ray_eval_final.sh"|"bash scripts/ray_eval_mppi_t.sh")
+      [ "$3" != cube ] && pin=(--entrypoint-resources '{"accelerator_type:L4":0.001}');;
+  esac
+  timeout 240 ray job submit --entrypoint-num-gpus=1 "${pin[@]}" --no-wait \
+  --working-dir /workspace/le-wm --runtime-env-json "$env" -- "$@" 2>&1 \
   | grep -oE "raysubmit_[A-Za-z0-9]+" | head -1; }
 try(){ local key=$1; shift
   [ "$(nrun "$*")" != 0 ] && return 1
@@ -153,9 +171,10 @@ for round in $(seq 1 9000); do
 
   # ---- (A3) full-q arms: paper-q vs full/native-q (only where they differ) ----
   # reacher: paper q = joints-only; full = native 8d (joints cos/sin + finger + qvel)
-  run="lewm_r2_reacher_nativeq_s${SEED}"; cfg="r2_natq"
+  # ckpt already exists from the earlier native-q campaign (obj 0.15, reacher_native_full)
+  run="lewm_reacher_scale_native_s${SEED}"; cfg="r2_natq"
   if ! gcloud storage ls "$BUCKET/ckpts/$run/weights_epoch_10.pt" >/dev/null 2>&1; then
-    left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=r2_reacher_paep seed=$SEED "loss.obj.q_variant=reacher_native_full" "data=dmc_native" "output_model_name=$run"
+    left=1; try "tr_${cfg}" bash scripts/ray_train_qnative.sh reacher experiment=reacher_scale_native seed=$SEED "data.dataset.name=reacher.lance" "output_model_name=$run"
   else
     for sol in cem icem; do for seeds in "101 102 103" "104 105 106"; do
       miss=0; for s2 in $seeds; do gcloud storage ls "$BUCKET/final_eval/final_reacher_${cfg}_${sol}_s${s2}.csv" >/dev/null 2>&1 || miss=1; done

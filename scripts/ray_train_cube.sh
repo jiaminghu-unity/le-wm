@@ -11,7 +11,7 @@ set -euo pipefail
 # ---- 0. mount local NVMe (a2-ultragpu ships local SSD; DL image does not auto-mount) ----
 SSD=/mnt/disks/ssd0
 if ! mountpoint -q "$SSD"; then
-  dev=$(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1; exit}')
+  dev=""; for d in $(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1}'); do [ -z "$(lsblk -no MOUNTPOINT "$d" | tr -d '[:space:]')" ] || continue; dev="$d"; break; done
   [ -n "$dev" ] || { echo "FATAL: no local NVMe found" >&2; exit 1; }
   sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
   sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"

@@ -1,0 +1,62 @@
+[09-16 08:25:17] start: DINO-WM 3074 fill-in (pusht/reacher/tworoom)
+[09-16 08:25:17] start: DINO-WM 3074 fill-in (pusht/reacher/tworoom)
+[09-16 10:16:34] tr_dw74_pusht attempt 1 -> raysubmit_97fyRh8Qq4nU9ABZ
+[09-16 10:16:34] tr_dw74_pusht attempt 1 -> raysubmit_97fyRh8Qq4nU9ABZ
+[09-16 11:14:09] tr_dw74_reacher attempt 1 -> raysubmit_hNRhBFLVCaieuzcf
+[09-16 11:14:09] tr_dw74_reacher attempt 1 -> raysubmit_hNRhBFLVCaieuzcf
+[09-16 11:26:31] tr_dw74_tworoom attempt 1 -> raysubmit_wNFZBYJP4X1GC4vk
+[09-16 11:26:31] tr_dw74_tworoom attempt 1 -> raysubmit_wNFZBYJP4X1GC4vk
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_tworoom_s3074/config.json to gs://prism-training-us/le-wm/ckpts_tworoom/dinowm_tworoom_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_tworoom_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts_tworoom/dinowm_tworoom_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 107.7GiB/s
+[09-16 18:28:06] ev_dw74_tworoom_cem_101 attempt 1 -> raysubmit_JxK8LRsDEFQSwBfc
+[09-16 18:28:06] ev_dw74_tworoom_cem_101 attempt 1 -> raysubmit_JxK8LRsDEFQSwBfc
+[09-16 18:28:11] ev_dw74_tworoom_cem_104 attempt 1 -> raysubmit_fAxqP3GexY7NfU4s
+[09-16 18:28:11] ev_dw74_tworoom_cem_104 attempt 1 -> raysubmit_fAxqP3GexY7NfU4s
+[09-16 18:28:17] ev_dw74_tworoom_icem_101 attempt 1 -> raysubmit_SFNCH36hWpYe9StU
+[09-16 18:28:17] ev_dw74_tworoom_icem_101 attempt 1 -> raysubmit_SFNCH36hWpYe9StU
+[09-16 18:28:23] ev_dw74_tworoom_icem_104 attempt 1 -> raysubmit_VkzQKFeiFCfrqn8K
+[09-16 18:28:23] ev_dw74_tworoom_icem_104 attempt 1 -> raysubmit_VkzQKFeiFCfrqn8K
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_reacher_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_reacher_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_reacher_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_reacher_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 35.7GiB/s
+[09-17 04:42:58] ev_dw74_reacher_cem_101 attempt 1 -> raysubmit_e7XJPxPNwvG7mcJq
+[09-17 04:42:58] ev_dw74_reacher_cem_101 attempt 1 -> raysubmit_e7XJPxPNwvG7mcJq
+[09-17 04:43:05] ev_dw74_reacher_cem_104 attempt 1 -> raysubmit_FkjW4fGS53vhA3tN
+[09-17 04:43:05] ev_dw74_reacher_cem_104 attempt 1 -> raysubmit_FkjW4fGS53vhA3tN
+[09-17 04:43:12] ev_dw74_reacher_icem_101 attempt 1 -> raysubmit_r4yvfdn1MyXFrf3k
+[09-17 04:43:12] ev_dw74_reacher_icem_101 attempt 1 -> raysubmit_r4yvfdn1MyXFrf3k
+[09-17 04:43:19] ev_dw74_reacher_icem_104 attempt 1 -> raysubmit_FaFMsmD9d1P9tEV5
+[09-17 04:43:19] ev_dw74_reacher_icem_104 attempt 1 -> raysubmit_FaFMsmD9d1P9tEV5
+[09-17 04:43:29] evm_dw74_reacher attempt 1 -> raysubmit_jSJ78AANr6Ah9Lym
+[09-17 04:43:29] evm_dw74_reacher attempt 1 -> raysubmit_jSJ78AANr6Ah9Lym
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_pusht_s3074/config.json to gs://prism-training-us/le-wm/ckpts/dinowm_pusht_s3074/config.json
+Copying gs://prism-training-us/le-wm/ckpts_dinowm/dinowm_pusht_s3074/weights_epoch_10.pt to gs://prism-training-us/le-wm/ckpts/dinowm_pusht_s3074/weights_epoch_10.pt
+  
+.
+
+Average throughput: 125.6GiB/s
+[09-17 05:07:47] ev_dw74_pusht_cem_101 attempt 1 -> raysubmit_y525WUgZSrfGm4D4
+[09-17 05:07:47] ev_dw74_pusht_cem_101 attempt 1 -> raysubmit_y525WUgZSrfGm4D4
+[09-17 05:07:54] ev_dw74_pusht_cem_104 attempt 1 -> raysubmit_A6L44SrhT9cBbbnm
+[09-17 05:07:54] ev_dw74_pusht_cem_104 attempt 1 -> raysubmit_A6L44SrhT9cBbbnm
+[09-17 05:08:01] ev_dw74_pusht_icem_101 attempt 1 -> raysubmit_X4bHszrGxSKv5qNS
+[09-17 05:08:01] ev_dw74_pusht_icem_101 attempt 1 -> raysubmit_X4bHszrGxSKv5qNS
+[09-17 05:08:08] ev_dw74_pusht_icem_104 attempt 1 -> raysubmit_XY58gcfRx1gQq6fJ
+[09-17 05:08:08] ev_dw74_pusht_icem_104 attempt 1 -> raysubmit_XY58gcfRx1gQq6fJ
+[09-17 07:04:09] evm_dw74_pusht attempt 1 -> raysubmit_nuQU3BKn32unsWPA
+[09-17 07:04:09] evm_dw74_pusht attempt 1 -> raysubmit_nuQU3BKn32unsWPA
+[09-17 07:09:25] evm_dw74_pusht attempt 2 -> raysubmit_EqsPjnaJAnixMYNK
+[09-17 07:09:25] evm_dw74_pusht attempt 2 -> raysubmit_EqsPjnaJAnixMYNK
+[09-18 09:38:34] DW74 FILL COMPLETE
+[09-18 09:38:34] DW74 FILL COMPLETE
+[09-22 20:05:45] start: DINO-WM 3074 fill-in (pusht/reacher/tworoom)
+[09-22 20:05:45] start: DINO-WM 3074 fill-in (pusht/reacher/tworoom)
+[09-22 20:06:51] DW74 FILL COMPLETE
+[09-22 20:06:51] DW74 FILL COMPLETE

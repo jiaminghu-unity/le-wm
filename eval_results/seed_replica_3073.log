@@ -1,0 +1,33 @@
+[08-17 08:42:35] start: seed=3073, 20 trainings
+[08-17 08:44:18] start: seed=3073, 22 trainings
+[08-17 10:53:54] pointmaze_p2 attempt 1 -> raysubmit_cJH8hnERPLLFG8R4
+[08-17 10:57:57] pusht_c1 attempt 1 -> raysubmit_9bPyV1rVBqV6UXpq
+[08-17 11:02:01] pusht_c3 attempt 1 -> raysubmit_nBdKjL9nBdbDdhPU
+[08-17 11:39:25] pusht_c5 attempt 1 -> raysubmit_jpyK2M3XcJMDfBwY
+[08-17 15:16:52] reacher_r1 attempt 1 -> raysubmit_LXZykAPyhzBnzBaM
+[08-17 15:21:00] reacher_hq_obj attempt 1 -> raysubmit_X5nBE7ve3au1tQHs
+[08-17 19:57:43] reacher_r5 attempt 1 -> raysubmit_gsJHUs99etSkhbEC
+[08-17 20:11:18] reacher_r2_fullq attempt 1 -> raysubmit_RzHhnqv71emfVMFF
+[08-17 23:51:32] reacher_r2_fullq attempt 2 -> raysubmit_SvQEcW6rVEbEMsBy
+[08-18 00:56:40] dw_pusht attempt 1 -> raysubmit_5VzC6gvjY5gwQkYD
+[08-18 01:02:06] start: seed=3073, 22 trainings
+[08-18 18:43:03] start: seed=3073, 22 trainings
+[08-18 18:43:21] cube_k1 attempt 1 -> raysubmit_jU32QAF4Pzk35j1e
+[08-18 18:47:39] cube_hq_obj attempt 1 -> raysubmit_i729cWx1exp6mW1y
+[08-18 18:52:00] cube_k4 attempt 1 -> raysubmit_Qm9mnXPBQq1t427R
+[08-19 02:42:12] cube_k2_fullq attempt 1 -> raysubmit_RiYSA37QpxSX7eyH
+[08-19 03:32:13] tworoom_t1 attempt 1 -> raysubmit_Ab9fibFwxqNvsdAe
+[08-19 03:36:30] tworoom_t2 attempt 1 -> raysubmit_EbcBP5SQLPzcx9DJ
+[08-19 06:15:32] tworoom_t5 attempt 1 -> raysubmit_T4JhigdRt4hHWNu8
+[08-19 07:00:42] pointmaze_p1 attempt 1 -> raysubmit_YVQPn2sj6wUZZfeC
+[08-19 08:08:16] tworoom_t5 attempt 2 -> raysubmit_EZM6XAv88KGM5VkK
+[08-19 11:13:24] pointmaze_p5 attempt 1 -> raysubmit_YicjQi4rv2S3Qgzp
+[08-19 11:17:46] dw_pusht attempt 1 -> raysubmit_ZUJ4jLaytiWDPdXj
+[08-19 11:22:09] dw_reacher attempt 1 -> raysubmit_B52Cq9SKhkSuADX9
+[08-19 18:12:45] dw_cube attempt 1 -> raysubmit_egJTPsViMXd3WKes
+[08-19 18:17:11] dw_tworoom attempt 1 -> raysubmit_1Ey1SXSgdxz2vWb9
+[08-19 18:21:38] dw_pointmaze attempt 1 -> raysubmit_m5MWPFmA3XwLcC71
+[08-19 21:02:19] dw_reacher attempt 2 -> raysubmit_aHBRBkFKxt3y6reH
+[08-19 23:03:34] dw_reacher attempt 3 -> raysubmit_TbkEYQ3KSHqb4JVF
+[08-20 03:11:11] dw_reacher attempt 4 -> raysubmit_P6yYwFQhZqtQht3C
+[08-20 19:59:52] ALL SEED-3073 TRAININGS COMPLETE

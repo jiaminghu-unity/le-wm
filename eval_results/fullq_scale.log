@@ -1,0 +1,65 @@
+[08-29 21:20:21] start: full-native-q SCALE (pusht 8d / reacher 8d / cube_double 27d / scene 26d)
+[08-29 21:20:24] pt_scn attempt 1 -> raysubmit_2cv18BWqbDQcTCLS
+[08-29 21:25:43] rc_scn attempt 1 -> raysubmit_cZcfJGgN64c7BE55
+[08-29 21:31:06] cd_obj attempt 1 -> raysubmit_Qjacx2R4qtFQaVzz
+[08-29 21:36:27] sc_obj attempt 1 -> raysubmit_B8gZsppYZTPzpz4F
+[08-29 21:56:54] start: full-native-q SCALE (pusht 8d / reacher 8d / cube_double 27d / scene 26d)
+[08-29 23:23:02] cd_obj attempt 1 -> raysubmit_zHTeWiW1bTe4ijPF
+[08-29 23:28:25] cd_obj attempt 2 -> raysubmit_Y9WhZfm74cs8FB6w
+[08-29 23:33:49] cd_obj attempt 3 -> raysubmit_7D9h2KjZp6VbqvkK
+[08-29 23:39:11] cd_obj attempt 4 -> raysubmit_SH1DuCFA2sxSV7M2
+[08-29 23:44:31] cd_obj attempt cap
+[08-29 23:44:33] sc_obj attempt 1 -> raysubmit_pDKxd38DgNLtLM7n
+[08-29 23:49:54] cd_obj attempt cap
+[08-29 23:49:56] sc_obj attempt 2 -> raysubmit_CnwQAdrB8MaGQcg6
+[08-29 23:55:17] cd_obj attempt cap
+[08-29 23:55:20] sc_obj attempt 3 -> raysubmit_qCDugCcPKy9nqSwp
+[08-30 00:00:39] cd_obj attempt cap
+[08-30 00:00:41] sc_obj attempt 4 -> raysubmit_FPSX3f2PLD8cBGKa
+[08-30 00:05:55] cd_obj attempt cap
+[08-30 00:05:56] sc_obj attempt cap
+[08-30 00:11:11] cd_obj attempt cap
+[08-30 00:11:12] sc_obj attempt cap
+[08-30 00:16:30] cd_obj attempt cap
+[08-30 00:16:32] sc_obj attempt cap
+[08-30 00:21:49] cd_obj attempt cap
+[08-30 00:21:50] sc_obj attempt cap
+[08-30 00:27:04] cd_obj attempt cap
+[08-30 00:27:05] sc_obj attempt cap
+[08-30 00:32:18] cd_obj attempt cap
+[08-30 00:32:20] sc_obj attempt cap
+[08-30 00:37:36] cd_obj attempt cap
+[08-30 00:37:37] sc_obj attempt cap
+[08-30 00:42:54] cd_obj attempt cap
+[08-30 00:42:55] sc_obj attempt cap
+[08-30 00:45:22] start: full-native-q SCALE (pusht 8d / reacher 8d / cube_double 27d / scene 26d)
+[08-30 00:45:27] cd_obj attempt 1 -> raysubmit_tbQZa2TUaKWh54SP
+[08-30 00:50:46] sc_obj attempt 1 -> raysubmit_HR2natWW2t3Gw8Qs
+[08-30 01:37:04] start: full-native-q SCALE (pusht 8d / reacher 8d / cube_double 27d / scene 26d)
+[08-30 01:37:11] cb_n100 attempt 1 -> raysubmit_xvwWepMwaDNkMJp7
+[08-30 01:42:55] cb_n100 attempt 2 -> raysubmit_NqMjakXr6uAv3En5
+[08-30 02:47:10] ev_cube_double_cem_101 attempt 1 -> raysubmit_u2RcruRppstFNatj
+[08-30 02:52:01] ev_cube_double_cem_104 attempt 1 -> raysubmit_xc9dq4t2LRqY28K9
+[08-30 02:56:57] ev_cube_double_icem_101 attempt 1 -> raysubmit_VajejB8831sxheRy
+[08-30 03:01:58] ev_cube_double_icem_104 attempt 1 -> raysubmit_c76G6Tddk3rWbzuV
+[08-30 03:42:08] ev_scene_cem_101 attempt 1 -> raysubmit_VWsNyVNHnX8H2rjb
+[08-30 03:47:14] ev_scene_cem_104 attempt 1 -> raysubmit_Mq2wMADwrzLZUc96
+[08-30 03:52:25] ev_scene_icem_101 attempt 1 -> raysubmit_in8FKNfP2rshAUwy
+[08-30 04:37:36] ev_scene_icem_104 attempt 1 -> raysubmit_kQmh8yMYt6i1T8yY
+[08-30 06:34:33] ev_pusht_cem_101 attempt 1 -> raysubmit_2HVAcRHQbSNmg2cm
+[08-30 06:38:49] ev_pusht_cem_104 attempt 1 -> raysubmit_nLdrjQJZ6i3z9YVB
+[08-30 06:43:10] ev_pusht_icem_101 attempt 1 -> raysubmit_xRGsJ6G88mwUzuWb
+[08-30 06:47:37] ev_pusht_icem_104 attempt 1 -> raysubmit_C1DaFFyQ6jBuYuks
+[08-30 10:51:39] ev_cube_cem_101 attempt 1 -> raysubmit_TvLnP2vSRHQQXZti
+[08-30 10:56:57] ev_cube_cem_104 attempt 1 -> raysubmit_UWn2N3N27r2XYSs4
+[08-30 11:02:20] ev_cube_icem_101 attempt 1 -> raysubmit_bcJfsFQgafyvipTz
+[08-30 11:07:45] ev_cube_icem_104 attempt 1 -> raysubmit_XqyQSUP5j64pbXi8
+[08-30 11:13:15] ev_cube_mppi_101 attempt 1 -> raysubmit_s8awW6B6ZQQx2Qgg
+[08-30 11:18:49] ev_cube_mppi_104 attempt 1 -> raysubmit_qwXgzdramHYkJeQb
+[08-30 13:29:00] ev_reacher_cem_101 attempt 1 -> raysubmit_e6ZKGADvDA9BHh1u
+[08-30 13:33:30] ev_reacher_cem_104 attempt 1 -> raysubmit_WtmXMMDVUzhVVXqD
+[08-30 13:38:01] ev_reacher_cem_104 attempt 2 -> raysubmit_eLx52WVi7xek6tUr
+[08-30 13:42:30] ev_reacher_cem_104 attempt 3 -> raysubmit_QLatq2GCMQzu73EA
+[08-30 13:47:05] ev_reacher_icem_101 attempt 1 -> raysubmit_TujmDYUXwb3enjWB
+[08-30 13:51:45] ev_reacher_icem_104 attempt 1 -> raysubmit_VgRNdN59xbyuCAe4
+[08-30 14:24:19] FULL-Q SCALE TRAININGS + EVALS COMPLETE (5 trains, 66 CSVs)

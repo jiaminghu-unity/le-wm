@@ -1,0 +1,10 @@
+[08-18 23:14:20] start: trajectory-W on 4 tasks (train + cem x 6 seeds)
+[08-18 23:14:23] fit pusht -> raysubmit_LbZ7z1jWgDQAc8GZ
+[08-18 23:18:27] fit reacher -> raysubmit_jkqiWnLiQj84JGmG
+[08-18 23:22:37] eval pusht -> raysubmit_Mjvj5jwNq2uQyUhK
+[08-18 23:26:54] eval reacher -> raysubmit_J5N8BBWq3u3bLV6M
+[08-18 23:31:13] fit tworoom -> raysubmit_EvysQkH18dgTwMx3
+[08-18 23:35:38] eval tworoom -> raysubmit_PtLTEuEjbKhb8Nxb
+[08-19 00:15:31] fit pointmaze -> raysubmit_BuZVCq58PYaDQKsk
+[08-19 00:20:04] eval pointmaze -> raysubmit_Fu1yJqzzDX7xQ36i
+[08-19 01:14:14] ALL TRAJECTORY-W RUNS COMPLETE

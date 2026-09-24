@@ -30,6 +30,16 @@ if _clash:
 utils.Q_VARIANTS.update(q_pointmaze.Q_VARIANTS_POINTMAZE)
 print(f"[q_pointmaze] registered: {sorted(q_pointmaze.Q_VARIANTS_POINTMAZE)}", flush=True)
 
+# A3 full-q arm: pointmaze_state_native (4-d pos+vel) lives in q_native_full;
+# the `state` column it reads is already in pointmaze.yaml's keys_to_load.
+import q_native_full  # noqa: E402
+
+if "pointmaze_state_native" not in utils.Q_VARIANTS:
+    utils.Q_VARIANTS["pointmaze_state_native"] = q_native_full.Q_VARIANTS_NATIVE[
+        "pointmaze_state_native"
+    ]
+    print("[q_native_full] registered: ['pointmaze_state_native']", flush=True)
+
 import train  # noqa: E402  -- after the registry update, by design
 
 

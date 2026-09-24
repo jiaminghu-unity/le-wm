@@ -1,0 +1,6 @@
+[08-19 08:21:14] start: nonlinear metric on pusht+reacher (train + cem x 6 seeds)
+[08-19 08:21:17] fit pusht -> raysubmit_gJVggDnkKpH7JfaL
+[08-19 08:25:21] fit reacher -> raysubmit_cyJynYBRfcSThXv3
+[08-19 08:29:32] eval pusht -> raysubmit_fDLYxi45pThPNHG4
+[08-19 08:33:50] eval reacher -> raysubmit_TQp4LPwWfkv2WHcn
+[08-19 09:42:06] NL RUNS COMPLETE

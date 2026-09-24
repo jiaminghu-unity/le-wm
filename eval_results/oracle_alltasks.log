@@ -1,0 +1,11 @@
+[08-18 18:41:03] start: full-q oracle on 4 tasks (fit + cem x 6 seeds)
+[08-18 18:41:07] fit pusht -> raysubmit_WC5ucnJQpddLThHp
+[08-18 18:45:12] fit pusht -> raysubmit_AYWJefhDBNp41psE
+[08-18 18:49:18] fit reacher -> raysubmit_TDvZNefei8Qcrf7g
+[08-18 18:53:33] eval pusht -> raysubmit_wr3YhAqNBbhZDxPk
+[08-18 19:48:22] eval reacher -> raysubmit_mBBEvTrXZAWg76jB
+[08-18 19:52:51] fit tworoom -> raysubmit_df5SPwyfhvWWy6z8
+[08-18 19:57:46] eval tworoom -> raysubmit_F24C9NhN2spUtAuK
+[08-18 20:40:06] fit pointmaze -> raysubmit_qwvNrsMJDHK5FywX
+[08-18 20:45:14] eval pointmaze -> raysubmit_DhhMScZiC9v3p1HV
+[08-18 21:42:45] ALL FULL-Q ORACLES COMPLETE

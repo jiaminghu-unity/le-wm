@@ -1,0 +1,8 @@
+[08-19 21:12:57] start: W on Aux representations, 3 tasks (train + cem x 6 seeds)
+[08-19 21:13:02] fit pusht -> raysubmit_iUAZmLYVidTdMYGk
+[08-19 21:17:08] fit reacher -> raysubmit_crBMjpUYb7swS2UK
+[08-19 21:21:23] eval pusht -> raysubmit_uW76dTGetdRvegyy
+[08-19 21:25:44] fit pointmaze -> raysubmit_UVnFXMbDDms7kYQR
+[08-19 21:30:15] eval reacher -> raysubmit_hsPVH439TKTK3Fxf
+[08-19 21:34:59] eval pointmaze -> raysubmit_LgP5XMxyESWiGYw7
+[08-19 22:53:12] AUX-W RUNS COMPLETE

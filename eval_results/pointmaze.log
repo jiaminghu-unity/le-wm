@@ -1,0 +1,16 @@
+[01:16:22] pointmaze.lance is staged
+[01:16:26] baseline attempt 1 -> raysubmit_YfyPYVDHwtAc5zMQ
+[02:06:51] baseline checkpoint present
+[02:06:58] obj attempt 1 -> raysubmit_3RMnF9rxFTgydxAK
+[02:07:00] aux attempt 1 -> raysubmit_Z4C9A22n28XWaah9
+[02:07:00] round 1: waiting on obj aux
+[02:12:04] round 2: waiting on obj aux
+[02:17:08] round 3: waiting on obj aux
+[02:22:13] round 4: waiting on obj aux
+[02:27:18] round 5: waiting on obj aux
+[02:32:22] round 6: waiting on obj aux
+[02:37:27] round 7: waiting on obj aux
+[02:42:31] round 8: waiting on obj aux
+[02:47:36] round 9: waiting on obj aux
+[02:52:41] round 10: waiting on obj
+[02:57:44] POINTMAZE TRAINING COMPLETE (3/3)

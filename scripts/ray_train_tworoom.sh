@@ -34,15 +34,36 @@ case "$ARM" in
   obj)  EXP=t2_tworoom_obj;      RUN=lewm_t2_tworoom_obj0.1_s3072 ;;
   aux)  EXP=t5_tworoom_qhead;    RUN=lewm_t5_tworoom_qhead0.1_s3072 ;;
 esac
+# RUN must track the hydra overrides: the experiment yaml templates the weight into
+# output_model_name, and a hardcoded RUN made the upload guard look at the wrong dir
+# (weights silently left on the worker; the weight sweep re-trained arms for a day).
+W=""; SEED=3072
+for a in "${EXTRA[@]}"; do
+  case "$a" in
+    loss.obj.weight=*|loss.aux.weight=*) W="${a#*=}" ;;
+    seed=*) SEED="${a#*=}" ;;
+    output_model_name=*) RUN="${a#*=}" ;;
+  esac
+done
+if [ -n "$W" ]; then
+  case "$ARM" in
+    obj) RUN="lewm_t2_tworoom_obj${W}_s${SEED}" ;;
+    aux) RUN="lewm_t5_tworoom_qhead${W}_s${SEED}" ;;
+  esac
+fi
 QSTATS="${DSNAME}.q_stats.${QVAR}.json"
 EXPECT_DIM=2
 
 SSD=/mnt/disks/ssd0
 if ! mountpoint -q "$SSD"; then
-  dev=$(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1; exit}')
-  [ -n "$dev" ] || { echo "FATAL: no local NVMe" >&2; exit 1; }
-  sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
-  sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"
+  dev=""; for d in $(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1}'); do [ -z "$(lsblk -no MOUNTPOINT "$d" | tr -d '[:space:]')" ] || continue; dev="$d"; break; done
+  if [ -n "$dev" ]; then
+    sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
+    sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"
+  else
+    echo "[env] no free NVMe -> using boot-disk dir $SSD"
+    sudo mkdir -p "$SSD"
+  fi
   sudo chmod a+w "$SSD"
 fi
 export STABLEWM_HOME="$SSD/stable-wm"
@@ -50,6 +71,20 @@ DS="$STABLEWM_HOME/datasets"
 mkdir -p "$DS"
 echo "[env] tworoom/$ARM  q=$QVAR (${EXPECT_DIM}d) on $(hostname), free=$(df -h --output=avail "$SSD" | tail -1 | tr -d ' ')"
 
+# dpkg lock wait: fresh workers run unattended-upgrades at boot and hold the lock.
+for i in $(seq 1 60); do
+  sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 || break
+  echo "[apt] dpkg lock held, waiting ($i/60)"; sleep 10
+done
+# NVML health gate: unattended-upgrades can break the userspace/kernel driver pair.
+if ! nvidia-smi >/dev/null 2>&1; then
+  echo "[gpu] NVML broken -> reloading modules"
+  sudo systemctl stop unattended-upgrades 2>/dev/null || true
+  sudo rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia 2>/dev/null || true
+  sudo modprobe nvidia 2>/dev/null || true
+  nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
+fi
+dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
 sudo apt-get update -q
 sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
@@ -63,6 +98,19 @@ source "$SSD/.venv/bin/activate"
 uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
 uv pip install -q hdf5plugin -U datasets
+# CUDA self-check: a stale venv can hold a CPU-only torch (poisoned weeks ago) ->
+# "No supported gpu backend found". Rebuild the venv once, then hard-fail.
+if ! python -c 'import torch; assert torch.cuda.is_available()' 2>/dev/null; then
+  echo "[gpu] torch sees no CUDA -> rebuilding venv"
+  deactivate 2>/dev/null || true
+  rm -rf "$SSD/.venv"
+  uv venv --python=3.10 "$SSD/.venv"
+  source "$SSD/.venv/bin/activate"
+  uv pip install -q 'stable-worldmodel[train,env,format]'
+  uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
+  uv pip install -q hdf5plugin -U datasets
+  python -c 'import torch; assert torch.cuda.is_available()'     || { echo "[gpu] FATAL: no CUDA after venv rebuild"; exit 43; }
+fi
 python -c "import torch; print('[torch]', torch.__version__, 'cuda', torch.cuda.is_available())"
 
 # ---- dataset (lance) ----

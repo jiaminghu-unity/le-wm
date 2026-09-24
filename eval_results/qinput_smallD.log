@@ -1,0 +1,12 @@
+[08-24 11:09:00] start: q-only small-D ladder (D=8, D=32; train -> cem/icem x 6)
+[08-24 11:09:05] d8 attempt 1 -> raysubmit_Ckm5TF9BuQ8hngV2
+[08-24 11:13:13] d32 attempt 1 -> raysubmit_7hCHm2nzEvhi53Vt
+[08-24 18:15:57] ev_q1d8_cem_101 attempt 1 -> raysubmit_jQt2tPEYhEfMcykv
+[08-24 18:20:12] ev_q1d8_cem_104 attempt 1 -> raysubmit_NbqD7gGiNEE3fgXh
+[08-24 18:24:31] ev_q1d8_icem_101 attempt 1 -> raysubmit_sphdtWnfum8BLNSY
+[08-24 18:28:57] ev_q1d8_icem_104 attempt 1 -> raysubmit_U9hZP7iSWCGfXbCt
+[08-24 18:56:38] ev_q1d32_cem_101 attempt 1 -> raysubmit_6zTE3rkz4VF2Ai22
+[08-24 19:01:13] ev_q1d32_cem_104 attempt 1 -> raysubmit_5AGBvZCwDPN2JXWD
+[08-24 19:05:52] ev_q1d32_icem_101 attempt 1 -> raysubmit_EUmkDZdKydU34mF7
+[08-24 19:10:37] ev_q1d32_icem_104 attempt 1 -> raysubmit_Rn5HxeGfQxhma6ec
+[08-24 19:34:04] SMALL-D LADDER COMPLETE

@@ -29,10 +29,14 @@ esac
 
 SSD=/mnt/disks/ssd0
 if ! mountpoint -q "$SSD"; then
-  dev=$(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1; exit}')
-  [ -n "$dev" ] || { echo "FATAL: no local NVMe" >&2; exit 1; }
-  sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
-  sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"
+  dev=""; for d in $(lsblk -dnpo NAME,TYPE | awk '$2=="disk" && $1 ~ /nvme/ {print $1}'); do [ -z "$(lsblk -no MOUNTPOINT "$d" | tr -d '[:space:]')" ] || continue; dev="$d"; break; done
+  if [ -n "$dev" ]; then
+    sudo mkfs.ext4 -F -q -m 0 -E lazy_itable_init=0,lazy_journal_init=0,discard "$dev"
+    sudo mkdir -p "$SSD" && sudo mount -o discard,defaults "$dev" "$SSD"
+  else
+    echo "[env] no free NVMe -> using boot-disk dir $SSD"
+    sudo mkdir -p "$SSD"
+  fi
   sudo chmod a+w "$SSD"
 fi
 export STABLEWM_HOME="$SSD/stable-wm"

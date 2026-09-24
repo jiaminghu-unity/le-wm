@@ -1,0 +1,246 @@
+[08:19:43] waiting for dinowm pointmaze checkpoint
+[08:24:46] waiting for dinowm pointmaze checkpoint
+[08:29:48] pointmaze training attempt 1 -> raysubmit_JCXH3VtuZGZsLc3q
+[08:29:48] waiting for dinowm pointmaze checkpoint
+[08:34:50] waiting for dinowm pointmaze checkpoint
+[08:39:51] waiting for dinowm pointmaze checkpoint
+[08:44:52] waiting for dinowm pointmaze checkpoint
+[08:49:54] waiting for dinowm pointmaze checkpoint
+[08:54:55] waiting for dinowm pointmaze checkpoint
+[08:59:56] waiting for dinowm pointmaze checkpoint
+[09:04:58] waiting for dinowm pointmaze checkpoint
+[09:09:59] waiting for dinowm pointmaze checkpoint
+[09:15:01] waiting for dinowm pointmaze checkpoint
+[09:20:02] waiting for dinowm pointmaze checkpoint
+[09:25:03] waiting for dinowm pointmaze checkpoint
+[09:30:05] waiting for dinowm pointmaze checkpoint
+[09:35:06] waiting for dinowm pointmaze checkpoint
+[09:40:08] waiting for dinowm pointmaze checkpoint
+[09:45:09] waiting for dinowm pointmaze checkpoint
+[09:50:10] waiting for dinowm pointmaze checkpoint
+[09:55:12] waiting for dinowm pointmaze checkpoint
+[10:00:13] waiting for dinowm pointmaze checkpoint
+[10:05:14] pointmaze dinowm checkpoint present — launching the other four trainings
+[10:05:16] train tworoom -> raysubmit_58tkrNUVXbVAMe1X
+[10:05:18] train pusht -> raysubmit_HmwvYT3KpnMT9dAi
+[10:05:20] train reacher -> raysubmit_tRfKKFgAqnBhBtCU
+[10:05:22] train cube -> raysubmit_5LprGA5Q4aAT3RRp
+[10:05:25] copy pointmaze ckpt -> ckpts_pointmaze/
+[10:05:29] pointmaze eval smoke attempt 1 -> raysubmit_Pm1un9BcCVdAUh6U
+[10:10:44] train cube retry 2 -> raysubmit_BhihTpAkGQm2PMmt
+[10:15:54] train cube retry 3 -> raysubmit_DEYP79y9EP3bAdJM
+[10:21:03] train cube: retry cap
+[10:26:12] train cube: retry cap
+[10:31:21] train cube: retry cap
+[10:36:30] train cube: retry cap
+[10:41:39] train cube: retry cap
+[10:46:48] train cube: retry cap
+[10:51:57] train cube: retry cap
+[10:57:06] train cube: retry cap
+[11:02:15] train cube: retry cap
+[11:07:24] train cube: retry cap
+[11:12:33] train cube: retry cap
+[11:17:42] train cube: retry cap
+[11:22:51] train cube: retry cap
+[11:28:00] train cube: retry cap
+[11:33:09] train cube: retry cap
+[11:38:18] train cube: retry cap
+[11:43:27] train cube: retry cap
+[11:48:37] train cube: retry cap
+[11:53:46] train cube: retry cap
+[11:58:55] train cube: retry cap
+[12:04:04] train cube: retry cap
+[12:09:13] train cube: retry cap
+[12:14:22] train cube: retry cap
+[12:19:31] train cube: retry cap
+[12:24:40] train cube: retry cap
+[12:29:49] train cube: retry cap
+[12:34:58] train cube: retry cap
+[12:40:08] train cube: retry cap
+[12:45:17] train cube: retry cap
+[12:50:26] train cube: retry cap
+[12:55:35] train cube: retry cap
+[13:00:45] train cube: retry cap
+[13:05:54] train cube: retry cap
+[13:11:03] train cube: retry cap
+[13:16:12] train cube: retry cap
+[13:21:21] train cube: retry cap
+[13:26:30] train cube: retry cap
+[13:31:39] train cube: retry cap
+[13:36:48] train cube: retry cap
+[13:41:57] train cube: retry cap
+[13:47:06] train cube: retry cap
+[13:52:10] pointmaze eval smoke OK
+[13:52:15] train cube: retry cap
+[13:57:25] pointmaze cem sweep attempt 1 -> raysubmit_BRv43aRJWcGNnuei
+[13:57:34] pointmaze icem sweep attempt 1 -> raysubmit_6gwrCgC3M1yjvZmY
+[13:57:42] pointmaze mppi sweep attempt 1 -> raysubmit_p1PpFxH95Gdvqn7H
+[13:57:50] pointmaze gd sweep attempt 1 -> raysubmit_kDD13McxXEtKqMLG
+[13:57:55] train cube: retry cap
+[14:03:32] train cube: retry cap
+[14:09:09] train cube: retry cap
+[14:14:46] train cube: retry cap
+[14:20:23] train cube: retry cap
+[14:26:00] train cube: retry cap
+[14:31:37] train cube: retry cap
+[14:37:14] train cube: retry cap
+[14:42:50] train cube: retry cap
+[14:48:27] train cube: retry cap
+[14:54:04] train cube: retry cap
+[14:59:41] train cube: retry cap
+[15:05:17] train cube: retry cap
+[15:10:54] train cube: retry cap
+[15:16:32] train cube: retry cap
+[15:22:09] train cube: retry cap
+[15:27:46] train cube: retry cap
+[15:33:23] train cube: retry cap
+[15:39:00] train cube: retry cap
+[15:44:37] train cube: retry cap
+[15:50:13] train cube: retry cap
+[15:55:51] train cube: retry cap
+[16:01:28] train cube: retry cap
+[16:07:05] train cube: retry cap
+[16:12:42] train cube: retry cap
+[16:18:18] train cube: retry cap
+[16:23:56] train cube: retry cap
+[16:29:33] train cube: retry cap
+[16:35:09] train cube: retry cap
+[16:40:47] train cube: retry cap
+[16:46:24] train cube: retry cap
+[16:52:00] train cube: retry cap
+[16:57:37] train cube: retry cap
+[17:03:10] copy tworoom ckpt -> ckpts_tworoom/
+[17:03:15] tworoom eval smoke attempt 1 -> raysubmit_8QUQrwV1v9dbtupp
+[17:03:19] train cube: retry cap
+[17:08:58] train cube: retry cap
+[17:14:38] train cube: retry cap
+[17:20:17] train cube: retry cap
+[17:25:57] train cube: retry cap
+[17:31:37] train cube: retry cap
+[17:37:16] train cube: retry cap
+[17:42:55] train cube: retry cap
+[17:48:34] train cube: retry cap
+[17:54:13] train cube: retry cap
+[17:59:51] train cube: retry cap
+[18:05:30] train cube: retry cap
+[18:11:08] train cube: retry cap
+[18:16:47] train cube: retry cap
+[18:22:26] train cube: retry cap
+[18:28:04] train cube: retry cap
+[18:33:43] train cube: retry cap
+[18:39:21] train cube: retry cap
+[18:45:00] train cube: retry cap
+[18:50:38] train cube: retry cap
+[18:56:17] train cube: retry cap
+[19:01:57] train cube: retry cap
+[19:07:36] train cube: retry cap
+[19:13:15] train cube: retry cap
+[19:18:55] train cube: retry cap
+[19:24:34] train cube: retry cap
+[19:30:14] train cube: retry cap
+[19:35:54] train cube: retry cap
+[19:41:35] train cube: retry cap
+[19:47:14] train cube: retry cap
+[19:52:54] train cube: retry cap
+[19:58:33] train cube: retry cap
+[20:04:13] train cube: retry cap
+[20:10:19] train cube: retry cap
+[20:16:32] train cube retry 1 -> raysubmit_VskstcqCQ14qNA7V
+[20:34:56] tworoom eval smoke OK
+[20:41:18] tworoom cem sweep attempt 1 -> raysubmit_zbbFY1ZBShube8M9
+[20:41:33] tworoom icem sweep attempt 1 -> raysubmit_VcUnZxHUEUdrQaiF
+[20:41:47] tworoom mppi sweep attempt 1 -> raysubmit_hWR9Gj66JgKd5EnU
+[20:42:01] tworoom gd sweep attempt 1 -> raysubmit_MiiF3qJJSZvX9RUf
+[21:02:34] tworoom icem sweep attempt 2 -> raysubmit_RQEYtXy93Urd47rZ
+[21:02:49] tworoom mppi sweep attempt 2 -> raysubmit_NEq7RqB1jg7qzrGs
+[21:03:03] tworoom gd sweep attempt 2 -> raysubmit_5xHkzYWyPbUyy3yB
+[21:23:36] tworoom icem sweep attempt 3 -> raysubmit_Jr9WyAbe6TnvxLqX
+[21:23:50] tworoom mppi sweep attempt 3 -> raysubmit_1DK8fMKQuA2fDnDA
+[21:24:05] tworoom gd sweep attempt 3 -> raysubmit_5N4RqdUHPTT6w3XA
+[21:44:31] tworoom icem sweep attempt 4 -> raysubmit_QCn5KT8cqUmycvh3
+[21:44:46] tworoom mppi sweep attempt 4 -> raysubmit_xKpvZsSkCscFdKkd
+[21:45:00] tworoom gd sweep attempt 4 -> raysubmit_igjjpfst8HfWY89v
+[03:10:57] copy reacher ckpt -> ckpts/
+[03:11:01] reacher eval smoke attempt 1 -> raysubmit_FB6gBXHTiYpVrZQN
+[03:29:31] reacher eval smoke attempt 2 -> raysubmit_xePn75vCMy2CuJFK
+[03:47:58] reacher eval smoke attempt 3 -> raysubmit_ZbB6GXks1MfLvEXz
+[04:06:25] reacher: eval smoke retry cap
+[04:12:33] reacher: eval smoke retry cap
+[04:18:41] reacher: eval smoke retry cap
+[04:24:49] reacher: eval smoke retry cap
+[04:30:57] reacher: eval smoke retry cap
+[04:37:06] reacher: eval smoke retry cap
+[04:43:15] reacher: eval smoke retry cap
+[04:49:23] reacher: eval smoke retry cap
+[04:55:29] copy pusht ckpt -> ckpts/
+[04:55:33] pusht eval smoke attempt 1 -> raysubmit_T2mLt2LPDWAu5h2d
+[04:55:37] reacher: eval smoke retry cap
+[05:01:47] reacher: eval smoke retry cap
+[05:07:58] reacher: eval smoke retry cap
+[05:14:08] reacher: eval smoke retry cap
+[05:20:19] reacher: eval smoke retry cap
+[05:26:31] reacher: eval smoke retry cap
+[05:32:43] reacher: eval smoke retry cap
+[05:38:53] reacher: eval smoke retry cap
+[05:45:03] reacher: eval smoke retry cap
+[05:51:13] reacher: eval smoke retry cap
+[05:57:24] reacher: eval smoke retry cap
+[06:03:34] reacher: eval smoke retry cap
+[06:09:44] reacher: eval smoke retry cap
+[06:15:56] reacher: eval smoke retry cap
+[06:22:04] train pusht retry 2 -> raysubmit_Tyf9yQiuSFGkfyba
+[06:22:08] reacher: eval smoke retry cap
+[06:28:19] reacher: eval smoke retry cap
+[06:34:30] reacher: eval smoke retry cap
+[06:40:40] reacher: eval smoke retry cap
+[06:46:52] reacher: eval smoke retry cap
+[06:53:03] reacher: eval smoke retry cap
+[06:59:14] reacher: eval smoke retry cap
+[07:05:25] reacher: eval smoke retry cap
+[07:11:36] reacher: eval smoke retry cap
+[07:17:46] reacher: eval smoke retry cap
+[07:23:55] reacher: eval smoke retry cap
+[07:30:05] reacher: eval smoke retry cap
+[07:36:15] reacher: eval smoke retry cap
+[07:42:26] reacher: eval smoke retry cap
+[07:48:36] reacher: eval smoke retry cap
+[07:54:47] reacher: eval smoke retry cap
+[08:00:57] reacher: eval smoke retry cap
+[08:07:09] reacher: eval smoke retry cap
+[08:13:18] reacher: eval smoke retry cap
+[08:20:16] reacher: eval smoke retry cap
+[08:27:11] reacher: eval smoke retry cap
+[08:34:10] reacher: eval smoke retry cap
+[08:41:07] reacher: eval smoke retry cap
+[08:47:59] reacher: eval smoke retry cap
+[08:54:52] reacher: eval smoke retry cap
+[09:01:48] reacher: eval smoke retry cap
+[09:08:44] reacher: eval smoke retry cap
+[09:15:41] reacher: eval smoke retry cap
+[09:22:30] reacher: eval smoke retry cap
+[09:29:12] pusht eval smoke OK
+[09:29:18] reacher: eval smoke retry cap
+[09:36:09] pusht cem sweep attempt 1 -> raysubmit_qWcZiUNyUeTMLqsa
+[09:36:22] pusht icem sweep attempt 1 -> raysubmit_GAcvVRaiVKJkmHDZ
+[09:36:36] pusht mppi sweep attempt 1 -> raysubmit_zfvUhvwcPJ153evx
+[09:36:48] pusht gd sweep attempt 1 -> raysubmit_srFp1yFqXqX6fBM7
+[09:51:35] pusht cem sweep attempt 2 -> raysubmit_uTfK3FZhynF1L2S5
+[09:51:49] pusht icem sweep attempt 2 -> raysubmit_JGPeUhxqNRtbD6gb
+[09:52:02] pusht mppi sweep attempt 2 -> raysubmit_bCkhGYVcdFVusEEd
+[09:52:15] pusht gd sweep attempt 2 -> raysubmit_ch123BRTfwXEfEQ1
+[10:07:05] pusht cem sweep attempt 3 -> raysubmit_bFA7MgDUTU4H9E13
+[10:07:18] pusht icem sweep attempt 3 -> raysubmit_JajcU9L2k7uyhbWX
+[10:07:31] pusht mppi sweep attempt 3 -> raysubmit_MVrfe8MebdEHSpnN
+[10:07:44] pusht gd sweep attempt 3 -> raysubmit_gFsgPK3YnPgbK4i5
+[10:22:14] pusht cem sweep attempt 4 -> raysubmit_HTmwV4dnZj9ZBuAb
+[10:22:27] pusht icem sweep attempt 4 -> raysubmit_fLAwrpQQbAaJRcat
+[10:22:40] pusht mppi sweep attempt 4 -> raysubmit_SSjGi64GY4M8sjUC
+[10:22:53] pusht gd sweep attempt 4 -> raysubmit_PKYNgX9ExZyVjD7Q
+[12:53:15] copy cube ckpt -> ckpts/
+[12:53:22] cube eval smoke attempt 1 -> raysubmit_GPqJeD4r6cY183CF
+[15:06:32] reacher eval smoke OK
+[15:13:43] reacher gd sweep attempt 1 -> raysubmit_2ga6NRxkZus8VqJH
+[15:35:20] reacher gd sweep attempt 2 -> raysubmit_fBJCj4hEbSEwEjVy
+[15:56:54] reacher gd sweep attempt 3 -> raysubmit_mM78UdM2FswjndNi
+[16:18:35] reacher gd sweep attempt 4 -> raysubmit_XAwhTfBbWGkkyWnk
+[17:28:17] cube eval smoke OK

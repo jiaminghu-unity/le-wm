@@ -1,0 +1,104 @@
+[08-29 11:51:42] start: OGB multi-object LeWM pixel baselines (cube_double + scene) at seed 3072
+[08-29 11:51:44] cd_base attempt 1 -> raysubmit_EstnVVryddEgPWvt
+[08-29 11:56:25] sc_base attempt 1 -> raysubmit_PEcLHUmSED2VWCGU
+[08-29 13:39:01] cube_double_base_cem_101 attempt 1 -> raysubmit_a3MqqZsEhUKhBKRp
+[08-29 13:43:14] cube_double_base_cem_104 attempt 1 -> raysubmit_AM37nNGCdG7g6Pbe
+[08-29 13:47:31] cube_double_base_icem_101 attempt 1 -> raysubmit_jLtDdcde4QsvUQpJ
+[08-29 13:51:54] cube_double_base_icem_104 attempt 1 -> raysubmit_bkZQvcsheh47wYPY
+[08-29 13:56:01] cube_double_base_cem_101 attempt 2 -> raysubmit_cd1qNu4y52AHbZhg
+[08-29 14:00:27] scene_base_cem_101 attempt 1 -> raysubmit_4fFJjkLNCP5n9V2L
+[08-29 14:04:45] cube_double_base_icem_101 attempt 2 -> raysubmit_vtwDLdHFwbVRYBCV
+[08-29 14:09:07] cube_double_base_icem_104 attempt 2 -> raysubmit_TBC2gTwga7ZRnrAq
+[08-29 14:13:15] cube_double_base_cem_101 attempt 3 -> raysubmit_ShmMFMD9S61LYu5u
+[08-29 14:17:41] scene_base_cem_101 attempt 2 -> raysubmit_zvAFuRjhAiESe38b
+[08-29 14:21:58] cube_double_base_icem_101 attempt 3 -> raysubmit_GnTaRVLnXkreFs4F
+[08-29 14:26:29] scene_base_cem_104 attempt 1 -> raysubmit_E3D36Yjd7PLLkTf5
+[08-29 14:31:07] scene_base_icem_101 attempt 1 -> raysubmit_C5WfHrUnF2xpkbYv
+[08-29 14:35:33] scene_base_cem_101 attempt 3 -> raysubmit_r7HfdjFEi9qHfxDA
+[08-29 14:39:51] cube_double_base_icem_101 attempt 4 -> raysubmit_y33YrSqFeWxP5RXw
+[08-29 14:44:22] scene_base_cem_104 attempt 2 -> raysubmit_vLBJdqsJ6swRapB1
+[08-29 14:48:57] scene_base_icem_101 attempt 2 -> raysubmit_Zh8BhQVUFa6CatgG
+[08-29 14:53:22] scene_base_cem_101 attempt 4 -> raysubmit_sBrHSAF7yKxRwmEF
+[08-29 14:57:38] cube_double_base_icem_101 attempt cap
+[08-29 14:58:03] scene_base_icem_104 attempt 1 -> raysubmit_VMQPVbh75zHm2gXW
+[08-29 15:02:18] cube_double_base_icem_101 attempt cap
+[08-29 15:06:57] cube_double_base_icem_101 attempt cap
+[08-29 15:07:17] scene_base_icem_101 attempt 3 -> raysubmit_zb26pmGryR5VjjnX
+[08-29 15:11:31] cube_double_base_icem_101 attempt cap
+[08-29 15:11:40] scene_base_cem_101 attempt cap
+[08-29 15:16:07] cube_double_base_icem_101 attempt cap
+[08-29 15:16:15] scene_base_cem_101 attempt cap
+[08-29 15:16:30] scene_base_icem_104 attempt 2 -> raysubmit_wcD5kvVT8dRxrr5V
+[08-29 15:20:43] cube_double_base_icem_101 attempt cap
+[08-29 15:20:52] scene_base_cem_101 attempt cap
+[08-29 15:25:19] cube_double_base_icem_101 attempt cap
+[08-29 15:25:28] scene_base_cem_101 attempt cap
+[08-29 15:25:38] scene_base_icem_101 attempt 4 -> raysubmit_cakm4sKuB4s1VhKa
+[08-29 15:29:52] cube_double_base_icem_101 attempt cap
+[08-29 15:30:00] scene_base_cem_101 attempt cap
+[08-29 15:34:28] cube_double_base_icem_101 attempt cap
+[08-29 15:34:37] scene_base_cem_101 attempt cap
+[08-29 15:34:53] scene_base_icem_104 attempt 3 -> raysubmit_LTWsXNRWAeBZSuzW
+[08-29 15:39:06] cube_double_base_icem_101 attempt cap
+[08-29 15:39:14] scene_base_cem_101 attempt cap
+[08-29 15:43:42] cube_double_base_icem_101 attempt cap
+[08-29 15:43:50] scene_base_cem_101 attempt cap
+[08-29 15:43:59] scene_base_icem_101 attempt cap
+[08-29 15:48:17] cube_double_base_icem_101 attempt cap
+[08-29 15:48:26] scene_base_cem_101 attempt cap
+[08-29 15:48:34] scene_base_icem_101 attempt cap
+[08-29 15:52:52] cube_double_base_icem_101 attempt cap
+[08-29 15:53:00] scene_base_cem_101 attempt cap
+[08-29 15:53:08] scene_base_icem_101 attempt cap
+[08-29 15:57:26] cube_double_base_icem_101 attempt cap
+[08-29 15:57:34] scene_base_cem_101 attempt cap
+[08-29 15:57:42] scene_base_icem_101 attempt cap
+[08-29 16:02:02] cube_double_base_icem_101 attempt cap
+[08-29 16:02:10] scene_base_cem_101 attempt cap
+[08-29 16:02:19] scene_base_icem_101 attempt cap
+[08-29 16:06:37] cube_double_base_icem_101 attempt cap
+[08-29 16:06:45] scene_base_cem_101 attempt cap
+[08-29 16:06:54] scene_base_icem_101 attempt cap
+[08-29 16:11:12] cube_double_base_icem_101 attempt cap
+[08-29 16:11:20] scene_base_cem_101 attempt cap
+[08-29 16:11:28] scene_base_icem_101 attempt cap
+[08-29 16:15:47] cube_double_base_icem_101 attempt cap
+[08-29 16:15:55] scene_base_cem_101 attempt cap
+[08-29 16:16:03] scene_base_icem_101 attempt cap
+[08-29 16:20:22] cube_double_base_icem_101 attempt cap
+[08-29 16:20:30] scene_base_cem_101 attempt cap
+[08-29 16:20:38] scene_base_icem_101 attempt cap
+[08-29 16:24:55] cube_double_base_icem_101 attempt cap
+[08-29 16:25:03] scene_base_cem_101 attempt cap
+[08-29 16:25:11] scene_base_icem_101 attempt cap
+[08-29 16:29:30] cube_double_base_icem_101 attempt cap
+[08-29 16:29:38] scene_base_cem_101 attempt cap
+[08-29 16:29:46] scene_base_icem_101 attempt cap
+[08-29 16:34:05] cube_double_base_icem_101 attempt cap
+[08-29 16:34:13] scene_base_cem_101 attempt cap
+[08-29 16:34:21] scene_base_icem_101 attempt cap
+[08-29 16:38:39] cube_double_base_icem_101 attempt cap
+[08-29 16:38:47] scene_base_cem_101 attempt cap
+[08-29 16:38:56] scene_base_icem_101 attempt cap
+[08-29 16:43:13] cube_double_base_icem_101 attempt cap
+[08-29 16:43:21] scene_base_cem_101 attempt cap
+[08-29 16:43:30] scene_base_icem_101 attempt cap
+[08-29 16:47:47] cube_double_base_icem_101 attempt cap
+[08-29 16:47:55] scene_base_cem_101 attempt cap
+[08-29 16:48:03] scene_base_icem_101 attempt cap
+[08-29 16:52:20] cube_double_base_icem_101 attempt cap
+[08-29 16:52:28] scene_base_cem_101 attempt cap
+[08-29 16:52:36] scene_base_icem_101 attempt cap
+[08-29 16:56:53] cube_double_base_icem_101 attempt cap
+[08-29 16:57:01] scene_base_cem_101 attempt cap
+[08-29 16:57:10] scene_base_icem_101 attempt cap
+[08-29 17:01:27] cube_double_base_icem_101 attempt cap
+[08-29 17:01:35] scene_base_cem_101 attempt cap
+[08-29 17:01:43] scene_base_icem_101 attempt cap
+[08-29 17:06:01] cube_double_base_icem_101 attempt cap
+[08-29 17:06:10] scene_base_cem_101 attempt cap
+[08-29 17:06:13] start: OGB multi-object LeWM pixel baselines (cube_double + scene) at seed 3072
+[08-29 17:06:29] cube_double_base_icem_101 attempt 1 -> raysubmit_9ySGHqTzSDkNzuDq
+[08-29 17:10:53] scene_base_cem_101 attempt 1 -> raysubmit_cPKiuQhBPq9pQKC2
+[08-29 17:15:24] scene_base_icem_101 attempt 1 -> raysubmit_g2unH4vzKTNDvnwc
+[08-29 18:18:59] OGBMULTI LEWM BASELINES + EVALS COMPLETE (24 CSVs)

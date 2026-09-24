@@ -1,0 +1,28 @@
+[09-06 20:14:02] start: LpWM cross-task (5 tasks x 3 arms)
+[09-06 20:14:02] start: LpWM cross-task (5 tasks x 3 arms)
+[09-06 20:14:05] tr_lpwmbase_pusht attempt 1 -> raysubmit_cRSJsYPwKCHu5Rwf
+[09-06 20:14:05] tr_lpwmbase_pusht attempt 1 -> raysubmit_cRSJsYPwKCHu5Rwf
+[09-06 20:14:09] tr_lpwmq_pusht attempt 1 -> raysubmit_JYscKs2LFxZARSpx
+[09-06 20:14:09] tr_lpwmq_pusht attempt 1 -> raysubmit_JYscKs2LFxZARSpx
+[09-06 20:14:12] tr_lpwmg10_pusht attempt 1 -> raysubmit_WAiQ3keTeqBDprcs
+[09-06 20:14:12] tr_lpwmg10_pusht attempt 1 -> raysubmit_WAiQ3keTeqBDprcs
+[09-06 20:14:16] tr_lpwmbase_cubedouble attempt 1 -> raysubmit_gWcBcvTJAbDNvnvi
+[09-06 20:14:16] tr_lpwmbase_cubedouble attempt 1 -> raysubmit_gWcBcvTJAbDNvnvi
+[09-06 20:14:19] tr_lpwmq_cubedouble attempt 1 -> raysubmit_rBjzdNmSxCBMjHXA
+[09-06 20:14:19] tr_lpwmq_cubedouble attempt 1 -> raysubmit_rBjzdNmSxCBMjHXA
+[09-06 20:18:53] tr_lpwmg10_cubedouble attempt 1 -> raysubmit_92Zid6hNHALXJzxF
+[09-06 20:18:53] tr_lpwmg10_cubedouble attempt 1 -> raysubmit_92Zid6hNHALXJzxF
+[09-06 20:18:56] tr_lpwmbase_cubetriple attempt 1 -> raysubmit_Luxfuk5HM5vZdkF4
+[09-06 20:18:56] tr_lpwmbase_cubetriple attempt 1 -> raysubmit_Luxfuk5HM5vZdkF4
+[09-06 20:18:59] tr_lpwmq_cubetriple attempt 1 -> raysubmit_4wVWWD3k2NrrMFbY
+[09-06 20:18:59] tr_lpwmq_cubetriple attempt 1 -> raysubmit_4wVWWD3k2NrrMFbY
+[09-06 20:19:02] tr_lpwmg10_cubetriple attempt 1 -> raysubmit_i3kna2rUMziUe7Mi
+[09-06 20:19:02] tr_lpwmg10_cubetriple attempt 1 -> raysubmit_i3kna2rUMziUe7Mi
+[09-06 20:19:05] tr_lpwmbase_cubequadruple attempt 1 -> raysubmit_Zx6k3XbQMxVygHuD
+[09-06 20:19:05] tr_lpwmbase_cubequadruple attempt 1 -> raysubmit_Zx6k3XbQMxVygHuD
+[09-06 20:19:08] tr_lpwmq_cubequadruple attempt 1 -> raysubmit_W5TVTyffJVhLscMW
+[09-06 20:19:08] tr_lpwmq_cubequadruple attempt 1 -> raysubmit_W5TVTyffJVhLscMW
+[09-06 20:19:11] tr_lpwmg10_cubequadruple attempt 1 -> raysubmit_tZGsRvBaCbtEs1NN
+[09-06 20:19:11] tr_lpwmg10_cubequadruple attempt 1 -> raysubmit_tZGsRvBaCbtEs1NN
+[09-06 20:19:18] tr_lpwmg10_scene attempt 1 -> raysubmit_Pjaee3u4cTPkCKbw
+[09-06 20:19:18] tr_lpwmg10_scene attempt 1 -> raysubmit_Pjaee3u4cTPkCKbw

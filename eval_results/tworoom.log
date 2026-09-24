@@ -1,0 +1,383 @@
+[09:27:50] tworoom.lance is staged
+[09:27:54] baseline attempt 1 -> raysubmit_P6nDYUPWAdiZEPCs
+[09:35:32] [smoke] waiting for the baseline checkpoint
+[09:45:34] [smoke] waiting for the baseline checkpoint
+[09:55:36] [smoke] waiting for the baseline checkpoint
+[10:05:38] [smoke] waiting for the baseline checkpoint
+[10:15:39] [smoke] waiting for the baseline checkpoint
+[10:25:40] [smoke] waiting for the baseline checkpoint
+[10:35:41] [smoke] waiting for the baseline checkpoint
+[10:45:42] [smoke] waiting for the baseline checkpoint
+[10:55:43] [smoke] waiting for the baseline checkpoint
+[11:05:45] [smoke] waiting for the baseline checkpoint
+[11:15:46] [smoke] waiting for the baseline checkpoint
+[11:25:47] [smoke] waiting for the baseline checkpoint
+[11:35:48] [smoke] waiting for the baseline checkpoint
+[11:45:49] [smoke] waiting for the baseline checkpoint
+[11:55:50] [smoke] waiting for the baseline checkpoint
+[12:05:51] [smoke] waiting for the baseline checkpoint
+[12:15:53] [smoke] waiting for the baseline checkpoint
+[12:25:54] [smoke] waiting for the baseline checkpoint
+[12:35:55] [smoke] baseline checkpoint present
+[12:35:57] [smoke] attempt 1 -> raysubmit_qvVFdWBMbMELP5Kg
+[12:38:53] baseline checkpoint present
+[12:38:57] round 1: waiting on obj aux
+[12:44:00] round 2: waiting on obj aux
+[12:45:57] [smoke] TWOROOM SMOKE CELL DONE
+[12:49:03] round 3: waiting on obj aux
+[12:54:05] round 4: waiting on obj aux
+[12:59:09] obj attempt 1 -> raysubmit_8gfCzcqijuA3wYmh
+[12:59:10] aux attempt 1 -> raysubmit_AeCyjbNDypr4Upp8
+[12:59:10] round 5: waiting on obj aux
+[13:04:12] round 6: waiting on obj aux
+[13:09:15] round 7: waiting on obj aux
+[13:14:18] round 8: waiting on obj aux
+[13:19:21] round 9: waiting on obj aux
+[13:24:23] round 10: waiting on obj aux
+[13:29:26] round 11: waiting on obj aux
+[13:34:29] round 12: waiting on obj aux
+[13:39:32] round 13: waiting on obj aux
+[13:44:34] round 14: waiting on obj aux
+[13:49:37] round 15: waiting on obj aux
+[13:54:40] round 16: waiting on obj aux
+[13:59:42] round 17: waiting on obj aux
+[14:04:45] round 18: waiting on obj aux
+[14:09:48] round 19: waiting on obj aux
+[14:14:50] round 20: waiting on obj aux
+[14:19:53] round 21: waiting on obj aux
+[14:24:56] round 22: waiting on obj aux
+[14:29:58] round 23: waiting on obj aux
+[14:35:01] round 24: waiting on obj aux
+[14:40:04] round 25: waiting on obj aux
+[14:45:06] round 26: waiting on obj aux
+[14:50:09] round 27: waiting on obj aux
+[14:55:12] round 28: waiting on obj aux
+[15:00:15] round 29: waiting on obj aux
+[15:05:17] round 30: waiting on obj aux
+[15:10:20] round 31: waiting on obj aux
+[15:15:23] round 32: waiting on obj aux
+[15:20:25] round 33: waiting on obj aux
+[15:25:28] round 34: waiting on obj aux
+[15:30:31] round 35: waiting on obj aux
+[15:35:34] round 36: waiting on obj aux
+[15:40:36] round 37: waiting on obj aux
+[15:45:39] round 38: waiting on obj aux
+[15:50:44] round 39: waiting on obj aux
+[15:55:47] round 40: waiting on obj aux
+[16:00:49] round 41: waiting on obj aux
+[16:05:52] round 42: waiting on obj aux
+[16:10:55] aux attempt 2 -> raysubmit_CwkuSrbp6nVeQ6Yv
+[16:10:55] round 43: waiting on obj aux
+[16:15:58] round 44: waiting on obj aux
+[16:21:01] round 45: waiting on obj aux
+[16:26:04] round 46: waiting on obj aux
+[16:31:07] obj attempt 2 -> raysubmit_ctKE3HAqXv4QBv2j
+[16:31:07] round 47: waiting on obj aux
+[16:36:10] round 48: waiting on obj aux
+[16:41:13] round 49: waiting on obj aux
+[16:46:15] round 50: waiting on obj aux
+[16:51:18] round 51: waiting on obj aux
+[16:56:21] round 52: waiting on obj aux
+[17:01:23] round 53: waiting on obj aux
+[17:06:26] round 54: waiting on obj aux
+[17:11:29] round 55: waiting on obj aux
+[17:16:31] round 56: waiting on obj aux
+[17:21:34] round 57: waiting on obj aux
+[17:26:37] round 58: waiting on obj aux
+[17:31:39] round 59: waiting on obj aux
+[17:36:42] round 60: waiting on obj aux
+[17:41:45] round 61: waiting on obj aux
+[17:46:48] round 62: waiting on obj aux
+[17:51:50] round 63: waiting on obj aux
+[17:56:53] round 64: waiting on obj aux
+[18:01:56] round 65: waiting on obj aux
+[18:06:58] round 66: waiting on obj aux
+[18:12:01] round 67: waiting on obj aux
+[18:17:03] round 68: waiting on obj aux
+[18:22:06] round 69: waiting on obj aux
+[18:27:09] round 70: waiting on obj aux
+[18:32:11] round 71: waiting on obj aux
+[18:37:14] round 72: waiting on obj aux
+[18:42:17] round 73: waiting on obj aux
+[18:47:20] round 74: waiting on obj aux
+[18:52:22] round 75: waiting on obj aux
+[18:57:25] round 76: waiting on obj aux
+[19:02:28] round 77: waiting on obj aux
+[19:07:30] round 78: waiting on obj aux
+[19:12:33] round 79: waiting on obj aux
+[19:17:36] round 80: waiting on obj aux
+[19:22:39] aux attempt 3 -> raysubmit_84Gc2n6SLat6DX9a
+[19:22:39] round 81: waiting on obj aux
+[19:27:42] round 82: waiting on obj aux
+[19:32:45] round 83: waiting on obj aux
+[19:37:47] round 84: waiting on obj aux
+[19:42:50] round 85: waiting on obj aux
+[19:47:53] round 86: waiting on obj aux
+[19:52:56] round 87: waiting on obj aux
+[19:57:58] round 88: waiting on obj aux
+[20:03:02] obj attempt 3 -> raysubmit_i33rqV1KwhFTCchC
+[20:03:02] round 89: waiting on obj aux
+[20:08:05] round 90: waiting on obj aux
+[20:13:07] round 91: waiting on obj aux
+[20:18:10] round 92: waiting on obj aux
+[20:23:13] round 93: waiting on obj aux
+[20:28:15] round 94: waiting on obj aux
+[20:33:18] round 95: waiting on obj aux
+[20:38:21] round 96: waiting on obj aux
+[20:43:23] round 97: waiting on obj aux
+[20:48:26] round 98: waiting on obj aux
+[20:53:29] round 99: waiting on obj aux
+[20:58:31] round 100: waiting on obj aux
+[21:03:34] round 101: waiting on obj aux
+[21:08:37] round 102: waiting on obj aux
+[21:13:40] round 103: waiting on obj aux
+[21:18:42] round 104: waiting on obj aux
+[21:23:45] round 105: waiting on obj aux
+[21:28:48] round 106: waiting on obj aux
+[21:33:50] round 107: waiting on obj aux
+[21:38:53] round 108: waiting on obj aux
+[21:43:56] round 109: waiting on obj aux
+[21:48:59] round 110: waiting on obj aux
+[21:54:01] round 111: waiting on obj aux
+[21:59:04] round 112: waiting on obj aux
+[22:04:07] round 113: waiting on obj aux
+[22:09:09] round 114: waiting on obj aux
+[22:14:12] round 115: waiting on obj aux
+[22:19:15] round 116: waiting on obj aux
+[22:24:18] round 117: waiting on obj aux
+[22:29:20] round 118: waiting on obj aux
+[22:34:23] aux: retry cap reached
+[22:34:23] round 119: waiting on obj aux
+[22:39:26] aux: retry cap reached
+[22:39:26] round 120: waiting on obj aux
+[22:44:29] aux: retry cap reached
+[22:44:29] round 121: waiting on obj aux
+[22:49:31] aux: retry cap reached
+[22:49:31] round 122: waiting on obj aux
+[22:54:34] aux: retry cap reached
+[22:54:34] round 123: waiting on obj aux
+[22:59:37] aux: retry cap reached
+[22:59:37] round 124: waiting on obj aux
+[23:04:40] aux: retry cap reached
+[23:04:40] round 125: waiting on obj aux
+[23:09:42] aux: retry cap reached
+[23:09:42] round 126: waiting on obj aux
+[23:14:45] aux: retry cap reached
+[23:14:45] round 127: waiting on obj aux
+[23:19:48] aux: retry cap reached
+[23:19:48] round 128: waiting on obj aux
+[23:24:50] aux: retry cap reached
+[23:24:50] round 129: waiting on obj aux
+[23:29:53] aux: retry cap reached
+[23:29:53] round 130: waiting on obj aux
+[23:34:56] obj: retry cap reached
+[23:34:56] aux: retry cap reached
+[23:34:56] round 131: waiting on obj aux
+[23:39:58] obj: retry cap reached
+[23:39:58] aux: retry cap reached
+[23:39:58] round 132: waiting on obj aux
+[23:45:01] obj: retry cap reached
+[23:45:01] aux: retry cap reached
+[23:45:01] round 133: waiting on obj aux
+[23:50:04] obj: retry cap reached
+[23:50:04] aux: retry cap reached
+[23:50:04] round 134: waiting on obj aux
+[23:55:06] obj: retry cap reached
+[23:55:07] aux: retry cap reached
+[23:55:07] round 135: waiting on obj aux
+[00:00:09] obj: retry cap reached
+[00:00:09] aux: retry cap reached
+[00:00:09] round 136: waiting on obj aux
+[00:05:12] obj: retry cap reached
+[00:05:12] aux: retry cap reached
+[00:05:12] round 137: waiting on obj aux
+[00:10:15] obj: retry cap reached
+[00:10:15] aux: retry cap reached
+[00:10:15] round 138: waiting on obj aux
+[00:15:17] obj: retry cap reached
+[00:15:17] aux: retry cap reached
+[00:15:17] round 139: waiting on obj aux
+[00:20:20] obj: retry cap reached
+[00:20:20] aux: retry cap reached
+[00:20:20] round 140: waiting on obj aux
+[00:25:23] obj: retry cap reached
+[00:25:23] aux: retry cap reached
+[00:25:23] round 141: waiting on obj aux
+[00:30:25] obj: retry cap reached
+[00:30:26] aux: retry cap reached
+[00:30:26] round 142: waiting on obj aux
+[00:35:28] obj: retry cap reached
+[00:35:28] aux: retry cap reached
+[00:35:28] round 143: waiting on obj aux
+[00:40:31] obj: retry cap reached
+[00:40:31] aux: retry cap reached
+[00:40:31] round 144: waiting on obj aux
+[00:45:34] obj: retry cap reached
+[00:45:34] aux: retry cap reached
+[00:45:34] round 145: waiting on obj aux
+[00:50:36] obj: retry cap reached
+[00:50:37] aux: retry cap reached
+[00:50:37] round 146: waiting on obj aux
+[00:55:39] obj: retry cap reached
+[00:55:39] aux: retry cap reached
+[00:55:39] round 147: waiting on obj aux
+[01:00:42] obj: retry cap reached
+[01:00:42] aux: retry cap reached
+[01:00:42] round 148: waiting on obj aux
+[01:05:44] obj: retry cap reached
+[01:05:45] aux: retry cap reached
+[01:05:45] round 149: waiting on obj aux
+[01:10:47] obj: retry cap reached
+[01:10:47] aux: retry cap reached
+[01:10:47] round 150: waiting on obj aux
+[01:15:50] obj: retry cap reached
+[01:15:50] aux: retry cap reached
+[01:15:50] round 151: waiting on obj aux
+[01:20:53] obj: retry cap reached
+[01:20:53] aux: retry cap reached
+[01:20:53] round 152: waiting on obj aux
+[01:25:55] obj: retry cap reached
+[01:25:56] aux: retry cap reached
+[01:25:56] round 153: waiting on obj aux
+[01:30:58] obj: retry cap reached
+[01:30:58] aux: retry cap reached
+[01:30:58] round 154: waiting on obj aux
+[01:36:01] obj: retry cap reached
+[01:36:01] aux: retry cap reached
+[01:36:01] round 155: waiting on obj aux
+[01:41:04] obj: retry cap reached
+[01:41:04] aux: retry cap reached
+[01:41:04] round 156: waiting on obj aux
+[01:46:06] obj: retry cap reached
+[01:46:07] aux: retry cap reached
+[01:46:07] round 157: waiting on obj aux
+[01:51:09] obj: retry cap reached
+[01:51:09] aux: retry cap reached
+[01:51:09] round 158: waiting on obj aux
+[01:56:12] obj: retry cap reached
+[01:56:12] aux: retry cap reached
+[01:56:12] round 159: waiting on obj aux
+[02:01:15] obj: retry cap reached
+[02:01:15] aux: retry cap reached
+[02:01:15] round 160: waiting on obj aux
+[02:06:17] obj: retry cap reached
+[02:06:17] aux: retry cap reached
+[02:06:17] round 161: waiting on obj aux
+[02:11:20] obj: retry cap reached
+[02:11:20] aux: retry cap reached
+[02:11:20] round 162: waiting on obj aux
+[02:16:23] obj: retry cap reached
+[02:16:23] aux: retry cap reached
+[02:16:23] round 163: waiting on obj aux
+[02:21:25] obj: retry cap reached
+[02:21:26] aux: retry cap reached
+[02:21:26] round 164: waiting on obj aux
+[02:26:28] obj: retry cap reached
+[02:26:28] aux: retry cap reached
+[02:26:28] round 165: waiting on obj aux
+[02:31:31] obj: retry cap reached
+[02:31:31] aux: retry cap reached
+[02:31:31] round 166: waiting on obj aux
+[02:36:33] obj: retry cap reached
+[02:36:34] aux: retry cap reached
+[02:36:34] round 167: waiting on obj aux
+[02:41:36] obj: retry cap reached
+[02:41:36] aux: retry cap reached
+[02:41:36] round 168: waiting on obj aux
+[02:46:39] obj: retry cap reached
+[02:46:39] aux: retry cap reached
+[02:46:39] round 169: waiting on obj aux
+[02:51:42] obj: retry cap reached
+[02:51:42] aux: retry cap reached
+[02:51:42] round 170: waiting on obj aux
+[02:56:44] obj: retry cap reached
+[02:56:44] aux: retry cap reached
+[02:56:44] round 171: waiting on obj aux
+[03:01:47] obj: retry cap reached
+[03:01:47] aux: retry cap reached
+[03:01:47] round 172: waiting on obj aux
+[03:06:50] obj: retry cap reached
+[03:06:50] aux: retry cap reached
+[03:06:50] round 173: waiting on obj aux
+[03:11:52] obj: retry cap reached
+[03:11:53] aux: retry cap reached
+[03:11:53] round 174: waiting on obj aux
+[03:16:55] obj: retry cap reached
+[03:16:55] aux: retry cap reached
+[03:16:55] round 175: waiting on obj aux
+[03:21:58] obj: retry cap reached
+[03:21:58] aux: retry cap reached
+[03:21:58] round 176: waiting on obj aux
+[03:27:00] obj: retry cap reached
+[03:27:01] aux: retry cap reached
+[03:27:01] round 177: waiting on obj aux
+[03:32:03] obj: retry cap reached
+[03:32:03] aux: retry cap reached
+[03:32:03] round 178: waiting on obj aux
+[03:37:06] obj: retry cap reached
+[03:37:06] aux: retry cap reached
+[03:37:06] round 179: waiting on obj aux
+[03:42:09] obj: retry cap reached
+[03:42:09] aux: retry cap reached
+[03:42:09] round 180: waiting on obj aux
+[03:47:11] obj: retry cap reached
+[03:47:12] aux: retry cap reached
+[03:47:12] round 181: waiting on obj aux
+[03:52:14] obj: retry cap reached
+[03:52:14] aux: retry cap reached
+[03:52:14] round 182: waiting on obj aux
+[03:57:17] obj: retry cap reached
+[03:57:17] aux: retry cap reached
+[03:57:17] round 183: waiting on obj aux
+[04:02:20] obj: retry cap reached
+[04:02:20] aux: retry cap reached
+[04:02:20] round 184: waiting on obj aux
+[04:07:22] obj: retry cap reached
+[04:07:23] aux: retry cap reached
+[04:07:23] round 185: waiting on obj aux
+[04:12:25] obj: retry cap reached
+[04:12:25] aux: retry cap reached
+[04:12:25] round 186: waiting on obj aux
+[04:17:28] obj: retry cap reached
+[04:17:28] aux: retry cap reached
+[04:17:28] round 187: waiting on obj aux
+[04:22:31] obj: retry cap reached
+[04:22:31] aux: retry cap reached
+[04:22:31] round 188: waiting on obj aux
+[04:27:33] obj: retry cap reached
+[04:27:34] aux: retry cap reached
+[04:27:34] round 189: waiting on obj aux
+[04:32:36] obj: retry cap reached
+[04:32:36] aux: retry cap reached
+[04:32:36] round 190: waiting on obj aux
+[04:37:39] obj: retry cap reached
+[04:37:39] aux: retry cap reached
+[04:37:39] round 191: waiting on obj aux
+[04:42:42] obj: retry cap reached
+[04:42:42] aux: retry cap reached
+[04:42:42] round 192: waiting on obj aux
+[04:47:44] obj: retry cap reached
+[04:47:45] aux: retry cap reached
+[04:47:45] round 193: waiting on obj aux
+[04:52:47] obj: retry cap reached
+[04:52:47] aux: retry cap reached
+[04:52:47] round 194: waiting on obj aux
+[04:57:50] obj: retry cap reached
+[04:57:50] aux: retry cap reached
+[04:57:50] round 195: waiting on obj aux
+[05:02:52] obj: retry cap reached
+[05:02:53] aux: retry cap reached
+[05:02:53] round 196: waiting on obj aux
+[05:07:55] obj: retry cap reached
+[05:07:55] aux: retry cap reached
+[05:07:55] round 197: waiting on obj aux
+[05:12:58] obj: retry cap reached
+[05:12:58] aux: retry cap reached
+[05:12:58] round 198: waiting on obj aux
+[05:18:01] obj: retry cap reached
+[05:18:01] aux: retry cap reached
+[05:18:01] round 199: waiting on obj aux
+[05:23:03] obj: retry cap reached
+[05:23:03] aux: retry cap reached
+[05:23:03] round 200: waiting on obj aux
+[05:28:03] chain hit round cap

@@ -26,6 +26,9 @@ TOL = 0.04  # env success tolerance (metres / slide units)
 
 COLS = {
     "cube_double": ["privileged/block_0_pos", "privileged/block_1_pos"],
+    "cube_triple": [f"privileged/block_{i}_pos" for i in range(3)],
+    "cube_quadruple": [f"privileged/block_{i}_pos" for i in range(4)],
+    "puzzle_3x3": [f"privileged/button_{i}_state" for i in range(9)],
     "scene": ["privileged/block_0_pos", "privileged/drawer_pos",
               "privileged/window_pos", "privileged/button_0_state",
               "privileged/button_1_state"],
@@ -34,6 +37,15 @@ COLS = {
 
 def nontrivial(task, cols, rows):
     a, b = rows, rows + GOAL_OFFSET
+    if task in ("cube_triple", "cube_quadruple"):
+        n = 3 if task == "cube_triple" else 4
+        ds = [np.linalg.norm(cols[f"privileged/block_{i}_pos"][b] - cols[f"privileged/block_{i}_pos"][a], axis=-1)
+              for i in range(n)]
+        return np.max(ds, axis=0) > TOL
+    if task == "puzzle_3x3":
+        toggled = [(cols[f"privileged/button_{i}_state"][b] != cols[f"privileged/button_{i}_state"][a]
+                    ).reshape(len(rows), -1)[:, 0] for i in range(9)]
+        return np.any(toggled, axis=0)
     if task == "cube_double":
         d0 = np.linalg.norm(cols["privileged/block_0_pos"][b] - cols["privileged/block_0_pos"][a], axis=-1)
         d1 = np.linalg.norm(cols["privileged/block_1_pos"][b] - cols["privileged/block_1_pos"][a], axis=-1)

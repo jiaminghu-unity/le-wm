@@ -1,0 +1,302 @@
+[07:10:49] FATAL: missing gs://prism-training-us/le-wm/ckpts_half/lewm_hq_obj_pusht_s3072/weights_epoch_10.pt
+[07:11:29] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:16:36] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:21:44] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:26:51] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:31:58] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:37:05] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:42:13] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:47:20] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:52:27] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[07:57:34] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:02:41] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:07:49] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:12:56] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:18:03] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:23:10] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:28:18] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:33:25] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:38:32] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:43:40] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:48:47] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:53:54] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[08:59:02] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:04:09] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:09:16] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:14:24] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:19:31] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:24:38] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:29:45] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:34:53] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:40:00] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:45:07] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:50:15] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[09:55:22] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:00:29] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:05:36] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:10:44] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:15:51] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:20:59] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:26:06] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:31:13] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:36:20] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:41:28] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:46:35] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:51:42] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[10:56:49] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[11:01:56] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[11:07:03] [wait] checkpoints 0/6; hq_obj_pusht hq_aux_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[11:12:10] [wait] checkpoints 1/6; hq_obj_pusht hq_obj_reacher hq_aux_reacher hq_obj_cube hq_aux_cube
+[11:17:17] [wait] checkpoints 2/6; hq_obj_pusht hq_obj_reacher hq_obj_cube hq_aux_cube
+[11:22:24] [wait] checkpoints 3/6; hq_obj_pusht hq_obj_reacher hq_obj_cube
+[11:27:30] [wait] checkpoints 3/6; hq_obj_pusht hq_obj_reacher hq_obj_cube
+[11:32:37] [wait] checkpoints 3/6; hq_obj_pusht hq_obj_reacher hq_obj_cube
+[11:37:44] [wait] checkpoints 3/6; hq_obj_pusht hq_obj_reacher hq_obj_cube
+[11:42:51] [wait] checkpoints 5/6; hq_obj_pusht
+[11:47:57] [wait] checkpoints 5/6; hq_obj_pusht
+[11:53:04] [wait] checkpoints 5/6; hq_obj_pusht
+[11:58:11] [wait] checkpoints 5/6; hq_obj_pusht
+[12:03:18] [wait] checkpoints 5/6; hq_obj_pusht
+[12:08:24] [wait] checkpoints 6/6; none missing
+[12:08:24] [wait] all 6 checkpoints present — starting evaluation
+[12:08:31] all 6 reduced-q checkpoints present
+[12:08:35] P5 round 1: done 0/3, todo 3
+[12:08:36]   P5 cube 64 starts -> raysubmit_pLe9u3zJHw4gGvUF (attempt 1)
+[12:08:37]   P5 reacher 64 starts -> raysubmit_g5nmfAj3vLqrLR33 (attempt 1)
+[12:08:38]   P5 pusht 50 starts -> raysubmit_j4WDC9XbRb5RNxdS (attempt 1)
+[12:11:42] P5 round 2: done 0/3, todo 0
+[12:14:47] P5 round 3: done 0/3, todo 0
+[12:17:52] P5 round 4: done 0/3, todo 0
+[12:20:57] P5 round 5: done 0/3, todo 0
+[12:24:02] P5 round 6: done 0/3, todo 0
+[12:27:06] P5 round 7: done 0/3, todo 0
+[12:30:11] P5 round 8: done 0/3, todo 0
+[12:33:16] P5 round 9: done 0/3, todo 0
+[12:36:21] P5 round 10: done 1/3, todo 0
+[12:39:25] P5 round 11: done 1/3, todo 0
+[12:42:30] P5 round 12: done 1/3, todo 0
+[12:45:35] P5 round 13: done 1/3, todo 0
+[12:48:39] P5 round 14: done 1/3, todo 0
+[12:51:44] P5 round 15: done 1/3, todo 0
+[12:54:49] P5 round 16: done 2/3, todo 0
+[12:57:53] P5 round 17: done 2/3, todo 0
+[13:00:58] P5 round 18: done 2/3, todo 0
+[13:04:02] P5 round 19: done 2/3, todo 0
+[13:07:07] P5 round 20: done 2/3, todo 0
+[13:10:11] P5 round 21: done 2/3, todo 0
+[13:13:16] P5 round 22: done 2/3, todo 0
+[13:16:21] P5 round 23: done 2/3, todo 0
+[13:19:25] P5 round 24: done 2/3, todo 0
+[13:22:30] P5 round 25: done 2/3, todo 0
+[13:25:35] P5 round 26: done 2/3, todo 0
+[13:28:39] P5 round 27: done 2/3, todo 0
+[13:31:44] P5 round 28: done 2/3, todo 0
+[13:34:49] P5 round 29: done 2/3, todo 0
+[13:37:53] P5 round 30: done 2/3, todo 0
+[13:40:58] P5 round 31: done 2/3, todo 0
+[13:44:03] P5 round 32: done 2/3, todo 0
+[13:47:07] P5 round 33: done 2/3, todo 0
+[13:50:12] P5 round 34: done 2/3, todo 0
+[13:53:17] P5 round 35: done 2/3, todo 0
+[13:56:21] P5 round 36: done 2/3, todo 0
+[13:59:26] P5 round 37: done 2/3, todo 0
+[14:02:31] P5 round 38: done 2/3, todo 0
+[14:05:35] P5 round 39: done 2/3, todo 0
+[14:08:40] P5 round 40: done 2/3, todo 0
+[14:11:45] P5 round 41: done 2/3, todo 0
+[14:14:49] P5 round 42: done 2/3, todo 0
+[14:17:54] P5 round 43: done 2/3, todo 0
+[14:20:58] P5 round 44: done 2/3, todo 0
+[14:24:03] P5 round 45: done 2/3, todo 0
+[14:27:07] P5 round 46: done 2/3, todo 0
+[14:30:12] P5 round 47: done 2/3, todo 0
+[14:33:16] P5 round 48: done 2/3, todo 0
+[14:36:21] P5 round 49: done 2/3, todo 0
+[14:39:26] P5 round 50: done 2/3, todo 0
+[14:42:30] P5 round 51: done 2/3, todo 0
+[14:45:35] P5 round 52: done 2/3, todo 0
+[14:48:39] P5 round 53: done 2/3, todo 0
+[14:51:44] P5 round 54: done 2/3, todo 0
+[14:54:48] P5 round 55: done 2/3, todo 0
+[14:57:53] P5 round 56: done 2/3, todo 0
+[15:00:57] P5 round 57: done 2/3, todo 0
+[15:04:02] P5 round 58: done 2/3, todo 0
+[15:07:06] P5 round 59: done 2/3, todo 0
+[15:10:11] P5 round 60: done 2/3, todo 0
+[15:13:15] P5 round 61: done 2/3, todo 0
+[15:16:20] P5 round 62: done 2/3, todo 0
+[15:19:25] P5 round 63: done 2/3, todo 0
+[15:22:29] P5 round 64: done 2/3, todo 0
+[15:25:34] P5 round 65: done 2/3, todo 0
+[15:28:38] P5 round 66: done 2/3, todo 0
+[15:31:43] P5 round 67: done 2/3, todo 0
+[15:34:47] P5 round 68: done 2/3, todo 0
+[15:37:52] P5 round 69: done 2/3, todo 0
+[15:40:56] P5 round 70: done 2/3, todo 0
+[15:44:01] P5 round 71: done 2/3, todo 0
+[15:47:05] P5 round 72: done 2/3, todo 0
+[15:50:10] P5 round 73: done 2/3, todo 0
+[15:53:14] P5 round 74: done 2/3, todo 0
+[15:56:19] P5 round 75: done 2/3, todo 0
+[15:59:24] P5 round 76: done 2/3, todo 0
+[16:02:28] P5 round 77: done 2/3, todo 0
+[16:05:33] P5 round 78: done 2/3, todo 0
+[16:08:37] P5 round 79: done 2/3, todo 0
+[16:11:42] P5 round 80: done 2/3, todo 0
+[16:14:46] P5 round 81: done 3/3, todo 0
+[16:14:46] P5 HALF COMPLETE
+[16:14:48] SR round 1: complete 0/24, running 0, todo 24
+[16:14:50]   SR pusht hq_obj cem -> raysubmit_7muS6vAz9bVHvYy2 (attempt 1)
+[16:14:51]   SR pusht hq_obj icem -> raysubmit_GKMdWNBZWS2GhWRD (attempt 1)
+[16:14:52]   SR pusht hq_obj mppi -> raysubmit_Ubdt3Utrfnca4KaY (attempt 1)
+[16:14:53]   SR pusht hq_obj gd -> raysubmit_CYn2xKUTe4HacjAR (attempt 1)
+[16:14:54]   SR pusht hq_aux cem -> raysubmit_iHxxNe7hqSSXrFqn (attempt 1)
+[16:14:55]   SR pusht hq_aux icem -> raysubmit_u14zHTu6DSz6s2xE (attempt 1)
+[16:14:56]   SR pusht hq_aux mppi -> raysubmit_A8CfLTrrGj2sJHHu (attempt 1)
+[16:14:57]   SR pusht hq_aux gd -> raysubmit_cBqihY14X4FJip3w (attempt 1)
+[16:17:58] SR round 2: complete 0/24, running 8, todo 24
+[16:21:01] SR round 3: complete 0/24, running 8, todo 24
+[16:24:04] SR round 4: complete 0/24, running 8, todo 24
+[16:27:06] SR round 5: complete 0/24, running 8, todo 24
+[16:30:09] SR round 6: complete 0/24, running 8, todo 24
+[16:33:11] SR round 7: complete 0/24, running 8, todo 24
+[16:36:14] SR round 8: complete 0/24, running 8, todo 24
+[16:39:17] SR round 9: complete 0/24, running 8, todo 24
+[16:42:19] SR round 10: complete 0/24, running 8, todo 24
+[16:45:22] SR round 11: complete 0/24, running 8, todo 24
+[16:48:25] SR round 12: complete 0/24, running 8, todo 24
+[16:51:27] SR round 13: complete 0/24, running 8, todo 24
+[16:54:30] SR round 14: complete 0/24, running 8, todo 24
+[16:57:33] SR round 15: complete 0/24, running 8, todo 24
+[17:00:35] SR round 16: complete 0/24, running 8, todo 24
+[17:03:38] SR round 17: complete 1/24, running 7, todo 23
+[17:03:41]   SR reacher hq_obj cem -> raysubmit_cLBuKgmQm2P9sRjc (attempt 1)
+[17:06:43] SR round 18: complete 3/24, running 6, todo 21
+[17:06:46]   SR reacher hq_obj icem -> raysubmit_y68PYZ9NUxmZQd3W (attempt 1)
+[17:06:47]   SR reacher hq_obj mppi -> raysubmit_whZy7D2LrRnqaqeY (attempt 1)
+[17:09:48] SR round 19: complete 6/24, running 5, todo 18
+[17:09:51]   SR reacher hq_obj gd -> raysubmit_2SQeEQq2UEdVX15P (attempt 1)
+[17:09:52]   SR reacher hq_aux cem -> raysubmit_7SGHT8VXMbrU6BUx (attempt 1)
+[17:09:53]   SR reacher hq_aux icem -> raysubmit_Keu2i8eSqPjQebAW (attempt 1)
+[17:12:55] SR round 20: complete 6/24, running 8, todo 18
+[17:15:57] SR round 21: complete 6/24, running 8, todo 18
+[17:19:00] SR round 22: complete 6/24, running 8, todo 18
+[17:22:03] SR round 23: complete 6/24, running 8, todo 18
+[17:25:05] SR round 24: complete 6/24, running 8, todo 18
+[17:28:08] SR round 25: complete 6/24, running 8, todo 18
+[17:31:11] SR round 26: complete 6/24, running 8, todo 18
+[17:34:13] SR round 27: complete 6/24, running 8, todo 18
+[17:37:16] SR round 28: complete 6/24, running 8, todo 18
+[17:40:18] SR round 29: complete 6/24, running 8, todo 18
+[17:43:21] SR round 30: complete 6/24, running 8, todo 18
+[17:46:24] SR round 31: complete 6/24, running 8, todo 18
+[17:49:27] SR round 32: complete 6/24, running 8, todo 18
+[17:52:29] SR round 33: complete 6/24, running 8, todo 18
+[17:55:32] SR round 34: complete 6/24, running 8, todo 18
+[17:58:35] SR round 35: complete 6/24, running 8, todo 18
+[18:01:37] SR round 36: complete 6/24, running 8, todo 18
+[18:04:40] SR round 37: complete 8/24, running 6, todo 16
+[18:04:43]   SR reacher hq_aux mppi -> raysubmit_fpC7Dk3GR2EmBgcS (attempt 1)
+[18:04:44]   SR reacher hq_aux gd -> raysubmit_FHN9P4bDRWvTcBDj (attempt 1)
+[18:07:46] SR round 38: complete 9/24, running 7, todo 15
+[18:07:49]   SR cube hq_obj cem -> raysubmit_6PvKR82W2PHT61nT (attempt 1)
+[18:10:50] SR round 39: complete 10/24, running 7, todo 14
+[18:10:53]   SR cube hq_obj icem -> raysubmit_Gt68Q1qWgsUWCmFU (attempt 1)
+[18:13:55] SR round 40: complete 11/24, running 7, todo 13
+[18:13:58]   SR cube hq_obj mppi -> raysubmit_LJhD5c1jBmnU1mM7 (attempt 1)
+[18:17:00] SR round 41: complete 11/24, running 8, todo 13
+[18:20:02] SR round 42: complete 11/24, running 8, todo 13
+[18:23:05] SR round 43: complete 11/24, running 8, todo 13
+[18:26:08] SR round 44: complete 11/24, running 8, todo 13
+[18:29:10] SR round 45: complete 11/24, running 8, todo 13
+[18:32:13] SR round 46: complete 11/24, running 8, todo 13
+[18:35:16] SR round 47: complete 11/24, running 8, todo 13
+[18:38:19] SR round 48: complete 11/24, running 8, todo 13
+[18:41:21] SR round 49: complete 11/24, running 8, todo 13
+[18:44:24] SR round 50: complete 11/24, running 8, todo 13
+[18:47:27] SR round 51: complete 13/24, running 6, todo 11
+[18:47:30]   SR cube hq_obj gd -> raysubmit_xHyG3rfm9HDeztX1 (attempt 1)
+[18:47:31]   SR cube hq_aux cem -> raysubmit_qpk67b8zg9h3TRYq (attempt 1)
+[18:50:32] SR round 52: complete 13/24, running 8, todo 11
+[18:53:35] SR round 53: complete 13/24, running 8, todo 11
+[18:56:38] SR round 54: complete 13/24, running 8, todo 11
+[18:59:40] SR round 55: complete 13/24, running 8, todo 11
+[19:02:43] SR round 56: complete 13/24, running 8, todo 11
+[19:05:46] SR round 57: complete 13/24, running 8, todo 11
+[19:08:49] SR round 58: complete 14/24, running 7, todo 10
+[19:08:52]   SR cube hq_aux icem -> raysubmit_GwKQ7zrArv7uvU8d (attempt 1)
+[19:11:53] SR round 59: complete 14/24, running 8, todo 10
+[19:14:56] SR round 60: complete 14/24, running 8, todo 10
+[19:17:59] SR round 61: complete 14/24, running 8, todo 10
+[19:21:01] SR round 62: complete 14/24, running 8, todo 10
+[19:24:04] SR round 63: complete 14/24, running 8, todo 10
+[19:27:07] SR round 64: complete 15/24, running 7, todo 9
+[19:27:10]   SR cube hq_aux mppi -> raysubmit_nHzd2V26d2R8i9Pg (attempt 1)
+[19:30:11] SR round 65: complete 16/24, running 7, todo 8
+[19:30:15]   SR cube hq_aux gd -> raysubmit_j8MGBFsT7q9cJfcZ (attempt 1)
+[19:33:16] SR round 66: complete 16/24, running 8, todo 8
+[19:36:19] SR round 67: complete 16/24, running 8, todo 8
+[19:39:22] SR round 68: complete 16/24, running 8, todo 8
+[19:42:25] SR round 69: complete 17/24, running 7, todo 7
+[19:45:28] SR round 70: complete 17/24, running 7, todo 7
+[19:48:32] SR round 71: complete 17/24, running 7, todo 7
+[19:51:36] SR round 72: complete 17/24, running 7, todo 7
+[19:54:40] SR round 73: complete 17/24, running 7, todo 7
+[19:57:43] SR round 74: complete 17/24, running 7, todo 7
+[20:00:47] SR round 75: complete 17/24, running 7, todo 7
+[20:03:51] SR round 76: complete 17/24, running 7, todo 7
+[20:06:55] SR round 77: complete 18/24, running 6, todo 6
+[20:09:58] SR round 78: complete 18/24, running 6, todo 6
+[20:13:02] SR round 79: complete 18/24, running 6, todo 6
+[20:16:06] SR round 80: complete 18/24, running 6, todo 6
+[20:19:09] SR round 81: complete 18/24, running 6, todo 6
+[20:22:13] SR round 82: complete 18/24, running 6, todo 6
+[20:25:17] SR round 83: complete 18/24, running 6, todo 6
+[20:28:20] SR round 84: complete 19/24, running 5, todo 5
+[20:31:24] SR round 85: complete 19/24, running 3, todo 5
+[20:31:26]   SR cube hq_obj gd -> raysubmit_KXiyfBZeEHYC2rh2 (attempt 2)
+[20:31:27]   SR cube hq_aux mppi -> raysubmit_n9dP9JZFL56CNBNZ (attempt 2)
+[20:34:29] SR round 86: complete 19/24, running 5, todo 5
+[20:37:32] SR round 87: complete 19/24, running 5, todo 5
+[20:40:36] SR round 88: complete 19/24, running 5, todo 5
+[20:43:39] SR round 89: complete 20/24, running 4, todo 4
+[20:46:43] SR round 90: complete 20/24, running 4, todo 4
+[20:49:46] SR round 91: complete 20/24, running 4, todo 4
+[20:52:49] SR round 92: complete 20/24, running 4, todo 4
+[20:55:52] SR round 93: complete 20/24, running 4, todo 4
+[20:58:56] SR round 94: complete 20/24, running 4, todo 4
+[21:01:59] SR round 95: complete 21/24, running 3, todo 3
+[21:05:02] SR round 96: complete 21/24, running 3, todo 3
+[21:08:05] SR round 97: complete 21/24, running 3, todo 3
+[21:11:09] SR round 98: complete 21/24, running 3, todo 3
+[21:14:12] SR round 99: complete 21/24, running 3, todo 3
+[21:17:15] SR round 100: complete 21/24, running 3, todo 3
+[21:20:18] SR round 101: complete 21/24, running 3, todo 3
+[21:23:21] SR round 102: complete 21/24, running 3, todo 3
+[21:26:24] SR round 103: complete 21/24, running 3, todo 3
+[21:29:27] SR round 104: complete 21/24, running 3, todo 3
+[21:32:31] SR round 105: complete 21/24, running 3, todo 3
+[21:35:34] SR round 106: complete 21/24, running 3, todo 3
+[21:38:37] SR round 107: complete 22/24, running 2, todo 2
+[21:41:40] SR round 108: complete 22/24, running 2, todo 2
+[21:44:43] SR round 109: complete 22/24, running 2, todo 2
+[21:47:46] SR round 110: complete 22/24, running 2, todo 2
+[21:50:49] SR round 111: complete 22/24, running 2, todo 2
+[21:53:53] SR round 112: complete 22/24, running 2, todo 2
+[21:56:58] SR round 113: complete 22/24, running 2, todo 2
+[22:00:03] SR round 114: complete 22/24, running 2, todo 2
+[22:03:09] SR round 115: complete 22/24, running 2, todo 2
+[22:06:14] SR round 116: complete 22/24, running 2, todo 2
+[22:09:19] SR round 117: complete 22/24, running 2, todo 2
+[22:12:24] SR round 118: complete 23/24, running 1, todo 1
+[22:15:29] SR round 119: complete 23/24, running 1, todo 1
+[22:18:34] SR round 120: complete 23/24, running 1, todo 1
+[22:21:38] SR round 121: complete 23/24, running 1, todo 1
+[22:24:43] SR round 122: complete 23/24, running 1, todo 1
+[22:27:48] SR round 123: complete 23/24, running 1, todo 1
+[22:30:52] SR round 124: complete 23/24, running 1, todo 1
+[22:33:57] SR round 125: complete 23/24, running 1, todo 1
+[22:37:02] SR round 126: complete 23/24, running 1, todo 1
+[22:40:07] SR round 127: complete 23/24, running 1, todo 1
+[22:43:11] SR round 128: complete 24/24, running 0, todo 0
+[22:43:11] SR HALF COMPLETE

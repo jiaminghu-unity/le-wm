@@ -1,0 +1,95 @@
+[08-26 07:36:55] start: ogbench multi-object prep (4 datasets)
+[08-26 07:36:58] cube_double attempt 1 -> raysubmit_qMQMZ2iU5AC3X69R
+[08-26 07:41:01] cube_double attempt 2 -> raysubmit_MdLHWfgFzqzhhGM8
+[08-26 07:45:04] cube_double attempt 3 -> raysubmit_UYUL5kGaUm2zeEad
+[08-26 07:49:06] cube_double attempt cap
+[08-26 07:49:10] scene attempt 1 -> raysubmit_6ng5JNY2NVV85w7z
+[08-26 07:53:12] cube_double attempt cap
+[08-26 07:53:15] scene attempt 2 -> raysubmit_e1yhanJvQUpVDr2N
+[08-26 07:57:17] cube_double attempt cap
+[08-26 07:57:20] scene attempt 3 -> raysubmit_FLtNejifEESdKxhY
+[08-26 08:01:23] cube_double attempt cap
+[08-26 08:01:25] scene attempt cap
+[08-26 08:01:28] cube_triple attempt 1 -> raysubmit_qYSP6zZESNW22YCy
+[08-26 08:05:30] cube_double attempt cap
+[08-26 08:05:32] scene attempt cap
+[08-26 08:05:35] cube_triple attempt 2 -> raysubmit_XDUPYDpU39cdH96U
+[08-26 08:09:38] cube_double attempt cap
+[08-26 08:09:40] scene attempt cap
+[08-26 08:09:43] cube_triple attempt 3 -> raysubmit_ntYvL3DuMmLdhsMs
+[08-26 08:13:45] cube_double attempt cap
+[08-26 08:13:48] scene attempt cap
+[08-26 08:13:50] cube_triple attempt cap
+[08-26 08:13:53] cube_quadruple attempt 1 -> raysubmit_WRGnM9JfdjrAhqpk
+[08-26 08:17:55] cube_double attempt cap
+[08-26 08:17:57] scene attempt cap
+[08-26 08:18:00] cube_triple attempt cap
+[08-26 08:18:03] cube_quadruple attempt 2 -> raysubmit_zVqkvg6wbfJCbZZr
+[08-26 08:22:05] cube_double attempt cap
+[08-26 08:22:07] scene attempt cap
+[08-26 08:22:09] cube_triple attempt cap
+[08-26 08:22:12] cube_quadruple attempt 3 -> raysubmit_R4TKXyJSmmDRPxfJ
+[08-26 08:26:15] cube_double attempt cap
+[08-26 08:26:17] scene attempt cap
+[08-26 08:26:19] cube_triple attempt cap
+[08-26 08:26:21] cube_quadruple attempt cap
+[08-26 08:30:24] cube_double attempt cap
+[08-26 08:30:26] scene attempt cap
+[08-26 08:30:28] cube_triple attempt cap
+[08-26 08:30:30] cube_quadruple attempt cap
+[08-26 08:34:32] cube_double attempt cap
+[08-26 08:34:35] scene attempt cap
+[08-26 08:34:37] cube_triple attempt cap
+[08-26 08:34:39] cube_quadruple attempt cap
+[08-26 08:38:41] cube_double attempt cap
+[08-26 08:38:43] scene attempt cap
+[08-26 08:38:46] cube_triple attempt cap
+[08-26 08:38:48] cube_quadruple attempt cap
+[08-26 08:42:32] start: ogbench multi-object prep (4 datasets)
+[08-26 08:42:35] cube_double attempt 1 -> raysubmit_URJi6EW5eaPUw79i
+[08-26 08:46:38] cube_double attempt 2 -> raysubmit_CB2vPw5eyDBRyhq3
+[08-26 08:50:41] cube_double attempt 3 -> raysubmit_rmkE9tJPPKkue5tD
+[08-26 08:54:44] cube_double attempt cap
+[08-26 08:54:47] scene attempt 1 -> raysubmit_a8NXLcNrKC27M488
+[08-26 08:58:49] cube_double attempt cap
+[08-26 08:58:52] scene attempt 2 -> raysubmit_jqjXW8Puy45HtwHZ
+[08-26 09:02:54] cube_double attempt cap
+[08-26 09:02:57] scene attempt 3 -> raysubmit_RptXGXxMzdiW6NGv
+[08-26 09:07:00] cube_double attempt cap
+[08-26 09:07:02] scene attempt cap
+[08-26 09:07:05] cube_triple attempt 1 -> raysubmit_3PeBUKCiyDtWbUAm
+[08-26 09:07:50] start: ogbench multi-object prep (4 datasets)
+[08-26 09:07:53] cube_double attempt 1 -> raysubmit_1DbiU42D1VtCpVAy
+[08-26 09:11:56] cube_double attempt 2 -> raysubmit_a3yRMEuyS23uXmVU
+[08-26 09:16:00] cube_double attempt 3 -> raysubmit_hD9wFSb3wnGrCuxL
+[08-26 09:30:42] start: ogbench multi-object prep (4 datasets)
+[08-26 09:51:32] cube_double attempt 1 -> raysubmit_gvq9rURCwF46hqQ8
+[08-26 09:55:36] scene attempt 1 -> raysubmit_cDQjzi4M14QdM19v
+[08-26 10:03:50] cube_triple attempt 1 -> raysubmit_z4fwQzVR78wXdcca
+[08-26 10:07:57] cube_quadruple attempt 1 -> raysubmit_Q3AZBWg4k8ibqcbf
+[08-26 11:17:37] cube_double attempt 2 -> raysubmit_P7XpwupVaTLxGP3f
+[08-26 11:46:19] cube_triple attempt 2 -> raysubmit_1Q4V9A11aQhwsaNi
+[08-26 12:17:18] start: ogbench multi-object prep (4 datasets)
+[08-26 12:29:51] cube_double attempt 1 -> raysubmit_eZ8wy1KJNBs7w2G5
+[08-26 13:11:29] cube_double attempt 2 -> raysubmit_zH2Xhva5b2pZHa88
+[08-26 13:40:39] cube_triple attempt 1 -> raysubmit_kWiE5DLA6KLLY4iR
+[08-26 14:21:34] cube_double attempt 3 -> raysubmit_NGGbixQ6sr75abpT
+[08-26 14:25:40] cube_triple attempt 2 -> raysubmit_62dLHwRtXKTTQVhc
+[08-26 15:06:33] cube_triple attempt 3 -> raysubmit_mgQrm7NXrqUhdkMD
+[08-26 15:47:28] cube_double attempt cap
+[08-26 15:47:31] cube_triple attempt cap
+[08-26 15:51:35] cube_double attempt cap
+[08-26 15:51:38] cube_triple attempt cap
+[08-26 15:55:41] cube_double attempt cap
+[08-26 15:55:45] cube_triple attempt cap
+[08-26 15:59:48] cube_double attempt cap
+[08-26 15:59:52] cube_triple attempt cap
+[08-26 16:03:55] cube_double attempt cap
+[08-26 16:03:59] cube_triple attempt cap
+[08-26 16:08:02] cube_double attempt cap
+[08-26 16:08:06] cube_triple attempt cap
+[08-26 16:47:29] start: ogbench multi-object prep (4 datasets)
+[08-26 17:17:00] start: ogbench multi-object prep (4 datasets)
+[08-26 17:17:08] cube_double attempt 1 -> raysubmit_bBWEWXfJXsqxnEnx
+[08-26 17:21:22] cube_triple attempt 1 -> raysubmit_RgcAK9vbewz7992t
+[08-26 18:24:35] ALL OGB PREP DONE
