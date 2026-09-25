@@ -5,7 +5,7 @@ S=os.path.dirname(os.path.abspath(__file__))
 def load(n):
     p=f'{S}/{n}'
     return json.load(open(p)) if os.path.exists(p) else {}
-a2sr=load('a2_sr.json'); a45sr=load('a45_sr.json'); a3sr=load('a3_sr.json')
+a2sr=load('a2_sr.json'); a45sr=load('a45_sr.json'); a3sr=load('a3_sr.json'); a73sr=load('a73_sr.json')
 
 def tiers(t):
     return '<div class="tiers">'+' '.join('–' if x is None else f'{x:.0f}' for x in t)+'</div>'
@@ -25,11 +25,12 @@ def table(head,body): return f'<div class="tblw"><table><thead>{head}</thead><tb
 
 # A1(计时,无分档)
 a1_head='<tr><th>臂</th><td>训练 it/s</td><td>训练总时长(10 epoch,cube)</td><td>规划 ms/plan</td><td>s/episode</td><td>规划相对基线</td></tr>'
+a1_head='<tr><th>臂</th><td>训练 it/s</td><td>10 epoch 训练</td><td>cem ms/plan</td><td>icem ms/plan</td><td>mppi ms/plan</td><td>规划相对基线</td></tr>'
 a1=''.join('<tr><th>%s</th>'%r[0]+''.join(f'<td>{c}</td>' for c in r[1:])+'</tr>' for r in [
- ('LeWM 基线','4.35','8.2 h','485–509','0.8–1.0','1.00×'),
- ('LeWM + SCALE','3.85(+13%)','9.2 h','485–507','0.8–1.6','1.00×'),
- ('LeWM + q-head 辅助','4.20(+4%)','8.5 h','480–519','0.9–2.9','1.00×'),
- ('DINO-WM','8.95(编码器冻结)','4.0 h','24,070–24,295','32–35','≈48×')])
+ ('LeWM 基线','4.35','8.2 h','1213.3','1173.0','1191.0','1.00×'),
+ ('LeWM + SCALE','3.85(+13%)','9.2 h','1195.8','1184.9','1155.5','0.99×'),
+ ('LeWM + q-head 辅助','4.20(+4%)','8.5 h','1229.4','1218.8','1207.2','1.01×'),
+ ('DINO-WM','8.95(编码器冻结)','4.0 h','91290.7','91654.3','92527.0*','75.3×')])
 
 # A2
 Ts=[8,32,64,128,256,512]
@@ -78,6 +79,24 @@ a5_head='<tr><th>任务(论文值 †)</th>'+''.join(f'<td>{w if w!="0" else "0(
 a5=''.join([wrow('aux','pusht','0.3',G5),wrow('aux','reacher','0.4',G5),wrow('aux','cube','0.1',G5),
             wrow('aux','tworoom','0.1',G5),wrow('aux','pointmaze','0.1',G5)])
 
+# A6 双种子复核
+A6ROWS=[('pusht · L_obj 0.3','obj|pusht|0.3'),('pusht · 辅助 1.0','aux|pusht|1.0'),
+ ('cube · L_obj 1.0','obj|cube|1.0'),('cube · 辅助 0.4','aux|cube|0.4'),
+ ('reacher · L_obj 0.03','obj|reacher|0.03'),('reacher · 辅助 1.0','aux|reacher|1.0'),
+ ('tworoom · L_obj 1.0','obj|tworoom|1.0'),('tworoom · 辅助 1.0','aux|tworoom|1.0'),
+ ('pointmaze · L_obj 0.03','obj|pointmaze|0.03'),('pointmaze · 辅助 1.0','aux|pointmaze|1.0')]
+a6_head='<tr><th>臂(各行 A4/A5 最优权重)</th><td>seed 3072</td><td>seed 3073</td><td>Δ 总 SR(cem/icem)</td></tr>'
+a6=''
+n73=0
+for th,key in A6ROWS:
+    v72=a45sr.get(key); v73=a73sr.get(key)
+    if v72 and v73:
+        n73+=1
+        dc=round(v73['cem']['o']-v72['cem']['o'],1); di=round(v73['icem']['o']-v72['icem']['o'],1)
+        a6+=row(th,[pair(v72),pair(v73),f'<td class="have">{dc:+.1f} / {di:+.1f}</td>'])
+    else:
+        a6+=row(th,[pair(v72) if v72 else '<td class="run"></td>','<td class="run"></td>','<td class="run"></td>'])
+
 html=f'''<title>消融表全景</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
@@ -109,7 +128,7 @@ b{{font-size:12.5px}}
 <div class="legend"><span><span class="sw" style="background:var(--have)"></span>已有数值</span><span><span class="sw" style="background:var(--run)"></span>训练/评测在跑</span><span><span class="sw"></span>排队中</span></div>
 
 <h2><span class="tag">A1</span>计算成本:训练与规划(已完成)</h2>
-<p class="mini">训练 = 同一张 A100 上 300 步实测 it/s(cube 配方,12,796 步/epoch × 10 外推);规划 = 全部评测 CSV 聚合(每格 ≥3,600 回合),cem/icem/mppi 一致。结论:SCALE 以 +13% 训练成本换 SR 提升、推理零开销;DINO-WM 训练便宜(冻结编码器)但规划贵 48 倍。</p>
+<p class="mini">统一 case:cube 任务、seed 3072、最大预算档 T1(每次规划 45,000 次世界模型前向,四臂三求解器预算完全一致)、逐回合 wallclock_per_plan_ms 中位数(每格 500–600 回合);*DINO 的 mppi 取 3074 复制臂(3072 未跑)。训练 = 同一张 A100 上 300 步实测(+13% 为架构级开销,任务无关)。同预算下 LeWM 摊销至 27 µs/前向、DINO ≈2,030 µs/前向 → 75×;小预算档因每次规划的固定开销(≈0.4 s)占主导,表观比会缩小(全档中位 ≈13×),故规划成本一律按最大预算档报告。</p>
 {table(a1_head,a1)}
 
 <h2><span class="tag">A2</span>mppi 温度选择(已完成,60/60)</h2>
@@ -124,13 +143,19 @@ b{{font-size:12.5px}}
 <p class="mini">全部五任务 × 统一网格 λ∈{{0, 0.03, 0.1, 0.15, 0.3, 1.0}};论文取值 † 标注。结论(50/50 格):tworoom 单调上升至 1.0(92.8/95.5,较基线 +15/+12.6,全场最大增益)、pusht 单调缓升、cube 与 reacher 全平台(reacher 0.03–1.0 五格都在 71–72/77–81);唯 pointmaze 在 1.0 劣化且单训练方差大(±6pt,慎读)。论文 0.1 处处安全但普遍偏保守。</p>
 {table(a4_head,a4)}
 
+
+
 <h2><span class="tag">A5</span>q-head 辅助权重敏感性(已完成)</h2>
 <p class="mini">与 A4 同构:λ∈{{0, 0.1, 0.3, 0.4, 1.0}};论文取值 † 标注。</p>
 {table(a5_head,a5)}
+
+<h2><span class="tag">A6</span>双种子复核:各任务最优权重臂(已完成,3072 vs 3073,10/10)</h2>
+<p class="mini">每任务在 A4/A5 里的最优权重各重训一个种子(3073)。终局(2026-09-25):十臂中八臂复现(|Δ|≤2.4;tworoom L_obj 1.0 完美复现 Δ≈0——全场最大增益为真;cube L_obj 1.0 在 3073 还略升),仅 pointmaze 两个 spike 被证伪(Δ −4.6 与 −14.7 = 训练方差 ±5–14pt)。结论:高维/迷宫类任务的权重效应对训练种子稳健,pointmaze 的单种子读数不可单独采信。</p>
+{table(a6_head,a6)}
 
 <p class="mini">五张消融表全部完成(2026-09-24);正式论文表由本页导出(去掉状态着色)。底账:final_eval*/、final_eval_mppi_t/、eval/timecost_3072.txt。</p>
 </div>'''
 open(f'{S}/ablation_tables.html','w').write(html)
 tags=re.findall(r'tag">(A\d)</span>', html)
-assert tags==['A1','A2','A3','A4','A5'], tags
+assert tags==['A1','A2','A3','A4','A5','A6'], tags
 print("OK",tags,"a2:",n_a2,"a45:",len(a45sr),"a3:",len(a3sr))

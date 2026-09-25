@@ -96,3 +96,24 @@ for key,cfg in A3.items():
              "delta":f'+{round(c["o"]-bc["o"],1)} / +{round(i["o"]-bi["o"],1)}'.replace('+-','−')}
 json.dump(a3,open(f'{S}/a3_sr.json','w'),ensure_ascii=False)
 print('a2:',len(a2),' a45:',len(a45),' a3:',len(a3))
+
+# ---------- 3073 复核(最优权重臂)----------
+R73='/workspace/le-wm/eval_results/r73_mirror'
+MAP={'c3_l03r73':'obj|pusht|0.3','c5_l1r73':'aux|pusht|1.0','k2_l1r73':'obj|cube|1.0',
+     'k4_l04r73':'aux|cube|0.4','r2_l003r73':'obj|reacher|0.03','r5_l1r73':'aux|reacher|1.0',
+     't2_l1r73':'obj|tworoom|1.0','t5_l1r73':'aux|tworoom|1.0','p2_l003r73':'obj|pointmaze|0.03',
+     'p5_l1r73':'aux|pointmaze|1.0'}
+d73=collections.defaultdict(dict)
+for f in glob.glob(f'{R73}/final_eval*/final_*.csv'):
+    m=pat2.search(f)
+    if not m: continue
+    task,cfg,sol,seed=m.groups()
+    if cfg not in MAP or seed not in need6: continue
+    d73[(cfg,sol)][seed]=read(f)
+a73={}
+for cfg,key in MAP.items():
+    c=agg(d73[(cfg,'cem')]) if set(d73.get((cfg,'cem'),{}))>=need6 else None
+    i=agg(d73[(cfg,'icem')]) if set(d73.get((cfg,'icem'),{}))>=need6 else None
+    if c and i: a73[key]={'cem':c,'icem':i}
+json.dump(a73,open(f'{S}/a73_sr.json','w'))
+print('a73:',len(a73))
