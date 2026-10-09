@@ -25,8 +25,7 @@ only at training time. This branch is independent of the `reproduce` branch
 
 ## Status (2026-10-09)
 - P0 ✅ 201 eps / 13,671 frames / 13,470 transitions; split 141/30/30 (seed 3072).
-- P2 ✅ modes {free, sustained contact, transition, ambiguous}; command→motion gain
-  differs 4× between free (45.9) and sustained contact (11.4).
+- P2 ✅ modes {free, sustained contact, transition, ambiguous}; at matched command magnitude, the same command moves the end effector 1.7–2.0× further in free motion than in sustained contact (geo-mean 1.8×; the raw mean-gain 4× was inflated by near-zero-command outliers).
 - P1 ✅ 5/6 (Isaac-sim smoke pending on the render-capable L4 VM; A100 cannot render).
 
 All run artifacts mirror to `gs://prism-training-us/contactworld/outputs/preflight/`.

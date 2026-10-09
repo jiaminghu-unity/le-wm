@@ -30,7 +30,7 @@ No temporal smoothing is applied: at 10 Hz single-frame events can be real (per 
 - Distribution (13,470 transitions): mode0 5,128 / mode1 3,563 / mode2 2,246 / ambiguous 2,533 (18.8%).
 - Coverage: every mode appears in ≥185 of 201 episodes — no rare-episode class.
 - Motion response (key evidence that modes differ dynamically, not just in force):
-  command-to-motion gain `‖Δee‖/‖a_xyz‖` = **45.9 (mode0) vs 11.4 (mode1)** vs 27.4 (mode2);
+  at matched command magnitude (quartile bins, smallest 20% of commands excluded), free motion moves the EE **1.7–2.0× further than sustained contact (geo-mean 1.8×)**, consistent across bins; the raw mean-gain figures (45.9/11.4/27.4) are inflated by near-zero-command outliers and kept only as diagnostics;
   plug displacement per step 0.0030 → 0.0018 → 0.0011.
 - Phase confound (to be controlled in P3/P4): mean episode progress 0.31 / 0.64 / 0.73
   for modes 0/1/2 — modes are **not** independent of task phase.
