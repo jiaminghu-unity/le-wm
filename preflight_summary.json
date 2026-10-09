@@ -1,0 +1,15 @@
+{
+  "task": "insertion_usb",
+  "data_audit": "PASS",
+  "multiview_smoke": "PASS",
+  "mode_labels_validated": "PASS",
+  "vision_gate_predictive": "PASS",
+  "mode_dynamics_distinct": "PASS",
+  "oracle_branch_benefit": "PASS_OFFLINE_RIDGE",
+  "wrist_retention_in_fused": "DEFERRED_TRAINING_SCALE",
+  "sim_eval_stack": "PASS",
+  "recommendation": "GO",
+  "riders": ["re-test Test F/M5 on fully trained B1 before gate training",
+             "ablate wrist-primary gate input vs fused"],
+  "results_root": "gs://prism-training-us/contactworld/outputs/preflight/usb/"
+}
