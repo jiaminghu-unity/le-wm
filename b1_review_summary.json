@@ -1,0 +1,14 @@
+{
+  "task": "insertion_usb",
+  "q1_trained_beats_persistence": "YES",
+  "q2_joint_latent_keeps_wrist_tactile_info": "NO (survives pre-pool, lost at pooling)",
+  "q3_modes_predictable_from_rgb_action": "YES (wrist 0.64 / prepool 0.59 / fused 0.54 vs nuisance 0.50)",
+  "q4_transitions_systematic_weakness": "NO after full training",
+  "q5_closed_loop_pooled_sr": {"B1": 0.175, "B3": 0.095, "Ours": 0.160,
+                                "ref_front_only": 0.293, "ref_wrist_only": 0.180},
+  "verdict": "REVISE",
+  "revisions": ["gate+residual input from pre-pool wrist tokens",
+                "widen fusion bottleneck; require Test F retention before retraining",
+                "matched front-only LeWM control"],
+  "results_root": "gs://prism-training-us/contactworld/outputs/"
+}
