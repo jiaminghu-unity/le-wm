@@ -13,10 +13,10 @@ from touchwm.mode_residual import GatedResidualJEPA
 from touchwm.data_adapter import MultiViewClipDataset
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--variant", choices=["b3", "ours"], required=True)
+ap.add_argument("--variant", choices=["b3", "ours", "ours2", "front"], required=True)
 ap.add_argument("--steps", type=int, default=100_000)
 args = ap.parse_args()
-sup = args.variant == "ours"
+sup = args.variant in ("ours", "ours2")
 OUT = f"outputs/{args.variant}"; os.makedirs(OUT, exist_ok=True)
 dev = "cuda"; BS, VAL_EVERY, LOG_EVERY, CKPT_EVERY = 32, 2_500, 500, 10_000
 torch.manual_seed(3072); np.random.seed(3072)
@@ -43,7 +43,13 @@ val_batch = None
 
 dl = DataLoader(train_ds, batch_size=BS, shuffle=True, num_workers=6,
                 drop_last=True, persistent_workers=True, prefetch_factor=4)
-model = GatedResidualJEPA().to(dev)
+if args.variant == "front":
+    from touchwm.front_only import FrontOnlyJEPA
+    model = FrontOnlyJEPA().to(dev)
+elif args.variant == "ours2":
+    model = GatedResidualJEPA(wrist_skip=True).to(dev)
+else:
+    model = GatedResidualJEPA().to(dev)
 print("params(M):", sum(p.numel() for p in model.parameters()) / 1e6, flush=True)
 opt = torch.optim.AdamW(model.parameters(), lr=5e-5, weight_decay=1e-3)
 
@@ -63,11 +69,14 @@ def validate():
                      for k in ("front", "wrist", "action", "mode")}
     model.eval()
     z = model.encode({"front": val_batch["front"], "wrist": val_batch["wrist"]})
-    pred, logits = model.predict_gated(z[:, :-1], val_batch["action"], None)  # 部署口径:软/自由门
+    if args.variant == "front":
+        pred = model.predict(z[:, :-1], val_batch["action"]); logits = None
+    else:
+        pred, logits = model.predict_gated(z[:, :-1], val_batch["action"], None)
     res = {"val_pred_mse_h1": float((pred - z[:, 1:]).pow(2).mean()),
            "persist_mse_h1": float((z[:, :-1] - z[:, 1:]).pow(2).mean())}
     lab = val_batch["mode"].reshape(-1); msk = lab >= 0
-    if msk.any():
+    if logits is not None and msk.any():
         res["val_gate_acc"] = float((logits.reshape(-1, 3).argmax(-1)[msk] == lab[msk]).float().mean())
     Zf = z.reshape(-1, z.shape[-1])
     cov = torch.cov(Zf.T); eig = torch.linalg.eigvalsh(cov).clamp(min=0)
@@ -81,8 +90,11 @@ while step < args.steps:
     for b in dl:
         obs = {"front": b["front"].to(dev, non_blocking=True),
                "wrist": b["wrist"].to(dev, non_blocking=True)}
-        out = model.loss_gated(obs, b["action"].to(dev), b["mode"].to(dev),
-                               supervise_gate=sup)
+        if args.variant == "front":
+            out = model.loss(obs, b["action"].to(dev))
+        else:
+            out = model.loss_gated(obs, b["action"].to(dev), b["mode"].to(dev),
+                                   supervise_gate=sup)
         opt.zero_grad(); out["loss"].backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step(); step += 1

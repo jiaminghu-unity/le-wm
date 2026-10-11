@@ -77,7 +77,7 @@ class QueryPool(nn.Module):
 class MultiViewEncoder(nn.Module):
     def __init__(self, image_size=224, patch_size=14, dim=192, vit_depth=12,
                  vit_heads=3, ca_heads=4, ca_layers=1, num_queries=8,
-                 latent_dim=192, dropout=0.0):
+                 latent_dim=192, dropout=0.0, wrist_skip=False):
         super().__init__()
         self.vit = PatchViT(image_size, patch_size, dim, vit_depth, vit_heads,
                             dropout=dropout)        # shared weights across views
@@ -87,7 +87,9 @@ class MultiViewEncoder(nn.Module):
         self.ca_w = nn.ModuleList([CrossAttnBlock(dim, ca_heads, 4, dropout)
                                    for _ in range(ca_layers)])
         self.pool = QueryPool(dim, num_queries, ca_heads, dropout)
-        self.project = nn.Linear(num_queries * dim, latent_dim)
+        self.wrist_skip = wrist_skip
+        in_dim = num_queries * dim + (dim if wrist_skip else 0)
+        self.project = nn.Linear(in_dim, latent_dim)
         self.latent_dim = latent_dim
 
     def forward(self, front, wrist):
@@ -101,7 +103,10 @@ class MultiViewEncoder(nn.Module):
             Wp2 = caw(Wp, F_tok)
             Fp, Wp = Fp2, Wp2
         U = self.pool(torch.cat([Fp, Wp], dim=1))    # (N, Q, dim)
-        return self.project(U.flatten(1))            # (N, latent_dim)
+        flat = U.flatten(1)
+        if self.wrist_skip:                           # R1/R2: 腕 token 均值直通,
+            flat = torch.cat([flat, Wp.mean(1)], 1)   # 接触信息按构造进入 latent
+        return self.project(flat)                     # (N, latent_dim)
 
     def encode(self, obs):
         """obs: {'front': (B,T,3,H,W), 'wrist': (B,T,3,H,W)} -> (B,T,D)."""

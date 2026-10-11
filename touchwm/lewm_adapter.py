@@ -22,11 +22,11 @@ from .multiview_encoder import MultiViewEncoder
 class MultiViewJEPA(nn.Module):
     def __init__(self, action_dim=6, latent_dim=192, history_size=3,
                  sigreg_weight=0.09, pred_depth=6, pred_heads=16, pred_mlp=2048,
-                 pred_dropout=0.1, vit_depth=12, max_frames=64):
+                 pred_dropout=0.1, vit_depth=12, max_frames=64, wrist_skip=False):
         super().__init__()
         self.history_size = history_size
         self.sigreg_weight = sigreg_weight
-        self.mv_encoder = MultiViewEncoder(latent_dim=latent_dim, vit_depth=vit_depth)
+        self.mv_encoder = MultiViewEncoder(latent_dim=latent_dim, vit_depth=vit_depth, wrist_skip=wrist_skip)
         self.projector = MLP(latent_dim, 2048, latent_dim,
                              norm_fn=nn.BatchNorm1d)      # as in official config
         self.pred_proj = MLP(latent_dim, 2048, latent_dim, norm_fn=nn.BatchNorm1d)
