@@ -1,0 +1,15 @@
+{
+  "num_envs": 100,
+  "max_steps": 15,
+  "num_executed_steps": 15,
+  "num_final_plug_success": 31,
+  "num_final_ee_success": 27,
+  "num_final_joint_success": 26,
+  "mean_first_success_step": 4.214285714285714,
+  "mean_plug_pos_err": 0.022327739745378494,
+  "mean_plug_quat_err_deg": 6.660557746887207,
+  "mean_ee_pos_err": 0.022640369832515717,
+  "mean_ee_quat_err_deg": 6.847497940063477,
+  "last_cost_mean": 6.8690619468688965,
+  "last_cost_std": 8.000540733337402
+}
