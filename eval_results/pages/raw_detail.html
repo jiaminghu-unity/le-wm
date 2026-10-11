@@ -15,7 +15,7 @@ th{background:var(--card)} .rec{background:var(--chip);font-weight:600}
 .note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:.8em 0}
 </style></head><body>
 <h1>Auto-SCALE 多种子原始明细(T1)</h1>
-<p class="mut">V5 · 2026-10-09 · <b>矩阵满格 2880/2880</b>:4 任务 × 12 臂 × 训练种子 3072–3076 × cem/icem × 6 评测种子(每格 100 集,T1 档;λ=1.0@3072 补块 02:48 收齐)。
+<p class="mut">V6 · 2026-10-10 · <b>五任务满格:多物体/场景 2880/2880 + cube 补网格 114 格收齐</b>:4 任务 × 12 臂 × 训练种子 3072–3076 × cem/icem × 6 评测种子(每格 100 集,T1 档;λ=1.0@3072 补块 02:48 收齐)。
 每臂数值 = 600 集平均成功率(%),保留一位小数;下方附逐格原始值(每格成功数/100)。</p>
 <h2>Cube Double 双方块</h2>
 <h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
@@ -301,6 +301,80 @@ th{background:var(--card)} .rec{background:var(--chip);font-weight:600}
 <tr><td>InfoNCE 门控 λ=0.1</td><td>37.5</td><td>25.3</td></tr>
 <tr><td>InfoNCE 门控 λ=1.0</td><td>35.7</td><td>24.8</td></tr>
 </table></div>
+<h2>Cube 单方块(补网格 2026-10-10 收齐;3072 原网格臂见图谱页历史表)</h2>
+<h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>全 Q(未门控)</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>75.0</td><td>75.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td class='mut'>·</td><td class='mut'>·</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>75.7</td><td>76.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>74.7</td><td>76.3</td></tr>
+</table></div>
+<h3>训练种子 3073</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>67.5</td><td>67.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>73.5</td><td>76.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>76.8</td><td>76.7</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>75.5</td><td>76.8</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>75.0</td><td>76.5</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>73.5</td><td>75.3</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>74.0</td><td>74.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>73.5</td><td>77.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>74.7</td><td>76.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>75.8</td><td>76.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>73.2</td><td>77.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>74.7</td><td>76.3</td></tr>
+</table></div>
+<h3>训练种子 3074</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>68.0</td><td>67.5</td></tr>
+<tr><td>全 Q(未门控)</td><td>75.7</td><td>77.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>77.8</td><td>76.7</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>76.2</td><td>76.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>74.2</td><td>74.7</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>74.7</td><td>71.5</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>74.5</td><td>75.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>74.8</td><td>75.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>77.0</td><td>76.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>75.5</td><td>77.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>74.5</td><td>76.2</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>74.8</td><td>76.2</td></tr>
+</table></div>
+<h3>训练种子 3075</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>69.0</td><td>66.7</td></tr>
+<tr><td>全 Q(未门控)</td><td>73.5</td><td>77.3</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>74.3</td><td>76.3</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>74.7</td><td>77.0</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>74.8</td><td>76.2</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>72.5</td><td>72.7</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>75.0</td><td>76.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>73.5</td><td>76.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>76.0</td><td>76.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>73.7</td><td>76.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>76.2</td><td>75.2</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>73.3</td><td>76.5</td></tr>
+</table></div>
+<h3>训练种子 3076</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>66.2</td><td>67.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>74.8</td><td>77.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>74.7</td><td>76.8</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>74.2</td><td>77.2</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>74.7</td><td>76.7</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>76.3</td><td>76.2</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>73.0</td><td>74.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>73.5</td><td>76.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>74.5</td><td>77.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>74.3</td><td>76.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>75.3</td><td>76.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>74.7</td><td>76.2</td></tr>
+</table></div>
+<p class='note'>cube 判决(配对,种子 3073–3076 × 2 求解器 × 6 评测种子):定稿 hinge λ0.03 − 全Q:Δ=+0.3pp,25/16,n.s.(符号 p=0.21)——
+门控在 cube 上无显著增益;全Q − 基线:Δ=+8.6pp,35/1,p&lt;0.0001。与四个多物体任务的"门控 +1.0pp 显著"对照:门控收益集中在更难的多物体/场景任务,cube 上 Q 监督本身已近饱和。
+注:3072 的 λ=1.0 两臂为补训;3072 其余臂历史数据(含 L2 族)见图谱页。逐格原始值在 GCS 与 reproduce 分支 cube_grid_mirror。</p>
 <h2>附:逐格原始值(成功数 / 100 集)</h2>
 <h3>Cube Double 双方块</h3>
 <p class='mut' style='margin:.6em 0 0'>训练种子 3072</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
