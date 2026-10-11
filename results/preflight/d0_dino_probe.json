@@ -1,0 +1,93 @@
+{
+  "backbone": "dinov2_vits14",
+  "patch_dim": 384,
+  "tactile_nuisance_r2": 0.0418,
+  "mode_nuisance": [
+    0.4971,
+    0.4345
+  ],
+  "front_mean": {
+    "dims": 384,
+    "tactile_r2": 0.0399,
+    "tactile_r2_incr": -0.0019,
+    "mode_macro_f1": 0.5788,
+    "mode2_auprc": 0.4407,
+    "geometry_r2": {
+      "plug": 0.8701,
+      "socket": 0.9214,
+      "ee": 0.8786,
+      "rel": 0.797,
+      "base_rel": 0.5354
+    }
+  },
+  "wrist_mean": {
+    "dims": 384,
+    "tactile_r2": 0.1163,
+    "tactile_r2_incr": 0.0745,
+    "mode_macro_f1": 0.6419,
+    "mode2_auprc": 0.4392,
+    "geometry_r2": {
+      "plug": 0.4228,
+      "socket": -0.0807,
+      "ee": 0.4355,
+      "rel": 0.767,
+      "base_rel": 0.5354
+    }
+  },
+  "front_grid": {
+    "dims": 1536,
+    "tactile_r2": 0.016,
+    "tactile_r2_incr": -0.0258,
+    "mode_macro_f1": 0.5547,
+    "mode2_auprc": 0.4194,
+    "geometry_r2": {
+      "plug": 0.9277,
+      "socket": 0.9958,
+      "ee": 0.9335,
+      "rel": 0.9014,
+      "base_rel": 0.5354
+    }
+  },
+  "wrist_grid": {
+    "dims": 1536,
+    "tactile_r2": 0.1182,
+    "tactile_r2_incr": 0.0764,
+    "mode_macro_f1": 0.6386,
+    "mode2_auprc": 0.4342,
+    "geometry_r2": {
+      "plug": 0.4748,
+      "socket": -0.1354,
+      "ee": 0.4848,
+      "rel": 0.8736,
+      "base_rel": 0.5354
+    }
+  },
+  "both_mean": {
+    "dims": 768,
+    "tactile_r2": 0.0969,
+    "tactile_r2_incr": 0.0551,
+    "mode_macro_f1": 0.6157,
+    "mode2_auprc": 0.4314,
+    "geometry_r2": {
+      "plug": 0.9173,
+      "socket": 0.9184,
+      "ee": 0.9202,
+      "rel": 0.8799,
+      "base_rel": 0.5354
+    }
+  },
+  "both_grid": {
+    "dims": 3072,
+    "tactile_r2": 0.0747,
+    "tactile_r2_incr": 0.0329,
+    "mode_macro_f1": 0.6285,
+    "mode2_auprc": 0.389,
+    "geometry_r2": {
+      "plug": 0.9578,
+      "socket": 0.9953,
+      "ee": 0.959,
+      "rel": 0.9441,
+      "base_rel": 0.5354
+    }
+  }
+}
