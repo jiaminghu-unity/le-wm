@@ -1,0 +1,32 @@
+[10-07 18:11:56] start: loss-component ablation (3 arms)
+[10-07 18:12:00] s1_qabl_norank -> raysubmit_LWNRCksvVVnDbzfY
+[10-07 18:12:03] s1_qabl_nonll -> raysubmit_12q8PTN86TCsApLM
+[10-07 18:12:06] s1_qabl_lam0 -> raysubmit_hVkuVYJ1wsDgWnpL
+[10-07 18:16:16] tr_qabl_lam0 -> raysubmit_mL2AGb1NCxJJu1L3
+[10-07 18:20:20] tr_qabl_norank -> raysubmit_dRdz3C6SuZ5CQ6cb
+[10-07 18:20:24] tr_qabl_nonll -> raysubmit_JKsxGsYzExHdkHUK
+[10-08 02:30:17] start: loss-component ablation (3 arms)
+[10-08 03:29:04] ev_qabl_norank_cem_101 -> raysubmit_mrBCh2mQ5R6utCKv
+[10-08 03:29:10] ev_qabl_norank_cem_104 -> raysubmit_Z7uHYhk39c3MV6s6
+[10-08 03:29:16] ev_qabl_norank_icem_101 -> raysubmit_Pbcaa755wyJSmGAr
+[10-08 03:29:23] ev_qabl_norank_icem_104 -> raysubmit_km3QFdR3aCN2RWny
+[10-08 03:29:31] ev_qabl_nonll_cem_101 -> raysubmit_TvQFmYkVPnvX8ZVx
+[10-08 03:29:37] ev_qabl_nonll_cem_104 -> raysubmit_v1y9yk7Q6YZjgbPC
+[10-08 03:29:43] ev_qabl_nonll_icem_101 -> raysubmit_C6X4RjDp2aNM5kPB
+[10-08 03:29:50] ev_qabl_nonll_icem_104 -> raysubmit_R681GKjKr1raizwP
+[10-08 03:29:59] ev_qabl_lam0_cem_101 -> raysubmit_j9JRkQnW912hX5Dv
+[10-08 03:30:05] ev_qabl_lam0_cem_104 -> raysubmit_8uwVr3nfnb1wAjqK
+[10-08 03:30:11] ev_qabl_lam0_icem_101 -> raysubmit_V1GXrU3ffeGQ6kUT
+[10-08 03:30:18] ev_qabl_lam0_icem_104 -> raysubmit_Ugc6XaiAaX2mBePe
+[10-08 03:34:40] ev_qabl_norank_icem_104 -> raysubmit_xTgBZVZbhbkgr6bW
+[10-08 03:34:48] ev_qabl_nonll_cem_101 -> raysubmit_KWcMK7w5evFiL3Lq
+[10-08 03:34:54] ev_qabl_nonll_cem_104 -> raysubmit_D61kqJ1ev9hnGBDd
+[10-08 03:35:00] ev_qabl_nonll_icem_101 -> raysubmit_zBQb1xAmYwynBtN8
+[10-08 03:35:06] ev_qabl_nonll_icem_104 -> raysubmit_kM8kM1e5HPZFz1uD
+[10-08 03:35:15] ev_qabl_lam0_cem_101 -> raysubmit_p387aUE3YAtTGyaJ
+[10-08 03:35:22] ev_qabl_lam0_cem_104 -> raysubmit_R6dTLYnQWYAmH3RA
+[10-08 03:35:27] ev_qabl_lam0_icem_101 -> raysubmit_9ZE5aidj5NRTms2d
+[10-08 03:35:33] ev_qabl_lam0_icem_104 -> raysubmit_GBYpjfycZx82zhQs
+[10-08 03:45:06] ev_qabl_nonll_cem_101 -> raysubmit_WRhG34jMZHQbphka
+[10-08 03:50:47] ev_qabl_lam0_icem_104 -> raysubmit_f2wdH4zDu2cAzxf6
+[10-08 04:40:44] LOSS ABLATION COMPLETE (3 arms, 36 CSVs)

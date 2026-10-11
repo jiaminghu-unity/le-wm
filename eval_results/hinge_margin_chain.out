@@ -1,0 +1,33 @@
+[10-06 22:18:33] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 22:18:38] tr_qhm0p3 attempt 1 -> raysubmit_hFt6d4zhhZQsfRvs
+[10-06 22:18:44] tr_qhm3 attempt 1 -> raysubmit_SvYtGbjqvzwePSg6
+[10-06 22:18:49] tr_qhm10 attempt 1 -> raysubmit_KAGuVFdBH6WEEnvJ
+[10-06 22:23:00] tr_qhm10 attempt 2 -> raysubmit_sATHTeZLX2CPeDru
+[10-06 22:27:05] tr_qhm0p3 attempt 2 -> raysubmit_PSK7uhz5HGrNg6AG
+[10-06 22:27:11] tr_qhm3 attempt 2 -> raysubmit_badF1Nn6U2YMQzZf
+[10-06 22:31:22] tr_qhm3 attempt 3 -> raysubmit_MDMLRKMZGiH8hADJ
+[10-06 22:31:27] tr_qhm10 attempt 3 -> raysubmit_Fj1fbMzvZUHSPdAn
+[10-06 22:35:33] tr_qhm0p3 attempt 3 -> raysubmit_ek8pN3xYWNz1e9Fy
+[10-06 22:36:43] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 22:36:54] tr_qhm3 attempt 1 -> raysubmit_yFXGsy8mkJ6VmdaK
+[10-06 22:37:01] tr_qhm10 attempt 1 -> raysubmit_Cy7qRtRfqfVFafiK
+[10-06 22:41:07] tr_qhm0p3 attempt 1 -> raysubmit_XUNyXGXVjRMQAQzy
+[10-07 07:37:07] ev_qhm0p3_cem_101 attempt 1 -> raysubmit_8XgCYKUqDXkjEXev
+[10-07 07:37:13] ev_qhm0p3_cem_104 attempt 1 -> raysubmit_5eLWTDe1HmF5miwQ
+[10-07 07:37:19] ev_qhm0p3_icem_101 attempt 1 -> raysubmit_J7rVV3AiHZb38fYb
+[10-07 07:37:25] ev_qhm0p3_icem_104 attempt 1 -> raysubmit_e9uAzwizX4TXD1hh
+[10-07 07:55:23] ev_qhm3_cem_101 attempt 1 -> raysubmit_Zt5HyYE5ahS5bfgj
+[10-07 07:55:29] ev_qhm3_cem_104 attempt 1 -> raysubmit_QWw1raQvNd9jdWBp
+[10-07 07:55:35] ev_qhm3_icem_101 attempt 1 -> raysubmit_iPWxVzKW6Jmx1Qvq
+[10-07 07:55:42] ev_qhm3_icem_104 attempt 1 -> raysubmit_gWs6RMqxr2BdxSRY
+[10-07 07:55:50] ev_qhm10_cem_101 attempt 1 -> raysubmit_QEy4ayP5QeA4crNN
+[10-07 07:55:57] ev_qhm10_cem_104 attempt 1 -> raysubmit_f3mrtFH6tKgbBLpU
+[10-07 07:56:03] ev_qhm10_icem_101 attempt 1 -> raysubmit_JpDPCLv31Av24Lex
+[10-07 07:56:11] ev_qhm10_icem_104 attempt 1 -> raysubmit_ynPhgYXQQxKnkLsb
+[10-07 07:57:00] ev_qhm10_icem_101 attempt 1 -> raysubmit_JpQYdfTfgvBPPfTq
+[10-07 08:06:20] ev_qhm10_icem_101 attempt 2 -> raysubmit_T41Q3U8BqVwhcUL1
+[10-07 08:11:29] ev_qhm10_icem_101 attempt 3 -> raysubmit_84ZuN2Jb6uPfF7xg
+[10-07 08:16:32] ev_qhm10_icem_101 attempt 4 -> raysubmit_CrUejGKfsY6f52QU
+[10-07 08:17:19] ev_qhm10_icem_101 attempt 2 -> raysubmit_WVmyTPFaGrZnz4wW
+[10-07 09:05:11] HINGE MARGIN SWEEP COMPLETE (3 arms, 36 CSVs)
+[10-07 09:05:59] HINGE MARGIN SWEEP COMPLETE (3 arms, 36 CSVs)

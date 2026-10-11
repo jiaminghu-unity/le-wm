@@ -76,7 +76,22 @@ case "${QGATE_VARIANT:-}" in
   l2)         SFX="_l2";        EXTRA=(--reg l2) ;;
   infonce)    SFX="_nce";       EXTRA=(--rank infonce --neg-k 255 --batch 1024) ;;
   l2_infonce) SFX="_l2nce";     EXTRA=(--reg l2 --rank infonce --neg-k 255 --batch 1024) ;;
+  # InfoNCE 温度扫描(2026-10-06):QGATE_TAU 必填;文件名用 p 代替小数点(0.3 -> 0p3)
+  infonce_tau)
+    : "${QGATE_TAU:?QGATE_VARIANT=infonce_tau 需要 QGATE_TAU}"
+    SFX="_nce_tau${QGATE_TAU/./p}"
+    EXTRA=(--rank infonce --neg-k 255 --batch 1024 --tau "$QGATE_TAU") ;;
+  # 损失部件消融(2026-10-07 user:三部件逐一拆)
+  norank)      SFX="_norank";  EXTRA=(--rank none) ;;
+  nonll_hinge) SFX="_nonll";   EXTRA=(--rank hinge --nll-weight 0) ;;
+  nonll_nce)   SFX="_nonlln";  EXTRA=(--rank infonce --neg-k 255 --batch 1024 --nll-weight 0) ;;
 esac
+# 裁决扩展(2026-10-06,hinge vs InfoNCE 定损失):可叠加在任意变体上。
+# QGATE_SEED: stage-1 训练种子重复(gate 集稳定性);QGATE_MARGIN: hinge margin 扫描(τ 的公平对照)。
+if [ -n "${QGATE_SEED:-}" ]; then SFX="${SFX}_s${QGATE_SEED}"; EXTRA+=(--seed "$QGATE_SEED"); fi
+if [ -n "${QGATE_MARGIN:-}" ]; then SFX="${SFX}_m${QGATE_MARGIN/./p}"; EXTRA+=(--margin "$QGATE_MARGIN"); fi
+# 数据效率曲线(2026-10-09,设计 2026-09-01 获用户确认):整轨迹子采样
+if [ -n "${QGATE_MAXEPS:-}" ]; then SFX="${SFX}_n${QGATE_MAXEPS}_ds${QGATE_DATASEED:-0}"; EXTRA+=(--max-episodes "$QGATE_MAXEPS" --data-seed "${QGATE_DATASEED:-0}"); fi
 for L in "${LAMBDAS[@]}"; do
   OUT="qgate_stage1_${TASK}${SFX}_lam${L}.json"
   if gcloud storage ls "$BUCKET/qgate/$OUT" >/dev/null 2>&1; then echo "[skip] $OUT"; continue; fi

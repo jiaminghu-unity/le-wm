@@ -1,0 +1,317 @@
+[10-06 18:32:53] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 18:32:57] s1_qnt0p3 attempt 1 -> raysubmit_VwpQwRc7zm5SKvcF
+[10-06 18:33:02] s1_qnt3 attempt 1 -> raysubmit_1H1um3hzuPS6n2cW
+[10-06 18:33:06] s1_qnt10 attempt 1 -> raysubmit_EX9WxdEwWPqbd2Ux
+[10-06 18:33:10] s1_qnt30 attempt 1 -> raysubmit_wgVRHjgFfW3cJ3eV
+[10-06 18:33:14] s1_qnt100 attempt 1 -> raysubmit_rX4m5ZmB6hbJP7wV
+[10-06 18:33:18] s1_qnt300 attempt 1 -> raysubmit_65vbtBrehSzWVUgN
+[10-06 19:20:01] tr_qnt100 attempt 1 -> raysubmit_L6ZuMGfjWEvpx5AX
+[10-06 19:20:06] tr_qnt300 attempt 1 -> raysubmit_QKfcZQtWA6LEuHrL
+[10-06 19:24:11] tr_qnt0p3 attempt 1 -> raysubmit_ENH9Um1JUz4QdD9P
+[10-06 19:24:17] tr_qnt3 attempt 1 -> raysubmit_htwzvx4PFj7hhGBw
+[10-06 19:24:22] tr_qnt10 attempt 1 -> raysubmit_k6xqRjgbpWrAiJKt
+[10-06 19:24:29] tr_qnt100 attempt 2 -> raysubmit_qFjas5sbhKVG9s2N
+[10-06 19:24:34] tr_qnt300 attempt 2 -> raysubmit_Pj2hunXjqYJ4kYUv
+[10-06 19:28:39] tr_qnt0p3 attempt 2 -> raysubmit_EG7JRr5qyPSNFcT3
+[10-06 19:28:45] tr_qnt3 attempt 2 -> raysubmit_aRK2ZQecfrxSBtWL
+[10-06 19:28:50] tr_qnt10 attempt 2 -> raysubmit_hp8y8SbkbEk5h4FR
+[10-06 19:28:57] tr_qnt100 attempt 3 -> raysubmit_4ER6dDti7W59Tzmv
+[10-06 19:29:02] tr_qnt300 attempt 3 -> raysubmit_MjeFrBcm9yCUcsC9
+[10-06 19:33:07] tr_qnt0p3 attempt 3 -> raysubmit_8BcaVCsQYjVT4uXh
+[10-06 19:33:13] tr_qnt3 attempt 3 -> raysubmit_qyiHjQnPbYzPQ1iE
+[10-06 19:33:18] tr_qnt10 attempt 3 -> raysubmit_m7hXg79L5f8dKJHV
+[10-06 19:33:25] tr_qnt100 attempt 4 -> raysubmit_TFWaZQwFZ46qNgPk
+[10-06 19:33:30] tr_qnt300 attempt 4 -> raysubmit_gEyswsqmNETjEVmW
+[10-06 19:37:36] tr_qnt0p3 attempt 4 -> raysubmit_DzQCnVHeUgsHURqb
+[10-06 19:37:41] tr_qnt3 attempt 4 -> raysubmit_X93wJGg1tezpuViR
+[10-06 19:37:46] tr_qnt10 attempt 4 -> raysubmit_WBdT6EcE73v7ny2d
+[10-06 19:37:53] tr_qnt100 attempt 5 -> raysubmit_zxq7RVGtxpVMZRxS
+[10-06 19:37:58] tr_qnt300 attempt 5 -> raysubmit_7WdcNSfj9q5FeZLd
+[10-06 19:42:03] tr_qnt0p3 attempt 5 -> raysubmit_1Y3HysYkTmuVC9H6
+[10-06 19:42:09] tr_qnt3 attempt 5 -> raysubmit_3qXYdy7DqhapGbFr
+[10-06 19:42:14] tr_qnt10 attempt 5 -> raysubmit_i7yfFKv773GkeAkG
+[10-06 19:42:20] tr_qnt100 attempt cap
+[10-06 19:42:24] tr_qnt300 attempt cap
+[10-06 19:46:28] tr_qnt0p3 attempt cap
+[10-06 19:46:33] tr_qnt3 attempt cap
+[10-06 19:46:37] tr_qnt10 attempt cap
+[10-06 19:46:43] tr_qnt100 attempt cap
+[10-06 19:46:47] tr_qnt300 attempt cap
+[10-06 19:50:52] tr_qnt0p3 attempt cap
+[10-06 19:50:56] tr_qnt3 attempt cap
+[10-06 19:51:00] tr_qnt10 attempt cap
+[10-06 19:51:06] tr_qnt100 attempt cap
+[10-06 19:51:10] tr_qnt300 attempt cap
+[10-06 19:55:15] tr_qnt0p3 attempt cap
+[10-06 19:55:19] tr_qnt3 attempt cap
+[10-06 19:55:23] tr_qnt10 attempt cap
+[10-06 19:55:29] tr_qnt100 attempt cap
+[10-06 19:55:34] tr_qnt300 attempt cap
+[10-06 19:59:38] tr_qnt0p3 attempt cap
+[10-06 19:59:42] tr_qnt3 attempt cap
+[10-06 19:59:46] tr_qnt10 attempt cap
+[10-06 19:59:52] tr_qnt100 attempt cap
+[10-06 19:59:57] tr_qnt300 attempt cap
+[10-06 20:04:01] tr_qnt0p3 attempt cap
+[10-06 20:04:05] tr_qnt3 attempt cap
+[10-06 20:04:10] tr_qnt10 attempt cap
+[10-06 20:04:16] tr_qnt100 attempt cap
+[10-06 20:04:20] tr_qnt300 attempt cap
+[10-06 20:08:24] tr_qnt0p3 attempt cap
+[10-06 20:08:28] tr_qnt3 attempt cap
+[10-06 20:08:33] tr_qnt10 attempt cap
+[10-06 20:08:39] tr_qnt100 attempt cap
+[10-06 20:08:43] tr_qnt300 attempt cap
+[10-06 20:12:47] tr_qnt0p3 attempt cap
+[10-06 20:12:52] tr_qnt3 attempt cap
+[10-06 20:12:56] tr_qnt10 attempt cap
+[10-06 20:13:02] tr_qnt100 attempt cap
+[10-06 20:13:06] tr_qnt300 attempt cap
+[10-06 20:17:11] tr_qnt0p3 attempt cap
+[10-06 20:17:15] tr_qnt3 attempt cap
+[10-06 20:17:19] tr_qnt10 attempt cap
+[10-06 20:17:25] tr_qnt100 attempt cap
+[10-06 20:17:30] tr_qnt300 attempt cap
+[10-06 20:21:34] tr_qnt0p3 attempt cap
+[10-06 20:21:38] tr_qnt3 attempt cap
+[10-06 20:21:43] tr_qnt10 attempt cap
+[10-06 20:21:49] tr_qnt100 attempt cap
+[10-06 20:21:53] tr_qnt300 attempt cap
+[10-06 20:25:57] tr_qnt0p3 attempt cap
+[10-06 20:26:02] tr_qnt3 attempt cap
+[10-06 20:26:06] tr_qnt10 attempt cap
+[10-06 20:26:12] tr_qnt100 attempt cap
+[10-06 20:26:16] tr_qnt300 attempt cap
+[10-06 20:30:21] tr_qnt0p3 attempt cap
+[10-06 20:30:25] tr_qnt3 attempt cap
+[10-06 20:30:29] tr_qnt10 attempt cap
+[10-06 20:30:35] tr_qnt100 attempt cap
+[10-06 20:30:40] tr_qnt300 attempt cap
+[10-06 20:34:44] tr_qnt0p3 attempt cap
+[10-06 20:34:48] tr_qnt3 attempt cap
+[10-06 20:34:52] tr_qnt10 attempt cap
+[10-06 20:34:59] tr_qnt100 attempt cap
+[10-06 20:35:03] tr_qnt300 attempt cap
+[10-06 20:39:07] tr_qnt0p3 attempt cap
+[10-06 20:39:11] tr_qnt3 attempt cap
+[10-06 20:39:15] tr_qnt10 attempt cap
+[10-06 20:39:22] tr_qnt100 attempt cap
+[10-06 20:39:26] tr_qnt300 attempt cap
+[10-06 20:43:30] tr_qnt0p3 attempt cap
+[10-06 20:43:34] tr_qnt3 attempt cap
+[10-06 20:43:38] tr_qnt10 attempt cap
+[10-06 20:43:45] tr_qnt100 attempt cap
+[10-06 20:43:49] tr_qnt300 attempt cap
+[10-06 20:47:53] tr_qnt0p3 attempt cap
+[10-06 20:47:57] tr_qnt3 attempt cap
+[10-06 20:48:02] tr_qnt10 attempt cap
+[10-06 20:48:08] tr_qnt100 attempt cap
+[10-06 20:48:12] tr_qnt300 attempt cap
+[10-06 20:52:16] tr_qnt0p3 attempt cap
+[10-06 20:52:21] tr_qnt3 attempt cap
+[10-06 20:52:25] tr_qnt10 attempt cap
+[10-06 20:52:31] tr_qnt100 attempt cap
+[10-06 20:52:35] tr_qnt300 attempt cap
+[10-06 20:56:39] tr_qnt0p3 attempt cap
+[10-06 20:56:44] tr_qnt3 attempt cap
+[10-06 20:56:48] tr_qnt10 attempt cap
+[10-06 20:56:54] tr_qnt100 attempt cap
+[10-06 20:56:58] tr_qnt300 attempt cap
+[10-06 21:01:02] tr_qnt0p3 attempt cap
+[10-06 21:01:07] tr_qnt3 attempt cap
+[10-06 21:01:11] tr_qnt10 attempt cap
+[10-06 21:01:17] tr_qnt100 attempt cap
+[10-06 21:01:21] tr_qnt300 attempt cap
+[10-06 21:05:26] tr_qnt0p3 attempt cap
+[10-06 21:05:30] tr_qnt3 attempt cap
+[10-06 21:05:34] tr_qnt10 attempt cap
+[10-06 21:05:40] tr_qnt100 attempt cap
+[10-06 21:05:44] tr_qnt300 attempt cap
+[10-06 21:09:48] tr_qnt0p3 attempt cap
+[10-06 21:09:53] tr_qnt3 attempt cap
+[10-06 21:09:57] tr_qnt10 attempt cap
+[10-06 21:10:03] tr_qnt100 attempt cap
+[10-06 21:10:08] tr_qnt300 attempt cap
+[10-06 21:14:12] tr_qnt0p3 attempt cap
+[10-06 21:14:16] tr_qnt3 attempt cap
+[10-06 21:14:20] tr_qnt10 attempt cap
+[10-06 21:14:27] tr_qnt100 attempt cap
+[10-06 21:14:31] tr_qnt300 attempt cap
+[10-06 21:18:35] tr_qnt0p3 attempt cap
+[10-06 21:18:39] tr_qnt3 attempt cap
+[10-06 21:18:44] tr_qnt10 attempt cap
+[10-06 21:18:50] tr_qnt100 attempt cap
+[10-06 21:18:54] tr_qnt300 attempt cap
+[10-06 21:22:58] tr_qnt0p3 attempt cap
+[10-06 21:23:03] tr_qnt3 attempt cap
+[10-06 21:23:07] tr_qnt10 attempt cap
+[10-06 21:23:13] tr_qnt100 attempt cap
+[10-06 21:23:17] tr_qnt300 attempt cap
+[10-06 21:27:22] tr_qnt0p3 attempt cap
+[10-06 21:27:26] tr_qnt3 attempt cap
+[10-06 21:27:30] tr_qnt10 attempt cap
+[10-06 21:27:36] tr_qnt100 attempt cap
+[10-06 21:27:40] tr_qnt300 attempt cap
+[10-06 21:31:45] tr_qnt0p3 attempt cap
+[10-06 21:31:49] tr_qnt3 attempt cap
+[10-06 21:31:53] tr_qnt10 attempt cap
+[10-06 21:32:00] tr_qnt100 attempt cap
+[10-06 21:32:04] tr_qnt300 attempt cap
+[10-06 21:36:08] tr_qnt0p3 attempt cap
+[10-06 21:36:12] tr_qnt3 attempt cap
+[10-06 21:36:16] tr_qnt10 attempt cap
+[10-06 21:36:23] tr_qnt100 attempt cap
+[10-06 21:36:27] tr_qnt300 attempt cap
+[10-06 21:40:31] tr_qnt0p3 attempt cap
+[10-06 21:40:35] tr_qnt3 attempt cap
+[10-06 21:40:39] tr_qnt10 attempt cap
+[10-06 21:40:45] tr_qnt100 attempt cap
+[10-06 21:40:50] tr_qnt300 attempt cap
+[10-06 21:44:54] tr_qnt0p3 attempt cap
+[10-06 21:44:58] tr_qnt3 attempt cap
+[10-06 21:45:02] tr_qnt10 attempt cap
+[10-06 21:45:09] tr_qnt100 attempt cap
+[10-06 21:45:13] tr_qnt300 attempt cap
+[10-06 21:49:17] tr_qnt0p3 attempt cap
+[10-06 21:49:21] tr_qnt3 attempt cap
+[10-06 21:49:26] tr_qnt10 attempt cap
+[10-06 21:49:32] tr_qnt100 attempt cap
+[10-06 21:49:36] tr_qnt300 attempt cap
+[10-06 21:53:40] tr_qnt0p3 attempt cap
+[10-06 21:53:45] tr_qnt3 attempt cap
+[10-06 21:53:49] tr_qnt10 attempt cap
+[10-06 21:53:55] tr_qnt100 attempt cap
+[10-06 21:54:00] tr_qnt300 attempt cap
+[10-06 21:58:04] tr_qnt0p3 attempt cap
+[10-06 21:58:08] tr_qnt3 attempt cap
+[10-06 21:58:12] tr_qnt10 attempt cap
+[10-06 21:58:19] tr_qnt100 attempt cap
+[10-06 21:58:23] tr_qnt300 attempt cap
+[10-06 21:59:13] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 21:59:18] tr_qnt0p3 attempt 1 -> raysubmit_Xz2uqEMYXZ3pKhgX
+[10-06 21:59:23] tr_qnt3 attempt 1 -> raysubmit_ZxanrBXAdmJtp6zs
+[10-06 21:59:29] tr_qnt10 attempt 1 -> raysubmit_igXjTKPBHx7fXt9B
+[10-06 21:59:36] tr_qnt100 attempt 1 -> raysubmit_rjjVnvu2mw3cV7hC
+[10-06 21:59:41] tr_qnt300 attempt 1 -> raysubmit_zNfm6s5MM5WtkqGX
+[10-06 22:03:46] tr_qnt0p3 attempt 2 -> raysubmit_V2UXjP2mSgrh2va6
+[10-06 22:03:52] tr_qnt3 attempt 2 -> raysubmit_Sfqb372GpJ4cTQRB
+[10-06 22:03:57] tr_qnt10 attempt 2 -> raysubmit_kXiPyQWLC3RUHrZ7
+[10-06 22:04:04] tr_qnt100 attempt 2 -> raysubmit_t3xmZpCsarL7dP2Y
+[10-06 22:04:09] tr_qnt300 attempt 2 -> raysubmit_DcWaQt8bAQ5GsUD4
+[10-06 22:08:15] tr_qnt0p3 attempt 3 -> raysubmit_FfinzWQ4SySz3PXZ
+[10-06 22:08:20] tr_qnt3 attempt 3 -> raysubmit_XJnsAWQXVeNmrTmH
+[10-06 22:08:25] tr_qnt10 attempt 3 -> raysubmit_sCb4hdZEmLeGGAxX
+[10-06 22:08:32] tr_qnt100 attempt 3 -> raysubmit_gzsKB111YkGVaPfK
+[10-06 22:08:38] tr_qnt300 attempt 3 -> raysubmit_2KAihzUdgtrNt4tE
+[10-06 22:12:43] tr_qnt0p3 attempt 4 -> raysubmit_7kiznYpbw5kdvhr8
+[10-06 22:12:48] tr_qnt3 attempt 4 -> raysubmit_5tjypfFnaqVpacCd
+[10-06 22:12:53] tr_qnt10 attempt 4 -> raysubmit_zLdUf6AxLvXHZ6Pa
+[10-06 22:13:01] tr_qnt100 attempt 4 -> raysubmit_i1AUsUb4kyU7wKXF
+[10-06 22:13:06] tr_qnt300 attempt 4 -> raysubmit_ibR4rFwaZKMedGpa
+[10-06 22:15:22] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 22:15:27] tr_qnt0p3 attempt 1 -> raysubmit_MSrMsBrBvPusADfd
+[10-06 22:15:32] tr_qnt3 attempt 1 -> raysubmit_3btQyGc2pGCVPHxz
+[10-06 22:15:37] tr_qnt10 attempt 1 -> raysubmit_xkykxP2BMicsfyg6
+[10-06 22:15:44] tr_qnt100 attempt 1 -> raysubmit_XS4V3Cq8RNALA7fd
+[10-06 22:15:49] tr_qnt300 attempt 1 -> raysubmit_WSYLUAv1UHjCzhjk
+[10-06 22:19:58] tr_qnt3 attempt 2 -> raysubmit_BrS1eAWZGAJADUGQ
+[10-06 22:24:15] tr_qnt0p3 attempt 2 -> raysubmit_Vrnf64RhfNGayvgZ
+[10-06 22:24:20] tr_qnt3 attempt 3 -> raysubmit_UMEACueMzyW7mB82
+[10-06 22:24:25] tr_qnt10 attempt 2 -> raysubmit_uNW7hwQJW6TNyBdQ
+[10-06 22:24:33] tr_qnt100 attempt 2 -> raysubmit_Ag8BxStqxJjX4un8
+[10-06 22:24:38] tr_qnt300 attempt 2 -> raysubmit_nHdzah8VgsB3ANJV
+[10-06 22:28:46] tr_qnt3 attempt 4 -> raysubmit_zeU5rTuXUpSDXQix
+[10-06 22:28:51] tr_qnt10 attempt 3 -> raysubmit_aJD3hQD6P87FzteM
+[10-06 22:33:05] tr_qnt0p3 attempt 3 -> raysubmit_QEjVAPikGMcWAtmr
+[10-06 22:33:14] tr_qnt10 attempt 4 -> raysubmit_FrmHnaeMYLYNSyaa
+[10-06 22:33:21] tr_qnt100 attempt 3 -> raysubmit_wfbXUsSVDhKz4TAw
+[10-06 22:33:26] tr_qnt300 attempt 3 -> raysubmit_uV6bMgG64qn5SpyR
+[10-06 22:36:43] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-06 22:36:54] tr_qnt3 attempt 1 -> raysubmit_WHrsf15FfX6VaaRa
+[10-06 22:37:01] tr_qnt10 attempt 1 -> raysubmit_5GjATYKG5cwy1T2w
+[10-06 22:37:12] tr_qnt300 attempt 1 -> raysubmit_nFg33sJinVBHDBAS
+[10-06 22:41:17] tr_qnt0p3 attempt 1 -> raysubmit_AcMiuJgT4DRuN8Lt
+[10-06 22:41:31] tr_qnt100 attempt 1 -> raysubmit_YAKQGU64qkFCUxAN
+[10-07 07:49:02] ev_qnt10_cem_101 attempt 1 -> raysubmit_nY7eVsHPMcMUhCBU
+[10-07 07:49:08] ev_qnt10_cem_104 attempt 1 -> raysubmit_WYm6fSbec6Jmwq31
+[10-07 07:49:14] ev_qnt10_icem_101 attempt 1 -> raysubmit_a6wEHW61vR5asR2D
+[10-07 07:49:21] ev_qnt10_icem_104 attempt 1 -> raysubmit_QP9zhrAjQhp6R4rA
+[10-07 07:53:38] ev_qnt0p3_cem_101 attempt 1 -> raysubmit_FdpJew1AFnMGLmRr
+[10-07 07:53:45] ev_qnt0p3_cem_104 attempt 1 -> raysubmit_kJTBvimWzfmmBgDU
+[10-07 07:53:51] ev_qnt0p3_icem_101 attempt 1 -> raysubmit_MenFJHiDZ9zgbDnf
+[10-07 07:53:57] ev_qnt0p3_icem_104 attempt 1 -> raysubmit_HT2vP7h7sCGPCV4a
+[10-07 07:54:06] ev_qnt3_cem_101 attempt 1 -> raysubmit_vmPLeUDT174Hpyci
+[10-07 07:54:12] ev_qnt3_cem_104 attempt 1 -> raysubmit_nnd5JY34MjEMy3WZ
+[10-07 07:54:19] ev_qnt3_icem_101 attempt 1 -> raysubmit_mGE28qe2u5NRUAjK
+[10-07 07:54:25] ev_qnt3_icem_104 attempt 1 -> raysubmit_ewxnt9fDaNViDanA
+[10-07 07:54:47] ev_qnt10_icem_104 attempt 2 -> raysubmit_PrcsDcDbaUC6iynx
+[10-07 07:55:02] ev_qnt300_cem_101 attempt 1 -> raysubmit_duhKSZJZsRDkL9R7
+[10-07 07:55:10] ev_qnt300_cem_104 attempt 1 -> raysubmit_eQ5DBFY33zhKuKe4
+[10-07 07:55:16] ev_qnt300_icem_101 attempt 1 -> raysubmit_9nCx2KQKzCiJVjFe
+[10-07 07:55:23] ev_qnt300_icem_104 attempt 1 -> raysubmit_vutzXhVB4RHu1fAF
+[10-07 07:59:45] ev_qnt0p3_icem_104 attempt 2 -> raysubmit_k6RPmLDxH19pwWqD
+[10-07 07:59:58] ev_qnt3_cem_104 attempt 2 -> raysubmit_N9GGw444aXD8DJMT
+[10-07 08:00:43] ev_qnt300_cem_101 attempt 2 -> raysubmit_eD1eR7zHyHmg3RYV
+[10-07 08:00:56] ev_qnt300_icem_101 attempt 2 -> raysubmit_vwntjGBJH7RNZirA
+[10-07 08:01:03] ev_qnt300_icem_104 attempt 2 -> raysubmit_dt64g8KnmRb6JPGq
+[10-07 08:06:19] ev_qnt100_cem_101 attempt 1 -> raysubmit_yvUYBq21e4wc36S4
+[10-07 08:06:27] ev_qnt100_cem_104 attempt 1 -> raysubmit_zriDms9Fx7yby7Cm
+[10-07 08:06:34] ev_qnt100_icem_101 attempt 1 -> raysubmit_agUzcnNZRbv3BiGi
+[10-07 08:06:41] ev_qnt100_icem_104 attempt 1 -> raysubmit_3Z6RgZb5hjtrTkax
+[10-07 08:11:28] ev_qnt0p3_icem_104 attempt 3 -> raysubmit_MQqmSsYMJRTMdqnz
+[10-07 08:12:21] ev_qnt100_cem_101 attempt 2 -> raysubmit_WdYvrUCHyCFprvwF
+[10-07 08:17:18] ev_qnt0p3_icem_104 attempt 4 -> raysubmit_M8ELXySkAfKrX2QX
+[10-07 08:23:48] ev_qnt100_cem_101 attempt 3 -> raysubmit_EKggZ3Uaj9ewyVyi
+[10-07 08:28:43] ev_qnt0p3_icem_104 attempt 5 -> raysubmit_QsK112P7sF4c5an4
+[10-07 08:29:33] ev_qnt100_cem_101 attempt 4 -> raysubmit_U6N2SeZnRPHXxyVg
+[10-07 08:34:26] ev_qnt0p3_icem_104 attempt cap
+[10-07 08:35:13] ev_qnt100_cem_101 attempt 5 -> raysubmit_nvQF5ATxLwPXFvyq
+[10-07 08:40:04] ev_qnt0p3_icem_104 attempt cap
+[10-07 08:45:39] ev_qnt0p3_icem_104 attempt cap
+[10-07 08:51:11] ev_qnt0p3_icem_104 attempt cap
+[10-07 08:56:36] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:01:56] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:07:17] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:12:40] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:18:02] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:23:24] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:28:45] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:34:07] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:39:28] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:44:49] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:50:10] ev_qnt0p3_icem_104 attempt cap
+[10-07 09:55:31] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:00:53] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:06:15] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:11:36] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:16:58] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:22:19] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:27:41] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:33:02] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:38:25] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:43:48] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:49:10] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:54:32] ev_qnt0p3_icem_104 attempt cap
+[10-07 10:59:54] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:05:17] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:10:38] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:16:00] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:21:22] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:26:44] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:32:06] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:37:28] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:42:49] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:48:11] ev_qnt0p3_icem_104 attempt cap
+[10-07 11:53:33] ev_qnt0p3_icem_104 attempt cap
+[10-07 17:11:44] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-07 17:12:04] ev_qnt0p3_icem_104 attempt 1 -> raysubmit_84Dk4FMHfa8VLDGT
+[10-08 02:30:17] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-08 17:52:01] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-09 07:07:27] s1_qnt30 attempt 1 -> raysubmit_vXN11Uu8FSp9QeNL
+[10-09 07:55:18] tr_qnt30 attempt 1 -> raysubmit_QdigmN6HLZVAKNaQ
+[10-09 12:50:01] start: InfoNCE tau sweep, 6 arms, lambda=0.03, T1-decision
+[10-09 16:56:49] ev_qnt30_cem_101 attempt 1 -> raysubmit_8CDVXs1ViuRYK8ZH
+[10-09 16:56:56] ev_qnt30_cem_104 attempt 1 -> raysubmit_Qt3mwGtYTcF9JckA
+[10-09 16:57:04] ev_qnt30_icem_101 attempt 1 -> raysubmit_Fgb9vmpxC4Mec42y
+[10-09 16:57:12] ev_qnt30_icem_104 attempt 1 -> raysubmit_61S5d5UytmtgQUG3
+[10-09 17:43:27] NCE TAU SWEEP COMPLETE (6 arms, 72 CSVs)

@@ -1,0 +1,23 @@
+[10-09 16:23:57] start: stage-1 data-efficiency sweep (cube, hinge m=1)
+[10-09 16:24:02] s1de_n25_ds0 -> raysubmit_txyeY13gj5wUtxuq
+[10-09 16:24:09] s1de_n25_ds1 -> raysubmit_ue312cmBvenA5u7f
+[10-09 16:24:14] s1de_n25_ds2 -> raysubmit_MBQkede9mMWyn8uZ
+[10-09 16:24:19] s1de_n50_ds0 -> raysubmit_PMGUCt9L6jTKzfYP
+[10-09 16:24:26] s1de_n50_ds1 -> raysubmit_HhqjTE4tNDdeiNZG
+[10-09 16:24:33] s1de_n50_ds2 -> raysubmit_MPNs3X33pkqh9XGH
+[10-09 16:24:38] s1de_n100_ds0 -> raysubmit_RAHZ8BnPKq6NEuAa
+[10-09 16:24:44] s1de_n100_ds1 -> raysubmit_b4eNPLRf2vrVjRdr
+[10-09 16:24:49] s1de_n100_ds2 -> raysubmit_RCQKvnuDyC5z5e9w
+[10-09 16:24:56] s1de_n250_ds0 -> raysubmit_stbuJmDU1rxfVYU6
+[10-09 16:25:02] s1de_n250_ds1 -> raysubmit_huzu55Dru23aT1p2
+[10-09 16:25:09] s1de_n250_ds2 -> raysubmit_HukqJbJDSqD1upCK
+[10-09 16:25:15] s1de_n500_ds0 -> raysubmit_XYaVKeyi5h1Sfntv
+[10-09 16:25:22] s1de_n500_ds1 -> raysubmit_x2LTXjAaKXdMKVbt
+[10-09 16:25:28] s1de_n500_ds2 -> raysubmit_GDmdEPQsTXrBShsH
+[10-09 16:25:35] s1de_n1000_ds0 -> raysubmit_HVEYBv8x95R5mzGi
+[10-09 16:25:41] s1de_n1000_ds1 -> raysubmit_UXKdKBeX3A8Nr1mP
+[10-09 16:25:48] s1de_n1000_ds2 -> raysubmit_gLDe9CXUbhkJJMe1
+[10-09 16:25:53] s1de_n2000_ds0 -> raysubmit_MwJiKfixApk9z1Yb
+[10-09 16:25:59] s1de_n2000_ds1 -> raysubmit_vQP8zkWhukTVKK8f
+[10-09 16:26:05] s1de_n2000_ds2 -> raysubmit_U9LmYuuZjPC55hc3
+[10-09 16:36:20] DATA EFFICIENCY SWEEP COMPLETE (42 jsons)

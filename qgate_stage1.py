@@ -311,10 +311,17 @@ def main():
     ap.add_argument("--reg", choices=["l1", "l2"], default="l1",
                     help="gate sparsity penalty: l1 = lambda*sum(g) (drives gates to zero), "
                          "l2 = lambda*sum(g^2) (shrinks without zeroing)")
-    ap.add_argument("--rank", choices=["hinge", "infonce"], default="hinge",
+    ap.add_argument("--rank", choices=["hinge", "infonce", "none"], default="hinge",
                     help="goal-identifiability loss: hinge = single-negative margin (K=1, m nats), "
-                         "infonce = 1 positive vs --neg-k in-batch negatives at tau=1")
+                         "infonce = 1 positive vs --neg-k in-batch negatives at temperature --tau")
     ap.add_argument("--neg-k", type=int, default=255)
+    ap.add_argument("--nll-weight", type=float, default=1.0,
+                    help="loss-component ablation: 0 removes the behavioral-cloning NLL term")
+    ap.add_argument("--tau", type=float, default=1.0,
+                    help="InfoNCE temperature dividing the log-prob logits. The pos/neg "
+                         "log-prob gap is O(100) nats, so tau=1 saturates the softmax and "
+                         "only the hardest in-batch negatives carry gradient; tau>>1 "
+                         "softens the gap back into a dense ranking signal")
     ap.add_argument("--max-episodes", type=int, default=0,
                     help="subsample this many WHOLE episodes (0 = all); for the data-efficiency study")
     ap.add_argument("--data-seed", type=int, default=0, help="episode-subsample RNG seed")
@@ -377,7 +384,9 @@ def main():
 
         lp_pos = model.log_prob(q_t, dq_pos, a)
         nll = -lp_pos.mean()
-        if args.rank == "hinge":
+        if args.rank == "none":
+            rank = torch.zeros((), device=dev)
+        elif args.rank == "hinge":
             lp_neg = model.log_prob(q_t, dq_neg, a)
             rank = F.relu(args.margin - (lp_pos - lp_neg)).mean()
         else:
@@ -395,10 +404,10 @@ def main():
             logits = model.log_prob(q_rep.reshape(B * (K + 1), -1),
                                     dq_all.reshape(B * (K + 1), -1),
                                     a_rep.reshape(B * (K + 1), -1)).view(B, K + 1)
-            rank = F.cross_entropy(logits, torch.zeros(B, dtype=torch.long, device=dev))
+            rank = F.cross_entropy(logits / args.tau, torch.zeros(B, dtype=torch.long, device=dev))
         g = model.gates()
         reg = g.sum() if args.reg == "l1" else (g * g).sum()
-        loss = nll + args.gamma * rank + args.lambda_sparse * reg
+        loss = args.nll_weight * nll + args.gamma * rank + args.lambda_sparse * reg
         opt.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -432,6 +441,7 @@ def main():
     out = {
         "task": args.task, "lambda_sparse": args.lambda_sparse, "gamma": args.gamma,
         "reg": args.reg, "rank_loss": args.rank, "neg_k": (args.neg_k if args.rank == "infonce" else 1),
+        "tau": (args.tau if args.rank == "infonce" else None), "nll_weight": args.nll_weight,
         "max_episodes": args.max_episodes, "data_seed": args.data_seed,
         "margin": args.margin, "steps": args.steps, "seed": args.seed,
         "horizons_wm_steps": list(HORIZONS), "frameskip": FRAMESKIP,

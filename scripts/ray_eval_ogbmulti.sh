@@ -78,6 +78,22 @@ uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
 uv pip install -q hdf5plugin -U datasets scikit-learn
 
+# import 健康门(2026-10-08:评测侧同病同治——hub>=2 毒化 transformers 链)
+uv pip install -q 'huggingface-hub<2'
+if ! python -c 'import lightning, hydra, pygame, datasets' 2>/dev/null; then
+  echo "[env] import 断裂 -> 重建 venv(清坏缓存)"
+  deactivate 2>/dev/null || true
+  rm -rf "$SSD/.venv"
+  uv cache clean pygame datasets pyarrow 2>/dev/null || true
+  uv venv --python=3.10 "$SSD/.venv"
+  source "$SSD/.venv/bin/activate"
+  uv pip install -q 'stable-worldmodel[train,env,format]'
+  uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
+  uv pip install -q hdf5plugin 'huggingface-hub<2' -U datasets scikit-learn
+  python -c 'import lightning, hydra, pygame, datasets' || { echo FATAL_ENV; exit 43; }
+fi
+
+
 # ---- dataset (lance dir rsync) ----
 # 无条件增量 rsync:目录存在≠完整(训练任务的中断 rsync 会留半截目录)
 echo "[data] rsync $LANCE"
@@ -145,7 +161,7 @@ for S in "${SEEDS[@]}"; do
   python scripts/budget_sweep_ogbmulti.py \
     --env "$TASK" --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
-    --tiers T1 T2 T3 T4 T5 \
+    --tiers ${EVAL_TIERS:-T1 T2 T3 T4 T5} \
     --episodes-json "$SSD/eps/$EPSNAME" \
     --out "$SSD/$OUT" 2>&1 | tail -40
   rc=${PIPESTATUS[0]}; set -e

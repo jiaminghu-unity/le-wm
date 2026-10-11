@@ -58,6 +58,19 @@ source "$SSD/.venv/bin/activate"
 uv pip install -q 'stable-worldmodel[train,env,format]'
 uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
 uv pip install -q hdf5plugin -U datasets
+# import 健康门:陈旧 venv 的 transformers/torchmetrics 版本断裂会让 lightning 一 import 就炸
+# (2026-10-06 tau 扫描训练臂全灭的根因)。坏则整座重建,与 CUDA 自检同一哲学。
+if ! python -c 'import lightning, hydra' 2>/dev/null; then
+  echo "[env] lightning/hydra import 断裂 -> 重建 venv"
+  deactivate 2>/dev/null || true
+  rm -rf "$SSD/.venv"
+  uv venv --python=3.10 "$SSD/.venv"
+  source "$SSD/.venv/bin/activate"
+  uv pip install -q 'stable-worldmodel[train,env,format]'
+  uv pip install -q 'torch==2.12.1+cu126' torchvision --index-url https://download.pytorch.org/whl/cu126
+  uv pip install -q hdf5plugin -U datasets
+  python -c 'import lightning, hydra' || { echo "FATAL: venv 重建后 import 仍断裂"; exit 43; }
+fi
 
 case "$TASK" in
   pusht)
@@ -116,9 +129,13 @@ if [ -n "${QGATE_GCS:-}" ]; then
   export QGATE_JSON="$SSD/g_star.json"
   echo "[qgate2] gate file: $QGATE_GCS"
 fi
-RUN=$(python train_qgate2.py --cfg job --resolve "$@" 2>/dev/null \
-      | grep -E "^output_model_name:" | awk '{print $2}' | tr -d '\r')
-[ -n "$RUN" ] || { echo "FATAL: could not resolve output_model_name for: $*" >&2; exit 1; }
+RUN=$( (python train_qgate2.py --cfg job --resolve "$@" 2>"$SSD/resolve.err" || true) \
+      | grep -E "^output_model_name:" | awk '{print $2}' | tr -d '\r' || true)
+if [ -z "$RUN" ]; then
+  echo "FATAL: could not resolve output_model_name for: $*" >&2
+  echo "----- resolve stderr -----" >&2; cat "$SSD/resolve.err" >&2 || true
+  exit 1
+fi
 echo "[replica] $TASK -> $RUN"
 if gcloud storage ls "$BUCKET/ckpts/$RUN/weights_epoch_10.pt" >/dev/null 2>&1; then
   echo "[skip] $RUN already trained"; exit 0

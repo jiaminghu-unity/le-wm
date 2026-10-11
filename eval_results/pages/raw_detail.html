@@ -1,0 +1,848 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auto-SCALE 原始明细</title><style>
+:root{--bg:#f7f7f5;--fg:#1a1a1a;--mut:#777;--card:#fff;--line:#e4e2dc;--hl:#0a6b47;--hl2:#8a4b0a;--chip:#eef4f0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e8e6e1;--mut:#9a9a93;--card:#1e2126;--line:#33373d;--hl:#4cc08a;--hl2:#d79b55;--chip:#24312a}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e8e6e1;--mut:#9a9a93;--card:#1e2126;--line:#33373d;--hl:#4cc08a;--hl2:#d79b55;--chip:#24312a}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,"Noto Sans SC",sans-serif;margin:0;padding:24px 16px;max-width:1080px;margin-inline:auto}
+h1{font-size:1.5rem;margin:.2em 0} h2{font-size:1.2rem;margin:1.6em 0 .4em;border-bottom:2px solid var(--line);padding-bottom:4px}
+h3{font-size:1rem;margin:1.2em 0 .3em;color:var(--hl)}
+table{border-collapse:collapse;width:100%;margin:.4em 0 1em;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:3px 8px;text-align:right;font-size:.86rem}
+th:first-child,td:first-child{text-align:left}
+th{background:var(--card)} .rec{background:var(--chip);font-weight:600}
+.mut{color:var(--mut)} .wrap{overflow-x:auto} sup{color:var(--hl2)}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:.8em 0}
+</style></head><body>
+<h1>Auto-SCALE 多种子原始明细(T1)</h1>
+<p class="mut">V5 · 2026-10-09 · <b>矩阵满格 2880/2880</b>:4 任务 × 12 臂 × 训练种子 3072–3076 × cem/icem × 6 评测种子(每格 100 集,T1 档;λ=1.0@3072 补块 02:48 收齐)。
+每臂数值 = 600 集平均成功率(%),保留一位小数;下方附逐格原始值(每格成功数/100)。</p>
+<h2>Cube Double 双方块</h2>
+<h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>15.7</td><td>16.7</td></tr>
+<tr><td>全 Q(未门控)</td><td>17.2</td><td>18.3</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>18.2</td><td>21.7</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>18.0</td><td>20.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>18.0</td><td>21.0</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>19.2</td><td>24.8</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>17.5</td><td>19.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>17.2</td><td>20.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>20.5</td><td>23.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>17.7</td><td>21.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>19.8</td><td>21.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>19.2</td><td>25.0</td></tr>
+</table></div>
+<h3>训练种子 3073</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>15.2</td><td>16.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>17.8</td><td>18.5</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>19.0</td><td>20.7</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>17.0</td><td>20.8</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>17.5</td><td>21.3</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>15.8</td><td>20.5</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>19.7</td><td>20.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>18.8</td><td>20.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>18.7</td><td>20.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>17.3</td><td>23.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>18.5</td><td>22.3</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>19.7</td><td>20.5</td></tr>
+</table></div>
+<h3>训练种子 3074</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>16.8</td><td>20.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>19.0</td><td>21.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>18.3</td><td>22.2</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>18.5</td><td>20.5</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>17.0</td><td>20.8</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>18.0</td><td>22.3</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>20.0</td><td>22.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>17.7</td><td>23.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>17.8</td><td>21.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>20.3</td><td>25.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>19.7</td><td>22.7</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>18.3</td><td>21.0</td></tr>
+</table></div>
+<h3>训练种子 3075</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>18.0</td><td>18.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>19.2</td><td>21.7</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>19.2</td><td>19.5</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>20.7</td><td>23.7</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>17.3</td><td>19.8</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>18.8</td><td>21.0</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>20.0</td><td>23.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>19.0</td><td>20.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>19.2</td><td>22.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>17.8</td><td>20.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>15.5</td><td>19.2</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>20.2</td><td>23.3</td></tr>
+</table></div>
+<h3>训练种子 3076</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>16.2</td><td>19.2</td></tr>
+<tr><td>全 Q(未门控)</td><td>18.0</td><td>17.8</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>18.2</td><td>20.8</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>16.7</td><td>20.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>17.5</td><td>22.3</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>18.2</td><td>19.2</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>19.7</td><td>22.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>18.3</td><td>21.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>16.2</td><td>22.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>16.0</td><td>22.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>22.3</td><td>22.3</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>19.0</td><td>22.3</td></tr>
+</table></div>
+<h2>Cube Triple 三方块</h2>
+<h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>29.8</td><td>37.3</td></tr>
+<tr><td>全 Q(未门控)</td><td>31.3</td><td>35.5</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>32.3</td><td>38.3</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>31.7</td><td>36.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>34.0</td><td>35.5</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>35.5</td><td>38.3</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>31.8</td><td>38.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>31.8</td><td>36.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>32.0</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>32.2</td><td>37.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>32.2</td><td>36.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>31.5</td><td>36.3</td></tr>
+</table></div>
+<h3>训练种子 3073</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>29.8</td><td>34.3</td></tr>
+<tr><td>全 Q(未门控)</td><td>31.5</td><td>38.7</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>31.5</td><td>37.0</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>33.7</td><td>38.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>32.8</td><td>37.8</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>30.5</td><td>37.2</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>30.8</td><td>34.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>31.7</td><td>33.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>31.8</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>33.2</td><td>37.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>30.5</td><td>36.3</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>32.5</td><td>38.0</td></tr>
+</table></div>
+<h3>训练种子 3074</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>30.3</td><td>33.5</td></tr>
+<tr><td>全 Q(未门控)</td><td>29.5</td><td>35.3</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>32.8</td><td>37.0</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>32.5</td><td>34.5</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>32.8</td><td>35.3</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>33.5</td><td>35.0</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>31.8</td><td>38.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>32.7</td><td>33.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>33.0</td><td>37.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>31.0</td><td>36.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>31.3</td><td>35.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>31.3</td><td>37.0</td></tr>
+</table></div>
+<h3>训练种子 3075</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>31.5</td><td>36.2</td></tr>
+<tr><td>全 Q(未门控)</td><td>33.0</td><td>35.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>32.8</td><td>37.2</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>32.5</td><td>38.5</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>31.5</td><td>34.0</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>31.7</td><td>37.5</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>32.2</td><td>36.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>33.5</td><td>37.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>32.5</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>32.5</td><td>36.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>33.5</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>31.8</td><td>36.0</td></tr>
+</table></div>
+<h3>训练种子 3076</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>31.3</td><td>35.2</td></tr>
+<tr><td>全 Q(未门控)</td><td>31.3</td><td>35.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>31.5</td><td>34.5</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>32.0</td><td>35.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>31.8</td><td>34.8</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>31.7</td><td>36.5</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>32.0</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>31.2</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>32.7</td><td>36.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>32.2</td><td>35.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>32.2</td><td>38.7</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>33.3</td><td>38.0</td></tr>
+</table></div>
+<h2>Cube Quadruple 四方块</h2>
+<h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>29.3</td><td>33.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>29.2</td><td>33.8</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>31.0</td><td>32.8</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>31.5</td><td>35.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>27.7</td><td>32.2</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>30.8</td><td>35.7</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>30.0</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>30.7</td><td>34.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>28.8</td><td>33.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>29.8</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>29.0</td><td>34.2</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>30.7</td><td>36.7</td></tr>
+</table></div>
+<h3>训练种子 3073</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>28.8</td><td>35.7</td></tr>
+<tr><td>全 Q(未门控)</td><td>30.0</td><td>33.7</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>27.8</td><td>34.0</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>30.3</td><td>34.2</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>29.2</td><td>34.0</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>29.0</td><td>34.8</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>29.3</td><td>36.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>30.7</td><td>34.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>29.3</td><td>37.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>30.5</td><td>35.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>29.0</td><td>35.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>31.3</td><td>35.0</td></tr>
+</table></div>
+<h3>训练种子 3074</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>28.8</td><td>34.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>30.3</td><td>35.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>31.7</td><td>36.0</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>30.0</td><td>33.2</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>29.8</td><td>36.2</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>30.7</td><td>34.7</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>30.2</td><td>35.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>28.3</td><td>32.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>30.8</td><td>35.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>30.7</td><td>35.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>29.3</td><td>34.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>29.7</td><td>36.5</td></tr>
+</table></div>
+<h3>训练种子 3075</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>27.0</td><td>32.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>28.7</td><td>36.2</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>30.0</td><td>34.3</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>29.8</td><td>35.0</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>29.7</td><td>34.2</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>30.2</td><td>35.3</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>30.2</td><td>36.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>30.3</td><td>33.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>29.5</td><td>34.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>30.2</td><td>36.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>30.0</td><td>35.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>30.8</td><td>35.2</td></tr>
+</table></div>
+<h3>训练种子 3076</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>27.7</td><td>35.0</td></tr>
+<tr><td>全 Q(未门控)</td><td>30.0</td><td>34.8</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>31.0</td><td>34.8</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>31.7</td><td>38.2</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>29.7</td><td>32.2</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>30.5</td><td>35.5</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>29.7</td><td>33.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>31.7</td><td>34.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>28.7</td><td>36.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>30.2</td><td>35.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>30.3</td><td>36.5</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>30.2</td><td>33.5</td></tr>
+</table></div>
+<h2>Scene 场景</h2>
+<h3>训练种子 3072</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>30.7</td><td>23.8</td></tr>
+<tr><td>全 Q(未门控)</td><td>34.8</td><td>27.3</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>33.7</td><td>24.8</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>36.8</td><td>25.7</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>31.8</td><td>25.8</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>37.0</td><td>25.0</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>37.7</td><td>27.7</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>36.0</td><td>27.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>37.0</td><td>26.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>39.8</td><td>28.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>37.8</td><td>26.5</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>36.7</td><td>25.3</td></tr>
+</table></div>
+<h3>训练种子 3073</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>30.3</td><td>25.5</td></tr>
+<tr><td>全 Q(未门控)</td><td>31.5</td><td>26.5</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>36.2</td><td>27.5</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>36.5</td><td>28.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>35.3</td><td>28.3</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>40.3</td><td>26.8</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>33.8</td><td>26.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>36.8</td><td>27.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>38.0</td><td>27.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>35.5</td><td>26.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>42.7</td><td>28.3</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>32.7</td><td>24.0</td></tr>
+</table></div>
+<h3>训练种子 3074</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>29.7</td><td>22.8</td></tr>
+<tr><td>全 Q(未门控)</td><td>33.3</td><td>26.0</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>33.3</td><td>25.0</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>36.8</td><td>26.7</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>33.2</td><td>25.3</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>37.8</td><td>25.0</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>39.0</td><td>26.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>34.8</td><td>25.3</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>36.0</td><td>26.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>36.2</td><td>26.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>40.8</td><td>25.0</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>34.5</td><td>27.0</td></tr>
+</table></div>
+<h3>训练种子 3075</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>30.8</td><td>23.5</td></tr>
+<tr><td>全 Q(未门控)</td><td>31.7</td><td>27.3</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>37.2</td><td>26.5</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>36.2</td><td>27.2</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>39.7</td><td>24.7</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>39.5</td><td>27.3</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>34.8</td><td>24.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>35.3</td><td>29.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>36.3</td><td>27.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>34.5</td><td>24.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>38.2</td><td>26.8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>34.0</td><td>25.3</td></tr>
+</table></div>
+<h3>训练种子 3076</h3><div class='wrap'><table><tr><th>臂</th><th>cem(600集均值)</th><th>icem(600集均值)</th></tr>
+<tr><td>基线(无 Q)</td><td>31.0</td><td>27.2</td></tr>
+<tr><td>全 Q(未门控)</td><td>35.7</td><td>24.5</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>37.5</td><td>27.2</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>36.0</td><td>25.8</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>39.2</td><td>28.7</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>31.8</td><td>24.7</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>38.7</td><td>26.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>34.7</td><td>26.2</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>39.0</td><td>26.0</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>36.2</td><td>25.8</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>37.5</td><td>25.3</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>35.7</td><td>24.8</td></tr>
+</table></div>
+<h2>附:逐格原始值(成功数 / 100 集)</h2>
+<h3>Cube Double 双方块</h3>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3072</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>23</td><td>20</td><td>13</td><td>10</td><td>13</td><td>15</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>21</td><td>18</td><td>22</td><td>17</td><td>14</td><td>8</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>22</td><td>20</td><td>21</td><td>18</td><td>14</td><td>8</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>22</td><td>18</td><td>19</td><td>21</td><td>18</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>25</td><td>22</td><td>21</td><td>16</td><td>15</td><td>10</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>21</td><td>23</td><td>27</td><td>22</td><td>20</td><td>17</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>23</td><td>22</td><td>25</td><td>18</td><td>10</td><td>10</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>23</td><td>26</td><td>22</td><td>20</td><td>15</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>20</td><td>22</td><td>20</td><td>15</td><td>15</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>25</td><td>27</td><td>22</td><td>24</td><td>16</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>21</td><td>22</td><td>22</td><td>18</td><td>14</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>27</td><td>27</td><td>29</td><td>29</td><td>22</td><td>15</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>18</td><td>22</td><td>21</td><td>15</td><td>13</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>19</td><td>23</td><td>28</td><td>21</td><td>16</td><td>11</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>19</td><td>20</td><td>22</td><td>16</td><td>12</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>26</td><td>21</td><td>20</td><td>26</td><td>19</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>21</td><td>24</td><td>25</td><td>19</td><td>19</td><td>15</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>27</td><td>20</td><td>26</td><td>26</td><td>25</td><td>18</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>20</td><td>23</td><td>24</td><td>15</td><td>13</td><td>11</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>25</td><td>22</td><td>28</td><td>21</td><td>17</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>26</td><td>22</td><td>22</td><td>16</td><td>20</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>26</td><td>24</td><td>22</td><td>23</td><td>21</td><td>15</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>25</td><td>24</td><td>21</td><td>17</td><td>14</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>33</td><td>28</td><td>28</td><td>20</td><td>24</td><td>17</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3073</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>18</td><td>17</td><td>20</td><td>15</td><td>12</td><td>9</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>18</td><td>19</td><td>23</td><td>14</td><td>15</td><td>7</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>20</td><td>18</td><td>22</td><td>18</td><td>17</td><td>12</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>22</td><td>17</td><td>23</td><td>21</td><td>14</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>23</td><td>18</td><td>22</td><td>17</td><td>21</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>23</td><td>27</td><td>21</td><td>23</td><td>17</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>20</td><td>19</td><td>23</td><td>14</td><td>14</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>26</td><td>17</td><td>24</td><td>22</td><td>18</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>20</td><td>21</td><td>28</td><td>12</td><td>11</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>22</td><td>21</td><td>30</td><td>20</td><td>18</td><td>17</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>16</td><td>18</td><td>18</td><td>13</td><td>19</td><td>11</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>21</td><td>27</td><td>21</td><td>22</td><td>14</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>23</td><td>22</td><td>21</td><td>21</td><td>16</td><td>15</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>28</td><td>23</td><td>22</td><td>20</td><td>17</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>23</td><td>20</td><td>26</td><td>17</td><td>12</td><td>15</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>24</td><td>27</td><td>24</td><td>19</td><td>18</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>21</td><td>26</td><td>24</td><td>17</td><td>15</td><td>9</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>24</td><td>18</td><td>24</td><td>20</td><td>22</td><td>17</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>20</td><td>25</td><td>20</td><td>15</td><td>11</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>31</td><td>26</td><td>26</td><td>24</td><td>19</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>20</td><td>24</td><td>21</td><td>18</td><td>16</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>24</td><td>25</td><td>22</td><td>24</td><td>23</td><td>16</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>24</td><td>23</td><td>25</td><td>15</td><td>18</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>29</td><td>22</td><td>21</td><td>20</td><td>17</td><td>14</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3074</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>18</td><td>20</td><td>13</td><td>19</td><td>18</td><td>13</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>25</td><td>19</td><td>22</td><td>21</td><td>19</td><td>14</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>21</td><td>25</td><td>18</td><td>20</td><td>17</td><td>13</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>24</td><td>25</td><td>22</td><td>23</td><td>17</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>22</td><td>18</td><td>18</td><td>22</td><td>18</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>27</td><td>28</td><td>21</td><td>27</td><td>20</td><td>10</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>20</td><td>17</td><td>19</td><td>20</td><td>19</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>21</td><td>27</td><td>21</td><td>23</td><td>17</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>19</td><td>22</td><td>22</td><td>19</td><td>12</td><td>8</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>25</td><td>21</td><td>23</td><td>21</td><td>18</td><td>17</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>20</td><td>24</td><td>16</td><td>15</td><td>20</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>26</td><td>24</td><td>26</td><td>21</td><td>23</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>25</td><td>22</td><td>27</td><td>19</td><td>14</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>25</td><td>27</td><td>31</td><td>19</td><td>18</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>21</td><td>21</td><td>19</td><td>16</td><td>17</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>28</td><td>20</td><td>30</td><td>25</td><td>22</td><td>15</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>21</td><td>22</td><td>20</td><td>20</td><td>12</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>22</td><td>24</td><td>25</td><td>28</td><td>15</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>27</td><td>22</td><td>20</td><td>16</td><td>18</td><td>19</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>29</td><td>28</td><td>29</td><td>27</td><td>23</td><td>17</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>26</td><td>27</td><td>19</td><td>20</td><td>14</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>25</td><td>32</td><td>25</td><td>19</td><td>25</td><td>10</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>26</td><td>24</td><td>23</td><td>14</td><td>13</td><td>10</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>25</td><td>25</td><td>19</td><td>24</td><td>18</td><td>15</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3075</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>22</td><td>19</td><td>22</td><td>13</td><td>21</td><td>11</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>16</td><td>22</td><td>20</td><td>25</td><td>13</td><td>12</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>19</td><td>20</td><td>21</td><td>20</td><td>21</td><td>14</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>24</td><td>22</td><td>33</td><td>19</td><td>17</td><td>15</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>19</td><td>26</td><td>22</td><td>14</td><td>19</td><td>15</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>19</td><td>24</td><td>24</td><td>22</td><td>15</td><td>13</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>29</td><td>23</td><td>21</td><td>23</td><td>17</td><td>11</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>30</td><td>24</td><td>26</td><td>23</td><td>21</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>15</td><td>20</td><td>22</td><td>15</td><td>16</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>28</td><td>20</td><td>20</td><td>21</td><td>22</td><td>8</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>18</td><td>23</td><td>23</td><td>18</td><td>13</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>21</td><td>24</td><td>27</td><td>20</td><td>18</td><td>16</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>24</td><td>26</td><td>20</td><td>21</td><td>17</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>27</td><td>27</td><td>23</td><td>27</td><td>19</td><td>16</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>21</td><td>29</td><td>19</td><td>21</td><td>13</td><td>11</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>24</td><td>22</td><td>16</td><td>23</td><td>21</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>22</td><td>20</td><td>21</td><td>17</td><td>16</td><td>19</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>30</td><td>24</td><td>26</td><td>23</td><td>18</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>23</td><td>17</td><td>21</td><td>15</td><td>14</td><td>17</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>25</td><td>21</td><td>25</td><td>22</td><td>19</td><td>12</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>22</td><td>15</td><td>17</td><td>16</td><td>10</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>22</td><td>25</td><td>25</td><td>21</td><td>14</td><td>8</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>24</td><td>22</td><td>23</td><td>20</td><td>19</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>25</td><td>28</td><td>22</td><td>26</td><td>23</td><td>16</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3076</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>20</td><td>20</td><td>17</td><td>16</td><td>13</td><td>11</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>20</td><td>19</td><td>23</td><td>22</td><td>17</td><td>14</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>20</td><td>21</td><td>22</td><td>20</td><td>16</td><td>9</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>20</td><td>20</td><td>22</td><td>16</td><td>15</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>24</td><td>21</td><td>19</td><td>19</td><td>15</td><td>11</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>26</td><td>25</td><td>21</td><td>25</td><td>16</td><td>12</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>21</td><td>21</td><td>21</td><td>15</td><td>11</td><td>11</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>23</td><td>24</td><td>23</td><td>18</td><td>16</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>26</td><td>18</td><td>19</td><td>17</td><td>11</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>24</td><td>26</td><td>27</td><td>20</td><td>19</td><td>18</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>20</td><td>23</td><td>19</td><td>20</td><td>17</td><td>10</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>22</td><td>23</td><td>21</td><td>20</td><td>15</td><td>14</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>29</td><td>22</td><td>22</td><td>19</td><td>16</td><td>10</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>23</td><td>28</td><td>27</td><td>23</td><td>22</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>21</td><td>19</td><td>19</td><td>18</td><td>22</td><td>11</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>25</td><td>24</td><td>22</td><td>21</td><td>25</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>18</td><td>21</td><td>22</td><td>12</td><td>10</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>24</td><td>24</td><td>30</td><td>28</td><td>17</td><td>13</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>18</td><td>22</td><td>18</td><td>19</td><td>10</td><td>9</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>24</td><td>25</td><td>26</td><td>21</td><td>21</td><td>17</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>24</td><td>25</td><td>29</td><td>18</td><td>19</td><td>19</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>22</td><td>25</td><td>25</td><td>24</td><td>21</td><td>17</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>22</td><td>22</td><td>22</td><td>19</td><td>15</td><td>14</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>29</td><td>21</td><td>25</td><td>26</td><td>18</td><td>15</td></tr>
+</table></div>
+<h3>Cube Triple 三方块</h3>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3072</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>33</td><td>31</td><td>30</td><td>34</td><td>27</td><td>24</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>46</td><td>36</td><td>40</td><td>40</td><td>33</td><td>29</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>33</td><td>32</td><td>33</td><td>32</td><td>31</td><td>27</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>38</td><td>33</td><td>37</td><td>39</td><td>33</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>33</td><td>32</td><td>34</td><td>36</td><td>32</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>44</td><td>38</td><td>40</td><td>43</td><td>31</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>34</td><td>28</td><td>35</td><td>34</td><td>29</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>39</td><td>36</td><td>37</td><td>39</td><td>34</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>37</td><td>34</td><td>35</td><td>37</td><td>31</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>39</td><td>34</td><td>39</td><td>40</td><td>30</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>41</td><td>37</td><td>38</td><td>38</td><td>33</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>46</td><td>35</td><td>41</td><td>43</td><td>33</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>39</td><td>29</td><td>31</td><td>36</td><td>30</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>45</td><td>43</td><td>37</td><td>40</td><td>30</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>37</td><td>29</td><td>35</td><td>30</td><td>30</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>39</td><td>40</td><td>36</td><td>35</td><td>33</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>29</td><td>30</td><td>33</td><td>38</td><td>28</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>41</td><td>34</td><td>38</td><td>38</td><td>31</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>34</td><td>27</td><td>32</td><td>36</td><td>36</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>43</td><td>36</td><td>40</td><td>39</td><td>33</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>40</td><td>29</td><td>31</td><td>34</td><td>30</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>44</td><td>31</td><td>36</td><td>41</td><td>30</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>31</td><td>35</td><td>32</td><td>31</td><td>29</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>40</td><td>39</td><td>36</td><td>39</td><td>33</td><td>31</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3073</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>33</td><td>29</td><td>31</td><td>29</td><td>29</td><td>28</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>38</td><td>33</td><td>37</td><td>40</td><td>29</td><td>29</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>35</td><td>33</td><td>32</td><td>34</td><td>30</td><td>25</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>43</td><td>36</td><td>41</td><td>39</td><td>37</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>33</td><td>32</td><td>30</td><td>35</td><td>32</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>43</td><td>32</td><td>38</td><td>42</td><td>33</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>35</td><td>33</td><td>35</td><td>37</td><td>34</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>40</td><td>37</td><td>38</td><td>45</td><td>34</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>38</td><td>34</td><td>33</td><td>34</td><td>30</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>45</td><td>34</td><td>40</td><td>39</td><td>34</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>32</td><td>33</td><td>32</td><td>32</td><td>31</td><td>23</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>40</td><td>37</td><td>41</td><td>37</td><td>32</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>35</td><td>30</td><td>30</td><td>30</td><td>32</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>40</td><td>29</td><td>39</td><td>37</td><td>31</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>35</td><td>28</td><td>34</td><td>35</td><td>30</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>40</td><td>30</td><td>40</td><td>37</td><td>28</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>34</td><td>31</td><td>32</td><td>35</td><td>30</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>38</td><td>40</td><td>36</td><td>39</td><td>32</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>37</td><td>31</td><td>34</td><td>34</td><td>34</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>42</td><td>37</td><td>38</td><td>40</td><td>31</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>36</td><td>31</td><td>29</td><td>33</td><td>28</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>39</td><td>35</td><td>37</td><td>38</td><td>31</td><td>38</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>36</td><td>30</td><td>35</td><td>33</td><td>30</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>46</td><td>38</td><td>36</td><td>42</td><td>35</td><td>31</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3074</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>35</td><td>29</td><td>33</td><td>31</td><td>29</td><td>25</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>42</td><td>34</td><td>34</td><td>37</td><td>28</td><td>26</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>33</td><td>29</td><td>30</td><td>32</td><td>29</td><td>24</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>38</td><td>33</td><td>37</td><td>39</td><td>33</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>36</td><td>28</td><td>35</td><td>35</td><td>34</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>45</td><td>36</td><td>32</td><td>44</td><td>34</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>35</td><td>37</td><td>34</td><td>31</td><td>32</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>40</td><td>36</td><td>35</td><td>38</td><td>29</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>43</td><td>31</td><td>30</td><td>36</td><td>28</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>42</td><td>34</td><td>40</td><td>38</td><td>33</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>42</td><td>33</td><td>33</td><td>31</td><td>32</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>45</td><td>29</td><td>37</td><td>41</td><td>28</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>36</td><td>36</td><td>31</td><td>35</td><td>27</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>49</td><td>38</td><td>37</td><td>42</td><td>34</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>36</td><td>28</td><td>34</td><td>39</td><td>33</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>38</td><td>33</td><td>34</td><td>33</td><td>33</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>40</td><td>31</td><td>35</td><td>36</td><td>31</td><td>25</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>43</td><td>37</td><td>39</td><td>41</td><td>34</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>32</td><td>33</td><td>34</td><td>32</td><td>28</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>42</td><td>39</td><td>39</td><td>35</td><td>32</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>34</td><td>32</td><td>35</td><td>32</td><td>31</td><td>24</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>41</td><td>33</td><td>36</td><td>39</td><td>30</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>36</td><td>31</td><td>30</td><td>37</td><td>31</td><td>23</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>40</td><td>35</td><td>39</td><td>41</td><td>34</td><td>33</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3075</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>35</td><td>33</td><td>32</td><td>30</td><td>31</td><td>28</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>43</td><td>36</td><td>37</td><td>39</td><td>31</td><td>31</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>32</td><td>32</td><td>37</td><td>35</td><td>30</td><td>32</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>38</td><td>36</td><td>35</td><td>38</td><td>31</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>42</td><td>34</td><td>33</td><td>29</td><td>30</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>43</td><td>39</td><td>41</td><td>37</td><td>35</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>35</td><td>30</td><td>40</td><td>32</td><td>32</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>42</td><td>32</td><td>43</td><td>44</td><td>36</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>33</td><td>30</td><td>38</td><td>36</td><td>27</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>38</td><td>32</td><td>34</td><td>40</td><td>32</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>33</td><td>31</td><td>33</td><td>32</td><td>31</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>45</td><td>36</td><td>40</td><td>39</td><td>28</td><td>37</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>36</td><td>30</td><td>34</td><td>36</td><td>27</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>45</td><td>35</td><td>37</td><td>37</td><td>33</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>36</td><td>29</td><td>38</td><td>34</td><td>34</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>48</td><td>32</td><td>39</td><td>41</td><td>31</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>39</td><td>33</td><td>36</td><td>30</td><td>31</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>40</td><td>34</td><td>39</td><td>41</td><td>30</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>35</td><td>31</td><td>30</td><td>40</td><td>34</td><td>25</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>40</td><td>32</td><td>37</td><td>42</td><td>33</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>36</td><td>31</td><td>32</td><td>34</td><td>36</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>42</td><td>38</td><td>34</td><td>37</td><td>32</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>38</td><td>32</td><td>31</td><td>34</td><td>30</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>40</td><td>42</td><td>32</td><td>37</td><td>32</td><td>33</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3076</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>35</td><td>30</td><td>31</td><td>32</td><td>30</td><td>30</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>44</td><td>33</td><td>33</td><td>40</td><td>30</td><td>31</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>39</td><td>28</td><td>29</td><td>37</td><td>27</td><td>28</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>36</td><td>31</td><td>37</td><td>41</td><td>31</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>30</td><td>28</td><td>31</td><td>38</td><td>30</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>38</td><td>31</td><td>41</td><td>40</td><td>28</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>35</td><td>30</td><td>36</td><td>35</td><td>27</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>42</td><td>32</td><td>38</td><td>37</td><td>33</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>37</td><td>36</td><td>34</td><td>34</td><td>30</td><td>20</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>36</td><td>34</td><td>36</td><td>37</td><td>35</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>34</td><td>31</td><td>35</td><td>33</td><td>28</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>39</td><td>32</td><td>36</td><td>41</td><td>35</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>33</td><td>35</td><td>29</td><td>33</td><td>36</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>41</td><td>35</td><td>38</td><td>38</td><td>31</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>35</td><td>32</td><td>29</td><td>35</td><td>31</td><td>25</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>44</td><td>34</td><td>37</td><td>39</td><td>27</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>34</td><td>30</td><td>36</td><td>37</td><td>33</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>36</td><td>37</td><td>40</td><td>38</td><td>28</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>35</td><td>29</td><td>29</td><td>33</td><td>33</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>41</td><td>34</td><td>37</td><td>42</td><td>29</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>38</td><td>31</td><td>35</td><td>34</td><td>28</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>47</td><td>39</td><td>41</td><td>40</td><td>28</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>37</td><td>33</td><td>40</td><td>34</td><td>32</td><td>24</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>40</td><td>37</td><td>38</td><td>41</td><td>37</td><td>35</td></tr>
+</table></div>
+<h3>Cube Quadruple 四方块</h3>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3072</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>28</td><td>23</td><td>28</td><td>36</td><td>31</td><td>30</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>29</td><td>28</td><td>33</td><td>41</td><td>33</td><td>34</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>29</td><td>25</td><td>29</td><td>34</td><td>29</td><td>29</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>30</td><td>26</td><td>35</td><td>39</td><td>37</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>29</td><td>28</td><td>29</td><td>38</td><td>35</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>29</td><td>27</td><td>34</td><td>39</td><td>33</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>29</td><td>27</td><td>32</td><td>38</td><td>33</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>33</td><td>28</td><td>36</td><td>45</td><td>36</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>28</td><td>22</td><td>29</td><td>33</td><td>29</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>31</td><td>29</td><td>30</td><td>38</td><td>33</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>26</td><td>31</td><td>31</td><td>38</td><td>33</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>32</td><td>32</td><td>37</td><td>40</td><td>34</td><td>39</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>29</td><td>29</td><td>26</td><td>37</td><td>27</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>33</td><td>36</td><td>33</td><td>43</td><td>38</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>31</td><td>25</td><td>29</td><td>34</td><td>32</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>30</td><td>33</td><td>35</td><td>41</td><td>32</td><td>38</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>25</td><td>24</td><td>30</td><td>36</td><td>32</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>29</td><td>31</td><td>37</td><td>39</td><td>34</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>27</td><td>26</td><td>32</td><td>36</td><td>34</td><td>24</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>29</td><td>35</td><td>36</td><td>44</td><td>34</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>28</td><td>22</td><td>28</td><td>33</td><td>32</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>33</td><td>27</td><td>35</td><td>42</td><td>30</td><td>38</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>27</td><td>32</td><td>28</td><td>35</td><td>34</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>31</td><td>34</td><td>41</td><td>43</td><td>36</td><td>35</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3073</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>25</td><td>24</td><td>34</td><td>34</td><td>33</td><td>23</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>30</td><td>32</td><td>40</td><td>41</td><td>37</td><td>34</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>25</td><td>22</td><td>31</td><td>36</td><td>35</td><td>31</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>28</td><td>29</td><td>41</td><td>37</td><td>35</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>22</td><td>24</td><td>31</td><td>34</td><td>26</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>28</td><td>28</td><td>34</td><td>37</td><td>40</td><td>37</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>32</td><td>26</td><td>31</td><td>35</td><td>30</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>36</td><td>33</td><td>34</td><td>40</td><td>32</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>27</td><td>23</td><td>33</td><td>33</td><td>32</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>32</td><td>33</td><td>35</td><td>40</td><td>34</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>27</td><td>25</td><td>33</td><td>31</td><td>30</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>31</td><td>31</td><td>41</td><td>37</td><td>34</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>31</td><td>22</td><td>27</td><td>36</td><td>35</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>28</td><td>30</td><td>43</td><td>42</td><td>34</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>28</td><td>26</td><td>34</td><td>36</td><td>31</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>35</td><td>30</td><td>31</td><td>38</td><td>36</td><td>38</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>27</td><td>21</td><td>30</td><td>35</td><td>34</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>32</td><td>38</td><td>38</td><td>43</td><td>37</td><td>36</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>30</td><td>29</td><td>27</td><td>35</td><td>34</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>29</td><td>34</td><td>37</td><td>41</td><td>33</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>28</td><td>25</td><td>29</td><td>38</td><td>28</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>34</td><td>29</td><td>39</td><td>40</td><td>35</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>28</td><td>25</td><td>33</td><td>36</td><td>35</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>35</td><td>26</td><td>37</td><td>41</td><td>32</td><td>39</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3074</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>25</td><td>22</td><td>31</td><td>36</td><td>30</td><td>29</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>32</td><td>35</td><td>30</td><td>37</td><td>36</td><td>34</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>29</td><td>25</td><td>26</td><td>36</td><td>34</td><td>32</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>29</td><td>33</td><td>36</td><td>42</td><td>33</td><td>38</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>27</td><td>27</td><td>33</td><td>38</td><td>35</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>34</td><td>33</td><td>38</td><td>38</td><td>35</td><td>38</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>27</td><td>29</td><td>29</td><td>33</td><td>31</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>30</td><td>29</td><td>34</td><td>43</td><td>33</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>26</td><td>22</td><td>31</td><td>36</td><td>34</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>37</td><td>27</td><td>37</td><td>38</td><td>40</td><td>38</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>30</td><td>26</td><td>31</td><td>37</td><td>29</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>29</td><td>34</td><td>36</td><td>42</td><td>34</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>26</td><td>24</td><td>33</td><td>37</td><td>29</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>33</td><td>32</td><td>39</td><td>43</td><td>30</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>29</td><td>21</td><td>28</td><td>33</td><td>32</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>31</td><td>27</td><td>36</td><td>36</td><td>31</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>26</td><td>27</td><td>33</td><td>37</td><td>33</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>33</td><td>30</td><td>37</td><td>41</td><td>35</td><td>35</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>30</td><td>29</td><td>29</td><td>33</td><td>30</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>33</td><td>29</td><td>34</td><td>42</td><td>39</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>24</td><td>27</td><td>31</td><td>37</td><td>31</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>31</td><td>30</td><td>36</td><td>41</td><td>33</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>25</td><td>29</td><td>27</td><td>37</td><td>32</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>34</td><td>31</td><td>39</td><td>41</td><td>36</td><td>38</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3075</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>26</td><td>22</td><td>28</td><td>32</td><td>27</td><td>27</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>30</td><td>24</td><td>35</td><td>37</td><td>36</td><td>30</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>26</td><td>24</td><td>31</td><td>32</td><td>30</td><td>29</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>33</td><td>34</td><td>37</td><td>41</td><td>35</td><td>37</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>28</td><td>28</td><td>32</td><td>34</td><td>28</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>28</td><td>33</td><td>38</td><td>39</td><td>29</td><td>39</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>27</td><td>22</td><td>32</td><td>39</td><td>30</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>33</td><td>30</td><td>37</td><td>42</td><td>37</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>27</td><td>25</td><td>36</td><td>35</td><td>30</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>32</td><td>31</td><td>35</td><td>41</td><td>33</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>29</td><td>26</td><td>32</td><td>34</td><td>30</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>31</td><td>29</td><td>38</td><td>44</td><td>34</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>30</td><td>25</td><td>30</td><td>38</td><td>30</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>33</td><td>31</td><td>42</td><td>43</td><td>33</td><td>35</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>31</td><td>26</td><td>28</td><td>37</td><td>33</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>31</td><td>32</td><td>35</td><td>39</td><td>32</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>27</td><td>27</td><td>28</td><td>36</td><td>31</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>31</td><td>35</td><td>38</td><td>35</td><td>33</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>25</td><td>27</td><td>32</td><td>35</td><td>32</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>33</td><td>34</td><td>40</td><td>43</td><td>33</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>27</td><td>30</td><td>27</td><td>37</td><td>31</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>35</td><td>32</td><td>38</td><td>41</td><td>33</td><td>36</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>29</td><td>29</td><td>29</td><td>37</td><td>29</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>34</td><td>31</td><td>40</td><td>40</td><td>35</td><td>31</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3076</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>27</td><td>24</td><td>26</td><td>31</td><td>26</td><td>32</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>29</td><td>34</td><td>35</td><td>42</td><td>34</td><td>36</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>27</td><td>24</td><td>29</td><td>39</td><td>35</td><td>26</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>34</td><td>32</td><td>37</td><td>39</td><td>35</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>25</td><td>27</td><td>33</td><td>36</td><td>30</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>30</td><td>32</td><td>38</td><td>40</td><td>33</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>29</td><td>31</td><td>28</td><td>35</td><td>33</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>33</td><td>34</td><td>42</td><td>43</td><td>36</td><td>41</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>25</td><td>26</td><td>29</td><td>35</td><td>32</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>27</td><td>26</td><td>34</td><td>42</td><td>30</td><td>34</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>28</td><td>28</td><td>28</td><td>37</td><td>31</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>33</td><td>34</td><td>32</td><td>46</td><td>37</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>28</td><td>26</td><td>32</td><td>36</td><td>30</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>25</td><td>32</td><td>34</td><td>40</td><td>35</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>32</td><td>26</td><td>30</td><td>38</td><td>32</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>33</td><td>29</td><td>38</td><td>41</td><td>35</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>23</td><td>22</td><td>34</td><td>35</td><td>31</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>27</td><td>30</td><td>42</td><td>42</td><td>38</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>28</td><td>25</td><td>31</td><td>35</td><td>33</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>34</td><td>29</td><td>37</td><td>41</td><td>37</td><td>35</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>29</td><td>28</td><td>30</td><td>33</td><td>29</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>34</td><td>29</td><td>41</td><td>43</td><td>36</td><td>36</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>29</td><td>23</td><td>31</td><td>34</td><td>34</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>33</td><td>26</td><td>33</td><td>42</td><td>32</td><td>35</td></tr>
+</table></div>
+<h3>Scene 场景</h3>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3072</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>36</td><td>31</td><td>24</td><td>32</td><td>23</td><td>38</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>28</td><td>21</td><td>21</td><td>31</td><td>16</td><td>26</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>40</td><td>37</td><td>32</td><td>36</td><td>28</td><td>36</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>30</td><td>22</td><td>30</td><td>28</td><td>23</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>39</td><td>33</td><td>32</td><td>31</td><td>28</td><td>39</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>31</td><td>22</td><td>29</td><td>24</td><td>15</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>39</td><td>36</td><td>27</td><td>51</td><td>26</td><td>42</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>28</td><td>21</td><td>27</td><td>30</td><td>19</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>39</td><td>28</td><td>31</td><td>33</td><td>25</td><td>35</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>33</td><td>22</td><td>30</td><td>27</td><td>19</td><td>24</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>46</td><td>33</td><td>33</td><td>39</td><td>31</td><td>40</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>29</td><td>23</td><td>28</td><td>23</td><td>20</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>42</td><td>35</td><td>41</td><td>36</td><td>34</td><td>38</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>34</td><td>22</td><td>29</td><td>33</td><td>18</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>39</td><td>33</td><td>34</td><td>39</td><td>28</td><td>43</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>33</td><td>20</td><td>29</td><td>30</td><td>20</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>40</td><td>37</td><td>38</td><td>39</td><td>26</td><td>42</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>35</td><td>22</td><td>30</td><td>30</td><td>18</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>44</td><td>41</td><td>36</td><td>37</td><td>34</td><td>47</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>35</td><td>23</td><td>31</td><td>29</td><td>20</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>37</td><td>34</td><td>36</td><td>43</td><td>35</td><td>42</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>32</td><td>22</td><td>30</td><td>29</td><td>18</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>41</td><td>32</td><td>30</td><td>41</td><td>34</td><td>42</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>30</td><td>22</td><td>29</td><td>26</td><td>16</td><td>29</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3073</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>31</td><td>26</td><td>24</td><td>36</td><td>26</td><td>39</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>29</td><td>25</td><td>26</td><td>27</td><td>23</td><td>23</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>37</td><td>32</td><td>24</td><td>35</td><td>21</td><td>40</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>35</td><td>22</td><td>28</td><td>27</td><td>18</td><td>29</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>38</td><td>30</td><td>36</td><td>37</td><td>35</td><td>41</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>34</td><td>23</td><td>29</td><td>29</td><td>23</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>38</td><td>37</td><td>36</td><td>39</td><td>33</td><td>36</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>33</td><td>22</td><td>31</td><td>32</td><td>24</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>42</td><td>33</td><td>31</td><td>36</td><td>29</td><td>41</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>33</td><td>23</td><td>30</td><td>29</td><td>23</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>40</td><td>39</td><td>40</td><td>39</td><td>35</td><td>49</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>34</td><td>22</td><td>30</td><td>28</td><td>19</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>35</td><td>29</td><td>35</td><td>38</td><td>29</td><td>37</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>32</td><td>21</td><td>26</td><td>27</td><td>23</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>42</td><td>31</td><td>35</td><td>43</td><td>30</td><td>40</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>36</td><td>22</td><td>24</td><td>29</td><td>22</td><td>32</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>44</td><td>37</td><td>36</td><td>43</td><td>29</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>36</td><td>23</td><td>29</td><td>31</td><td>20</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>42</td><td>34</td><td>35</td><td>41</td><td>27</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>31</td><td>22</td><td>29</td><td>30</td><td>17</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>45</td><td>31</td><td>41</td><td>42</td><td>38</td><td>59</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>34</td><td>24</td><td>32</td><td>32</td><td>20</td><td>28</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>38</td><td>32</td><td>29</td><td>41</td><td>25</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>33</td><td>20</td><td>22</td><td>21</td><td>19</td><td>29</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3074</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>30</td><td>29</td><td>27</td><td>36</td><td>23</td><td>33</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>27</td><td>20</td><td>23</td><td>25</td><td>17</td><td>25</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>36</td><td>33</td><td>29</td><td>39</td><td>26</td><td>37</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>33</td><td>24</td><td>26</td><td>28</td><td>20</td><td>25</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>40</td><td>37</td><td>34</td><td>30</td><td>26</td><td>33</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>30</td><td>24</td><td>24</td><td>27</td><td>17</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>41</td><td>38</td><td>34</td><td>33</td><td>34</td><td>41</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>30</td><td>23</td><td>26</td><td>29</td><td>21</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>34</td><td>30</td><td>32</td><td>35</td><td>26</td><td>42</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>29</td><td>22</td><td>23</td><td>29</td><td>18</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>42</td><td>30</td><td>36</td><td>42</td><td>33</td><td>44</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>30</td><td>22</td><td>27</td><td>24</td><td>20</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>44</td><td>31</td><td>37</td><td>45</td><td>32</td><td>45</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>34</td><td>20</td><td>31</td><td>30</td><td>19</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>35</td><td>34</td><td>36</td><td>37</td><td>28</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>32</td><td>21</td><td>24</td><td>26</td><td>22</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>35</td><td>33</td><td>40</td><td>35</td><td>34</td><td>39</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>31</td><td>20</td><td>28</td><td>26</td><td>21</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>42</td><td>39</td><td>30</td><td>40</td><td>30</td><td>36</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>31</td><td>26</td><td>25</td><td>26</td><td>22</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>50</td><td>39</td><td>39</td><td>41</td><td>32</td><td>44</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>32</td><td>22</td><td>26</td><td>25</td><td>15</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>41</td><td>30</td><td>34</td><td>34</td><td>26</td><td>42</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>32</td><td>23</td><td>32</td><td>30</td><td>20</td><td>25</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3075</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>34</td><td>32</td><td>32</td><td>34</td><td>18</td><td>35</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>33</td><td>23</td><td>25</td><td>27</td><td>12</td><td>21</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>39</td><td>30</td><td>33</td><td>32</td><td>24</td><td>32</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>36</td><td>24</td><td>27</td><td>27</td><td>20</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>41</td><td>31</td><td>34</td><td>40</td><td>27</td><td>50</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>31</td><td>23</td><td>26</td><td>28</td><td>21</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>44</td><td>29</td><td>36</td><td>40</td><td>26</td><td>42</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>33</td><td>22</td><td>27</td><td>31</td><td>20</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>43</td><td>36</td><td>36</td><td>42</td><td>37</td><td>44</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>28</td><td>21</td><td>27</td><td>26</td><td>18</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>50</td><td>35</td><td>38</td><td>40</td><td>32</td><td>42</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>33</td><td>22</td><td>26</td><td>30</td><td>21</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>38</td><td>34</td><td>31</td><td>38</td><td>28</td><td>40</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>31</td><td>20</td><td>27</td><td>28</td><td>15</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>39</td><td>31</td><td>36</td><td>35</td><td>22</td><td>49</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>36</td><td>23</td><td>31</td><td>30</td><td>21</td><td>34</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>39</td><td>34</td><td>33</td><td>41</td><td>30</td><td>41</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>32</td><td>25</td><td>29</td><td>29</td><td>20</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>32</td><td>30</td><td>32</td><td>40</td><td>32</td><td>41</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>30</td><td>21</td><td>23</td><td>28</td><td>16</td><td>27</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>45</td><td>38</td><td>31</td><td>41</td><td>33</td><td>41</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>34</td><td>23</td><td>26</td><td>30</td><td>17</td><td>31</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>44</td><td>30</td><td>39</td><td>34</td><td>24</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>30</td><td>22</td><td>28</td><td>26</td><td>20</td><td>26</td></tr>
+</table></div>
+<p class='mut' style='margin:.6em 0 0'>训练种子 3076</p><div class='wrap'><table><tr><th>臂 × 求解器</th><th>s101</th><th>s102</th><th>s103</th><th>s104</th><th>s105</th><th>s106</th></tr>
+<tr><td>基线(无 Q) · cem</td><td>37</td><td>30</td><td>30</td><td>35</td><td>22</td><td>32</td></tr>
+<tr><td>基线(无 Q) · icem</td><td>35</td><td>25</td><td>28</td><td>26</td><td>16</td><td>33</td></tr>
+<tr><td>全 Q(未门控) · cem</td><td>41</td><td>32</td><td>42</td><td>40</td><td>28</td><td>31</td></tr>
+<tr><td>全 Q(未门控) · icem</td><td>28</td><td>22</td><td>26</td><td>28</td><td>16</td><td>27</td></tr>
+<tr><td>hinge 门控 λ=0.01 · cem</td><td>41</td><td>42</td><td>33</td><td>36</td><td>31</td><td>42</td></tr>
+<tr><td>hinge 门控 λ=0.01 · icem</td><td>29</td><td>23</td><td>33</td><td>27</td><td>21</td><td>30</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · cem</td><td>39</td><td>41</td><td>32</td><td>38</td><td>22</td><td>44</td></tr>
+<tr><td>hinge 门控 λ=0.03(定稿) · icem</td><td>32</td><td>22</td><td>24</td><td>29</td><td>20</td><td>28</td></tr>
+<tr><td>hinge 门控 λ=0.05 · cem</td><td>39</td><td>38</td><td>40</td><td>38</td><td>35</td><td>45</td></tr>
+<tr><td>hinge 门控 λ=0.05 · icem</td><td>35</td><td>21</td><td>33</td><td>28</td><td>23</td><td>32</td></tr>
+<tr><td>hinge 门控 λ=0.1 · cem</td><td>38</td><td>30</td><td>31</td><td>35</td><td>26</td><td>31</td></tr>
+<tr><td>hinge 门控 λ=0.1 · icem</td><td>32</td><td>19</td><td>25</td><td>27</td><td>19</td><td>26</td></tr>
+<tr><td>hinge 门控 λ=1.0 · cem</td><td>47</td><td>38</td><td>36</td><td>38</td><td>32</td><td>41</td></tr>
+<tr><td>hinge 门控 λ=1.0 · icem</td><td>32</td><td>24</td><td>26</td><td>26</td><td>16</td><td>33</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · cem</td><td>39</td><td>34</td><td>39</td><td>36</td><td>24</td><td>36</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01 · icem</td><td>34</td><td>23</td><td>24</td><td>26</td><td>20</td><td>30</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · cem</td><td>50</td><td>35</td><td>36</td><td>36</td><td>36</td><td>41</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03 · icem</td><td>29</td><td>23</td><td>28</td><td>30</td><td>17</td><td>29</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · cem</td><td>45</td><td>33</td><td>36</td><td>39</td><td>27</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05 · icem</td><td>32</td><td>22</td><td>28</td><td>28</td><td>19</td><td>26</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · cem</td><td>39</td><td>34</td><td>38</td><td>36</td><td>37</td><td>41</td></tr>
+<tr><td>InfoNCE 门控 λ=0.1 · icem</td><td>33</td><td>21</td><td>27</td><td>27</td><td>21</td><td>23</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · cem</td><td>42</td><td>34</td><td>35</td><td>38</td><td>28</td><td>37</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0 · icem</td><td>30</td><td>22</td><td>24</td><td>26</td><td>19</td><td>28</td></tr>
+</table></div>
+<h2>附注:总排名与配对判决(满格 240 格/臂)</h2>
+<div class='wrap'><table><tr><th>臂(按总均值降序)</th><th>总均值</th><th>双方块</th><th>三方块</th><th>四方块</th><th>场景</th></tr>
+<tr><td>InfoNCE 门控 λ=0.1</td><td>29.9</td><td>20.4</td><td>34.1</td><td>32.3</td><td>32.9</td></tr>
+<tr><td>InfoNCE 门控 λ=0.03</td><td>29.8</td><td>20.3</td><td>34.3</td><td>32.4</td><td>32.0</td></tr>
+<tr><td>hinge 门控 λ=0.1</td><td>29.7</td><td>19.8</td><td>34.7</td><td>32.7</td><td>31.5</td></tr>
+<tr><td>InfoNCE 门控 λ=0.05</td><td>29.7</td><td>20.2</td><td>34.4</td><td>33.0</td><td>31.2</td></tr>
+<tr><td>hinge 门控 λ=1.0</td><td>29.7</td><td>20.5</td><td>34.2</td><td>32.5</td><td>31.5</td></tr>
+<tr class="rec"><td>hinge 门控 λ=0.03(定稿)</td><td>29.7</td><td>19.6</td><td>34.5</td><td>32.9</td><td>31.6</td></tr>
+<tr><td>InfoNCE 门控 λ=1.0</td><td>29.6</td><td>20.9</td><td>34.6</td><td>33.0</td><td>30.0</td></tr>
+<tr><td>hinge 门控 λ=0.01</td><td>29.4</td><td>19.8</td><td>34.5</td><td>32.4</td><td>30.9</td></tr>
+<tr><td>InfoNCE 门控 λ=0.01</td><td>29.3</td><td>19.8</td><td>33.8</td><td>32.2</td><td>31.3</td></tr>
+<tr><td>hinge 门控 λ=0.05</td><td>29.0</td><td>19.3</td><td>34.0</td><td>31.5</td><td>31.2</td></tr>
+<tr><td>全 Q(未门控)</td><td>28.6</td><td>18.9</td><td>33.6</td><td>32.2</td><td>29.9</td></tr>
+<tr><td>基线(无 Q)</td><td>27.2</td><td>17.2</td><td>32.9</td><td>31.1</td><td>27.5</td></tr>
+</table></div>
+<div class="note">
+<p><b>定稿配方(hinge,margin=1,λ=0.03)vs 全 Q 未门控</b>:240 配对格,Δ = <b>+1.0pp</b>,132/79,符号 p=0.0003,Wilcoxon p=0.0002——2 种子时的 p≈0.055 悬案<b>正式显著</b>。vs 基线:Δ=+2.5pp,p&lt;0.0001。InfoNCE λ0.03 配方同向(Δ=+1.1pp,p=0.0001)。</p>
+<p><b>λ 剂量不敏感(满格复核)</b>:10 个门控臂总均值全落在 29.0–29.9 的 1.0pp 带内;名义第一(InfoNCE λ0.1,29.9)vs 定稿 Δ=+0.3pp p=0.69(n.s.);每臂 vs 定稿的配对检验无一显著为正,唯一合并显著是 hinge λ0.05 更差(−0.7pp,p=0.014);每(任务×种子×求解器)的名义最佳臂跨种子几乎槽槽翻牌。层级:门控 ≫ λ 取值。</p>
+<p class="mut">分任务(定稿 vs 未门控):双方块 +0.8(符号 p=0.011)、三方块 +0.9(p=0.027)、四方块 +0.7(n.s.)、场景 +1.7(Wilcoxon p=0.020)。事后选臂增益 +0.8~+3.0pp 带选择偏置,仅参考。</p>
+</div></body></html>
