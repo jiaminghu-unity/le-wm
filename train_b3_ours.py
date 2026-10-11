@@ -13,7 +13,7 @@ from touchwm.mode_residual import GatedResidualJEPA
 from touchwm.data_adapter import MultiViewClipDataset
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--variant", choices=["b3", "ours", "ours2", "front", "wrist"], required=True)
+ap.add_argument("--variant", choices=["b3", "ours", "ours2", "front", "wrist", "duet"], required=True)
 ap.add_argument("--steps", type=int, default=100_000)
 args = ap.parse_args()
 sup = args.variant in ("ours", "ours2")
@@ -43,7 +43,10 @@ val_batch = None
 
 dl = DataLoader(train_ds, batch_size=BS, shuffle=True, num_workers=6,
                 drop_last=True, persistent_workers=True, prefetch_factor=4)
-if args.variant in ("front", "wrist"):
+if args.variant == "duet":
+    from touchwm.duet_diag import DuetDiagJEPA
+    model = DuetDiagJEPA().to(dev)
+elif args.variant in ("front", "wrist"):
     from touchwm.front_only import FrontOnlyJEPA
     model = FrontOnlyJEPA(view=args.variant).to(dev)
 elif args.variant == "ours2":
@@ -69,7 +72,7 @@ def validate():
                      for k in ("front", "wrist", "action", "mode")}
     model.eval()
     z = model.encode({"front": val_batch["front"], "wrist": val_batch["wrist"]})
-    if args.variant in ("front", "wrist"):
+    if args.variant in ("front", "wrist", "duet"):
         pred = model.predict(z[:, :-1], val_batch["action"]); logits = None
     else:
         pred, logits = model.predict_gated(z[:, :-1], val_batch["action"], None)
@@ -90,7 +93,7 @@ while step < args.steps:
     for b in dl:
         obs = {"front": b["front"].to(dev, non_blocking=True),
                "wrist": b["wrist"].to(dev, non_blocking=True)}
-        if args.variant in ("front", "wrist"):
+        if args.variant in ("front", "wrist", "duet"):
             out = model.loss(obs, b["action"].to(dev))
         else:
             out = model.loss_gated(obs, b["action"].to(dev), b["mode"].to(dev),
