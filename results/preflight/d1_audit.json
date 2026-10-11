@@ -1,0 +1,24 @@
+{
+  "pilot_step": 14000,
+  "nuisance_r2": 0.0418,
+  "S1_dino_wrist": {
+    "tactile_r2_incr": 0.0745,
+    "mode_macro_f1": 0.6429
+  },
+  "S2_adapted_w": {
+    "tactile_r2_incr": 0.0704,
+    "mode_macro_f1": 0.6176
+  },
+  "S3_cross_w": {
+    "tactile_r2_incr": 0.0606,
+    "mode_macro_f1": 0.6321
+  },
+  "S4a_pool": {
+    "tactile_r2_incr": 0.0408,
+    "mode_macro_f1": 0.6046
+  },
+  "S4b_joint": {
+    "tactile_r2_incr": 0.032,
+    "mode_macro_f1": 0.5764
+  }
+}
