@@ -1,0 +1,31 @@
+{
+  "n_test": 1563,
+  "modelA_single_mse_test": 3.8890436436281464,
+  "per_mode_test_mse": {
+    "0": {
+      "n": 765,
+      "single": 2.6996,
+      "oracle_mode": 1.8747,
+      "random_mode": 2.7413,
+      "oracle_gain_pct": 30.56
+    },
+    "1": {
+      "n": 495,
+      "single": 4.9772,
+      "oracle_mode": 4.3639,
+      "random_mode": 4.9618,
+      "oracle_gain_pct": 12.32
+    },
+    "2": {
+      "n": 303,
+      "single": 5.1144,
+      "oracle_mode": 3.6452,
+      "random_mode": 5.2007,
+      "oracle_gain_pct": 28.73
+    }
+  },
+  "oracle_overall_gain_pct": 22.7,
+  "predicted_gate_mse_test": 3.188936948776245,
+  "predicted_gate_gain_pct": 18.0,
+  "gate_agreement_test": 0.6942
+}

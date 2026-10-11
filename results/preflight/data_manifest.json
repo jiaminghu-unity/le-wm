@@ -1,0 +1,324 @@
+{
+  "task": "insertion_usb",
+  "data_root": "data/demo_data/insertion_usb",
+  "arrays": {
+    "data/action": {
+      "shape": [
+        13671,
+        6
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -2.0,
+        "max": 1.8514286279678345,
+        "mean": -0.07695418885890445,
+        "std": 0.3782093726411698,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/dof_pos": {
+      "shape": [
+        13671,
+        9
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -2.7131381034851074,
+        "max": 3.0569190979003906,
+        "mean": 0.11598365887411036,
+        "std": 1.1803279271746088,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/dof_vel": {
+      "shape": [
+        13671,
+        9
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.6062106490135193,
+        "max": 0.5802822113037109,
+        "mean": 0.011224523604675348,
+        "std": 0.06440778391189703,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/ee_pos": {
+      "shape": [
+        13671,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.10077965259552002,
+        "max": 0.5792768001556396,
+        "mean": 0.19846044400261084,
+        "std": 0.21854114233041652,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/ee_quat": {
+      "shape": [
+        13671,
+        4
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.14493757486343384,
+        "max": 0.9999964833259583,
+        "mean": 0.25045391834483965,
+        "std": 0.4327502898620172,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/front": {
+      "shape": [
+        13671,
+        256,
+        256,
+        3
+      ],
+      "dtype": "float32",
+      "frame0_min": 0.0,
+      "frame0_max": 1.0
+    },
+    "data/plug_pos": {
+      "shape": [
+        13671,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.10213099420070648,
+        "max": 0.5866943001747131,
+        "mean": 0.18722800538751924,
+        "std": 0.2239201922698056,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/plug_quat": {
+      "shape": [
+        13671,
+        4
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.11328049004077911,
+        "max": 0.9999975562095642,
+        "mean": 0.25227272680209095,
+        "std": 0.4316925589615915,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/pointcloud": {
+      "shape": [
+        13671,
+        1024,
+        6
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.40803539752960205,
+        "max": 1.0,
+        "mean": 0.4975778824319659,
+        "std": 0.436743417527688,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": true
+      }
+    },
+    "data/socket_pos": {
+      "shape": [
+        13671,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.04959932342171669,
+        "max": 0.5499542355537415,
+        "mean": 0.1730542822750437,
+        "std": 0.2304098061606161,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/socket_pos_gt": {
+      "shape": [
+        13671,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.04959932342171669,
+        "max": 0.5499542355537415,
+        "mean": 0.1730542822750437,
+        "std": 0.2304098061606161,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/socket_quat": {
+      "shape": [
+        13671,
+        4
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -3.9110414126047877e-13,
+        "max": 1.0000001192092896,
+        "mean": 0.2500000298742443,
+        "std": 0.43301275346983176,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/step_idx": {
+      "shape": [
+        13671
+      ],
+      "dtype": "int32",
+      "stats": {
+        "min": 0.0,
+        "max": 111.0,
+        "mean": 34.78187403993856,
+        "std": 21.861534098319023,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    },
+    "data/tactile_depth_right": {
+      "shape": [
+        13671,
+        320,
+        240
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": 0.0,
+        "max": 0.9995312690734863,
+        "mean": 0.25770484847989794,
+        "std": 0.36781000070501063,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": true
+      }
+    },
+    "data/tactile_force_field_right": {
+      "shape": [
+        13671,
+        10,
+        14,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": -0.0026885266415774822,
+        "max": 0.0026817612815648317,
+        "mean": -2.5859604675438163e-05,
+        "std": 0.0004102381124545076,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": true
+      }
+    },
+    "data/tactile_rgb_right": {
+      "shape": [
+        13671,
+        320,
+        240,
+        3
+      ],
+      "dtype": "float32",
+      "stats": {
+        "min": 0.01568627543747425,
+        "max": 0.7725490927696228,
+        "mean": 0.48012821756936946,
+        "std": 0.09338225539207567,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": true
+      }
+    },
+    "data/wrist": {
+      "shape": [
+        13671,
+        256,
+        256,
+        3
+      ],
+      "dtype": "float32",
+      "frame0_min": 0.08627451211214066,
+      "frame0_max": 1.0
+    },
+    "meta/episode_ends": {
+      "shape": [
+        201
+      ],
+      "dtype": "int64",
+      "stats": {
+        "min": 63.0,
+        "max": 13671.0,
+        "mean": 7259.636815920398,
+        "std": 3901.097747335547,
+        "nan": 0,
+        "inf": 0,
+        "subsampled": false
+      }
+    }
+  },
+  "episodes": {
+    "count": 201,
+    "total_frames": 13671,
+    "valid_transitions": 13470,
+    "len_min": 37,
+    "len_max": 112,
+    "len_mean": 68.01492537313433,
+    "monotonic_ends": true
+  },
+  "alignment": {
+    "first_axis_lengths": {
+      "data/action": 13671,
+      "data/front": 13671,
+      "data/tactile_depth_right": 13671,
+      "data/tactile_force_field_right": 13671,
+      "data/tactile_rgb_right": 13671,
+      "data/wrist": 13671
+    },
+    "all_lengths_equal": true,
+    "lengths_match_episode_ends": true,
+    "boundary_crossing_pairs_excluded": 200,
+    "note": "Both cameras and tactile share the first axis with action; per-row sampling therefore uses identical indices across keys. Transitions must be generated within [start, end) per episode so no pair crosses episode boundaries."
+  },
+  "required_keys_present": {
+    "front": true,
+    "wrist": true,
+    "action": true,
+    "tactile_force_field_right": true,
+    "dof_pos": true,
+    "dof_vel": true,
+    "ee_pos": true,
+    "plug_pos": true,
+    "socket_pos_gt": true,
+    "plug_quat": true,
+    "socket_quat": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "test_F": {
+    "fused_r2": -0.027812600135803223,
+    "legacy_wrist_r2": 0.22259587049484253,
+    "retention_ratio": -0.125
+  },
+  "M5_fused_action": {
+    "C": 1.0,
+    "macro_f1": 0.4936,
+    "mode2_auprc": 0.3856
+  },
+  "wm_error_by_mode": {
+    "0": {
+      "n": 740,
+      "pred_mse": 0.00257,
+      "persistence_mse": 0.00103,
+      "pred_over_persistence": 2.495
+    },
+    "1": {
+      "n": 492,
+      "pred_mse": 0.00344,
+      "persistence_mse": 0.00194,
+      "pred_over_persistence": 1.777
+    },
+    "2": {
+      "n": 303,
+      "pred_mse": 0.00377,
+      "persistence_mse": 0.00121,
+      "pred_over_persistence": 3.127
+    }
+  }
+}

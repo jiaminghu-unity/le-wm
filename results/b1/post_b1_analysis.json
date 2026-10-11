@@ -1,0 +1,222 @@
+{
+  "ckpt_step": 100000,
+  "testF_nuisance_action_phase_r2": 0.0418,
+  "testF_A_legacy_wrist": {
+    "r2": 0.1088,
+    "alpha": 1000.0,
+    "dims": 519,
+    "incremental_r2_over_nuisance": 0.067,
+    "episode_positive_gain_frac": 0.833,
+    "frac_ci95": [
+      0.7,
+      0.933
+    ]
+  },
+  "testF_B_b1_prepool_wrist": {
+    "r2": 0.0826,
+    "alpha": 1000.0,
+    "dims": 199,
+    "incremental_r2_over_nuisance": 0.0408,
+    "episode_positive_gain_frac": 0.9,
+    "frac_ci95": [
+      0.767,
+      1.0
+    ]
+  },
+  "testF_C_b1_joint_latent": {
+    "r2": 0.0439,
+    "alpha": 1000.0,
+    "dims": 199,
+    "incremental_r2_over_nuisance": 0.0021,
+    "episode_positive_gain_frac": 0.633,
+    "frac_ci95": [
+      0.467,
+      0.8
+    ]
+  },
+  "m5_action_phase": {
+    "macro_f1": 0.4971,
+    "mode2_auprc": 0.4345,
+    "confusion": [
+      [
+        631,
+        129,
+        5
+      ],
+      [
+        175,
+        257,
+        63
+      ],
+      [
+        31,
+        222,
+        50
+      ]
+    ]
+  },
+  "m5_legacy_wrist_action": {
+    "macro_f1": 0.6371,
+    "mode2_auprc": 0.5146,
+    "confusion": [
+      [
+        683,
+        64,
+        18
+      ],
+      [
+        88,
+        313,
+        94
+      ],
+      [
+        46,
+        143,
+        114
+      ]
+    ]
+  },
+  "m5_b1_latent_action": {
+    "macro_f1": 0.5367,
+    "mode2_auprc": 0.4544,
+    "confusion": [
+      [
+        618,
+        112,
+        35
+      ],
+      [
+        165,
+        216,
+        114
+      ],
+      [
+        22,
+        172,
+        109
+      ]
+    ]
+  },
+  "m5_b1_prepool_wrist_action": {
+    "macro_f1": 0.5855,
+    "mode2_auprc": 0.4459,
+    "confusion": [
+      [
+        672,
+        59,
+        34
+      ],
+      [
+        142,
+        222,
+        131
+      ],
+      [
+        36,
+        136,
+        131
+      ]
+    ]
+  },
+  "m5_legacy_front_action": {
+    "macro_f1": 0.3828,
+    "mode2_auprc": 0.3334,
+    "confusion": [
+      [
+        395,
+        300,
+        70
+      ],
+      [
+        213,
+        189,
+        93
+      ],
+      [
+        73,
+        157,
+        73
+      ]
+    ]
+  },
+  "wm_mode_errors": {
+    "0": {
+      "h1": {
+        "n": 725,
+        "pred_mse": 0.001426,
+        "pers_mse": 0.001799,
+        "ratio": 0.792
+      },
+      "h2": {
+        "n": 725,
+        "pred_mse": 0.004053,
+        "pers_mse": 0.007101,
+        "ratio": 0.571
+      },
+      "h4": {
+        "n": 725,
+        "pred_mse": 0.013654,
+        "pers_mse": 0.028152,
+        "ratio": 0.485
+      },
+      "h6": {
+        "n": 725,
+        "pred_mse": 0.029477,
+        "pers_mse": 0.061888,
+        "ratio": 0.476
+      }
+    },
+    "1": {
+      "h1": {
+        "n": 428,
+        "pred_mse": 0.0017,
+        "pers_mse": 0.002868,
+        "ratio": 0.593
+      },
+      "h2": {
+        "n": 428,
+        "pred_mse": 0.004748,
+        "pers_mse": 0.010507,
+        "ratio": 0.452
+      },
+      "h4": {
+        "n": 428,
+        "pred_mse": 0.014347,
+        "pers_mse": 0.036738,
+        "ratio": 0.391
+      },
+      "h6": {
+        "n": 428,
+        "pred_mse": 0.027483,
+        "pers_mse": 0.073251,
+        "ratio": 0.375
+      }
+    },
+    "2": {
+      "h1": {
+        "n": 256,
+        "pred_mse": 0.001635,
+        "pers_mse": 0.002199,
+        "ratio": 0.744
+      },
+      "h2": {
+        "n": 256,
+        "pred_mse": 0.004456,
+        "pers_mse": 0.007744,
+        "ratio": 0.575
+      },
+      "h4": {
+        "n": 256,
+        "pred_mse": 0.012695,
+        "pers_mse": 0.026273,
+        "ratio": 0.483
+      },
+      "h6": {
+        "n": 256,
+        "pred_mse": 0.024346,
+        "pers_mse": 0.051181,
+        "ratio": 0.476
+      }
+    }
+  }
+}
