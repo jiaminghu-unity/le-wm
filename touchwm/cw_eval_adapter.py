@@ -22,9 +22,9 @@ class MVJepaWorldModel(nn.Module):
         if variant == "b1":
             from touchwm.lewm_adapter import MultiViewJEPA
             self.model = MultiViewJEPA()
-        elif variant == "front":
+        elif variant in ("front", "wrist"):
             from touchwm.front_only import FrontOnlyJEPA
-            self.model = FrontOnlyJEPA()
+            self.model = FrontOnlyJEPA(view=variant)
         elif variant == "ours2":
             from touchwm.mode_residual import GatedResidualJEPA
             self.model = GatedResidualJEPA(wrist_skip=True)

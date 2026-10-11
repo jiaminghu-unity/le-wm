@@ -10,15 +10,16 @@ from .lewm_adapter import MultiViewJEPA
 
 
 class FrontOnlyEncoder(nn.Module):
-    def __init__(self, dim=192, num_queries=8, latent_dim=192):
+    def __init__(self, dim=192, num_queries=8, latent_dim=192, view="front"):
         super().__init__()
+        self.view = view
         self.vit = PatchViT(dim=dim)
         self.pool = QueryPool(dim, num_queries)
         self.project = nn.Linear(num_queries * dim, latent_dim)
         self.latent_dim = latent_dim
 
     def encode(self, obs):
-        f = obs["front"]
+        f = obs[self.view]
         B, T = f.shape[:2]
         tok = self.vit(rearrange(f, "b t c h w -> (b t) c h w").float())
         z = self.project(self.pool(tok).flatten(1))
@@ -28,11 +29,11 @@ class FrontOnlyEncoder(nn.Module):
 class FrontOnlyJEPA(MultiViewJEPA):
     """Same losses/predictor as B1; encoder sees the front camera only."""
 
-    def __init__(self, **kw):
+    def __init__(self, view="front", **kw):
         super().__init__(**kw)
-        self.mv_encoder = FrontOnlyEncoder()
+        self.mv_encoder = FrontOnlyEncoder(view=view)
 
     def encode(self, obs):
-        z = self.mv_encoder.encode({"front": obs["front"]})
+        z = self.mv_encoder.encode(obs)
         B, T, D = z.shape
         return self.projector(z.reshape(B * T, D)).reshape(B, T, D)
