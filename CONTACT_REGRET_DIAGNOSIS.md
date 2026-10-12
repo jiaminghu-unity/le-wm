@@ -70,6 +70,16 @@ not decision-relevant information. The binding constraint for the 20.8% → 29.3
 gap is multi-step prediction fidelity (and, secondarily, cost slack), which is a
 general world-model problem, not a tactile one.
 
+### Robustness: DINO variant replicates the pattern
+
+Same executed sequences, DINO's predicted/oracle costs: Q1 contact coefficient
++0.106 (permutation p=0.09, n.s.); Q2 mode-prob gap vs regret ρ=+0.00 (p=0.99),
+motion gap ρ=+0.09 (n.s.) — again no localization of lost information at the
+failure states; Q3 hi-regret half pred 0.506 → oracle 0.278 — prediction error
+dominates again (DINO's oracle margin in contact is smaller, +0.075 with 5/24
+missed, consistent with its lack of cost headroom seen in the T6 table).
+Both planners tell the same story; the decision does not hinge on B1's encoder.
+
 ### Caveats
 - n = 80 states (64 labeled): Q1 has limited power; its direction is positive.
   Q2's anti-correlation, not Q1's p-value, is the decisive blocker.
