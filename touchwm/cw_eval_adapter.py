@@ -37,6 +37,9 @@ class MVJepaWorldModel(nn.Module):
         st = torch.load(ckpt_path, map_location=device)
         self.model.load_state_dict(st["model"] if "model" in st else st)
         self.model.to(device).eval()
+        if variant.endswith("soft"):
+            self.model._routing = "soft"
+            print("[adapter] SOFT routing deployment", flush=True)
         self.variant = variant
         print(f"[adapter] loaded {variant} ckpt step={st.get('step')}", flush=True)
 

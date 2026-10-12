@@ -88,8 +88,12 @@ class GatedResidualJEPA(MultiViewJEPA):
             b_, t_, d_ = base.shape
             base = self.pred_proj(base.reshape(b_ * t_, d_)).reshape(b_, t_, d_)
             res = self._residual_stack(zh, a_emb)
-            hard = torch.argmax(self.gate_logits(zh, a_emb), dim=-1)
-            pick = torch.gather(res, -2, hard[..., None, None].expand(-1, -1, 1, d_)).squeeze(-2)
+            logits = self.gate_logits(zh, a_emb)
+            if getattr(self, "_routing", "hard") == "soft":   # 训练口径部署(D2 路由错配验证)
+                pick = (torch.softmax(logits, dim=-1).unsqueeze(-1) * res).sum(-2)
+            else:
+                hard = torch.argmax(logits, dim=-1)
+                pick = torch.gather(res, -2, hard[..., None, None].expand(-1, -1, 1, d_)).squeeze(-2)
             pred = (base + pick)[:, -1:]
             z = torch.cat([z, pred], dim=1)
             outs.append(pred)
