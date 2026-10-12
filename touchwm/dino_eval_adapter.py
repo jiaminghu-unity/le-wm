@@ -19,9 +19,16 @@ class DinoWorldModel(nn.Module):
 
     def __init__(self, ckpt_path, device="cuda"):
         super().__init__()
-        self.backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14")
-        self.backbone.eval().to(device)
-        for p in self.backbone.parameters(): p.requires_grad_(False)
+        import os
+        if os.path.exists("dino_vits14_traced.pt"):   # old-python eval env path
+            self.backbone = torch.jit.load("dino_vits14_traced.pt", map_location=device)
+            self._traced = True
+        else:
+            self.backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14")
+            self.backbone.eval().to(device)
+            self._traced = False
+        if hasattr(self.backbone, "parameters"):
+            for p in self.backbone.parameters(): p.requires_grad_(False)
         self.model = DinoMultiViewJEPA()
         st = torch.load(ckpt_path, map_location=device)
         self.model.load_state_dict(st["model"] if "model" in st else st)
@@ -42,7 +49,10 @@ class DinoWorldModel(nn.Module):
 
     @torch.no_grad()
     def _tokens(self, x):
-        return self.backbone.forward_features((x - self._mean) / self._std)["x_norm_patchtokens"]
+        xn = (x - self._mean) / self._std
+        if self._traced:
+            return self.backbone(xn)
+        return self.backbone.forward_features(xn)["x_norm_patchtokens"]
 
     @torch.no_grad()
     def _encode_views(self, front, wrist):
@@ -64,6 +74,10 @@ class DinoWorldModel(nn.Module):
         z = rearrange(z0.unsqueeze(1).expand(B, S, H, -1), "b s h d -> (b s) h d").clone()
         acts = rearrange(action_candidates, "b s t a -> (b s) t a")
         hist_act = (acts[:, :1] * 0).expand(-1, H, -1).clone()
+        _ah = getattr(self, "_act_hist", None)   # 真实已执行动作历史 (B,H,A)
+        if _ah is not None:
+            _ah = _ah.to(acts.device).float()
+            hist_act = _ah.unsqueeze(1).expand(B, S, H, -1).reshape(B * S, H, -1).clone()
         hs = self.model.history_size
         for t in range(T):
             hist_act = torch.cat([hist_act[:, 1:], acts[:, t:t + 1]], dim=1)

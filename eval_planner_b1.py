@@ -28,7 +28,35 @@ def _build_model(cfg, *a, **kw):
         return DinoWorldModel(_ckpt)
     return MVJepaWorldModel(_ckpt, variant=VARIANT)
 
-ep.build_model = _build_model
+_WM = {}
+def _build_model_tracked(cfg, *a, **kw):
+    m = _build_model(cfg, *a, **kw)
+    _WM["m"] = m
+    return m
+
+_orig_planner = ep.BatchedCEMPlanner
+class _TrackedPlanner(_orig_planner):
+    def plan(self, current_info, goal_info, prev_action=None):
+        import torch as _t
+        wm = _WM.get("m")
+        if wm is not None:
+            H = getattr(wm, "history_size", None) or getattr(getattr(wm, "model", None), "history_size", 3)
+            hist = getattr(wm, "_act_hist", None)
+            targets = [wm] + ([wm.model] if hasattr(wm, "model") else [])
+            if prev_action is None:
+                for t_ in targets: t_._act_hist = None   # 回合开始:零填充回退
+            else:
+                pa = _t.as_tensor(prev_action).float()
+                if pa.ndim == 1: pa = pa[None]
+                pa = pa[:, None]               # (B,1,A)
+                if hist is None:
+                    hist = _t.zeros(pa.shape[0], H, pa.shape[-1])
+                newh = _t.cat([hist[:, 1:], pa], dim=1)
+                for t_ in targets: t_._act_hist = newh
+        return super().plan(current_info, goal_info, prev_action=prev_action)
+ep.BatchedCEMPlanner = _TrackedPlanner
+
+ep.build_model = _build_model_tracked
 # some versions import build_model into main's namespace at module import time;
 # patch any alias defensively
 for name in dir(ep):

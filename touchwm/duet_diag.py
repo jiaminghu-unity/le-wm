@@ -97,6 +97,10 @@ class DuetDiagJEPA(nn.Module):
         z = rearrange(z0.unsqueeze(1).expand(B, S, H, -1), "b s h d -> (b s) h d").clone()
         acts = rearrange(candidate_actions, "b s t a -> (b s) t a")
         hist_act = (acts[:, :1] * 0).expand(-1, H, -1).clone()
+        _ah = getattr(self, "_act_hist", None)   # 真实已执行动作历史 (B,H,A)
+        if _ah is not None:
+            _ah = _ah.to(acts.device).float()
+            hist_act = _ah.unsqueeze(1).expand(B, S, H, -1).reshape(B * S, H, -1).clone()
         outs = []
         for t in range(T):
             hist_act = torch.cat([hist_act[:, 1:], acts[:, t:t + 1]], dim=1)

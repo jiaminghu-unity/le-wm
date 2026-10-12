@@ -22,6 +22,9 @@ class MVJepaWorldModel(nn.Module):
         if variant == "b1":
             from touchwm.lewm_adapter import MultiViewJEPA
             self.model = MultiViewJEPA()
+        elif variant == "duet":
+            from touchwm.duet_diag import DuetDiagJEPA
+            self.model = DuetDiagJEPA()
         elif variant in ("front", "wrist"):
             from touchwm.front_only import FrontOnlyJEPA
             self.model = FrontOnlyJEPA(view=variant)
