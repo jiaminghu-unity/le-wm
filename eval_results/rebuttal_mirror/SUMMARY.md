@@ -3,7 +3,7 @@
 Overall success (%), mean over T1-T5 and 6 episode seeds x 100 episodes. Each cell: seed 1024 / seed 1025.
 Delta = arm minus its baseline (LeWM for SCALE and Aux, LpWM for LpWM+SCALE), same seed and solver.
 `...` = not finished yet.
-Cells complete: 60 / 104.
+Cells complete: 68 / 104.
 
 ## Push-T
 
@@ -11,15 +11,15 @@ Cells complete: 60 / 104.
 |---|---|---|---|---|
 | LeWM | ... / ... | ... / ... |  |  |
 | SCALE | ... / ... | ... / ... | ... / ... | ... / ... |
-| Aux | ... / 74.1 | ... / 68.2 | ... / ... | ... / ... |
-| LpWM | ... / ... | ... / ... |  |  |
+| Aux | 74.0 / 74.1 | 69.4 / 68.2 | ... / ... | ... / ... |
+| LpWM | ... / 51.3 | ... / 48.7 |  |  |
 | LpWM+SCALE | 61.8 / ... | 54.3 / ... | ... / ... | ... / ... |
 
 ## Reacher
 
 | Arm | CEM | iCEM | Delta CEM | Delta iCEM |
 |---|---|---|---|---|
-| LeWM | 70.9 / ... | 78.7 / ... |  |  |
+| LeWM | 70.9 / 71.2 | 78.7 / 80.0 |  |  |
 | SCALE (0.15) | 71.0 / ... | 78.5 / ... | +0.1 / ... | -0.3 / ... |
 | SCALE (0.1) | ... / ... | ... / ... | ... / ... | ... / ... |
 | Aux | 72.1 / ... | 79.3 / ... | +1.1 / ... | +0.5 / ... |
@@ -30,9 +30,9 @@ Cells complete: 60 / 104.
 
 | Arm | CEM | iCEM | Delta CEM | Delta iCEM |
 |---|---|---|---|---|
-| LeWM | ... / ... | ... / ... |  |  |
+| LeWM | ... / 61.4 | ... / 65.7 |  |  |
 | SCALE | 64.8 / ... | 70.1 / ... | ... / ... | ... / ... |
-| Aux | ... / 63.0 | ... / 68.2 | ... / ... | ... / ... |
+| Aux | ... / 63.0 | ... / 68.2 | ... / +1.6 | ... / +2.6 |
 | LpWM | 61.4 / ... | 66.8 / ... |  |  |
 | LpWM+SCALE | 62.6 / ... | 70.2 / ... | +1.3 / ... | +3.4 / ... |
 
