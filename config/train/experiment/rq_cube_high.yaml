@@ -1,0 +1,19 @@
+# @package _global_
+# Rebuttal (reviewer 9CWa Q2): Cube SCALE with L_corr on the high-recoverability subset of q
+# (see q_recov.py). Everything else is k2_cube_obj_eff: SIGReg 0.09 + lambda_corr 0.1.
+defaults:
+  - override /data: ogb_cube
+
+output_model_name: lewm_rq_cube_high_s${seed}
+subdir: ${output_model_name}
+
+trainer:
+  max_epochs: 10
+  devices: 1
+
+loss:
+  obj:
+    weight: 0.1
+    q_variant: cube_recov_high
+  aux:
+    weight: 0.0

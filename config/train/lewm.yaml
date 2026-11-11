@@ -51,8 +51,10 @@ loss:
   aux:
     weight: 0.0       # auxiliary q-regression head (information-injection control)
     hidden: 256
+    head_l2: 0.0      # rebuttal: L2 penalty on the readout weights, inside the aux term (0 = paper's Aux)
   sigreg_on_pred: false  # hook for future "version B" ablation — must stay false
 
 log:
   grad_balance_every: 200
   latent_every: 200
+  aux_diag_every: 0   # rebuttal: print readout size / fit / distance correlation every N steps (0 = off)

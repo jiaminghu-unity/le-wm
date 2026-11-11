@@ -92,6 +92,37 @@ def lejepa_forward(self, batch, stage, cfg):
         output["aux_loss"] = (q_hat - q_flat).pow(2).mean()
         loss = loss + lambd_aux * output["aux_loss"]
 
+        # Rebuttal, reviewer 9CWa Q1: "metric-aware" regression by regularising the readout.
+        # With head_l2 > 0 the aux term is lambd_aux * (MSE + head_l2 * sum ||W||^2), so the head
+        # can no longer recover q by amplifying low-variance directions of z. Default 0.0 leaves
+        # the paper's Aux arm exactly as it was.
+        head_l2 = cfg.loss.aux.get("head_l2", 0.0) or 0.0
+        if head_l2 > 0:
+            w2 = sum(p.pow(2).sum() for p in self.aux_head.parameters() if p.dim() > 1)
+            output["aux_head_l2_loss"] = w2
+            loss = loss + lambd_aux * head_l2 * w2
+        # Optional diagnostic for these arms (off by default): readout size, fit, and the Pearson
+        # correlation between latent and state pair distances -- the quantity L_corr optimises --
+        # on the training batch. It draws pairs from its own generator, so the global RNG stream,
+        # and therefore training itself, is untouched.
+        diag_every = cfg.log.get("aux_diag_every", 0) or 0
+        if diag_every > 0 and torch.is_grad_enabled() and self.global_step % diag_every == 0:
+            with torch.no_grad():
+                w2d = sum(p.pow(2).sum() for p in self.aux_head.parameters() if p.dim() > 1)
+                rho = float("nan")
+                if "ep_idx" in batch:
+                    gen = torch.Generator(device=emb.device).manual_seed(int(self.global_step))
+                    _, rho_t, _ = obj_loss(
+                        emb.float(), batch["q"], batch["ep_idx"],
+                        num_pairs=cfg.loss.obj.num_pairs,
+                        within_frac=cfg.loss.obj.within_frac, generator=gen,
+                    )
+                    rho = float(rho_t)
+            print(
+                f"[auxdiag] step={int(self.global_step)} aux_mse={float(output['aux_loss'].detach()):.4f} "
+                f"head_w2={float(w2d):.2f} rho={rho:.3f}", flush=True,
+            )
+
     # L_obj on the encoder-side embedding (same tensor SIGReg sees);
     # gradients never reach the predictor by construction
     if lambd_obj > 0:
