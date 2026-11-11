@@ -10,7 +10,7 @@ TARGET="${1:?target count}"
 D=/home/jiaming.hu/le-wm/scripts/rebuttal_grab
 L=$D/grab.log
 PROJ=unity-prism-dev
-ZONES="us-central1-a us-central1-b us-central1-c us-central1-f us-east1-b us-east1-c us-east1-d us-west1-a us-west1-b us-east4-a us-east4-b us-east4-c us-west4-b us-west3-b us-east5-a us-east5-b"
+ZONES="us-central1-f us-central1-c us-west1-b us-east1-d us-east1-b us-west1-a us-east4-a us-east4-b us-west4-b us-west3-b us-east5-a us-east5-b us-east1-c us-central1-b us-central1-a us-east4-c"   # ordered by fewest preemptions seen 2026-11-11 (a/b and east4-c preempt the most)
 log(){ echo "[$(date -u '+%m-%d %H:%M:%S')] $*" >> "$L"; }
 create(){ # name zone
   timeout 240 gcloud compute instances create "$1" --project=$PROJ --zone="$2" --machine-type=a2-highgpu-1g \
