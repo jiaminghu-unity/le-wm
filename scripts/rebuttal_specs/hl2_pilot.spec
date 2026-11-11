@@ -1,0 +1,10 @@
+# Pilot for the L2-regularised Aux readout (reviewer 9CWa Q1): PointMaze, seed 1024, head_l2 swept.
+# 0, 1e-4, 1e-2, 1e-1 are already trained; the chain trains the rest and evaluates all (cem/icem x 6 episode seeds).
+# task|ckpt-dir|eval-dir|run|eval-cfg-label|train command
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_0.0_s1024|p5h0.0r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=0.0 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_0.0_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_0.0001_s1024|p5h0.0001r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=0.0001 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_0.0001_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_0.001_s1024|p5h0.001r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=0.001 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_0.001_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_0.01_s1024|p5h0.01r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=0.01 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_0.01_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_0.1_s1024|p5h0.1r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=0.1 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_0.1_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_1.0_s1024|p5h1.0r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=1.0 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_1.0_s1024
+pointmaze|ckpts_pointmaze|final_eval_pointmaze|lewm_p5_pointmaze_hl2pilot_10.0_s1024|p5h10.0r1024|bash scripts/ray_train_pointmaze.sh aux loss.aux.head_l2=10.0 log.aux_diag_every=500 seed=1024 output_model_name=lewm_p5_pointmaze_hl2pilot_10.0_s1024

@@ -423,3 +423,32 @@
 [11-11 21:57:42] ev_reacher_r2_l01r1025_icem_101 attempt 1 -> raysubmit_Fek9mgHra7HcSreM
 [11-11 21:57:43] ev_reacher_r2_l01r1025_icem_104 attempt 1 -> raysubmit_LpMVjwPDHhgNmezV
 [11-11 22:00:00] ev_reacher_r2_l01r1025_icem_101 attempt 2 -> raysubmit_y6fxJXfF6LWqC5ay
+[11-11 22:02:17] status: 10 trainings, 8 eval jobs outstanding; free=22
+[11-11 22:06:52] ev_cube_lpbr1025_cem_101 attempt 1 -> raysubmit_e5nJW2BRpagcVehd
+[11-11 22:06:53] ev_cube_lpbr1025_cem_104 attempt 1 -> raysubmit_tVrtg5P98WKZb1sV
+[11-11 22:06:54] ev_cube_lpbr1025_icem_101 attempt 1 -> raysubmit_jRLTg1mQ6UAq2jTy
+[11-11 22:06:55] ev_cube_lpbr1025_icem_104 attempt 1 -> raysubmit_m6wx5cdSXBDpZXtS
+[11-11 22:18:18] ev_pusht_c3r1024_cem_101 attempt 1 -> raysubmit_A1XsDujwqw7Vhe6n
+[11-11 22:18:19] ev_pusht_c3r1024_cem_104 attempt 1 -> raysubmit_vMyrzgRUcqEM3W6T
+[11-11 22:18:20] ev_pusht_c3r1024_icem_101 attempt 1 -> raysubmit_ZWfY9EzYTmHfpxff
+[11-11 22:18:21] ev_pusht_c3r1024_icem_104 attempt 1 -> raysubmit_Ge7mgLPfQP39S8PY
+[11-11 22:20:40] ev_reacher_r2r1025_cem_101 attempt 1 -> raysubmit_3R3puE5tmAyBJMLL
+[11-11 22:20:40] ev_reacher_r2r1025_cem_104 attempt 1 -> raysubmit_r8C45FURnLnfJt6R
+[11-11 22:20:41] ev_reacher_r2r1025_icem_101 attempt 1 -> raysubmit_rY1PY8gVa8vu13zU
+[11-11 22:20:42] ev_reacher_r2r1025_icem_104 attempt 1 -> raysubmit_qt1BiWaZLtESEUBb
+[11-11 22:36:39] status: 7 trainings, 12 eval jobs outstanding; free=20
+[11-11 22:38:56] ev_cube_k2r1025_cem_101 attempt 1 -> raysubmit_6gRChgzjji1fXfZG
+[11-11 22:38:57] ev_cube_k2r1025_cem_104 attempt 1 -> raysubmit_JT1xmHJW81TFfHx7
+[11-11 22:38:58] ev_cube_k2r1025_icem_101 attempt 1 -> raysubmit_JY5xeWycvHUKzxgc
+[11-11 22:38:59] ev_cube_k2r1025_icem_104 attempt 1 -> raysubmit_mvuT8NBFYvY9ncAd
+[11-11 22:50:23] ev_pusht_lpsr1025_cem_101 attempt 1 -> raysubmit_23wwD2mztAcw1jzv
+[11-11 22:50:24] ev_pusht_lpsr1025_cem_104 attempt 1 -> raysubmit_GbQHAyT4BRUYszvu
+[11-11 22:50:25] ev_pusht_lpsr1025_icem_101 attempt 1 -> raysubmit_HvHqkiQe3zGALwAh
+[11-11 22:50:26] ev_pusht_lpsr1025_icem_104 attempt 1 -> raysubmit_83ytzejW9NTtZpAR
+[11-11 23:10:57] status: 5 trainings, 8 eval jobs outstanding; free=12
+[11-11 23:24:37] ev_pusht_c1r1024_cem_101 attempt 1 -> raysubmit_FyCdxpNX1f2Q3abU
+[11-11 23:24:38] ev_pusht_c1r1024_cem_104 attempt 1 -> raysubmit_DDJvFjiRyvLBhS9t
+[11-11 23:24:39] ev_pusht_c1r1024_icem_101 attempt 1 -> raysubmit_upbG2ruGkgg6kmmg
+[11-11 23:24:40] ev_pusht_c1r1024_icem_104 attempt 1 -> raysubmit_DjYrsTp2u5W9e1kj
+[11-11 23:24:41] ev_pusht_lpsr1025_icem_101 attempt 2 -> raysubmit_nRMXRxSUVcuGHumP
+[11-11 23:45:13] status: 4 trainings, 4 eval jobs outstanding; free=15
