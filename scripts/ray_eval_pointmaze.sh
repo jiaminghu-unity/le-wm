@@ -44,8 +44,8 @@ if [ ! -f "$DS/$H5NAME" ]; then
 fi
 echo "[env] pointmaze/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd curl patchelf \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd curl patchelf \
   libosmesa6-dev libglew-dev libgl1-mesa-dev libglfw3 \
   libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1
 

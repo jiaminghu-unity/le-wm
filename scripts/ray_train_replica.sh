@@ -31,8 +31,8 @@ fi
 export STABLEWM_HOME="$SSD/stable-wm"
 DS="$STABLEWM_HOME/datasets"; mkdir -p "$DS"
 
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
 if ! command -v uv >/dev/null; then
   pip install -q uv

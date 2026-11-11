@@ -51,14 +51,14 @@ if [ ! -f "$DS/$H5NAME" ]; then
 fi
 echo "[env] $TASK/$CFG/$SOLVER on $(hostname), free=$(df -h --output=avail "$SSD"|tail -1|tr -d ' ')"
 
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd \
   libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 \
   libegl1 libegl-mesa0 libgles2 libglvnd0 libopengl0 libosmesa6 libosmesa6-dev
 # The DL image ships the NVIDIA COMPUTE driver only: no libEGL_nvidia, no
 # 10_nvidia.json, so MUJOCO_GL=egl silently degrades to software rendering and the
 # env's pixels stop matching the dataset the model was trained on (MAE 4.83 vs 2.34).
-sudo apt-get install -y -q libnvidia-gl-580-server || true
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q libnvidia-gl-580-server || true
 sudo usermod -aG render "$(id -un)" 2>/dev/null || true
 if ! command -v uv >/dev/null; then
   pip install -q uv

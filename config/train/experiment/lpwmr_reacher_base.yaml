@@ -1,0 +1,44 @@
+# @package _global_
+# Rebuttal (2026-11-11): LpWM baseline on reacher, with the SCALE paper's task state q and data
+# config (derived from r1_reacher_baseline.yaml). LpWM = RDMReg + RepReLU on both heads under the LeWM
+# architecture and 10-epoch recipe. NO official LpWM value for this task: the OGBench-Cube recipe is carried over (our choice, 2026-11-11).
+# SCALE weight 0.0 (the paper arm's value for this task). Generated, not hand-edited.
+defaults:
+- override /data: dmc
+output_model_name: lewm_lpwmr_reacher_base_s${seed}
+subdir: ${output_model_name}
+trainer:
+  max_epochs: 10
+  devices: 1
+data:
+  dataset:
+    name: reacher.lance
+    keys_to_load:
+    - pixels
+    - action
+    - observation
+    - qpos
+    - finger_pos
+    keys_to_cache:
+    - action
+    - observation
+    - qpos
+    - finger_pos
+loss:
+  obj:
+    weight: 0.0
+    q_variant: reacher_joints_only
+  sigreg:
+    type: rdmreg
+    weight: 10.0
+    kwargs:
+      num_proj: 1024
+      mu: 0.0
+      b: 0.7071067811865476
+      rms_norm: true
+  temporal_jaccard:
+    weight: 0.1
+  aux:
+    weight: 0.0
+model:
+  rep_relu: true

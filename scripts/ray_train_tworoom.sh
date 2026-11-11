@@ -34,6 +34,9 @@ case "$ARM" in
   obj)  EXP=t2_tworoom_obj;      RUN=lewm_t2_tworoom_obj0.1_s3072 ;;
   aux)  EXP=t5_tworoom_qhead;    RUN=lewm_t5_tworoom_qhead0.1_s3072 ;;
 esac
+# Rebuttal LpWM arms reuse this launcher with their own experiment file; the caller must then
+# also pass output_model_name=<run> so RUN (the upload guard) tracks it. Unset = unchanged.
+EXP="${EXP_OVERRIDE:-$EXP}"
 # RUN must track the hydra overrides: the experiment yaml templates the weight into
 # output_model_name, and a hardcoded RUN made the upload guard look at the wrong dir
 # (weights silently left on the worker; the weight sweep re-trained arms for a day).
@@ -85,8 +88,8 @@ if ! nvidia-smi >/dev/null 2>&1; then
   nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
 fi
 dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
 if ! command -v uv >/dev/null; then
   pip install -q uv

@@ -73,8 +73,8 @@ if ! nvidia-smi >/dev/null 2>&1; then
   sudo modprobe nvidia 2>/dev/null || true
   nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
 fi
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd \
   libgl1 libglib2.0-0 libxcb1 libsm6 libxext6 libxrender1 \
   libegl1 libegl-mesa0 libgles2 libglvnd0 libopengl0 libosmesa6 libosmesa6-dev
 # The DL image ships the NVIDIA COMPUTE driver only: no libEGL_nvidia, no
@@ -85,7 +85,7 @@ DRV=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader 2>/dev/null | 
 # driver-matched GL userspace, THEN freeze nvidia packages against auto-upgrades.
 # Holding earlier silently blocks the version match -> software rendering.
 dpkg -l | awk '/^.i +libnvidia-gl/{print $2}' | xargs -r sudo apt-mark unhold >/dev/null 2>&1 || true
-sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}-server" || sudo apt-get install -y -q "libnvidia-gl-${DRV:-580}" || sudo apt-get install -y -q libnvidia-gl-580-server || true
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q "libnvidia-gl-${DRV:-580}-server" || sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q "libnvidia-gl-${DRV:-580}" || sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q libnvidia-gl-580-server || true
 dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
 sudo usermod -aG render "$(id -un)" 2>/dev/null || true
 if ! command -v uv >/dev/null; then

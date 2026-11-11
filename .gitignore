@@ -13,3 +13,10 @@ eval_results/*babysit*.log
 eval_results/archive_*.log
 eval_results/*.old[0-9]
 scripts/_*
+scripts/rebuttal_grab/grab.log
+scripts/rebuttal_grab/grab.out
+scripts/rebuttal_grab/ssh_keys.txt
+scripts/rebuttal_grab/test_vm.txt
+scripts/rebuttal_grab/STOP
+eval_results/*.out
+eval_results/*.DONE

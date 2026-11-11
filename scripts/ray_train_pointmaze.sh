@@ -35,6 +35,8 @@ case "$ARM" in
   aux)  EXP=p5_pointmaze_qhead ;;
   *) echo "arm must be base|obj|aux" >&2; exit 1 ;;
 esac
+# Rebuttal LpWM arms reuse this launcher with their own experiment file. Unset = unchanged.
+EXP="${EXP_OVERRIDE:-$EXP}"
 # RUN is RESOLVED from the composed config, never hardcoded. Hardcoding it is exactly what
 # made the two-room chain resubmit ten trainings where three were needed: the configs were
 # renamed to carry the loss weight and the chain kept looking for the old name while every
@@ -74,8 +76,8 @@ if ! nvidia-smi >/dev/null 2>&1; then
   nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
 fi
 dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
 if ! command -v uv >/dev/null; then
   pip install -q uv
