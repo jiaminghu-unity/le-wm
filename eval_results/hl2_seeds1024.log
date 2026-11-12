@@ -213,3 +213,4 @@
 [11-12 12:14:28] ev_pusht_c5h0.01r1024_icem_101 attempt 1 -> raysubmit_Dus6RKQ3zwMfJhkf
 [11-12 12:14:29] ev_pusht_c5h0.01r1024_icem_104 attempt 1 -> raysubmit_CNvkKPrfMhHb4npk
 [11-12 12:23:42] status: 3 trainings, 8 eval jobs outstanding; free=10
+[11-12 12:58:12] status: 3 trainings, 0 eval jobs outstanding; free=12
