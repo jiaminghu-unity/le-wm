@@ -64,3 +64,27 @@
 [11-12 08:58:06] ev_pusht_c3rlr1024_cem_101 attempt 3 -> raysubmit_VtZqyA24ZeegFNEc
 [11-12 08:58:06] status: 1 trainings, 21 eval jobs outstanding; free=0
 [11-12 09:02:22] ev_pusht_c3rhr1024_cem_101 attempt 1 -> raysubmit_PrG5MSNMtuhsR49F
+[11-12 09:08:46] ev_pusht_c3rhr1024_cem_104 attempt 1 -> raysubmit_HgY2nhpVfKe2k6WD
+[11-12 09:08:47] ev_pusht_c3rhr1024_icem_101 attempt 1 -> raysubmit_dh6rUzZSeer3aM4B
+[11-12 09:08:48] ev_pusht_c3rhr1024_icem_104 attempt 1 -> raysubmit_KFXLrhXpaEFMs5Zk
+[11-12 09:10:57] ev_cube_k2rhr1024_icem_101 attempt 4 -> raysubmit_7HDq8THYJ4JCjnEv
+[11-12 09:10:58] ev_pusht_c3rlr1024_icem_104 attempt 3 -> raysubmit_dTscCrrvAbgGVpZ8
+[11-12 09:10:59] ev_pusht_c3rhr1025_icem_101 attempt 2 -> raysubmit_aMVZpcvbUEQMsK3A
+[11-12 09:15:15] ev_pusht_c3rhr1025_icem_104 attempt 2 -> raysubmit_JhQTF9CphvNfq9TV
+[11-12 09:15:16] ev_cube_k2rhr1025_cem_101 attempt 2 -> raysubmit_GWtgJJJTDkYvMsWK
+[11-12 09:15:17] ev_cube_k2rhr1025_cem_104 attempt 3 -> raysubmit_tJWKqStpyxaADXBz
+[11-12 09:17:24] ev_cube_k2rhr1024_icem_101 attempt 5 -> raysubmit_7bqx6uSNJ6rYt1jn
+[11-12 09:23:49] ev_cube_k2rhr1025_icem_101 attempt 2 -> raysubmit_MGy6fEuL7FLNsAHm
+[11-12 09:25:58] ev_pusht_c3rhr1024_icem_104 attempt 2 -> raysubmit_NPc4jWp1DzdW3PhM
+[11-12 09:25:59] ev_pusht_c3rlr1025_cem_101 attempt 1 -> raysubmit_mdqbxAkjGbZnAxZE
+[11-12 09:30:17] ev_pusht_c3rhr1025_icem_101 attempt 3 -> raysubmit_jKYAFBHx5UNSnnbj
+[11-12 09:30:18] ev_pusht_c3rlr1025_cem_104 attempt 1 -> raysubmit_rSXFkVYiqduBV7Sb
+[11-12 09:30:19] ev_pusht_c3rlr1025_icem_101 attempt 1 -> raysubmit_7gGpguhnkRRWaCJU
+[11-12 09:30:19] status: 0 trainings, 19 eval jobs outstanding; free=0
+[11-12 09:32:29] ev_cube_k2rhr1025_cem_104 attempt 4 -> raysubmit_G5a6MApiw62qj7Aw
+[11-12 09:34:38] ev_cube_k2rhr1024_icem_101 attempt 6 -> raysubmit_XDp2661nmRXUMU96
+[11-12 09:34:39] ev_pusht_c3rlr1025_icem_104 attempt 1 -> raysubmit_mjwp485W7NG3VYFn
+[11-12 09:36:48] ev_cube_k2rlr1025_icem_101 attempt 1 -> raysubmit_TXv3Zb9Dd6LaTE57
+[11-12 09:36:49] ev_cube_k2rlr1025_icem_104 attempt 1 -> raysubmit_42iJK1jEZk2nEcav
+[11-12 09:51:42] ev_pusht_c3rlr1025_cem_101 attempt 2 -> raysubmit_1DaYqgTRY7UwdLr5
+[11-12 09:51:43] ev_pusht_c3rlr1025_cem_104 attempt 2 -> raysubmit_PraPxYxayXQXcb2x
