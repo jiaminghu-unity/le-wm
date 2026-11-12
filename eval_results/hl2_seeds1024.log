@@ -241,3 +241,5 @@
 [11-12 19:42:16] ev_cube_k4h0.1r1024_cem_101 attempt 2 -> raysubmit_aSrAJsq7yUhGp1tW
 [11-12 19:42:17] ev_cube_k4h0.1r1024_icem_101 attempt 2 -> raysubmit_i7FgwqXAKchfyw2j
 [11-12 19:53:51] status: 0 trainings, 4 eval jobs outstanding; free=11
+[11-12 20:24:17] ev_cube_k4h0.1r1024_icem_101 attempt 3 -> raysubmit_sA3rWX91LjWeH1Db
+[11-12 20:29:42] status: 0 trainings, 1 eval jobs outstanding; free=13
