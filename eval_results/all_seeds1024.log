@@ -471,3 +471,8 @@
 [11-12 02:36:08] ev_reacher_r2_l01r1024_icem_101 attempt 2 -> raysubmit_vyknVjaLRM2tNbB5
 [11-12 02:38:28] status: 1 trainings, 2 eval jobs outstanding; free=11
 [11-12 03:13:14] status: 1 trainings, 1 eval jobs outstanding; free=19
+[11-12 03:29:27] ev_reacher_lpsr1024_cem_101 attempt 1 -> raysubmit_BMFt67Q23Dw2YM8b
+[11-12 03:29:28] ev_reacher_lpsr1024_cem_104 attempt 1 -> raysubmit_NvpCV2crPK777uRi
+[11-12 03:29:29] ev_reacher_lpsr1024_icem_101 attempt 1 -> raysubmit_peaUsHRSDJJR7Ywx
+[11-12 03:29:30] ev_reacher_lpsr1024_icem_104 attempt 1 -> raysubmit_gpE5LVUxDqE7LGy2
+[11-12 03:48:08] status: 0 trainings, 5 eval jobs outstanding; free=2

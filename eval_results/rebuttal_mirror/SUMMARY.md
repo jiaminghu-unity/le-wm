@@ -3,7 +3,7 @@
 Overall success (%), mean over T1-T5 and 6 episode seeds x 100 episodes. Each cell: seed 1024 / seed 1025.
 Delta = arm minus its baseline (LeWM for SCALE and Aux, LpWM for LpWM+SCALE), same seed and solver.
 `...` = not finished yet.
-Cells complete: 101 / 104.
+Cells complete: 103 / 104.
 
 ## Push-T
 
@@ -24,7 +24,7 @@ Cells complete: 101 / 104.
 | SCALE (0.1) | ... / 72.8 | 79.4 / 80.4 | ... / +1.6 | +0.7 / +0.3 |
 | Aux | 72.1 / 73.3 | 79.3 / 80.2 | +1.1 / +2.1 | +0.5 / +0.1 |
 | LpWM | 70.2 / 68.4 | 76.1 / 75.4 |  |  |
-| LpWM+SCALE | ... / 69.4 | ... / 75.7 | ... / +1.0 | ... / +0.4 |
+| LpWM+SCALE | 69.0 / 69.4 | 76.9 / 75.7 | -1.2 / +1.0 | +0.8 / +0.4 |
 
 ## Cube
 

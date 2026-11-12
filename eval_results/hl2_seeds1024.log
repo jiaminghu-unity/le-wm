@@ -73,3 +73,24 @@
 [11-12 03:17:08] tr_pusht_c5h0.01r1024 attempt 4 -> raysubmit_YnDtGdv4PWeXLNZQ
 [11-12 03:17:09] tr_tworoom_t5h0.01r1024 attempt 2 -> raysubmit_1dt9xyZHYKhyCh2X
 [11-12 03:19:28] tr_pusht_c5h0.01r1024 attempt 5 -> raysubmit_5STe3paAR7MbHubA
+[11-12 03:33:15] ev_tworoom_t5h0.1r1024_cem_101 attempt 1 -> raysubmit_HjcZP7Twj1FKP4gK
+[11-12 03:33:17] ev_tworoom_t5h0.1r1024_cem_104 attempt 1 -> raysubmit_r7Tx9GQxZVGKQcd1
+[11-12 03:33:18] ev_tworoom_t5h0.1r1024_icem_101 attempt 1 -> raysubmit_WFXdw5afnjGVi64i
+[11-12 03:33:19] ev_tworoom_t5h0.1r1024_icem_104 attempt 1 -> raysubmit_aUysMF6qK2fwC72p
+[11-12 03:35:37] ev_tworoom_t5h0.01r1025_cem_101 attempt 1 -> raysubmit_4bX3Gmk9SqWWU8SV
+[11-12 03:35:38] ev_tworoom_t5h0.01r1025_cem_104 attempt 1 -> raysubmit_LAKKgqKwyZHSVbCQ
+[11-12 03:35:39] ev_tworoom_t5h0.01r1025_icem_101 attempt 1 -> raysubmit_k3Ub4k6fgKJfNmQy
+[11-12 03:35:40] ev_tworoom_t5h0.01r1025_icem_104 attempt 1 -> raysubmit_q8MziVkEAFbKFGFn
+[11-12 03:35:41] ev_tworoom_t5h0.1r1025_cem_101 attempt 1 -> raysubmit_MknLFSJZjL3WSHiP
+[11-12 03:35:42] ev_tworoom_t5h0.1r1025_cem_104 attempt 1 -> raysubmit_xyCz4UbHp5Ed5u6N
+[11-12 03:35:43] ev_tworoom_t5h0.1r1025_icem_101 attempt 1 -> raysubmit_mzdWuWLYcfPXb3AW
+[11-12 03:38:02] ev_tworoom_t5h0.1r1025_icem_104 attempt 1 -> raysubmit_qfGNmHCrTQwztQ7X
+[11-12 03:42:40] ev_tworoom_t5h0.01r1025_icem_104 attempt 2 -> raysubmit_5eVwqXknkxwQ2vz8
+[11-12 03:47:16] status: 21 trainings, 12 eval jobs outstanding; free=2
+[11-12 03:49:35] ev_tworoom_t5h0.1r1024_cem_104 attempt 2 -> raysubmit_qaKMzUpiGEMTnvY5
+[11-12 03:49:36] ev_tworoom_t5h0.1r1024_icem_104 attempt 2 -> raysubmit_5j7x2XLZaYEWLzfN
+[11-12 03:51:55] ev_tworoom_t5h0.01r1025_cem_101 attempt 2 -> raysubmit_giTKN28Gt3JgNzP4
+[11-12 03:51:56] ev_tworoom_t5h0.01r1025_cem_104 attempt 2 -> raysubmit_bPxC9JqjXWeprWHj
+[11-12 03:51:57] ev_tworoom_t5h0.1r1025_cem_101 attempt 2 -> raysubmit_kFV3n8dxVPYqpc6x
+[11-12 03:54:16] ev_tworoom_t5h0.1r1025_icem_104 attempt 2 -> raysubmit_HxHyKrefzEX4htPm
+[11-12 04:08:02] ev_tworoom_t5h0.1r1025_cem_101 attempt 3 -> raysubmit_ecFJL39VmJj4aSEx
