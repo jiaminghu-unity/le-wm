@@ -43,3 +43,6 @@
 [11-12 02:06:19] ev_pointmaze_p5h10.0r1024_icem_104 attempt 1 -> raysubmit_qcujAqEkfwWmMNAW
 [11-12 02:22:47] ev_pointmaze_p5h10.0r1024_cem_104 attempt 2 -> raysubmit_cXz2p2sPdUyytb9s
 [11-12 02:22:48] ev_pointmaze_p5h10.0r1024_icem_101 attempt 2 -> raysubmit_93hDjuXAy4ysSD8q
+[11-12 02:26:54] status: 0 trainings, 4 eval jobs outstanding; free=3
+[11-12 02:57:45] status: 0 trainings, 1 eval jobs outstanding; free=18
+[11-12 02:59:48] hl2_pilot COMPLETE

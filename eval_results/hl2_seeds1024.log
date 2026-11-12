@@ -61,3 +61,8 @@
 [11-12 02:05:54] ev_pointmaze_p5h1.0r1025_cem_104 attempt 1 -> raysubmit_zKkhmF2nBpzzTgsR
 [11-12 02:05:55] ev_pointmaze_p5h1.0r1025_icem_101 attempt 1 -> raysubmit_eFCCt7pjdJZvks2H
 [11-12 02:05:56] ev_pointmaze_p5h1.0r1025_icem_104 attempt 1 -> raysubmit_Tuav3YqZg9mJj3bQ
+[11-12 02:26:35] ev_pointmaze_p5h0.1r1025_cem_101 attempt 1 -> raysubmit_6T3fjv4zYkLZK2w7
+[11-12 02:26:36] ev_pointmaze_p5h0.1r1025_cem_104 attempt 1 -> raysubmit_7JRYA4RetS88Dh2s
+[11-12 02:26:37] ev_pointmaze_p5h0.1r1025_icem_101 attempt 1 -> raysubmit_bRS8sC4Ah3Y7nF4h
+[11-12 02:26:39] ev_pointmaze_p5h0.1r1025_icem_104 attempt 1 -> raysubmit_NBBzWbzjDbRE7b7J
+[11-12 02:38:07] status: 24 trainings, 6 eval jobs outstanding; free=10
