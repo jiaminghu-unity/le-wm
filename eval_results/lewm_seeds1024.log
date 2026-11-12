@@ -1,0 +1,49 @@
+[11-11 08:49:04] start: lewm_seeds1024 (32 models, seeds 1024|1025)
+[11-11 08:49:18] tr_c1r1024 attempt 1 -> raysubmit_i8Lg93wiqaZqRsX3
+[11-11 08:49:18] tr_c3r1024 attempt 1 -> raysubmit_5sCre4UkFn84E6wu
+[11-11 08:49:19] tr_c5r1024 attempt 1 -> raysubmit_6AmeaizyjTDqgxSn
+[11-11 08:49:20] tr_r1r1024 attempt 1 -> raysubmit_yBJferBh8KXwVYfE
+[11-11 08:49:21] tr_r2r1024 attempt 1 -> raysubmit_PBBRma2751whNcfH
+[11-11 08:49:22] tr_r2_l01r1024 attempt 1 -> raysubmit_4gmG6reuRwCidakK
+[11-11 08:49:23] tr_r5r1024 attempt 1 -> raysubmit_iKYPrTnNHnkR8HLz
+[11-11 08:49:24] tr_k1r1024 attempt 1 -> raysubmit_JLvsWi6xvagpDDWm
+[11-11 08:49:25] tr_k2r1024 attempt 1 -> raysubmit_kJACgpzVV2B4TgAL
+[11-11 08:49:25] tr_k4r1024 attempt 1 -> raysubmit_qT4aLrTt3khmLsE3
+[11-11 08:49:26] tr_t1r1024 attempt 1 -> raysubmit_puWWfPXgUzmsn1zr
+[11-11 08:49:27] tr_t2r1024 attempt 1 -> raysubmit_2tCHs9fX4sPPdthb
+[11-11 08:49:27] status: 32 trainings, 0 eval jobs outstanding; free=0
+[11-11 08:51:41] tr_r2_l01r1024 attempt 2 -> raysubmit_H1azCgJjRxaPxTnn
+[11-11 08:51:42] tr_r5r1024 attempt 2 -> raysubmit_DMrJg4nzG2hzQ3Za
+[11-11 08:51:43] tr_t2r1024 attempt 2 -> raysubmit_xSngHfAqfyEAsaBX
+[11-11 08:51:44] tr_t5r1024 attempt 1 -> raysubmit_VkG1uLTkBGBZbiWd
+[11-11 08:51:44] tr_p1r1024 attempt 1 -> raysubmit_UdbbC5xC9XUr7yfq
+[11-11 08:51:45] tr_p2r1024 attempt 1 -> raysubmit_18xmJwVh27r6F7uZ
+[11-11 08:51:46] tr_p5r1024 attempt 1 -> raysubmit_8e5Fs1g97dKLpqGf
+[11-11 08:51:47] tr_c1r1025 attempt 1 -> raysubmit_YpdgiY8QDdsnZGU6
+[11-11 08:51:48] tr_c3r1025 attempt 1 -> raysubmit_496kH9jFnxKpeVMq
+[11-11 09:05:39] start: lewm_seeds1024 (32 models, seeds 1024|1025)
+[11-11 09:05:53] tr_r1r1024 attempt 1 -> raysubmit_aXQMBQCNAMn2CMiN
+[11-11 09:05:54] tr_k1r1024 attempt 1 -> raysubmit_QApqGG1Py5M5iGSP
+[11-11 09:05:55] tr_t1r1024 attempt 1 -> raysubmit_h8WXjCjnXaVdrFzk
+[11-11 09:05:55] status: 32 trainings, 0 eval jobs outstanding; free=0
+[11-11 09:08:09] tr_r2_l01r1024 attempt 1 -> raysubmit_JMMZjPpr9T6Fq9Yt
+[11-11 09:08:10] tr_r5r1024 attempt 1 -> raysubmit_szFDkdFpBPSKgciQ
+[11-11 09:08:11] tr_t2r1024 attempt 1 -> raysubmit_xtmepD8KEkrfqVAx
+[11-11 09:08:11] tr_t5r1024 attempt 1 -> raysubmit_ncxhrjsuQyJtjt2f
+[11-11 09:08:12] tr_p1r1024 attempt 1 -> raysubmit_4bDa9W98DZ3U17E5
+[11-11 09:08:13] tr_p2r1024 attempt 1 -> raysubmit_2HCm48Jq9jeixFH4
+[11-11 09:08:14] tr_p5r1024 attempt 1 -> raysubmit_3WenkhMMdJYchqRr
+[11-11 09:08:15] tr_c1r1025 attempt 1 -> raysubmit_3vg9ThyLfqTa56ax
+[11-11 09:08:16] tr_c3r1025 attempt 1 -> raysubmit_Rka583xtkdEK3B6Z
+[11-11 09:10:30] tr_c5r1025 attempt 1 -> raysubmit_e7HYU1ZAgZFSd5w1
+[11-11 09:12:44] tr_c1r1024 attempt 1 -> raysubmit_AXZ91pazFcjZtrJH
+[11-11 09:12:45] tr_t1r1024 attempt 2 -> raysubmit_dDbWWAhnU7MB8CsL
+[11-11 09:12:45] tr_t2r1024 attempt 2 -> raysubmit_pvAZGck2iQZiUqrz
+[11-11 09:12:46] tr_p1r1024 attempt 2 -> raysubmit_qHLcrA9rHJCCw8Tv
+[11-11 09:12:47] tr_p2r1024 attempt 2 -> raysubmit_hFt39xQR84LKWFJ4
+[11-11 09:12:48] tr_p5r1024 attempt 2 -> raysubmit_HyZ1h6aKcDvh79GN
+[11-11 09:12:49] tr_c1r1025 attempt 2 -> raysubmit_XtY1yzSD43KCERip
+[11-11 09:12:50] tr_c3r1025 attempt 2 -> raysubmit_JCBPHiKMY39Xme1G
+[11-11 09:12:51] tr_c5r1025 attempt 2 -> raysubmit_t2TMhLm3JZSvYV9Y
+[11-11 09:12:51] tr_r1r1025 attempt 1 -> raysubmit_tQycf9BZ1g8kTk65
+[11-11 09:12:52] tr_r2r1025 attempt 1 -> raysubmit_29Ki8W6vBzPeR18V

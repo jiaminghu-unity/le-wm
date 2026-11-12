@@ -1,0 +1,18 @@
+[11-11 22:55:39] start: recov_seeds1024 (8 models, seeds 1024|1025)
+[11-11 22:55:46] tr_pusht_c3rhr1024 attempt 1 -> raysubmit_5UDJBZxf63U3aYwn
+[11-11 22:55:47] tr_cube_k2rhr1024 attempt 1 -> raysubmit_kbHCRrA5LCbbYLKW
+[11-11 22:55:48] tr_pusht_c3rlr1024 attempt 1 -> raysubmit_UEVrecrBFbDU7G9T
+[11-11 22:55:49] tr_cube_k2rlr1024 attempt 1 -> raysubmit_C2g2EiU3d5nk66Ax
+[11-11 22:55:50] tr_pusht_c3rhr1025 attempt 1 -> raysubmit_6GbdyVzUGPKMk53v
+[11-11 22:55:51] tr_cube_k2rhr1025 attempt 1 -> raysubmit_3FPudBbZjvre9fbv
+[11-11 22:55:51] tr_pusht_c3rlr1025 attempt 1 -> raysubmit_ChfuJRAv6F1fXixp
+[11-11 22:55:52] tr_cube_k2rlr1025 attempt 1 -> raysubmit_x42nieWrCSpeq5jX
+[11-11 22:55:52] status: 8 trainings, 0 eval jobs outstanding; free=17
+[11-11 23:00:06] tr_cube_k2rlr1025 attempt 2 -> raysubmit_P5vwSCgDH3pkrfzX
+[11-11 23:21:08] tr_pusht_c3rhr1024 attempt 2 -> raysubmit_aEN5CFnZXGpHjpUU
+[11-11 23:25:21] tr_cube_k2rlr1025 attempt 3 -> raysubmit_54Cy5rxkPNA3qLqv
+[11-11 23:27:28] status: 8 trainings, 0 eval jobs outstanding; free=12
+[11-11 23:59:00] status: 8 trainings, 0 eval jobs outstanding; free=15
+[11-12 00:30:35] status: 8 trainings, 0 eval jobs outstanding; free=10
+[11-12 01:02:16] status: 8 trainings, 0 eval jobs outstanding; free=12
+[11-12 01:33:59] status: 8 trainings, 0 eval jobs outstanding; free=14

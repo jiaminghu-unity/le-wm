@@ -1,0 +1,38 @@
+[11-11 23:52:15] start: hl2_pilot (7 models, seeds 1024)
+[11-11 23:52:19] ev_pointmaze_p5h0.0r1024_cem_101 attempt 1 -> raysubmit_4X8mqfRsHR1ZgZ6w
+[11-11 23:52:20] ev_pointmaze_p5h0.0r1024_cem_104 attempt 1 -> raysubmit_e6Cg3aKRtxjwgzXJ
+[11-11 23:52:21] ev_pointmaze_p5h0.0r1024_icem_101 attempt 1 -> raysubmit_96wfLnL5SqHn3DXB
+[11-11 23:52:22] ev_pointmaze_p5h0.0r1024_icem_104 attempt 1 -> raysubmit_wF15NwCHcnTKkvzn
+[11-11 23:52:23] ev_pointmaze_p5h0.0001r1024_cem_101 attempt 1 -> raysubmit_tmwna2Nkr1m6usrZ
+[11-11 23:52:24] ev_pointmaze_p5h0.0001r1024_cem_104 attempt 1 -> raysubmit_rPGJjbbEksAcd39J
+[11-11 23:52:25] ev_pointmaze_p5h0.0001r1024_icem_101 attempt 1 -> raysubmit_ysATtpkncYAKPTrJ
+[11-11 23:52:26] ev_pointmaze_p5h0.0001r1024_icem_104 attempt 1 -> raysubmit_gmWKzySC4JmLtTni
+[11-11 23:52:27] tr_pointmaze_p5h0.001r1024 attempt 1 -> raysubmit_sduzPmCHfgKtC8Es
+[11-11 23:52:28] ev_pointmaze_p5h0.01r1024_cem_101 attempt 1 -> raysubmit_tpFHPBZp2mkt6676
+[11-11 23:52:29] ev_pointmaze_p5h0.01r1024_cem_104 attempt 1 -> raysubmit_rbfg7wFS1r9jGiJ3
+[11-11 23:52:30] ev_pointmaze_p5h0.01r1024_icem_101 attempt 1 -> raysubmit_C75YsEaTVKmaVVPK
+[11-11 23:52:30] ev_pointmaze_p5h0.01r1024_icem_104 attempt 1 -> raysubmit_rybnbFwHsbPMuBUC
+[11-11 23:52:31] ev_pointmaze_p5h0.1r1024_cem_101 attempt 1 -> raysubmit_6ZEYyfsk5H8jEArQ
+[11-11 23:52:32] ev_pointmaze_p5h0.1r1024_cem_104 attempt 1 -> raysubmit_3TPkrmf9YcCfSjYs
+[11-11 23:52:33] ev_pointmaze_p5h0.1r1024_icem_101 attempt 1 -> raysubmit_Qme3t7nbe9MtXCSb
+[11-11 23:52:34] ev_pointmaze_p5h0.1r1024_icem_104 attempt 1 -> raysubmit_PbswnKnh1gcjWN5z
+[11-11 23:52:35] tr_pointmaze_p5h1.0r1024 attempt 1 -> raysubmit_AyAF8mgDzzeRTVgh
+[11-11 23:52:36] tr_pointmaze_p5h10.0r1024 attempt 1 -> raysubmit_hpy8mG1UUiPv7Mi7
+[11-11 23:52:36] status: 3 trainings, 16 eval jobs outstanding; free=1
+[11-12 00:04:54] ev_pointmaze_p5h0.01r1024_icem_104 attempt 2 -> raysubmit_4rRZ5aWz9yxia7nk
+[11-12 00:23:20] status: 3 trainings, 7 eval jobs outstanding; free=2
+[11-12 00:33:36] tr_pointmaze_p5h10.0r1024 attempt 2 -> raysubmit_5YmwuUrbWgpkQkRz
+[11-12 00:37:44] ev_pointmaze_p5h0.01r1024_icem_104 attempt 3 -> raysubmit_w6vGK8xmCP8XVQNS
+[11-12 00:37:45] tr_pointmaze_p5h10.0r1024 attempt 3 -> raysubmit_nJj2SgbA6VWTtBbN
+[11-12 00:39:48] ev_pointmaze_p5h0.001r1024_cem_101 attempt 1 -> raysubmit_saPf3rDQ9k4F1vt6
+[11-12 00:39:49] ev_pointmaze_p5h0.001r1024_cem_104 attempt 1 -> raysubmit_wxraiTWCBjdkvbui
+[11-12 00:39:50] ev_pointmaze_p5h0.001r1024_icem_101 attempt 1 -> raysubmit_h4kyjV8c4gwHhLeC
+[11-12 00:39:51] ev_pointmaze_p5h0.001r1024_icem_104 attempt 1 -> raysubmit_i3rHb1kxPWT7iAQn
+[11-12 00:46:02] ev_pointmaze_p5h1.0r1024_cem_101 attempt 1 -> raysubmit_hWKtt79ZC7yrvcY1
+[11-12 00:46:03] ev_pointmaze_p5h1.0r1024_cem_104 attempt 1 -> raysubmit_tXBiWNwwZmdCdcmA
+[11-12 00:46:04] ev_pointmaze_p5h1.0r1024_icem_101 attempt 1 -> raysubmit_bCbzZt3hG287BgGx
+[11-12 00:46:05] ev_pointmaze_p5h1.0r1024_icem_104 attempt 1 -> raysubmit_uKTxXfSKfyfWxZd7
+[11-12 00:54:18] status: 1 trainings, 9 eval jobs outstanding; free=5
+[11-12 01:12:49] tr_pointmaze_p5h10.0r1024 attempt 4 -> raysubmit_Peg5zJPYm58PmFUS
+[11-12 01:16:57] ev_pointmaze_p5h1.0r1024_cem_101 attempt 2 -> raysubmit_zJMgZReEXUbAfh11
+[11-12 01:25:09] status: 1 trainings, 1 eval jobs outstanding; free=12
