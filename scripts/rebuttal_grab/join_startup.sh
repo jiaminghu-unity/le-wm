@@ -16,6 +16,8 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get -o DPkg::Lock::Timeout=900 -qq update
 apt-get -o DPkg::Lock::Timeout=900 -qq install -y python3-pip
 python3 -m pip install -q "ray[default]==2.56.1" google-api-python-client
+# RemoveIPC guard: without lingering, any ssh logout as ubuntu wipes the shared memory of running jobs
+loginctl enable-linger ubuntu || true
 for i in 1 2 3 4 5; do
   sudo -u ubuntu -H bash -lc "ray stop >/dev/null 2>&1; ray start --address=$HEAD --num-cpus=12 --num-gpus=1 --disable-usage-stats" && break
   echo "[rb] ray start failed ($i), retry"; sleep 30

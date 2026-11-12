@@ -15,6 +15,10 @@
 #     trainings where three were needed
 #   usage: ray_eval_tworoom.sh <cfgname> <ckpt dir under ckpts_tworoom/> <solver> <seed>...
 set -euo pipefail
+# RemoveIPC guard (2026-11-12): systemd-logind deletes this user's POSIX shared memory and
+# semaphores when its last login session closes (RemoveIPC=yes is the default), which kills a
+# running DataLoader -- an ssh login/logout as the worker user was enough. Lingering disables it.
+sudo loginctl enable-linger "$(id -un)" >/dev/null 2>&1 || true
 
 TASK=tworoom
 CFG="${1:?cfgname}"; CKPT_DIR="${2:?ckpt dir}"; SOLVER="${3:?solver}"; shift 3

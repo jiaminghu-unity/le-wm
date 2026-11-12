@@ -8,6 +8,10 @@
 # Skips any (seed) whose result CSV is already in GCS, so partially completed
 # work is reused rather than recomputed.
 set -euo pipefail
+# RemoveIPC guard (2026-11-12): systemd-logind deletes this user's POSIX shared memory and
+# semaphores when its last login session closes (RemoveIPC=yes is the default), which kills a
+# running DataLoader -- an ssh login/logout as the worker user was enough. Lingering disables it.
+sudo loginctl enable-linger "$(id -un)" >/dev/null 2>&1 || true
 
 TASK="${1:?task}"; CFG="${2:?cfgname}"; CKPT_DIR="${3:?ckpt dir}"; SOLVER="${4:?solver}"; shift 4
 SEEDS=("$@")

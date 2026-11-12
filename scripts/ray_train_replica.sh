@@ -12,6 +12,10 @@
 # and uploads to ckpts/<run>/. Nothing existing is overwritten: replication seeds
 # produce *_s<seed> names that cannot collide with the canonical *_s3072 ones.
 set -euo pipefail
+# RemoveIPC guard (2026-11-12): systemd-logind deletes this user's POSIX shared memory and
+# semaphores when its last login session closes (RemoveIPC=yes is the default), which kills a
+# running DataLoader -- an ssh login/logout as the worker user was enough. Lingering disables it.
+sudo loginctl enable-linger "$(id -un)" >/dev/null 2>&1 || true
 
 TASK="${1:?pusht|reacher|cube}"; shift
 BUCKET=gs://prism-training-us/le-wm
