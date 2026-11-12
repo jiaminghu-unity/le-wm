@@ -122,3 +122,24 @@
 [11-12 07:33:19] tr_pusht_c5h0.1r1024 attempt 3 -> raysubmit_TAvPsXcdKKUbnrgu
 [11-12 07:46:59] status: 18 trainings, 0 eval jobs outstanding; free=10
 [11-12 08:21:09] status: 18 trainings, 0 eval jobs outstanding; free=0
+[11-12 08:28:00] ev_cube_k4h0.01r1025_cem_101 attempt 1 -> raysubmit_CcyKrfnh64kkWdFH
+[11-12 08:28:01] ev_cube_k4h0.01r1025_cem_104 attempt 1 -> raysubmit_SFnsbY3kVeKmXGJu
+[11-12 08:28:02] ev_cube_k4h0.01r1025_icem_101 attempt 1 -> raysubmit_PeiPTmJrCKbTVwms
+[11-12 08:28:03] ev_cube_k4h0.01r1025_icem_104 attempt 1 -> raysubmit_heVSFgrCFLrGSwXH
+[11-12 08:32:38] ev_cube_k4h1.0r1025_cem_101 attempt 1 -> raysubmit_KRrP5wYNuyT1prtt
+[11-12 08:32:39] ev_cube_k4h1.0r1025_cem_104 attempt 1 -> raysubmit_3jshqemMYZmqnADV
+[11-12 08:46:21] ev_reacher_r5h0.01r1025_cem_101 attempt 1 -> raysubmit_jKTuMncpHZuPC819
+[11-12 08:46:22] ev_reacher_r5h0.01r1025_cem_104 attempt 1 -> raysubmit_p1CQVY2gztZdJWnX
+[11-12 08:46:23] ev_reacher_r5h0.01r1025_icem_101 attempt 1 -> raysubmit_CZL2M87g3X5ifdx5
+[11-12 08:48:41] ev_reacher_r5h0.01r1025_icem_104 attempt 1 -> raysubmit_LEa3AgbT3wrQjfT5
+[11-12 08:48:42] ev_cube_k4h1.0r1025_cem_101 attempt 2 -> raysubmit_L5dfLr3mA1KnuKUR
+[11-12 08:51:02] ev_cube_k4h0.1r1025_cem_101 attempt 1 -> raysubmit_h7Jf6KpLp5uxtLxh
+[11-12 08:51:03] ev_cube_k4h0.1r1025_cem_104 attempt 1 -> raysubmit_iYhq4aeafkUv31mz
+[11-12 08:53:24] ev_cube_k4h0.1r1025_icem_101 attempt 1 -> raysubmit_frggGWncHZAQunR1
+[11-12 08:55:42] ev_cube_k4h1.0r1024_cem_101 attempt 1 -> raysubmit_uxxL92SthK6GzreF
+[11-12 08:55:43] ev_cube_k4h1.0r1024_cem_104 attempt 1 -> raysubmit_aGih6rF1zfeTWJEA
+[11-12 08:55:44] ev_cube_k4h1.0r1024_icem_101 attempt 1 -> raysubmit_qaniufwF2JYSpD7f
+[11-12 08:55:45] ev_cube_k4h1.0r1024_icem_104 attempt 1 -> raysubmit_RkTM269NZCp5nDkt
+[11-12 08:55:45] status: 13 trainings, 20 eval jobs outstanding; free=0
+[11-12 08:58:03] ev_reacher_r5h0.01r1025_cem_101 attempt 2 -> raysubmit_rW6MrHRgiuAUac3V
+[11-12 08:58:04] ev_reacher_r5h0.1r1025_cem_101 attempt 1 -> raysubmit_1tscBGQLKB6dN9L3
