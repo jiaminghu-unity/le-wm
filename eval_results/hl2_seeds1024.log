@@ -225,3 +225,5 @@
 [11-12 16:07:29] ev_pusht_c5h0.1r1024_icem_104 attempt 1 -> raysubmit_LNJ5tQYjgFDbtZYR
 [11-12 16:25:58] status: 2 trainings, 4 eval jobs outstanding; free=10
 [11-12 17:00:33] status: 2 trainings, 0 eval jobs outstanding; free=11
+[11-12 17:35:09] status: 2 trainings, 0 eval jobs outstanding; free=10
+[11-12 18:09:46] status: 2 trainings, 0 eval jobs outstanding; free=10
