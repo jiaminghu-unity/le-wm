@@ -27,3 +27,23 @@
 [11-12 06:19:07] status: 8 trainings, 0 eval jobs outstanding; free=10
 [11-12 06:50:45] status: 8 trainings, 0 eval jobs outstanding; free=8
 [11-12 07:22:35] status: 8 trainings, 0 eval jobs outstanding; free=14
+[11-12 07:54:11] status: 8 trainings, 0 eval jobs outstanding; free=10
+[11-12 07:56:18] ev_cube_k2rlr1024_cem_101 attempt 1 -> raysubmit_nKxVSZ2dxQHUshSi
+[11-12 07:56:19] ev_cube_k2rlr1024_cem_104 attempt 1 -> raysubmit_SXZVEgTqhnuNifHf
+[11-12 07:56:20] ev_cube_k2rlr1024_icem_101 attempt 1 -> raysubmit_uvvEEU56jdn7z41Z
+[11-12 07:56:21] ev_cube_k2rlr1024_icem_104 attempt 1 -> raysubmit_wsXw6E5ZVbjdFDL7
+[11-12 08:00:35] ev_cube_k2rhr1025_cem_101 attempt 1 -> raysubmit_LxHSjFjtgYJXV7Xx
+[11-12 08:00:36] ev_cube_k2rhr1025_cem_104 attempt 1 -> raysubmit_umTamvjY3KQ9k2dk
+[11-12 08:00:37] ev_cube_k2rhr1025_icem_101 attempt 1 -> raysubmit_mXwTaR1pzaDZ9MU1
+[11-12 08:00:37] ev_cube_k2rhr1025_icem_104 attempt 1 -> raysubmit_EVW236mfxe2UW6MD
+[11-12 08:11:11] ev_cube_k2rhr1024_cem_101 attempt 1 -> raysubmit_UzzkWaqBkazjLERa
+[11-12 08:11:12] ev_cube_k2rhr1024_cem_104 attempt 1 -> raysubmit_HJa9zAXFCX8HxkSW
+[11-12 08:11:13] ev_cube_k2rhr1024_icem_101 attempt 1 -> raysubmit_e7kZhFN6ris2ktuN
+[11-12 08:11:14] ev_cube_k2rhr1024_icem_104 attempt 1 -> raysubmit_L8jujMXUfgHd8352
+[11-12 08:13:21] ev_pusht_c3rlr1024_cem_101 attempt 1 -> raysubmit_Ec14XsBysAahfCG6
+[11-12 08:13:22] ev_pusht_c3rlr1024_cem_104 attempt 1 -> raysubmit_gmT4WFm95RJ7SamV
+[11-12 08:13:23] ev_pusht_c3rlr1024_icem_101 attempt 1 -> raysubmit_P1gEzCTE8dAymAW2
+[11-12 08:13:24] ev_pusht_c3rlr1024_icem_104 attempt 1 -> raysubmit_ECfapTWJASfehRe1
+[11-12 08:17:38] ev_cube_k2rhr1025_cem_104 attempt 2 -> raysubmit_ZBVkbqB1nvLLiNT3
+[11-12 08:17:39] ev_cube_k2rlr1025_cem_101 attempt 1 -> raysubmit_v9NatJpED5qkVQ1D
+[11-12 08:17:40] ev_cube_k2rlr1025_cem_104 attempt 1 -> raysubmit_9TmKxkKrUyvWWedr

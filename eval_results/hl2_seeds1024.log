@@ -120,3 +120,5 @@
 [11-12 07:08:16] ev_tworoom_t5h0.01r1024_icem_101 attempt 2 -> raysubmit_dimAFQScmCbZawn4
 [11-12 07:12:50] status: 18 trainings, 2 eval jobs outstanding; free=12
 [11-12 07:33:19] tr_pusht_c5h0.1r1024 attempt 3 -> raysubmit_TAvPsXcdKKUbnrgu
+[11-12 07:46:59] status: 18 trainings, 0 eval jobs outstanding; free=10
+[11-12 08:21:09] status: 18 trainings, 0 eval jobs outstanding; free=0
