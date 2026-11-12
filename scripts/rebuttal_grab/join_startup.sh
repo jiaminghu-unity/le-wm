@@ -26,7 +26,9 @@ echo "[rb] joined $(date -u)"
 (
   sleep 1500; idle=0
   while true; do
-    busy=$(ps -eo args | grep -E '^ray::' | grep -vc 'ray::IDLE')
+    # DashboardAgent / RuntimeEnvAgent are always present and are not work (counting them was a
+    # bug: the first version never saw a VM as idle, so VMs did not delete themselves)
+    busy=$(ps -eo args | grep -E '^ray::' | grep -v -E 'ray::(IDLE|DashboardAgent|RuntimeEnvAgent)' | grep -c .)
     gpu=$(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2>/dev/null | grep -c .)
     if [ "$busy" -gt 0 ] || [ "$gpu" -gt 0 ]; then idle=0; else idle=$((idle+1)); fi
     echo "[rb] watchdog busy=$busy gpu=$gpu idle=$idle $(date -u +%H:%M)"
