@@ -148,6 +148,25 @@ for task in D:
             out.append(f"| {TITLE[task]} | {sname} | {name} | {r1(avg[(task, sname, name)])} | "
                        f"{r1(avg[(task, sname, 'SCALE')])} |")
 out.append("")
+# Table F (short), one table per planner
+out += ["**Table F (short, by planner). SCALE and each regression baseline: success rate (%) averaged over the five "
+        "budget tiers.** All numbers average two training seeds (1024, 1025).", ""]
+for _, sname in SOLS:
+    out += [f"**{sname} planner**", "", "| Task | Baseline | Baseline success | SCALE |", "|---|---|---|---|"]
+    for task in D:
+        for name in BASELINES:
+            out.append(f"| {TITLE[task]} | {name} | {r1(avg[(task, sname, name)])} | {r1(avg[(task, sname, 'SCALE')])} |")
+    out.append("")
+# same numbers, one row per task (same layout as Table G)
+out += ["**Table F (compact, by planner). Success rate (%) averaged over the five budget tiers, one row per task.** "
+        "All numbers average two training seeds (1024, 1025).", ""]
+for _, sname in SOLS:
+    out += [f"**{sname} planner**", "",
+            "| Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |",
+            "|---|---|---|---|---|---|---|"]
+    for task in D:
+        out.append(f"| {TITLE[task]} | " + " | ".join(r1(avg[(task, sname, n)]) for n in METHODS) + " |")
+    out.append("")
 # Table G: held-out distance alignment of every method (mean of the two training seeds)
 import json
 runs = {(t, n, s): r for t, n, s, r in ckpts}

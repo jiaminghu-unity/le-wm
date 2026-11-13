@@ -160,6 +160,80 @@
 | PointMaze | iCEM | Aux + L2 (β = 0.1) | 82.4 | 76.0 |
 | PointMaze | iCEM | Aux + L2 (β = 1.0) | 78.8 | 76.0 |
 
+**Table F (short, by planner). SCALE and each regression baseline: success rate (%) averaged over the five budget tiers.** All numbers average two training seeds (1024, 1025).
+
+**CEM planner**
+
+| Task | Baseline | Baseline success | SCALE |
+|---|---|---|---|
+| Push-T | Aux | 74.1 | 74.1 |
+| Push-T | Aux + L2 (β = 0.01) | 75.3 | 74.1 |
+| Push-T | Aux + L2 (β = 0.1) | 74.0 | 74.1 |
+| Push-T | Aux + L2 (β = 1.0) | 72.0 | 74.1 |
+| Reacher | Aux | 72.7 | 71.3 |
+| Reacher | Aux + L2 (β = 0.01) | 72.0 | 71.3 |
+| Reacher | Aux + L2 (β = 0.1) | 71.8 | 71.3 |
+| Reacher | Aux + L2 (β = 1.0) | 71.1 | 71.3 |
+| Cube | Aux | 63.3 | 64.6 |
+| Cube | Aux + L2 (β = 0.01) | 63.6 | 64.6 |
+| Cube | Aux + L2 (β = 0.1) | 63.7 | 64.6 |
+| Cube | Aux + L2 (β = 1.0) | 61.2 | 64.6 |
+| Two-Room | Aux | 77.9 | 89.8 |
+| Two-Room | Aux + L2 (β = 0.01) | 80.1 | 89.8 |
+| Two-Room | Aux + L2 (β = 0.1) | 83.1 | 89.8 |
+| Two-Room | Aux + L2 (β = 1.0) | 85.8 | 89.8 |
+| PointMaze | Aux | 87.1 | 77.9 |
+| PointMaze | Aux + L2 (β = 0.01) | 84.1 | 77.9 |
+| PointMaze | Aux + L2 (β = 0.1) | 85.8 | 77.9 |
+| PointMaze | Aux + L2 (β = 1.0) | 81.1 | 77.9 |
+
+**iCEM planner**
+
+| Task | Baseline | Baseline success | SCALE |
+|---|---|---|---|
+| Push-T | Aux | 68.8 | 68.0 |
+| Push-T | Aux + L2 (β = 0.01) | 69.6 | 68.0 |
+| Push-T | Aux + L2 (β = 0.1) | 68.7 | 68.0 |
+| Push-T | Aux + L2 (β = 1.0) | 66.1 | 68.0 |
+| Reacher | Aux | 79.7 | 78.4 |
+| Reacher | Aux + L2 (β = 0.01) | 80.0 | 78.4 |
+| Reacher | Aux + L2 (β = 0.1) | 80.4 | 78.4 |
+| Reacher | Aux + L2 (β = 1.0) | 79.6 | 78.4 |
+| Cube | Aux | 68.7 | 70.6 |
+| Cube | Aux + L2 (β = 0.01) | 68.8 | 70.6 |
+| Cube | Aux + L2 (β = 0.1) | 69.7 | 70.6 |
+| Cube | Aux + L2 (β = 1.0) | 64.7 | 70.6 |
+| Two-Room | Aux | 82.8 | 93.1 |
+| Two-Room | Aux + L2 (β = 0.01) | 85.0 | 93.1 |
+| Two-Room | Aux + L2 (β = 0.1) | 87.3 | 93.1 |
+| Two-Room | Aux + L2 (β = 1.0) | 89.6 | 93.1 |
+| PointMaze | Aux | 85.2 | 76.0 |
+| PointMaze | Aux + L2 (β = 0.01) | 82.5 | 76.0 |
+| PointMaze | Aux + L2 (β = 0.1) | 82.4 | 76.0 |
+| PointMaze | Aux + L2 (β = 1.0) | 78.8 | 76.0 |
+
+**Table F (compact, by planner). Success rate (%) averaged over the five budget tiers, one row per task.** All numbers average two training seeds (1024, 1025).
+
+**CEM planner**
+
+| Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |
+|---|---|---|---|---|---|---|
+| Push-T | 71.0 | 74.1 | 75.3 | 74.0 | 72.0 | 74.1 |
+| Reacher | 71.1 | 72.7 | 72.0 | 71.8 | 71.1 | 71.3 |
+| Cube | 61.3 | 63.3 | 63.6 | 63.7 | 61.2 | 64.6 |
+| Two-Room | 76.8 | 77.9 | 80.1 | 83.1 | 85.8 | 89.8 |
+| PointMaze | 80.3 | 87.1 | 84.1 | 85.8 | 81.1 | 77.9 |
+
+**iCEM planner**
+
+| Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |
+|---|---|---|---|---|---|---|
+| Push-T | 65.2 | 68.8 | 69.6 | 68.7 | 66.1 | 68.0 |
+| Reacher | 79.4 | 79.7 | 80.0 | 80.4 | 79.6 | 78.4 |
+| Cube | 64.9 | 68.7 | 68.8 | 69.7 | 64.7 | 70.6 |
+| Two-Room | 82.0 | 82.8 | 85.0 | 87.3 | 89.6 | 93.1 |
+| PointMaze | 73.4 | 85.2 | 82.5 | 82.4 | 78.8 | 76.0 |
+
 **Table G. Distance alignment of the learned representation.** Spearman correlation between latent distance and ground-truth state distance on held-out data (1,500 samples); higher means latent distances track state distances more closely. Mean of two training seeds (1024, 1025). At β = 1.0 on Push-T, Reacher and Cube the penalty drives the readout weights to zero, so the regression term no longer shapes the representation.
 
 | Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |
