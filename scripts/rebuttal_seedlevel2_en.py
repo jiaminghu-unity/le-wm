@@ -21,6 +21,20 @@ def fp(p):
     return f"{p:.3f}" if round(p, 3) > 0.05 else f"{p:.4f}"
 
 
+# Display convention of the paper (user, 2026-11-13): means printed with plain one-decimal float formatting, and the
+# difference taken between the two PRINTED means -- so rows that repeat the paper's numbers are identical to its
+# Tables 13-17 and to the gains quoted in its Sec. 6.2, and every delta equals the difference of the two columns
+# next to it. The confidence interval and p-value are unchanged (computed from the exact per-episode differences).
+def disp(x):
+    return f"{float(x):.1f}"
+
+
+def dlt(a, b):
+    from decimal import Decimal
+    d = Decimal(disp(a)) - Decimal(disp(b))
+    return f"{d:+}".replace("-", "−")
+
+
 def within_seed(task, sol, a, b, seed):
     da, ka = S.load(task, a, seed, sol)
     db, kb = S.load(task, b, seed, sol)
@@ -62,14 +76,15 @@ for task in S.ARMS:
         if SPLIT:
             for i, seed in enumerate(S.PAPER_SEEDS[task]):
                 sa, sb, d, lo, hi, p = within_seed(task, sol, "SCALE", "LeWM", seed)
-                out.append(f"| {S.TITLE[task]} | {sname} | Submission, run {i + 1} | {S.r1(sb)} | {S.r1(sa)} | {S.r1(d, True)} | "
+                out.append(f"| {S.TITLE[task]} | {sname} | Submission, run {i + 1} | {disp(sb)} | {disp(sa)} | {dlt(sa, sb)} | "
                            f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
         else:
             d, lo, hi, p, pos = S.comp[(task, sname, "LeWM")]
-            out.append(f"| {S.TITLE[task]} | {sname} | Submission (2 runs) | {S.r1(S.avg[(task, sname, 'LeWM')])} | "
-                       f"{S.r1(S.avg[(task, sname, 'SCALE')])} | {S.r1(d, True)} | [{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
+            out.append(f"| {S.TITLE[task]} | {sname} | Submission (2 runs) | {disp(S.avg[(task, sname, 'LeWM')])} | "
+                       f"{disp(S.avg[(task, sname, 'SCALE')])} | {dlt(S.avg[(task, sname, 'SCALE')], S.avg[(task, sname, 'LeWM')])} | "
+                       f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
         sa, sb, d, lo, hi, p = within_seed(task, sol, "SCALE", "LeWM", NEW)
-        out.append(f"| {S.TITLE[task]} | {sname} | New run | {S.r1(sb)} | {S.r1(sa)} | {S.r1(d, True)} | "
+        out.append(f"| {S.TITLE[task]} | {sname} | New run | {disp(sb)} | {disp(sa)} | {dlt(sa, sb)} | "
                    f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
 path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{3 if SPLIT else 2}_PAPER_VS_{NEW}_EN.md")
 print("seeds behind the submission runs:", dict(S.PAPER_SEEDS))
