@@ -4,7 +4,7 @@ State model = LeWM with the image encoder replaced by an MLP over the complete s
 predictor, regulariser and latent-space planning are unchanged. Success % = mean over T1-T5 and
 six 100-episode sets. Each cell: CEM / iCEM. Differences are within the training seed; the last
 column is their mean with a 95% t-interval over the three seeds. `...` = not finished yet.
-State-model cells complete: 10 / 30.
+State-model cells complete: 14 / 30.
 
 ## Push-T
 
@@ -54,9 +54,9 @@ State fed to the model: 2-d: agent position (the only moving quantity).
 | LeWM | 77.9 / 82.9 | 76.0 / 81.4 | 77.5 / 82.6 | 77.2 / 82.3 |
 | SCALE | 89.2 / 92.9 | 89.4 / 93.3 | 90.1 / 92.9 | 89.6 / 93.0 |
 | Aux | 78.1 / 83.1 | 77.4 / 82.6 | 78.3 / 83.1 | 77.9 / 82.9 |
-| State | 82.6 / 88.3 | ... / ... | ... / ... | ... / ... |
-| State − LeWM | +4.7 / +5.4 | ... / ... | ... / ... | ... / ... |
-| State − SCALE | -6.6 / -4.6 | ... / ... | ... / ... | ... / ... |
+| State | 82.6 / 88.3 | 82.2 / 88.0 | 83.0 / 88.2 | 82.6 / 88.2 |
+| State − LeWM | +4.7 / +5.4 | +6.1 / +6.7 | +5.5 / +5.7 | +5.4 [+3.7, +7.2] / +5.9 [+4.3, +7.6] |
+| State − SCALE | -6.6 / -4.6 | -7.3 / -5.3 | -7.1 / -4.6 | -7.0 [-7.9, -6.1] / -4.8 [-5.8, -3.9] |
 
 ## PointMaze
 
