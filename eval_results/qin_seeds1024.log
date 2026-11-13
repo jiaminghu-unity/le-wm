@@ -139,3 +139,5 @@
 [11-13 16:38:47] ev_cube_qfr1025_cem_104 attempt 1 -> raysubmit_PzBNuykA6yS19xXY
 [11-13 16:38:48] ev_cube_qfr1025_icem_101 attempt 1 -> raysubmit_Y2Q2yTfRMmTH1UXY
 [11-13 16:38:49] ev_cube_qfr1025_icem_104 attempt 1 -> raysubmit_RA6tVZ5tXzDRd6q6
+[11-13 17:07:32] status: 0 trainings, 4 eval jobs outstanding; free=10
+[11-13 17:17:07] qin_seeds1024 COMPLETE
