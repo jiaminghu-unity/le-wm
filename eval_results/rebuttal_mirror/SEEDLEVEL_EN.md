@@ -88,7 +88,7 @@
 | PointMaze | iCEM | C (new) | 82.9 | 70.3 | −12.5 | [−14.8, −10.2] | <0.0001 |
 | PointMaze | iCEM | D (new) | 87.6 | 81.6 | −6.0 | [−7.9, −4.1] | <0.0001 |
 
-**Table S3. SCALE − LeWM per training run, with training-seed and evaluation uncertainty reported separately.** Success rate (%) averaged over the five budget tiers; Δ in percentage points. Runs A and B are the two runs of the submission, C and D are new. "Across runs": mean of the four within-run differences, 95% t-interval and two-sided paired t-test over the four training runs (df = 3) — training-seed variability. "Across episodes": the per-episode difference averaged over the four runs, 95% paired t-interval and exact two-sided sign-flip permutation test over the 600 test episodes — evaluation variability.
+**Table S3. SCALE − LeWM per training run, with training-seed and evaluation uncertainty reported separately.** Success rate (%) averaged over the five budget tiers; Δ in percentage points. Runs A and B are the two runs of the submission; runs C and D are new. "Across runs": mean of the four within-run differences, 95% t-interval and two-sided paired t-test over the four training runs (df = 3) — training-seed variability. "Across episodes": the per-episode difference averaged over the four runs, 95% paired t-interval and exact two-sided sign-flip permutation test over the 600 test episodes — evaluation variability.
 
 | Task | Planner | Δ run A | Δ run B | Δ run C | Δ run D | Mean Δ | 95% CI across runs | p across runs | 95% CI across episodes | p across episodes |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -103,7 +103,7 @@
 | PointMaze | CEM | +4.1 | −1.2 | −7.2 | +2.3 | −0.5 | [−8.4, +7.4] | 0.853 | [−1.5, +0.5] | 0.340 |
 | PointMaze | iCEM | +3.2 | +1.8 | +0.5 | +4.7 | +2.6 | [−0.3, +5.4] | 0.066 | [+1.4, +3.7] | <0.0001 |
 
-**Table S4. SCALE − Aux per training run, with training-seed and evaluation uncertainty reported separately.** Success rate (%) averaged over the five budget tiers; Δ in percentage points. Runs A and B are the two runs of the submission, C and D are new. "Across runs": mean of the four within-run differences, 95% t-interval and two-sided paired t-test over the four training runs (df = 3) — training-seed variability. "Across episodes": the per-episode difference averaged over the four runs, 95% paired t-interval and exact two-sided sign-flip permutation test over the 600 test episodes — evaluation variability.
+**Table S4. SCALE − Aux per training run, with training-seed and evaluation uncertainty reported separately.** Success rate (%) averaged over the five budget tiers; Δ in percentage points. Runs A and B are the two runs of the submission; runs C and D are new. "Across runs": mean of the four within-run differences, 95% t-interval and two-sided paired t-test over the four training runs (df = 3) — training-seed variability. "Across episodes": the per-episode difference averaged over the four runs, 95% paired t-interval and exact two-sided sign-flip permutation test over the 600 test episodes — evaluation variability.
 
 | Task | Planner | Δ run A | Δ run B | Δ run C | Δ run D | Mean Δ | 95% CI across runs | p across runs | 95% CI across episodes | p across episodes |
 |---|---|---|---|---|---|---|---|---|---|---|
