@@ -222,16 +222,16 @@ def main():
         assert key in Q_BUILDERS, f"no q builder for {key}; have {sorted(Q_BUILDERS)}"
         build_q = Q_BUILDERS[key]
         print(f"[qinput-any] builder = ({env}, {qdim}d)", flush=True)
-        logged = {"done": False}
+        logged = {"n": 0}
 
         class QInputEval(type(model)):
             def encode(self, info):
                 if "q" in info:
                     return super().encode(info)
-                if not logged["done"]:
+                if logged["n"] < 2:       # first two calls = goal side and live side
                     print(f"[qinput-any] encode keys: {sorted(k for k in info if not k.startswith('goal'))}",
                           flush=True)
-                    logged["done"] = True
+                    logged["n"] += 1
                 x = build_q(info)
                 assert x.size(-1) == qdim, f"q builder gave {x.size(-1)}-d, checkpoint expects {qdim}-d"
                 x = (x - self.q_mean) / self.q_std
