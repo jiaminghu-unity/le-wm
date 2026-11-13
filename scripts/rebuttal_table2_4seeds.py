@@ -28,7 +28,11 @@ METHODS = ("LeWM", "SCALE", "Aux", "DINO-WM")
 PAPER_SEEDS = {"pusht": ("3072", "3073"), "reacher": ("3072", "3073"), "cube": ("3072", "3073"),
                "tworoom": ("3072", "3073"), "pointmaze": ("3072", "3074")}
 DINO_SEEDS = ("3072", "3073")
-NEW_SEEDS = ("1024", "1025")
+NEW_SEEDS = tuple(os.environ.get("NEW_SEEDS", "1024,1025").split(","))  # e.g. NEW_SEEDS=1025 for a three-run table
+NRUN = 2 + len(NEW_SEEDS)
+WORD = {3: "three", 4: "four"}[NRUN]
+NEWTXT = {1: "one new run", 2: "two new runs"}[len(NEW_SEEDS)]
+TAG = "4SEEDS" if NEW_SEEDS == ("1024", "1025") else "PAPER_PLUS_" + "_".join(NEW_SEEDS)
 ALL_SEEDS = ("3072", "3073", "3074", "1024", "1025")
 ES = ["101", "102", "103", "104", "105", "106"]
 TIERS = ["T1", "T2", "T3", "T4", "T5"]
@@ -145,9 +149,9 @@ def build(sol):
 out = []
 for sol, sname in (("icem", "iCEM"), ("cem", "CEM")):
     rows = build(sol)
-    out += [f"**Pooled {sname} success rates (%) across tasks and compute tiers, four training runs.** Each entry "
-            "reports mean ± SD over set-level measurements. LeWM, SCALE and Aux: 24 measurements (four independently "
-            "trained runs — the two runs of the original submission and two new runs — each evaluated on six held-out "
+    out += [f"**Pooled {sname} success rates (%) across tasks and compute tiers, {WORD} training runs.** Each entry "
+            f"reports mean ± SD over set-level measurements. LeWM, SCALE and Aux: {6 * NRUN} measurements ({WORD} independently "
+            f"trained runs — the two runs of the original submission and {NEWTXT} — each evaluated on six held-out "
             "sets of 100 episodes). DINO-WM: 12 measurements (the two runs of the original submission). Overall "
             "averages T1–T5 within each measurement. Bold marks the best method per column within each task.", "",
             "| Task | Method | T1 | T2 | T3 | T4 | T5 | Overall |", "|---|---|---|---|---|---|---|---|"]
@@ -168,7 +172,7 @@ for sol, sname in (("icem", "iCEM"), ("cem", "CEM")):
             out.append(r"\midrule")
     out += [r"\bottomrule", r"\end{tabular}", ""]
 out.append("```")
-p = os.path.join(R, "rebuttal_mirror", "TABLE2_4SEEDS.md")
+p = os.path.join(R, "rebuttal_mirror", f"TABLE2_{TAG}.md")
 open(p, "w").write("\n".join(out) + "\n")
 print("SD convention:", "sample (n-1)" if SAMPLE else "population (n)")
 print("\n".join(out[: out.index("LaTeX (same numbers):")]))
