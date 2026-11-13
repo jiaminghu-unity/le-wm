@@ -35,10 +35,17 @@ def dlt(a, b):
     return f"{d:+}".replace("-", "−")
 
 
+# TIERSEL=T1,T2 restricts the average to those budget tiers (default: all five); only with SPLIT=1.
+SEL = tuple(x for x in os.environ.get("TIERSEL", ",".join(S.TIERS)).split(",") if x)
+assert set(SEL) <= set(S.TIERS)
+
+
 def within_seed(task, sol, a, b, seed):
     da, ka = S.load(task, a, seed, sol)
     db, kb = S.load(task, b, seed, sol)
     assert ka == kb
+    da = {k: v for k, v in da.items() if k[2] in SEL}
+    db = {k: v for k, v in db.items() if k[2] in SEL}
     ref = {(k[0], k[2]): (k[3], k[4]) for k in ka}
     per = collections.defaultdict(int)
     for (es, ep, tier), v in da.items():
@@ -50,7 +57,7 @@ def within_seed(task, sol, a, b, seed):
     den = 1
     for x in cl:
         den = den * x.denominator // math.gcd(den, x.denominator)
-    d = [100 * float(x) / 5 for x in cl]
+    d = [100 * float(x) / len(SEL) for x in cl]
     md, se = st.mean(d), st.stdev(d) / math.sqrt(len(d))
     sa, sb = S.pct(da.values()), S.pct(db.values())
     return sa, sb, sa - sb, md - 1.9639 * se, md + 1.9639 * se, S.perm_p([int(x * den) for x in cl])
@@ -64,6 +71,7 @@ out = ["**Seed-level results, SCALE vs. LeWM: success rate (%) averaged over the
        "and p is from an exact two-sided paired sign-flip permutation test.", "",
        "| Task | Planner | Training runs | LeWM | SCALE | Δ | 95% CI | p-value |", "|---|---|---|---|---|---|---|---|"]
 SPLIT = os.environ.get("SPLIT", "") == "1"       # SPLIT=1: the two submission runs on separate rows as well
+assert SPLIT or len(SEL) == 5, "tier selection is implemented for SPLIT=1 only"
 if SPLIT:
     out[0] = ("**Seed-level results, SCALE vs. LeWM: success rate (%) averaged over the five budget tiers, separately "
               "for each independently trained run.** Runs 1 and 2 are the two training runs of the original submission; "
@@ -86,7 +94,11 @@ for task in S.ARMS:
         sa, sb, d, lo, hi, p = within_seed(task, sol, "SCALE", "LeWM", NEW)
         out.append(f"| {S.TITLE[task]} | {sname} | New run | {disp(sb)} | {disp(sa)} | {dlt(sa, sb)} | "
                    f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
-path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{3 if SPLIT else 2}_PAPER_VS_{NEW}_EN.md")
+if len(SEL) < 5:
+    which = {("T1", "T2"): "the two largest planning budgets (tiers T1 and T2)"}.get(SEL, "tiers " + ", ".join(SEL))
+    out[0] = out[0].replace("averaged over the five budget tiers", f"averaged over {which}")
+    assert which in out[0]
+path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{3 if SPLIT else 2}_PAPER_VS_{NEW}{'_' + ''.join(SEL) if len(SEL) < 5 else ''}_EN.md")
 print("seeds behind the submission runs:", dict(S.PAPER_SEEDS))
 open(path, "w").write("\n".join(out) + "\n")
 print("\n".join(out[2:]))
