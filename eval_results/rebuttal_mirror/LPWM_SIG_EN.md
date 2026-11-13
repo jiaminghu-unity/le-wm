@@ -1,5 +1,5 @@
 **LpWM vs. LpWM+SCALE: planning success rate (%) at each planning-budget tier.**
-Both models are evaluated on the same 600 test episodes (6 sets × 100) with identical planner noise, so outcomes are paired per episode. Budgets (candidates × iterations): T1 300×30, T2 150×15, T3 50×10, T4 20×5, T5 10×3. Δ = LpWM+SCALE − LpWM in percentage points; the 95% CI is a paired t-interval over episodes; p is from an exact two-sided paired sign-flip permutation test. Reacher, Cube, Two-Room and PointMaze average two training seeds (1024, 1025); Push-T uses seed 1024 only, because the LpWM+SCALE run at seed 1025 collapsed during training and that seed is excluded for both models.
+Both models are evaluated on the same 600 test episodes (6 sets × 100) with identical planner noise, so outcomes are paired per episode. Budgets (candidates × iterations): T1 300×30, T2 150×15, T3 50×10, T4 20×5, T5 10×3. Δ = LpWM+SCALE − LpWM in percentage points; the 95% CI is a paired t-interval over episodes; p is from an exact two-sided paired sign-flip permutation test (unadjusted). Reacher, Cube, Two-Room and PointMaze average two training seeds (1024, 1025); Push-T uses seed 1024 only, because the LpWM+SCALE run at seed 1025 collapsed during training and that seed is excluded for both models.
 
 **CEM planner**
 
