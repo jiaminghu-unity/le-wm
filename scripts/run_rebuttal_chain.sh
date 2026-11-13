@@ -90,10 +90,14 @@ for round in $(seq 1 20000); do
         for s in $seeds; do grep -qF "/$evdir/final_${task}_${cfg}_${sol}_s${s}.csv" <<< "$EV" || miss=1; done
         [ "$miss" = 0 ] && continue
         left=1; nev=$((nev+1))
+        # q-input (state-based) models, labels qf*: same launchers, state-key sweeper, and the
+        # q-input trainer uploads every task to ckpts/ (not ckpts_tworoom/ or ckpts_pointmaze/)
+        pre=""
+        case "$cfg" in qf*) pre="env SWEEP_OVERRIDE=scripts/budget_sweep_qinput_any.py CKPT_ROOT_OVERRIDE=ckpts ";; esac
         case "$task" in
-          tworoom)   cmd="bash scripts/ray_eval_tworoom.sh $cfg $run $sol $seeds";;
-          pointmaze) cmd="bash scripts/ray_eval_pointmaze.sh $cfg $run $sol $seeds";;
-          *)         cmd="bash scripts/ray_eval_final.sh $task $cfg $run $sol $seeds";;
+          tworoom)   cmd="${pre}bash scripts/ray_eval_tworoom.sh $cfg $run $sol $seeds";;
+          pointmaze) cmd="${pre}bash scripts/ray_eval_pointmaze.sh $cfg $run $sol $seeds";;
+          *)         cmd="${pre}bash scripts/ray_eval_final.sh $task $cfg $run $sol $seeds";;
         esac
         # shellcheck disable=SC2086
         try "ev_${task}_${cfg}_${sol}_${seeds%% *}" $cmd

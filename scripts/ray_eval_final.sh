@@ -202,7 +202,8 @@ for S in "${SEEDS[@]}"; do
   gcloud storage cp "$BUCKET/eval_sets/$EPSNAME" "$SSD/eps/"
   echo "[run] $TASK $CFG $SOLVER seed=$S"
   set +e
-  python scripts/budget_sweep.py \
+  # SWEEP_OVERRIDE: q-input (state-based) models plan from env state keys, not pixels
+  python "${SWEEP_OVERRIDE:-scripts/budget_sweep.py}" \
     --env "$TASK" --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
     --tiers ${EVAL_TIERS:-T1 T2 T3 T4 T5} \

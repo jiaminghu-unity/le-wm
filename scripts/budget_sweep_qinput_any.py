@@ -21,7 +21,7 @@ key is resolved against both spellings. Cube additionally needs the effector
 columns loaded so _extract_init_goal produces their goal_* twins: the preset is
 FORKED here with an extended keys_to_load (budget_sweep's own dict is untouched).
 
-    usage: budget_sweep_qinput_any.py --env {reacher|cube} [budget_sweep args]
+    usage: budget_sweep_qinput_any.py --env {pusht|reacher|cube|tworoom|pointmaze} [budget_sweep args]
 """
 
 import sys
@@ -110,6 +110,30 @@ def _q_tworoom(info):
     return _get(info, ["proprio", "pos_agent"])[..., :2]
 
 
+# ---- rebuttal R3W6 (2026-11-13): complete-state variants for Push-T and Reacher ----
+from q_native_full import build_q_pusht_native  # noqa: E402
+from q_reacher_full import build_q_reacher_native_full  # noqa: E402
+from utils import build_q_raw, build_q_reacher_joints_finger  # noqa: E402
+
+
+def _q_pusht(info):                      # 6-d: positions + cos/sin(theta)
+    return build_q_raw(_get(info, ["state"]))
+
+
+def _q_pusht_native(info):               # 8-d: + agent velocity (the complete raw state)
+    return build_q_pusht_native(_get(info, ["state"]))
+
+
+def _q_reacher_finger(info):             # 6-d: joints cos/sin + fingertip xy
+    return build_q_reacher_joints_finger(
+        _get(info, ["qpos"])[..., :2], _get(info, ["finger_pos"]))
+
+
+def _q_reacher_native(info):             # 8-d: + joint velocities (the complete state)
+    return build_q_reacher_native_full(
+        _get(info, ["qpos"])[..., :2], _get(info, ["finger_pos"]), _get(info, ["qvel"]))
+
+
 def _q_pointmaze(info):
     # goal 侧经 goal_* 重映射后有 "state"(数据集列);实盘 env 步的同一 4 维
     # (x,y,vx,vy) 放在 "observation" 里(DWMPointMazeEnv.observation_space)。
@@ -118,7 +142,11 @@ def _q_pointmaze(info):
 
 # (env, q_dim) -> builder;q_dim 从 ckpt 的 q_mean 读出,变体免旗标
 Q_BUILDERS = {
+    ("pusht", 6): _q_pusht,
+    ("pusht", 8): _q_pusht_native,
     ("reacher", 4): _q_reacher,
+    ("reacher", 6): _q_reacher_finger,
+    ("reacher", 8): _q_reacher_native,
     ("cube", 9): _q_cube,
     ("cube", 22): _q_cube_full,
     ("tworoom", 2): _q_tworoom,
@@ -160,7 +188,8 @@ def main():
         register(budget_sweep.ENV_PRESETS)
 
     # q 构建输入必须是 RAW 值:去掉这些列上的 StandardScaler
-    _RAW = {"tworoom": ["proprio", "pos_agent"], "pointmaze": ["state", "pos"]}
+    # pusht: same intervention as budget_sweep_qinput.py (the stock sweep z-scores `state`)
+    _RAW = {"tworoom": ["proprio", "pos_agent"], "pointmaze": ["state", "pos"], "pusht": ["state"]}
     if env in _RAW:
         _orig_bp = budget_sweep.build_process
 
@@ -204,6 +233,7 @@ def main():
                           flush=True)
                     logged["done"] = True
                 x = build_q(info)
+                assert x.size(-1) == qdim, f"q builder gave {x.size(-1)}-d, checkpoint expects {qdim}-d"
                 x = (x - self.q_mean) / self.q_std
                 b = x.size(0)
                 flat = rearrange(x, "b t ... -> (b t) ...")

@@ -115,8 +115,8 @@ fi
 gcloud storage cp "$GATELOG" "$BUCKET/eval/" || true
 
 mkdir -p "$STABLEWM_HOME/checkpoints/$CKPT_DIR"
-gcloud storage cp "$BUCKET/ckpts_pointmaze/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
-gcloud storage cp "$BUCKET/ckpts_pointmaze/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
+gcloud storage cp "$BUCKET/${CKPT_ROOT_OVERRIDE:-ckpts_pointmaze}/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
+gcloud storage cp "$BUCKET/${CKPT_ROOT_OVERRIDE:-ckpts_pointmaze}/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
 RC=0
 for S in "${SEEDS[@]}"; do
@@ -128,7 +128,8 @@ for S in "${SEEDS[@]}"; do
   gcloud storage cp "$BUCKET/eval_sets/$EPSNAME" "$SSD/eps/"
   echo "[run] pointmaze $CFG $SOLVER seed=$S"
   set +e
-  python scripts/budget_sweep_pointmaze.py \
+  # SWEEP_OVERRIDE: q-input (state-based) models plan from env state keys, not pixels
+  python "${SWEEP_OVERRIDE:-scripts/budget_sweep_pointmaze.py}" \
     --env pointmaze --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
     --tiers T1 T2 T3 T4 T5 \

@@ -54,6 +54,11 @@ def lejepa_forward(self, batch, stage, cfg):
     # Replace NaN values with 0 (occurs at sequence boundaries)
     batch["action"] = torch.nan_to_num(batch["action"], 0.0)
 
+    # q-input family: the encoder reads batch["q"]. Without it QJEPA.encode falls through to
+    # its planning path and would silently encode a z-scored `state` column instead.
+    if hasattr(self.model, "q_mean"):
+        assert "q" in batch, "q-input model but the batch carries no 'q' (q transform not built)"
+
     output = self.model.encode(batch)
 
     emb = output["emb"]  # (B, T, D)
@@ -218,10 +223,16 @@ def run(cfg):
         swm.data.utils.get_cache_dir(cache_dir, sub_folder="datasets"),
         f"{dataset_name}.q_stats.{q_variant}.json",
     )
-    # q feeds only L_obj / the aux head; with both at 0 (e.g. DINO-WM arms, whose
-    # datasets may lack the default variant's source columns) skip building it.
-    if cfg.loss.obj.weight > 0 or cfg.loss.aux.weight > 0:
+    # q feeds L_obj / the aux head, and it is the INPUT of the q-input family (qjepa.QJEPA).
+    # With none of the three (e.g. DINO-WM arms, whose datasets may lack the default variant's
+    # source columns) skip building it. The q-input clause was missing between 2026-09-14 and
+    # 2026-11-13: every q-input experiment sets loss.obj.weight = 0, so its batches carried no
+    # "q" and QJEPA.encode fell through to its planning path (z-scored `state`, or a KeyError).
+    q_is_input = "qjepa" in str(cfg.model.get("_target_", "")).lower()
+    if cfg.loss.obj.weight > 0 or cfg.loss.aux.weight > 0 or q_is_input:
         transforms.append(get_q_normalizer(dataset, q_stats_path, q_variant))
+        if q_is_input:
+            print(f"[qinput] encoder input = q variant '{q_variant}', stats {q_stats_path}", flush=True)
 
     with open_dict(cfg):
         for col in cfg.data.dataset.keys_to_load:

@@ -88,8 +88,8 @@ fi
 ls -la "$H5"
 
 # ---- checkpoint ----
-gcloud storage cp "$BUCKET/ckpts_tworoom/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
-gcloud storage cp "$BUCKET/ckpts_tworoom/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
+gcloud storage cp "$BUCKET/${CKPT_ROOT_OVERRIDE:-ckpts_tworoom}/$CKPT_DIR/weights_epoch_10.pt" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/"
+gcloud storage cp "$BUCKET/${CKPT_ROOT_OVERRIDE:-ckpts_tworoom}/$CKPT_DIR/config.json" "$STABLEWM_HOME/checkpoints/$CKPT_DIR/" || true
 
 # ---- renderer (cube/reacher need a working mujoco GL backend) ----
 GL=egl
@@ -132,7 +132,8 @@ for S in "${SEEDS[@]}"; do
   gcloud storage cp "$BUCKET/eval_sets/$EPSNAME" "$SSD/eps/"
   echo "[run] $TASK $CFG $SOLVER seed=$S"
   set +e
-  python scripts/budget_sweep_tworoom.py \
+  # SWEEP_OVERRIDE: q-input (state-based) models plan from env state keys, not pixels
+  python "${SWEEP_OVERRIDE:-scripts/budget_sweep_tworoom.py}" \
     --env "$TASK" --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
     --tiers T1 T2 T3 T4 T5 \

@@ -13,6 +13,10 @@
 # and uploads to ckpts/<run>/. Nothing existing is overwritten: replication seeds
 # produce *_s<seed> names that cannot collide with the canonical *_s3072 ones.
 set -euo pipefail
+# RemoveIPC guard (2026-11-12): systemd-logind deletes this user's POSIX shared memory and
+# semaphores when its last login session closes (RemoveIPC=yes is the default), which kills a
+# running DataLoader -- an ssh login/logout as the worker user was enough. Lingering disables it.
+sudo loginctl enable-linger "$(id -un)" >/dev/null 2>&1 || true
 
 TASK="${1:?pusht|reacher|cube}"; shift
 BUCKET=gs://prism-training-us/le-wm
@@ -46,8 +50,8 @@ if ! nvidia-smi >/dev/null 2>&1; then
   nvidia-smi >/dev/null 2>&1 || { echo "[gpu] FATAL: NVML still broken after reload"; exit 43; }
 fi
 dpkg -l | awk '/^ii +(libnvidia|nvidia-)/{print $2}' | xargs -r sudo apt-mark hold >/dev/null 2>&1 || true
-sudo apt-get update -q
-sudo apt-get install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
+sudo apt-get -o DPkg::Lock::Timeout=900 update -q
+sudo apt-get -o DPkg::Lock::Timeout=900 install -y -q swig build-essential zstd libgl1 libglib2.0-0 libxcb1 \
   libsm6 libxext6 libxrender1
 if ! command -v uv >/dev/null; then
   pip install -q uv
@@ -88,7 +92,8 @@ case "$TASK" in
     [ -d "$DS/pusht_expert_train.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/pusht_expert_train.lance" "$DS/pusht_expert_train.lance" ;;
   reacher)
-    [ -f "$DS/reacher.h5" ] || gcloud storage cp "$BUCKET/datasets/reacher.h5" "$DS/"
+    # SKIP_REACHER_H5=1: configs that read reacher.lance directly do not need the 92G h5
+    [ "${SKIP_REACHER_H5:-}" = 1 ] || [ -f "$DS/reacher.h5" ] || gcloud storage cp "$BUCKET/datasets/reacher.h5" "$DS/"
     [ -d "$DS/reacher.lance" ] || \
       gcloud storage rsync -r "$BUCKET/datasets/reacher.lance" "$DS/reacher.lance" ;;
   cube)
