@@ -17,8 +17,16 @@ for i in $(seq 1 90); do nvidia-smi >/dev/null 2>&1 && break; echo "[rb] waiting
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 echo "[rb] driver ok $(date -u +%H:%M:%S)"
 export DEBIAN_FRONTEND=noninteractive
-apt-get -o DPkg::Lock::Timeout=900 -qq update
-apt-get -o DPkg::Lock::Timeout=900 -qq install -y python3-pip
+# apt can sit behind the boot-time apt-daily / unattended-upgrades run for a long time (2026-11-13: 10 of
+# 15 VMs were still at this step 25 min after boot and never joined). Only pip is needed here, so skip apt
+# when pip is already present; either way print who holds the apt/dpkg lock (visible on the serial console).
+echo "[rb] apt holders: $(pgrep -af 'apt|dpkg|unattended' | cut -c1-100 | tr '\n' ';')"
+if python3 -m pip --version >/dev/null 2>&1; then
+  echo "[rb] pip present, apt skipped"
+else
+  timeout 900 apt-get -o DPkg::Lock::Timeout=600 -o Acquire::http::Timeout=30 -o Acquire::Retries=2 -q update 2>&1 | tail -n 4
+  timeout 900 apt-get -o DPkg::Lock::Timeout=600 -q install -y python3-pip 2>&1 | tail -n 4
+fi
 echo "[rb] apt done $(date -u +%H:%M:%S)"
 python3 -m pip install -q "ray[default]==2.56.1" google-api-python-client
 echo "[rb] pip done $(date -u +%H:%M:%S) ray=$(python3 -c 'import ray;print(ray.__version__)' 2>&1 | tail -1)"

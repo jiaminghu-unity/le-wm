@@ -37,9 +37,11 @@ METHODS["Aux"] = (NEW_DIR, NEW_SEEDS, lambda s: f"auxr{s}", lambda stem, s: f"le
 for b in BETAS:
     METHODS[f"Aux + L2 (β = {b.rstrip('0').rstrip('.') if b != '1.0' else '1'})"] = (
         NEW_DIR, NEW_SEEDS, lambda s, b=b: f"auxh{b}r{s}", lambda stem, s, b=b: f"lewm_{stem}_aux0.1_hl2_{b}_s{s}")
+METHODS["State-based"] = (NEW_DIR, NEW_SEEDS, lambda s: f"qfr{s}", lambda stem, s: f"lewm_qinput_{stem}_s{s}")
 METHODS["SCALE (full state)"] = _old("obj", lambda stem, s: f"lewm_{stem}_obj0.1_s{s}")
 METHODS[SWIM] = _old("g03", lambda stem, s: f"lewm_{stem}_scale_gate03_s{s}")
 AUXFAM = [m for m in METHODS if m.startswith("Aux")]
+BASELINES = AUXFAM + ["State-based"]
 SOLS = (("cem", "CEM"), ("icem", "iCEM"))
 ES = [str(e) for e in range(101, 107)]
 missing = []
@@ -155,9 +157,11 @@ runs_txt = {m: "/".join(sorted({str(nruns[(t, s, m)]) for t in TASKS for s, _ in
 defn = ("LeWM is the image-only baseline. Aux adds a head that regresses the full simulator state from the latent "
         "(weight 0.1); Aux + L2 adds a penalty β·‖W‖² on that head's weights inside the same term. SCALE (full state) "
         "aligns latent distances with distances in the full simulator state. SWIM is SCALE with per-dimension state "
-        "weights learned from an inverse (action-prediction) model. LeWM, SCALE and SWIM: training seeds "
-        + ", ".join(OLD_SEEDS) + "; Aux and Aux + L2: training seeds 1024 and 1025.")
-out = ["**Table P. Aux and Aux + L2 on four multi-object manipulation tasks: planning success rate (%) at the "
+        "weights learned from an inverse (action-prediction) model. State-based is LeWM with the image encoder "
+        "replaced by an MLP over the full simulator state (27-d, 32-d, 37-d and 26-d for the four tasks); it sees no "
+        "images. LeWM, SCALE and SWIM: training seeds " + ", ".join(OLD_SEEDS) + "; Aux, Aux + L2 and State-based: "
+        "training seeds 1024 and 1025.")
+out = ["**Table P. Aux, Aux + L2 and a state-based world model on four multi-object manipulation tasks: planning success rate (%) at the "
        "largest planning budget (T1: 300 candidates × 30 iterations).** " + defn + " Each entry averages the "
        "method's training runs over 600 test episodes (6 sets × 100); every model sees the same episodes and "
        "planner noise.", ""]
@@ -173,7 +177,7 @@ for _, sname in SOLS:
     out.append("")
 
 for tab, a in (("Q", SWIM), ("R", "SCALE (full state)")):
-    out += [f"**Table {tab}. {a} against Aux and Aux + L2, with paired significance tests.** Δ = {a} − baseline in "
+    out += [f"**Table {tab}. {a} against Aux, Aux + L2 and the state-based world model, with paired significance tests.** Δ = {a} − baseline in "
             "percentage points (positive = " + a + " better). Outcomes are paired per test episode; each method's "
             "per-episode outcome is first averaged over its training runs. The 95% CI is a paired t-interval over "
             "episodes and p is from an exact two-sided paired sign-flip permutation test. The training seeds of the "
@@ -182,7 +186,7 @@ for tab, a in (("Q", SWIM), ("R", "SCALE (full state)")):
             f"| Task | Planner | Baseline | Baseline SR | {a} SR | Δ | 95% CI | p-value |", "|---|---|---|---|---|---|---|---|"]
     for tname, tasks in [(v[1], [t]) for t, v in TASKS.items()] + [("All four", list(TASKS))]:
         for _, sname in SOLS:
-            for b in AUXFAM:
+            for b in BASELINES:
                 c = compare(a, b, tasks).get(sname)
                 if c is None:
                     continue
@@ -194,7 +198,7 @@ p = os.path.join(R, "rebuttal_mirror", "AUXL2_OGBMULTI_EN.md")
 open(p, "w").write("\n".join(out))
 print("\n".join(out))
 print("reference (not in the file): SWIM and SCALE (full state) against LeWM, and Aux family against LeWM")
-for a, b in [(SWIM, "LeWM"), ("SCALE (full state)", "LeWM"), (SWIM, "SCALE (full state)")] + [(m, "LeWM") for m in AUXFAM]:
+for a, b in [(SWIM, "LeWM"), ("SCALE (full state)", "LeWM"), (SWIM, "SCALE (full state)")] + [(m, "LeWM") for m in BASELINES]:
     for tname, tasks in [(v[1], [t]) for t, v in TASKS.items()] + [("All four", list(TASKS))]:
         for sname, c in compare(a, b, tasks).items():
             print(f"  {a} − {b:18s} {tname:14s} {sname:4s} {r1(c[1])} -> {r1(c[0])}  {r1(c[2], True)} [{sg(c[3])}, {sg(c[4])}] p={fp(c[5])} n={c[6]}")

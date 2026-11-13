@@ -1,28 +1,37 @@
 #!/usr/bin/env bash
-# Monitoring pass for chain auxl2_ogbmulti (Aux / Aux+L2 on the four multi-object tasks, seeds 1024/1025).
+# Monitoring pass for chains auxl2_ogbmulti (Aux / Aux+L2) and qin_ogbmulti (state-based model) on the four
+# multi-object tasks, seeds 1024/1025.
 #   usage: auxl2_tick.sh [wait-minutes]   waits up to that long first (leaves early when the chain
 #          finishes or its process is gone), then prints one status pass and mirrors new eval CSVs.
 # Read-only towards the workers (Ray API and job logs only, never ssh).
 export PATH=/usr/local/bin:/snap/bin:/usr/bin:/bin:$PATH
 export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
 cd /home/jiaming.hu/le-wm || exit 1
-W=${1:-0}; C=auxl2_ogbmulti; LOCK="^flock -n -o /home/jiaming.hu/.rebuttal_$C.lock"
+W=${1:-0}; CHAINS="auxl2_ogbmulti qin_ogbmulti"
+alldone(){ for c in $CHAINS; do [ -f eval_results/$c.DONE ] || return 1; done; }
+anydead(){ for c in $CHAINS; do [ -f eval_results/$c.DONE ] && continue; pgrep -f "^flock -n -o /home/jiaming.hu/.rebuttal_$c.lock" >/dev/null || return 0; done; return 1; }
 end=$(( $(date +%s) + W * 60 ))
-until [ -f eval_results/$C.DONE ] || ! pgrep -f "$LOCK" >/dev/null || [ "$(date +%s)" -ge "$end" ]; do sleep 60; done
+until alldone || anydead || [ "$(date +%s)" -ge "$end" ]; do sleep 60; done
 date -u '+== %m-%d %H:%M UTC =='
-[ -f eval_results/$C.DONE ] && echo "CHAIN DONE"
-pgrep -f "$LOCK" >/dev/null && echo "chain process alive" || echo "CHAIN PROCESS NOT RUNNING"
+alldone && echo "ALL CHAINS DONE"
+for c in $CHAINS; do
+  if [ -f eval_results/$c.DONE ]; then st=DONE; elif pgrep -f "^flock -n -o /home/jiaming.hu/.rebuttal_$c.lock" >/dev/null; then st=alive; else st="PROCESS NOT RUNNING"; fi
+  echo "chain $c: $st | $(grep -E 'status:|COMPLETE|cap' eval_results/$c.log | tail -1 | cut -c1-100)"
+done
 pgrep -f "^bash grab_spot40.sh" >/dev/null && echo "grab daemon alive" || echo "GRAB DAEMON NOT RUNNING"
-echo "chain: $(grep -E 'status:|COMPLETE|cap' eval_results/$C.log | tail -1 | cut -c1-110)"
 B=gs://prism-training-us/le-wm; M=eval_results/rebuttal_mirror/final_eval_ogbmulti; mkdir -p $M
 CK=$(timeout 180 gcloud storage ls "$B/ckpts/lewm_*_aux0.1*_s102[45]/weights_epoch_10.pt" 2>/dev/null | grep -cE 'cubedouble|cubetriple|cubequadruple|scene')
 EV=$(timeout 180 gcloud storage ls "$B/final_eval_ogbmulti/final_*_aux*r102[45]_*.csv" 2>/dev/null | wc -l)
-echo "trained: $CK/32   eval CSVs: $EV/384"
+CKQ=$(timeout 180 gcloud storage ls "$B/ckpts/lewm_qinput_*_s102[45]/weights_epoch_10.pt" 2>/dev/null | grep -cE 'cubedouble|cubetriple|cubequadruple|scene')
+EVQ=$(timeout 180 gcloud storage ls "$B/final_eval_ogbmulti/final_*_qfr102[45]_*.csv" 2>/dev/null | wc -l)
+echo "Aux family: trained $CK/32, eval CSVs $EV/384   |   state model: trained $CKQ/8, eval CSVs $EVQ/96"
 python3 - "$((W + 10))" <<'PY'
 import json, sys, urllib.request, collections, time, re, subprocess
 win = float(sys.argv[1]); now = time.time() * 1000
 d = json.load(urllib.request.urlopen('http://127.0.0.1:8265/api/jobs/', timeout=30))
-def mine(e): return '_aux' in e and '102' in e and ('ray_train_qnative.sh' in e or 'ray_eval_ogbmulti.sh' in e)
+def mine(e):
+    multi = any(t in e for t in (' cube_double ', ' cube_triple ', ' cube_quadruple ', ' scene '))
+    return multi and bool(re.search(r'(_s|seed=)102[45]', e)) and ('_aux' in e or 'qinput' in e) and 'scripts/ray_' in e
 J = [j for j in d if mine(j.get('entrypoint') or '')]
 print("jobs:", dict(collections.Counter(j['status'] for j in J)))
 run = [j for j in J if j['status'] == 'RUNNING']
@@ -65,7 +74,8 @@ for j in sorted(tr, key=lambda j: j['start_time'])[:8]:   # oldest 8 only: `ray 
     print(f"  {age:4.1f}h {name:44s} {p:34s} {g}{flag}")
 PY
 timeout 300 gcloud storage cp -n "$B/final_eval_ogbmulti/final_*_aux*r102[45]_*.csv" $M/ >/dev/null 2>&1
-echo "mirrored CSVs: $(ls $M 2>/dev/null | grep -c 'aux.*r102[45]')"
+timeout 300 gcloud storage cp -n "$B/final_eval_ogbmulti/final_*_qfr102[45]_*.csv" $M/ >/dev/null 2>&1
+echo "mirrored CSVs: $(ls $M 2>/dev/null | grep -cE '(aux.*|qf)r102[45]')"
 echo "grab VMs running: $(timeout 90 gcloud compute instances list --filter='labels.purpose=scale-rebuttal AND status=RUNNING' --format='value(name)' 2>/dev/null | wc -l)"
 since=$(date -u -d "-$((W + 10)) min" '+%Y-%m-%dT%H:%M:%SZ')
 echo "preemptions of grab VMs, last $((W + 10)) min: $(timeout 120 gcloud compute operations list --filter="operationType=compute.instances.preempted AND insertTime>\"$since\" AND targetLink~jm-rb-a40" --format='value(targetLink)' 2>/dev/null | wc -l)"
