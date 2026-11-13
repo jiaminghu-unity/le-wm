@@ -20,6 +20,18 @@ with contextlib.redirect_stdout(io.StringIO()):
 
 RUNNAME = {0: "A (submission)", 1: "B (submission)", 2: "C (new)", 3: "D (new)"}
 NR = 2 + len(NEW); WORD = {3: "three", 4: "four"}[NR]
+# p-value style (user, 2026-11-13): "<0.05" when significant, otherwise the number. P_STYLE=exact restores exact values.
+P_STYLE = os.environ.get("P_STYLE", "thr")
+
+
+def fp(p):
+    if P_STYLE == "exact":
+        return S.fp(p)
+    if p < 0.05:
+        return "<0.05"
+    return f"{p:.3f}" if round(p, 3) > 0.05 else f"{p:.4f}"
+
+
 NEWRUNS = {1: "run C is new", 2: "runs C and D are new"}[len(NEW)]
 TAG = "" if NEW == ("1024", "1025") else "_PAPER_PLUS_" + "_".join(NEW)
 
@@ -70,7 +82,7 @@ for tab, a, b in (("S1", "SCALE", "LeWM"), ("S2", "SCALE", "Aux")):
             for i, seed in enumerate(seeds):
                 sa, sb, d, lo, hi, p = within_seed(task, sol, a, b, seed)
                 out.append(f"| {S.TITLE[task]} | {sname} | {RUNNAME[i]} | {S.r1(sb)} | {S.r1(sa)} | {S.r1(d, True)} | "
-                           f"[{S.sg(lo)}, {S.sg(hi)}] | {S.fp(p)} |")
+                           f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
     out.append("")
 # compact form: one row per task / planner, the four within-run differences, then the two kinds of uncertainty
 for tab, a, b in (("S3", "SCALE", "LeWM"), ("S4", "SCALE", "Aux")):
@@ -88,7 +100,7 @@ for tab, a, b in (("S3", "SCALE", "LeWM"), ("S4", "SCALE", "Aux")):
             pv = t_p(st.mean(ds) / (st.stdev(ds) / math.sqrt(len(ds))), len(ds) - 1)
             d, elo, ehi, ep, pos = S.comp[(task, sname, b)]
             out.append(f"| {S.TITLE[task]} | {sname} | " + " | ".join(S.sg(x) for x in ds) + f" | {S.r1(d, True)} | "
-                       f"[{S.sg(lo)}, {S.sg(hi)}] | {S.fp(pv)} | [{S.sg(elo)}, {S.sg(ehi)}] | {S.fp(ep)} |")
+                       f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(pv)} | [{S.sg(elo)}, {S.sg(ehi)}] | {fp(ep)} |")
     out.append("")
 p = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{TAG}_EN.md")
 open(p, "w").write("\n".join(out))
