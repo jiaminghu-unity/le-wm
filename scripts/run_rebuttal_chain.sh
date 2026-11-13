@@ -100,6 +100,9 @@ for round in $(seq 1 20000); do
         case "$task" in
           tworoom)   cmd="${pre}bash scripts/ray_eval_tworoom.sh $cfg $run $sol $seeds";;
           pointmaze) cmd="${pre}bash scripts/ray_eval_pointmaze.sh $cfg $run $sol $seeds";;
+          # multi-object tasks of the Auto-SCALE grid: same launcher and T1-only protocol as that grid
+          cube_double|cube_triple|cube_quadruple|scene)
+                     cmd="env EVAL_TIERS=T1 bash scripts/ray_eval_ogbmulti.sh $task $cfg $run $sol $seeds";;
           *)         cmd="${pre}bash scripts/ray_eval_final.sh $task $cfg $run $sol $seeds";;
         esac
         # shellcheck disable=SC2086
