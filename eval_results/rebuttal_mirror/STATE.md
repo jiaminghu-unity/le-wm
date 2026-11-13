@@ -4,7 +4,7 @@ State model = LeWM with the image encoder replaced by an MLP over the complete s
 predictor, regulariser and latent-space planning are unchanged. Success % = mean over T1-T5 and
 six 100-episode sets. Each cell: CEM / iCEM. Differences are within the training seed; the last
 column is their mean with a 95% t-interval over the three seeds. `...` = not finished yet.
-State-model cells complete: 26 / 30.
+State-model cells complete: 28 / 30.
 
 ## Push-T
 
@@ -41,9 +41,9 @@ State fed to the model: 22-d: effector pose, gripper, arm joints, block position
 | LeWM | 61.3 / 65.3 | 61.2 / 64.1 | 61.4 / 65.7 | 61.3 / 65.0 |
 | SCALE | 64.1 / 70.5 | 64.8 / 70.1 | 64.4 / 71.0 | 64.4 / 70.5 |
 | Aux | 63.5 / 68.6 | 63.6 / 69.1 | 63.0 / 68.2 | 63.4 / 68.6 |
-| State | 51.3 / 52.0 | ... / ... | ... / ... | ... / ... |
-| State − LeWM | -10.0 / -13.3 | ... / ... | ... / ... | ... / ... |
-| State − SCALE | -12.8 / -18.5 | ... / ... | ... / ... | ... / ... |
+| State | 51.3 / 52.0 | 49.2 / 51.2 | ... / ... | ... / ... |
+| State − LeWM | -10.0 / -13.3 | -12.0 / -12.9 | ... / ... | ... / ... |
+| State − SCALE | -12.8 / -18.5 | -15.6 / -19.0 | ... / ... | ... / ... |
 
 ## Two-Room
 
