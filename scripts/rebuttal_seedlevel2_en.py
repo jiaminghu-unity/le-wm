@@ -49,14 +49,29 @@ out = ["**Seed-level results, SCALE vs. LeWM: success rate (%) averaged over the
        "identical planner noise, so outcomes are paired per episode; the 95% CI is a paired t-interval over episodes "
        "and p is from an exact two-sided paired sign-flip permutation test.", "",
        "| Task | Planner | Training runs | LeWM | SCALE | Δ | 95% CI | p-value |", "|---|---|---|---|---|---|---|---|"]
+SPLIT = os.environ.get("SPLIT", "") == "1"       # SPLIT=1: the two submission runs on separate rows as well
+if SPLIT:
+    out[0] = ("**Seed-level results, SCALE vs. LeWM: success rate (%) averaged over the five budget tiers, separately "
+              "for each independently trained run.** Runs 1 and 2 are the two training runs of the original submission; "
+              "the new run is one additional independently trained run with a new seed. Δ = SCALE − LeWM in percentage "
+              "points. Within each run both methods share the training seed and are evaluated on the same 600 test "
+              "episodes (6 sets × 100) with identical planner noise, so outcomes are paired per episode; the 95% CI is a "
+              "paired t-interval over episodes and p is from an exact two-sided paired sign-flip permutation test.")
 for task in S.ARMS:
     for sol, sname in S.SOLS:
-        d, lo, hi, p, pos = S.comp[(task, sname, "LeWM")]
-        out.append(f"| {S.TITLE[task]} | {sname} | Submission (2 runs) | {S.r1(S.avg[(task, sname, 'LeWM')])} | "
-                   f"{S.r1(S.avg[(task, sname, 'SCALE')])} | {S.r1(d, True)} | [{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
+        if SPLIT:
+            for i, seed in enumerate(S.PAPER_SEEDS[task]):
+                sa, sb, d, lo, hi, p = within_seed(task, sol, "SCALE", "LeWM", seed)
+                out.append(f"| {S.TITLE[task]} | {sname} | Submission, run {i + 1} | {S.r1(sb)} | {S.r1(sa)} | {S.r1(d, True)} | "
+                           f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
+        else:
+            d, lo, hi, p, pos = S.comp[(task, sname, "LeWM")]
+            out.append(f"| {S.TITLE[task]} | {sname} | Submission (2 runs) | {S.r1(S.avg[(task, sname, 'LeWM')])} | "
+                       f"{S.r1(S.avg[(task, sname, 'SCALE')])} | {S.r1(d, True)} | [{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
         sa, sb, d, lo, hi, p = within_seed(task, sol, "SCALE", "LeWM", NEW)
         out.append(f"| {S.TITLE[task]} | {sname} | New run | {S.r1(sb)} | {S.r1(sa)} | {S.r1(d, True)} | "
                    f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
-path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL2_PAPER_VS_{NEW}_EN.md")
+path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{3 if SPLIT else 2}_PAPER_VS_{NEW}_EN.md")
+print("seeds behind the submission runs:", dict(S.PAPER_SEEDS))
 open(path, "w").write("\n".join(out) + "\n")
 print("\n".join(out[2:]))
