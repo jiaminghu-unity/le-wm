@@ -138,6 +138,33 @@ for task in D:
             out.append(f"| {TITLE[task]} | {sname} | {name} | {r1(avg[(task, sname, name)])} | "
                        f"{r1(avg[(task, sname, 'SCALE')])} | {r1(d, True)} | [{sg(lo)}, {sg(hi)}] | {fp(p)} |")
 out.append("")
+# Table F, short form: success only
+out += ["**Table F (short). SCALE and each regression baseline: success rate (%) averaged over the five budget tiers.** "
+        "All numbers average two training seeds (1024, 1025).", "",
+        "| Task | Planner | Baseline | Baseline success | SCALE |", "|---|---|---|---|---|"]
+for task in D:
+    for _, sname in SOLS:
+        for name in BASELINES:
+            out.append(f"| {TITLE[task]} | {sname} | {name} | {r1(avg[(task, sname, name)])} | "
+                       f"{r1(avg[(task, sname, 'SCALE')])} |")
+out.append("")
+# Table G: held-out distance alignment of every method (mean of the two training seeds)
+import json
+runs = {(t, n, s): r for t, n, s, r in ckpts}
+align = {}
+for task in D:
+    for name in METHODS:
+        v = [json.load(open(f"{R}/diag/{task}__{runs[(task, name, s)]}.json"))["rho"]["full_q"]["spearman"] for s in SEEDS]
+        align[(task, name)] = (st.mean(v), v)
+out += ["**Table G. Distance alignment of the learned representation.** Spearman correlation between latent "
+        "distance and ground-truth state distance on held-out data (1,500 samples); higher means latent distances "
+        "track state distances more closely. Mean of two training seeds (1024, 1025). At β = 1.0 on Push-T, Reacher "
+        "and Cube the penalty drives the readout weights to zero, so that model reverts to the LeWM baseline.", "",
+        "| Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |",
+        "|---|---|---|---|---|---|---|"]
+for task in D:
+    out.append(f"| {TITLE[task]} | " + " | ".join(f"{align[(task, n)][0]:.2f}" for n in METHODS) + " |")
+out.append("")
 p = os.path.join(R, "CREG_TABLES_EN.md")
 open(p, "w").write("\n".join(out))
 print("\n".join(out))
