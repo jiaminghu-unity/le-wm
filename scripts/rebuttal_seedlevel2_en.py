@@ -95,8 +95,10 @@ for task in S.ARMS:
         out.append(f"| {S.TITLE[task]} | {sname} | New run | {disp(sb)} | {disp(sa)} | {dlt(sa, sb)} | "
                    f"[{S.sg(lo)}, {S.sg(hi)}] | {fp(p)} |")
 if len(SEL) < 5:
-    which = {("T1", "T2"): "the two largest planning budgets (tiers T1 and T2)"}.get(SEL, "tiers " + ", ".join(SEL))
-    out[0] = out[0].replace("averaged over the five budget tiers", f"averaged over {which}")
+    which = {("T1", "T2"): "averaged over the two largest planning budgets (tiers T1 and T2)",
+             ("T1",): "at the largest planning budget (tier T1)",
+             ("T2",): "at the second-largest planning budget (tier T2)"}.get(SEL, "averaged over tiers " + ", ".join(SEL))
+    out[0] = out[0].replace("averaged over the five budget tiers", which)
     assert which in out[0]
 path = os.path.join(S.R, "rebuttal_mirror", f"SEEDLEVEL{3 if SPLIT else 2}_PAPER_VS_{NEW}{'_' + ''.join(SEL) if len(SEL) < 5 else ''}_EN.md")
 print("seeds behind the submission runs:", dict(S.PAPER_SEEDS))
