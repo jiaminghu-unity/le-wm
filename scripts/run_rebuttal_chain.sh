@@ -46,8 +46,11 @@ lsq(){ local out rc; out=$(timeout 180 gcloud storage ls "$1" 2>&1); rc=$?
 # so the autoscaler treats a demand that also asks for accelerator_type:A100 as unsatisfiable and
 # never scales up for it (seen 2026-11-11: 12 pinned jobs pending, cluster stuck at 8 nodes). Every
 # worker in the pool is an A100 anyway.
+# ENTRY_RESOURCES (optional, e.g. '{"rb": 1}'): extra entrypoint resources. rb exists only on the hand-joined
+# grab VMs (rebuttal_grab/join_startup.sh), so such jobs never land on autoscaler workers and the
+# autoscaler does not scale up for them.
 sub(){
-  timeout 240 ray job submit --entrypoint-num-gpus=1 --no-wait \
+  timeout 240 ray job submit --entrypoint-num-gpus=1 ${ENTRY_RESOURCES:+--entrypoint-resources "$ENTRY_RESOURCES"} --no-wait \
     --working-dir "$REPO" --runtime-env-json "$EXC" -- "$@" 2>&1 \
     | grep -oE "raysubmit_[A-Za-z0-9]+" | head -1; }
 try(){ local key=$1; shift
