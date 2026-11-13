@@ -1,0 +1,17 @@
+[11-13 19:43:24] start: auxl2_ogbmulti (32 models, seeds 1024|1025)
+[11-13 19:43:33] tr_cube_double_auxr1024 attempt 1 -> raysubmit_eHAfBnZYS4Wz8Whp
+[11-13 19:43:34] tr_cube_double_auxh0.01r1024 attempt 1 -> raysubmit_v4xSd9VHMk3VufE3
+[11-13 19:43:35] tr_cube_double_auxh0.1r1024 attempt 1 -> raysubmit_jtvqSbmhTu4s8zKF
+[11-13 19:43:36] tr_cube_double_auxh1.0r1024 attempt 1 -> raysubmit_5vgbYBKFRiU3wyD1
+[11-13 19:43:37] tr_cube_triple_auxr1024 attempt 1 -> raysubmit_3c4Ba3mX9D3imArj
+[11-13 19:43:38] tr_cube_triple_auxh0.01r1024 attempt 1 -> raysubmit_Acv3pNsxHivTQrkL
+[11-13 19:43:39] tr_cube_triple_auxh0.1r1024 attempt 1 -> raysubmit_qYHiS8VykDKZjke3
+[11-13 19:43:40] tr_cube_triple_auxh1.0r1024 attempt 1 -> raysubmit_Virz8UsUDPx3up2N
+[11-13 19:43:41] tr_cube_quadruple_auxr1024 attempt 1 -> raysubmit_syT2iZX91KugV2eB
+[11-13 19:43:41] tr_cube_quadruple_auxh0.01r1024 attempt 1 -> raysubmit_FjGN8vu3ZAPe7Ga3
+[11-13 19:43:42] status: 32 trainings, 0 eval jobs outstanding; free=0
+[11-13 19:50:07] tr_cube_quadruple_auxh0.1r1024 attempt 1 -> raysubmit_3TEKziyy9ZjWyxVB
+[11-13 19:50:07] tr_cube_quadruple_auxh1.0r1024 attempt 1 -> raysubmit_tafJaDW5LXhaGP9c
+[11-13 19:50:08] tr_scene_auxr1024 attempt 1 -> raysubmit_xFk7QKbASHKjqYN6
+[11-13 19:50:09] tr_scene_auxh0.01r1024 attempt 1 -> raysubmit_CvMcXCbhzK33j1cS
+[11-13 19:50:10] tr_scene_auxh0.1r1024 attempt 1 -> raysubmit_eRAznWPN5BzcPSax
