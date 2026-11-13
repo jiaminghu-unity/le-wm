@@ -12,6 +12,8 @@ with SCALE - success without); 95% t-interval over episodes; exact two-sided sig
 Pure standard library.
 """
 import collections, csv, math, os, statistics as st
+from decimal import Decimal, ROUND_HALF_UP
+from fractions import Fraction
 
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "eval_results", "rebuttal_mirror")
 D = {"pusht": "final_eval", "reacher": "final_eval", "cube": "final_eval",
@@ -57,6 +59,18 @@ def sg(x):
     return f"{x:+.1f}".replace("-", "−")
 
 
+def pct(vals):
+    """exact success percentage of a list of 0/1 outcomes"""
+    vals = list(vals)
+    return Fraction(100 * sum(vals), len(vals))
+
+
+def r1(fr, signed=False):
+    """one decimal, exact round-half-up (no binary-float ties)"""
+    d = (Decimal(fr.numerator) / Decimal(fr.denominator)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP)
+    return (f"{d:+}" if signed else f"{d}").replace("-", "−")
+
+
 tier, summ = {}, {}
 for task in D:
     seeds = [s for s in ALL_SEEDS if (task, s) not in EXCLUDE]
@@ -70,8 +84,8 @@ for task in D:
         keys = list(base[seeds[0]])
         for t in TIERS:
             kt = [k for k in keys if k[3] == t]
-            tier[(task, t, sname)] = (100 * st.mean(base[s][k] for s in seeds for k in kt),
-                                      100 * st.mean(scale[s][k] for s in seeds for k in kt))
+            tier[(task, t, sname)] = (pct(base[s][k] for s in seeds for k in kt),
+                                      pct(scale[s][k] for s in seeds for k in kt))
         cl = collections.defaultdict(list)  # unique test episode -> tier-sum differences, one per (occurrence, seed)
         occ = collections.defaultdict(lambda: collections.defaultdict(int))
         for k in keys:
@@ -83,8 +97,8 @@ for task in D:
         d = [100 * st.mean(v) / 5 for v in cl.values()]
         ints = [round(st.mean(v) * 2 * len(seeds)) for v in cl.values()]
         assert all(abs(i - st.mean(v) * 2 * len(seeds)) < 1e-9 for i, v in zip(ints, cl.values()))
-        mb = 100 * st.mean(base[s][k] for s in seeds for k in keys)
-        ms = 100 * st.mean(scale[s][k] for s in seeds for k in keys)
+        mb = pct(base[s][k] for s in seeds for k in keys)
+        ms = pct(scale[s][k] for s in seeds for k in keys)
         md, se = st.mean(d), st.stdev(d) / math.sqrt(n)
         summ[(task, sname)] = (mb, ms, ms - mb, md - 1.9639 * se, md + 1.9639 * se, perm_p(ints))
 
@@ -99,7 +113,7 @@ for task in D:
     for t in TIERS:
         for _, sname in SOLS:
             a, b = tier[(task, t, sname)]
-            out.append(f"| {TITLE[task]} | {t} | {sname} | {a:.1f} | {b:.1f} |")
+            out.append(f"| {TITLE[task]} | {t} | {sname} | {r1(a)} | {r1(b)} |")
 out += ["", "**Table B. LpWM vs. LpWM+SCALE: success rate (%) averaged over the five budget tiers, with paired "
         "significance tests.** Both models are evaluated on the same 600 test episodes with identical planner "
         "noise, so outcomes are paired per episode. Δ = LpWM+SCALE − LpWM in percentage points; the 95% CI is a "
@@ -109,7 +123,7 @@ out += ["", "**Table B. LpWM vs. LpWM+SCALE: success rate (%) averaged over the 
 for task in D:
     for _, sname in SOLS:
         mb, ms, d, lo, hi, p = summ[(task, sname)]
-        out.append(f"| {TITLE[task]} | {sname} | {mb:.1f} | {ms:.1f} | {sg(d)} | [{sg(lo)}, {sg(hi)}] | {fp(p)} |")
+        out.append(f"| {TITLE[task]} | {sname} | {r1(mb)} | {r1(ms)} | {r1(d, True)} | [{sg(lo)}, {sg(hi)}] | {fp(p)} |")
 out.append("")
 p = os.path.join(R, "LPWM_TABLES_EN.md")
 open(p, "w").write("\n".join(out))
