@@ -4,7 +4,7 @@ State model = LeWM with the image encoder replaced by an MLP over the complete s
 predictor, regulariser and latent-space planning are unchanged. Success % = mean over T1-T5 and
 six 100-episode sets. Each cell: CEM / iCEM. Differences are within the training seed; the last
 column is their mean with a 95% t-interval over the three seeds. `...` = not finished yet.
-State-model cells complete: 20 / 30.
+State-model cells complete: 26 / 30.
 
 ## Push-T
 
@@ -15,9 +15,9 @@ State fed to the model: 8-d: agent and block position, block angle (cos/sin), ag
 | LeWM | 70.5 / 63.9 | 70.9 / 65.9 | 71.0 / 64.6 | 70.8 / 64.8 |
 | SCALE | 73.9 / 68.2 | 74.2 / 68.0 | 74.0 / 67.9 | 74.0 / 68.0 |
 | Aux | 74.9 / 69.3 | 74.0 / 69.4 | 74.1 / 68.2 | 74.3 / 69.0 |
-| State | 69.7 / 62.7 | ... / ... | ... / ... | ... / ... |
-| State − LeWM | -0.8 / -1.2 | ... / ... | ... / ... | ... / ... |
-| State − SCALE | -4.1 / -5.5 | ... / ... | ... / ... | ... / ... |
+| State | 69.7 / 62.7 | 70.4 / 63.6 | 68.5 / 62.6 | 69.5 / 63.0 |
+| State − LeWM | -0.8 / -1.2 | -0.6 / -2.3 | -2.5 / -1.9 | -1.3 [-4.0, +1.4] / -1.8 [-3.2, -0.5] |
+| State − SCALE | -4.1 / -5.5 | -3.8 / -4.4 | -5.5 / -5.3 | -4.5 [-6.7, -2.3] / -5.1 [-6.5, -3.6] |
 
 ## Reacher
 
@@ -28,9 +28,9 @@ State fed to the model: 8-d: joint angles (cos/sin), fingertip position, joint v
 | LeWM | 70.6 / 78.0 | 70.9 / 78.7 | 71.2 / 80.0 | 70.9 / 78.9 |
 | SCALE | 71.5 / 81.1 | 71.0 / 78.5 | 71.6 / 78.3 | 71.4 / 79.3 |
 | Aux | 70.4 / 80.2 | 72.1 / 79.3 | 73.3 / 80.2 | 71.9 / 79.9 |
-| State | ... / 90.4 | ... / 90.4 | 83.7 / 90.7 | ... / 90.5 |
-| State − LeWM | ... / +12.4 | ... / +11.6 | +12.5 / +10.7 | ... / +11.6 [+9.4, +13.7] |
-| State − SCALE | ... / +9.3 | ... / +11.9 | +12.1 / +12.4 | ... / +11.2 [+7.1, +15.3] |
+| State | 83.8 / 90.4 | 83.4 / 90.4 | 83.7 / 90.7 | 83.6 / 90.5 |
+| State − LeWM | +13.3 / +12.4 | +12.4 / +11.6 | +12.5 / +10.7 | +12.7 [+11.6, +13.9] / +11.6 [+9.4, +13.7] |
+| State − SCALE | +12.3 / +9.3 | +12.4 / +11.9 | +12.1 / +12.4 | +12.3 [+12.0, +12.6] / +11.2 [+7.1, +15.3] |
 
 ## Cube
 
