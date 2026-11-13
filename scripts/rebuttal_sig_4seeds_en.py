@@ -30,11 +30,13 @@ TITLE = {"pusht": "Push-T", "reacher": "Reacher", "cube": "Cube", "tworoom": "Tw
 PAPER_SEEDS = {"pusht": ("3072", "3073"), "reacher": ("3072", "3073"), "cube": ("3072", "3073"),
                "tworoom": ("3072", "3073"), "pointmaze": ("3072", "3074")}
 DINO_SEEDS = ("3072", "3073")
-NEW_SEEDS = tuple(os.environ.get("NEW_SEEDS", "1024,1025").split(","))  # e.g. NEW_SEEDS=1025 for three runs
+# NEW_SEEDS=1025 -> three runs; NEW_SEEDS= (empty) -> only the two runs pooled in the paper
+NEW_SEEDS = tuple(x for x in os.environ.get("NEW_SEEDS", "1024,1025").split(",") if x)
 NRUN = 2 + len(NEW_SEEDS)
-WORD = {3: "three", 4: "four"}[NRUN]
-NEWTXT = {("1024", "1025"): "two new runs (seeds 1024 and 1025)", ("1025",): "one new run (seed 1025)", ("1024",): "one new run (seed 1024)"}[NEW_SEEDS]
-TAG = "4SEEDS" if NEW_SEEDS == ("1024", "1025") else "PAPER_PLUS_" + "_".join(NEW_SEEDS)
+WORD = {2: "two", 3: "three", 4: "four"}[NRUN]
+NEWTXT = {("1024", "1025"): "two new runs (seeds 1024 and 1025)", ("1025",): "one new run (seed 1025)",
+          ("1024",): "one new run (seed 1024)", (): ""}[NEW_SEEDS]
+TAG = "4SEEDS" if NEW_SEEDS == ("1024", "1025") else ("PAPER_PLUS_" + "_".join(NEW_SEEDS) if NEW_SEEDS else "PAPER_ONLY")
 # Overall column of the paper's Tables 13-17 for DINO-WM (CEM, iCEM), to confirm the seed pair
 PAPER_DINO = {"pusht": (56.5, 51.7), "reacher": (67.0, 73.3), "cube": (60.9, 62.5), "tworoom": (95.6, 98.2),
               "pointmaze": (94.7, 90.4)}
@@ -160,13 +162,14 @@ for task in ARMS:
                 ds = [float(pct(data[("SCALE", s)][k] for k in keys) - pct(data[(other, s)][k] for k in keys)) for s in seeds]
                 pos = sum(x > 0 for x in ds)
                 ms, ses = st.mean(ds), st.stdev(ds) / math.sqrt(len(ds))
-                tc = {3: 4.303, 4: 3.182}[len(ds)]
+                tc = {2: 12.706, 3: 4.303, 4: 3.182}[len(ds)]
                 seedlvl[(task, sname, other)] = (ds, ms - tc * ses, ms + tc * ses, t3_p(ms / ses) if len(ds) == 4 else float("nan"))
             comp[(task, sname, other)] = (avg[(task, sname, "SCALE")] - avg[(task, sname, other)],
                                           md - 1.9639 * se, md + 1.9639 * se, perm_p(ints), pos)
 
-runs_txt = (f"LeWM, SCALE and Aux average {WORD} independently trained runs per task: the two runs pooled in the paper "
-            f"and {NEWTXT}. DINO-WM averages the two runs from the paper.")
+runs_txt = ((f"LeWM, SCALE and Aux average {WORD} independently trained runs per task: the two runs pooled in the paper "
+             f"and {NEWTXT}. DINO-WM averages the two runs from the paper.") if NEW_SEEDS else
+            "Every method averages the two independently trained runs pooled in the paper.")
 pair_txt = ("All models are evaluated on the same 600 test episodes (6 sets × 100) with identical planner noise, so "
             "outcomes are paired per episode. The per-episode difference is averaged over training runs and the five "
             "budget tiers; the 95% CI is a paired t-interval over episodes and p is from an exact two-sided paired "
@@ -181,7 +184,8 @@ for _, sname in SOLS:
                        + f" | {r1(avg[(task, sname, arm)])} |")
     out.append("")
 for letter, other, extra in (("M", "LeWM", f"{WORD} runs per method"), ("N", "Aux", f"{WORD} runs per method"),
-                             ("O", "DINO-WM", f"SCALE: {WORD} runs; DINO-WM: the two runs from the paper")):
+                             ("O", "DINO-WM", f"SCALE: {WORD} runs; DINO-WM: the two runs from the paper" if NEW_SEEDS
+                              else "two runs per method")):
     cols = f"| Task | Planner | {other} | SCALE | Δ | 95% CI | p-value |" + (" Runs with Δ > 0 |" if other != "DINO-WM" else "")
     out += [f"**Table {letter}. SCALE vs. {other}: success rate (%) averaged over the five budget tiers, with paired "
             f"significance tests ({extra}).** Δ = SCALE − {other} in percentage points. " + pair_txt
