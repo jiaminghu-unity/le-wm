@@ -1,0 +1,61 @@
+[11-13 03:14:26] start: qin_seeds1024 (12 models, seeds 1024|1025|3072)
+[11-13 04:13:18] start: qin_seeds1024 (12 models, seeds 1024|1025|3072)
+[11-13 04:13:41] tr_pointmaze_qfr1024 attempt 1 -> raysubmit_jitr4mLcZgki1MQq
+[11-13 04:13:42] tr_pointmaze_qfr1025 attempt 1 -> raysubmit_mQizsKZWBpPdtLVi
+[11-13 04:13:43] tr_tworoom_qfr1024 attempt 1 -> raysubmit_n3PCQgcWfAAwzsaQ
+[11-13 04:13:43] tr_tworoom_qfr1025 attempt 1 -> raysubmit_38y75LBvhZQN8Pq4
+[11-13 04:13:44] tr_pusht_qfr1024 attempt 1 -> raysubmit_6giqGbrZMW35M6UL
+[11-13 04:13:45] tr_pusht_qfr1025 attempt 1 -> raysubmit_iTPieizreSef9WuF
+[11-13 04:13:46] tr_reacher_qfr1024 attempt 1 -> raysubmit_Ct4ZhWGgQUFegqDk
+[11-13 04:13:47] tr_reacher_qfr1025 attempt 1 -> raysubmit_GFQZXHJiLDEnyXPq
+[11-13 04:13:48] tr_cube_qfr1024 attempt 1 -> raysubmit_ZRMuVSc6DpxGwK7f
+[11-13 04:13:49] tr_cube_qfr1025 attempt 1 -> raysubmit_6wPDC93P1gKuYBAf
+[11-13 04:13:49] status: 12 trainings, 0 eval jobs outstanding; free=0
+[11-13 04:20:57] tr_pusht_qfr3072 attempt 1 -> raysubmit_QDSyPPBCDHcR35hC
+[11-13 04:20:58] tr_reacher_qfr3072 attempt 1 -> raysubmit_TrA6aNKgx39QLFdr
+[11-13 04:23:21] tr_tworoom_qfr1024 attempt 2 -> raysubmit_ZipNWDwkcMmWmwr7
+[11-13 04:28:07] tr_reacher_qfr1024 attempt 2 -> raysubmit_N5WE2Dipbnshf4bG
+[11-13 04:28:08] tr_reacher_qfr1025 attempt 2 -> raysubmit_LWiwtq9i49vRncRa
+[11-13 04:28:09] tr_reacher_qfr3072 attempt 2 -> raysubmit_6ZUyQvf3sgB6FLFR
+[11-13 04:42:20] tr_tworoom_qfr1024 attempt 3 -> raysubmit_BN7XeTSSawVHu1wQ
+[11-13 04:42:21] tr_cube_qfr1024 attempt 2 -> raysubmit_z2n5wiE7ir81MEgF
+[11-13 04:42:22] tr_pusht_qfr3072 attempt 2 -> raysubmit_rjzbtVgBSXmnUp2C
+[11-13 04:49:27] status: 12 trainings, 0 eval jobs outstanding; free=10
+[11-13 04:51:50] tr_pointmaze_qfr1025 attempt 2 -> raysubmit_K41hvjmPCm3tvjwN
+[11-13 04:54:12] tr_cube_qfr1024 attempt 3 -> raysubmit_tfXCSXA93Baxv4Rq
+[11-13 04:54:13] tr_cube_qfr1025 attempt 2 -> raysubmit_HW3vnqHxCY8jL7mH
+[11-13 04:56:36] tr_pusht_qfr1024 attempt 2 -> raysubmit_nBVdRYBkmRVC29GA
+[11-13 04:56:37] tr_pusht_qfr1025 attempt 2 -> raysubmit_EEcV6362VHf3vEYD
+[11-13 04:56:38] tr_pusht_qfr3072 attempt 3 -> raysubmit_HL2p1BHuSewDgTSB
+[11-13 05:01:23] tr_tworoom_qfr1025 attempt 2 -> raysubmit_MZbvN3XChDCvg74f
+[11-13 05:03:45] ev_pointmaze_qfr1024_cem_101 attempt 1 -> raysubmit_p16jSfdZPB1v5YxU
+[11-13 05:03:46] ev_pointmaze_qfr1024_cem_104 attempt 1 -> raysubmit_iRrBYYkFxUd4XB17
+[11-13 05:03:47] ev_pointmaze_qfr1024_icem_101 attempt 1 -> raysubmit_S6RyaFccLK1vXFJ4
+[11-13 05:03:48] ev_pointmaze_qfr1024_icem_104 attempt 1 -> raysubmit_WscGU7ac2AdrJkw4
+[11-13 05:03:49] tr_tworoom_qfr1025 attempt 3 -> raysubmit_udf2QWKmGGbJ48ht
+[11-13 05:03:50] tr_reacher_qfr1024 attempt 3 -> raysubmit_LP9L2MZycFyQ8RLZ
+[11-13 05:06:13] tr_pointmaze_qfr1025 attempt 3 -> raysubmit_4eF3QbUFBSR6vmFB
+[11-13 05:06:14] tr_tworoom_qfr1024 attempt 4 -> raysubmit_w3CZi2NDYySgCVPn
+[11-13 05:10:59] tr_tworoom_qfr1024 attempt 5 -> raysubmit_HkENxKFM25XdtzDB
+[11-13 05:11:00] tr_tworoom_qfr1025 attempt 4 -> raysubmit_TtGQ1DscdQ3ads2v
+[11-13 05:11:01] tr_reacher_qfr1024 attempt 4 -> raysubmit_X4aFDVvtyTLYsWjj
+[11-13 05:13:25] tr_reacher_qfr3072 attempt 3 -> raysubmit_gYCkyysuk1hn9JHc
+[11-13 05:15:48] tr_pusht_qfr1025 attempt 3 -> raysubmit_FbCPwDSX7qeTPxqF
+[11-13 05:20:33] tr_pusht_qfr1025 attempt 4 -> raysubmit_wNnSfUMLrVbRiUXp
+[11-13 05:20:34] tr_reacher_qfr3072 attempt 4 -> raysubmit_1Pq182i9BkX94P2M
+[11-13 05:25:19] tr_cube_qfr1025 attempt 3 -> raysubmit_EAAhnHEpmbb6Yqp2
+[11-13 05:25:19] status: 11 trainings, 4 eval jobs outstanding; free=9
+[11-13 05:32:27] tr_pusht_qfr1024 attempt 3 -> raysubmit_G8i5ZxErxVcJXKYC
+[11-13 05:32:28] tr_cube_qfr1024 attempt 4 -> raysubmit_E3w5gfRsq5HSp2Am
+[11-13 05:34:51] tr_pointmaze_qfr1025 attempt 4 -> raysubmit_Zvc3wrCt1EJc7SgC
+[11-13 05:37:13] tr_cube_qfr1024 attempt 5 -> raysubmit_cmfjVWfCind1eZwX
+[11-13 05:37:14] tr_pusht_qfr3072 attempt 4 -> raysubmit_m29V36QvwNvfhh4X
+[11-13 05:39:37] ev_pointmaze_qfr1024_cem_104 attempt 2 -> raysubmit_wfmhLrfihfUqm5MG
+[11-13 05:39:38] tr_pointmaze_qfr1025 attempt 5 -> raysubmit_EsFgq63L1CEixNCP
+[11-13 05:42:01] tr_tworoom_qfr1025 attempt 5 -> raysubmit_xBbVxsNqcCcT1n8M
+[11-13 05:46:46] tr_tworoom_qfr1024 attempt 6 -> raysubmit_CEQWwyyUY53XBxZz
+[11-13 05:49:09] tr_reacher_qfr1024 attempt 5 -> raysubmit_55abvcDnS79yKHqk
+[11-13 05:56:16] tr_pusht_qfr1025 attempt 5 -> raysubmit_r2UPSZ1aM3cizLKs
+[11-13 05:58:39] tr_cube_qfr1025 attempt 4 -> raysubmit_XuBmNQJWxdv51Er1
+[11-13 06:01:02] tr_reacher_qfr1025 attempt 3 -> raysubmit_v4ex9Pua9ihaXes7
+[11-13 06:01:02] status: 11 trainings, 0 eval jobs outstanding; free=9
