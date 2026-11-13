@@ -59,3 +59,4 @@
 [11-13 05:58:39] tr_cube_qfr1025 attempt 4 -> raysubmit_XuBmNQJWxdv51Er1
 [11-13 06:01:02] tr_reacher_qfr1025 attempt 3 -> raysubmit_v4ex9Pua9ihaXes7
 [11-13 06:01:02] status: 11 trainings, 0 eval jobs outstanding; free=9
+[11-13 06:11:28] PAUSED by hand: gpu_reaper.py stops worker VMs ~35 min after start (ray list nodes truncated to 100 rows); waiting for the fix before relaunching

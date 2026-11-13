@@ -6,7 +6,8 @@ export RAY_API_SERVER_ADDRESS='http://127.0.0.1:8265'
 REPO=/home/jiaming.hu/le-wm; B=gs://prism-training-us/le-wm
 cd "$REPO" || exit 1
 EXC='{"excludes":["ckpts","eval_results","assets","artifacts","reports","qgate_jsons",".git","**/__pycache__"]}'
-CK=$(for d in ckpts ckpts_tworoom ckpts_pointmaze; do timeout 120 gcloud storage ls "$B/$d/*_s102[45]/weights_epoch_10.pt" 2>/dev/null; done)
+# lewm_qinput_* (state-input models) have no image encoder: the pixel diagnostics do not apply to them
+CK=$(for d in ckpts ckpts_tworoom ckpts_pointmaze; do timeout 120 gcloud storage ls "$B/$d/*_s102[45]/weights_epoch_10.pt" 2>/dev/null; done | grep -v "/lewm_qinput_")
 DONE=$(timeout 120 gcloud storage ls "$B/eval/rebuttal_diag/" 2>/dev/null)
 ACTIVE=$(python3 -c "
 import json,urllib.request
