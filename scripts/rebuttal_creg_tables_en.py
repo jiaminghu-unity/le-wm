@@ -159,7 +159,8 @@ for task in D:
 out += ["**Table G. Distance alignment of the learned representation.** Spearman correlation between latent "
         "distance and ground-truth state distance on held-out data (1,500 samples); higher means latent distances "
         "track state distances more closely. Mean of two training seeds (1024, 1025). At β = 1.0 on Push-T, Reacher "
-        "and Cube the penalty drives the readout weights to zero, so that model reverts to the LeWM baseline.", "",
+        "and Cube the penalty drives the readout weights to zero, so the regression term no longer shapes the "
+        "representation.", "",
         "| Task | LeWM | Aux | Aux + L2 (β = 0.01) | Aux + L2 (β = 0.1) | Aux + L2 (β = 1.0) | SCALE |",
         "|---|---|---|---|---|---|---|"]
 for task in D:
