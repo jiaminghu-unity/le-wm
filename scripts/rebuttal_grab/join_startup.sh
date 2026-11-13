@@ -4,6 +4,9 @@
 # system-wide ray 2.56.1, 12 CPU / 1 GPU), then watches for idleness and deletes the VM.
 HEAD=10.150.0.3:6379
 exec >> /var/log/rb-join.log 2>&1
+# Mirror this log to the serial console so a VM that never joins can be diagnosed from the head with
+# `gcloud compute instances get-serial-port-output` (no ssh needed).
+( tail -n +1 -F /var/log/rb-join.log 2>/dev/null | sed -u 's/^/[rb-join] /' > /dev/ttyS0 ) &
 echo "[rb] boot $(date -u)"
 md(){ curl -s -H 'Metadata-Flavor: Google' "http://metadata.google.internal/computeMetadata/v1/instance/$1"; }
 NAME=$(md name); ZONE=$(md zone | awk -F/ '{print $NF}')
@@ -12,17 +15,21 @@ id ubuntu >/dev/null 2>&1 || { useradd -m -s /bin/bash ubuntu; echo 'ubuntu ALL=
 grep -qs ubuntu /etc/sudoers.d/* || echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/90-ubuntu
 for i in $(seq 1 90); do nvidia-smi >/dev/null 2>&1 && break; echo "[rb] waiting for nvidia driver ($i)"; sleep 10; done
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
+echo "[rb] driver ok $(date -u +%H:%M:%S)"
 export DEBIAN_FRONTEND=noninteractive
 apt-get -o DPkg::Lock::Timeout=900 -qq update
 apt-get -o DPkg::Lock::Timeout=900 -qq install -y python3-pip
+echo "[rb] apt done $(date -u +%H:%M:%S)"
 python3 -m pip install -q "ray[default]==2.56.1" google-api-python-client
+echo "[rb] pip done $(date -u +%H:%M:%S) ray=$(python3 -c 'import ray;print(ray.__version__)' 2>&1 | tail -1)"
 # Custom resource rb=1 (2026-11-13): chains started with ENTRY_RESOURCES='{"rb": 1}' run only on these
 # hand-joined VMs. The autoscaler's own workers are being stopped ~35 min after start by the head's
 # gpu_reaper cron (it lists Ray nodes with the default 100-row limit and takes the rest for orphans).
 # RemoveIPC guard: without lingering, any ssh logout as ubuntu wipes the shared memory of running jobs
 loginctl enable-linger ubuntu || true
 for i in 1 2 3 4 5; do
-  sudo -u ubuntu -H bash -lc "ray stop >/dev/null 2>&1; ray start --address=$HEAD --num-cpus=12 --num-gpus=1 --resources='{\"rb\": 1}' --disable-usage-stats" && break
+  echo "[rb] ray start attempt $i $(date -u +%H:%M:%S)"
+  timeout 300 sudo -u ubuntu -H bash -lc "ray stop >/dev/null 2>&1; ray start --address=$HEAD --num-cpus=12 --num-gpus=1 --resources='{\"rb\": 1}' --disable-usage-stats" && break
   echo "[rb] ray start failed ($i), retry"; sleep 30
 done
 echo "[rb] joined $(date -u)"

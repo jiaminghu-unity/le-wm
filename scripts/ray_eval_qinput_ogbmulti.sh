@@ -15,6 +15,8 @@ OUTP="$BUCKET/final_eval_ogbmulti"
 case "$TASK" in
   cube_double) LANCE=cube_double_play.lance ;;
   scene)       LANCE=scene_play.lance ;;
+  cube_triple)    LANCE=cube_triple_play.lance ;;
+  cube_quadruple) LANCE=cube_quadruple_play.lance ;;
   *) echo "unknown task $TASK" >&2; exit 1 ;;
 esac
 
@@ -119,7 +121,7 @@ for S in "${SEEDS[@]}"; do
   python scripts/budget_sweep_qinput_any.py \
     --env "$TASK" --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
-    --tiers T1 T2 T3 T4 T5 \
+    --tiers ${EVAL_TIERS:-T1 T2 T3 T4 T5} \
     --episodes-json "$SSD/eps/$EPSNAME" \
     --out "$SSD/$OUT" 2>&1 | tail -40
   rc=${PIPESTATUS[0]}; set -e

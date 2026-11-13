@@ -73,7 +73,7 @@ def _q_cube_full(info):
     )
 
 
-from q_ogb_multi import build_q_cube_double_full, build_q_scene_full  # noqa: E402
+from q_ogb_multi import _build_cube_n, build_q_cube_double_full, build_q_scene_full  # noqa: E402
 
 _ARM_KEYS = [["proprio/effector_pos", "proprio_effector_pos"],
              ["proprio/effector_yaw", "proprio_effector_yaw"],
@@ -91,6 +91,17 @@ def _q_cube_double(info):
         _get(info, ["privileged/block_1_pos", "privileged_block_1_pos"]),
         _get(info, ["privileged/block_1_yaw", "privileged_block_1_yaw"]),
     )
+
+
+def _q_cube_n(n):
+    """cube_triple (32-d) / cube_quadruple (37-d): same column order as q_ogb_multi's variants"""
+    def build(info):
+        cols = [_get(info, ks) for ks in _ARM_KEYS]
+        for i in range(n):
+            cols.append(_get(info, [f"privileged/block_{i}_pos", f"privileged_block_{i}_pos"]))
+            cols.append(_get(info, [f"privileged/block_{i}_yaw", f"privileged_block_{i}_yaw"]))
+        return _build_cube_n(n, *cols)
+    return build
 
 
 def _q_scene(info):
@@ -153,6 +164,8 @@ Q_BUILDERS = {
     ("pointmaze", 4): _q_pointmaze,
     ("cube_double", 27): _q_cube_double,
     ("scene", 26): _q_scene,
+    ("cube_triple", 32): _q_cube_n(3),
+    ("cube_quadruple", 37): _q_cube_n(4),
 }
 
 
@@ -161,7 +174,7 @@ def main():
     envs_known = sorted({e for e, _ in Q_BUILDERS})
     assert env in envs_known, f"--env must be one of {envs_known}"
 
-    if env in ("cube_double", "scene"):
+    if env in ("cube_double", "scene", "cube_triple", "cube_quadruple"):
         from scripts import ogbmulti_preset
         ogbmulti_preset.register(budget_sweep.ENV_PRESETS)
         ogbmulti_preset.install_lance_dispatch(budget_sweep)
