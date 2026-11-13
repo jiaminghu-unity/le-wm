@@ -114,6 +114,16 @@ for task in D:
         for _, sname in SOLS:
             a, b = tier[(task, t, sname)]
             out.append(f"| {TITLE[task]} | {t} | {sname} | {r1(a)} | {r1(b)} |")
+# same numbers, wide layout: one table per planner, tiers as columns
+out += ["", "**Table A (wide layout): one table per planner; columns are the budget tiers, Avg. is the mean over "
+        "the five tiers.**", ""]
+for _, sname in SOLS:
+    out += [f"**{sname} planner**", "", "| Task | Method | T1 | T2 | T3 | T4 | T5 | Avg. |", "|---|---|---|---|---|---|---|---|"]
+    for task in D:
+        for j, meth in enumerate(("LpWM", "LpWM+SCALE")):
+            out.append(f"| {TITLE[task]} | {meth} | " + " | ".join(r1(tier[(task, t, sname)][j]) for t in TIERS)
+                       + f" | {r1(summ[(task, sname)][j])} |")
+    out.append("")
 out += ["", "**Table B. LpWM vs. LpWM+SCALE: success rate (%) averaged over the five budget tiers, with paired "
         "significance tests.** Both models are evaluated on the same 600 test episodes with identical planner "
         "noise, so outcomes are paired per episode. Δ = LpWM+SCALE − LpWM in percentage points; the 95% CI is a "

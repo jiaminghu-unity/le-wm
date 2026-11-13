@@ -53,6 +53,39 @@
 | PointMaze | T5 | CEM | 68.7 | 71.1 |
 | PointMaze | T5 | iCEM | 64.3 | 67.4 |
 
+**Table A (wide layout): one table per planner; columns are the budget tiers, Avg. is the mean over the five tiers.**
+
+**CEM planner**
+
+| Task | Method | T1 | T2 | T3 | T4 | T5 | Avg. |
+|---|---|---|---|---|---|---|---|
+| Push-T | LpWM | 75.2 | 71.5 | 61.0 | 43.2 | 33.5 | 56.9 |
+| Push-T | LpWM+SCALE | 77.7 | 78.3 | 69.2 | 52.3 | 31.3 | 61.8 |
+| Reacher | LpWM | 78.3 | 76.0 | 72.8 | 63.9 | 55.4 | 69.3 |
+| Reacher | LpWM+SCALE | 77.4 | 76.5 | 72.5 | 64.0 | 55.5 | 69.2 |
+| Cube | LpWM | 66.8 | 65.8 | 60.3 | 56.0 | 55.8 | 61.0 |
+| Cube | LpWM+SCALE | 71.8 | 70.8 | 63.8 | 55.9 | 54.7 | 63.4 |
+| Two-Room | LpWM | 95.7 | 94.3 | 90.2 | 79.8 | 66.8 | 85.4 |
+| Two-Room | LpWM+SCALE | 99.8 | 99.5 | 96.3 | 88.4 | 77.6 | 92.3 |
+| PointMaze | LpWM | 72.8 | 72.4 | 71.3 | 68.3 | 68.7 | 70.7 |
+| PointMaze | LpWM+SCALE | 84.3 | 83.6 | 82.5 | 77.1 | 71.1 | 79.7 |
+
+**iCEM planner**
+
+| Task | Method | T1 | T2 | T3 | T4 | T5 | Avg. |
+|---|---|---|---|---|---|---|---|
+| Push-T | LpWM | 72.5 | 67.8 | 60.2 | 42.8 | 28.7 | 54.4 |
+| Push-T | LpWM+SCALE | 73.3 | 69.0 | 60.3 | 42.2 | 26.5 | 54.3 |
+| Reacher | LpWM | 81.8 | 79.8 | 80.8 | 76.2 | 60.2 | 75.7 |
+| Reacher | LpWM+SCALE | 81.8 | 80.8 | 80.0 | 76.8 | 62.2 | 76.3 |
+| Cube | LpWM | 72.7 | 72.4 | 70.9 | 60.0 | 56.2 | 66.4 |
+| Cube | LpWM+SCALE | 77.0 | 76.4 | 75.6 | 63.1 | 56.9 | 69.8 |
+| Two-Room | LpWM | 96.9 | 96.3 | 93.2 | 84.8 | 71.1 | 88.5 |
+| Two-Room | LpWM+SCALE | 99.6 | 99.5 | 98.2 | 92.0 | 83.1 | 94.5 |
+| PointMaze | LpWM | 64.3 | 62.3 | 62.3 | 63.2 | 64.3 | 63.3 |
+| PointMaze | LpWM+SCALE | 77.3 | 75.7 | 74.9 | 72.8 | 67.4 | 73.6 |
+
+
 **Table B. LpWM vs. LpWM+SCALE: success rate (%) averaged over the five budget tiers, with paired significance tests.** Both models are evaluated on the same 600 test episodes with identical planner noise, so outcomes are paired per episode. Δ = LpWM+SCALE − LpWM in percentage points; the 95% CI is a paired t-interval over episodes; p is from an exact two-sided paired sign-flip permutation test. Reacher, Cube, Two-Room and PointMaze average two training seeds (1024, 1025); Push-T uses seed 1024 only, because the LpWM+SCALE run at seed 1025 collapsed during training and that seed is excluded for both models.
 
 | Task | Planner | LpWM | LpWM+SCALE | Δ | 95% CI | p-value |
