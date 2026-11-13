@@ -11,3 +11,4 @@ plus `config.json`. Code, configs and results are on the `rebuttal` branch
 - `lewm_lpwmr_<task>_{base,scale}` LpWM and LpWM+SCALE
 - `*_hl2_<b>` / `*_hl2pilot_<b>` Aux with an L2 penalty of strength b on the readout
 - `lewm_rq_<task>_{high,low}` SCALE on the high- or low-recoverability subset of the task state
+- `lewm_qinput_*` state-based world model: the image encoder is replaced by an MLP over the complete simulator state (Push-T 8-d, Reacher 8-d, Cube 22-d, Two-Room 2-d, PointMaze 4-d); the two `_s3072` runs were trained in the same round
