@@ -121,7 +121,7 @@ for S in "${SEEDS[@]}"; do
   python scripts/budget_sweep_qinput_any.py \
     --env "$TASK" --solver "$SOLVER" \
     --config "$CFG" "$CKPT_DIR/weights_epoch_10.pt" \
-    --tiers ${EVAL_TIERS:-T1 T2 T3 T4 T5} \
+    --tiers $(echo "${EVAL_TIERS:-T1,T2,T3,T4,T5}" | tr ',' ' ') \
     --episodes-json "$SSD/eps/$EPSNAME" \
     --out "$SSD/$OUT" 2>&1 | tail -40
   rc=${PIPESTATUS[0]}; set -e
