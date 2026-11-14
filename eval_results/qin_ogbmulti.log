@@ -1,0 +1,71 @@
+[11-13 20:17:00] start: qin_ogbmulti (8 models, seeds 1024|1025)
+[11-13 20:17:09] tr_cube_double_qfr1024 attempt 1 -> raysubmit_8R23eqfyHUEW3T1K
+[11-13 20:17:10] tr_cube_triple_qfr1024 attempt 1 -> raysubmit_usYWkSMWyFKBfpnw
+[11-13 20:17:11] tr_cube_quadruple_qfr1024 attempt 1 -> raysubmit_m4uDCAW3tFc9PeMg
+[11-13 20:17:12] tr_scene_qfr1024 attempt 1 -> raysubmit_2iAQh2SWe2mebdbq
+[11-13 20:17:12] tr_cube_double_qfr1025 attempt 1 -> raysubmit_9jAgxsSKiy45wua3
+[11-13 20:17:13] status: 8 trainings, 0 eval jobs outstanding; free=0
+[11-13 20:21:29] tr_cube_double_qfr1024 attempt 2 -> raysubmit_cGHyAs27cgwb4QcW
+[11-13 20:21:30] tr_cube_triple_qfr1024 attempt 2 -> raysubmit_EymeHNE3rDhEQNMz
+[11-13 20:21:31] tr_cube_quadruple_qfr1024 attempt 2 -> raysubmit_DpYPnzb4jSxduGar
+[11-13 20:21:32] tr_scene_qfr1024 attempt 2 -> raysubmit_MnQV7YYmt7i5YB1R
+[11-13 20:21:33] tr_cube_double_qfr1025 attempt 2 -> raysubmit_e61vsq3XNMAzku97
+[11-13 20:21:34] tr_cube_triple_qfr1025 attempt 1 -> raysubmit_GAM6TMY32WxPyP5s
+[11-13 20:21:35] tr_cube_quadruple_qfr1025 attempt 1 -> raysubmit_VyCuc1gX7J3gerrt
+[11-13 20:21:36] tr_scene_qfr1025 attempt 1 -> raysubmit_wPEPnPSgyjE3eSRe
+[11-13 20:23:45] tr_cube_double_qfr1024 attempt 3 -> raysubmit_SuCBEF9Pp3XHg3C1
+[11-13 20:23:45] tr_cube_triple_qfr1024 attempt 3 -> raysubmit_Vk69DCkw8kGMPYaH
+[11-13 20:23:46] tr_cube_quadruple_qfr1024 attempt 3 -> raysubmit_u26P8yWfWynAdnH6
+[11-13 20:23:47] tr_scene_qfr1024 attempt 3 -> raysubmit_bF1bgBBic4VGhEFm
+[11-13 20:23:48] tr_cube_double_qfr1025 attempt 3 -> raysubmit_TDAcsGLXVf9Rkhcy
+[11-13 20:23:49] tr_cube_triple_qfr1025 attempt 2 -> raysubmit_hbkQwhAVigUdrZCh
+[11-13 20:23:50] tr_cube_quadruple_qfr1025 attempt 2 -> raysubmit_ELeJS8QFg2kLw5Hw
+[11-13 20:23:51] tr_scene_qfr1025 attempt 2 -> raysubmit_UWCT4DQHaUWCZBQH
+[11-13 20:40:54] tr_cube_quadruple_qfr1025 attempt 3 -> raysubmit_atRxLDNKghHGfeC7
+[11-13 20:49:26] status: 8 trainings, 0 eval jobs outstanding; free=1
+[11-13 20:57:58] tr_cube_quadruple_qfr1025 attempt 4 -> raysubmit_WqDbwvsUMiYeTbnv
+[11-13 21:15:03] tr_cube_quadruple_qfr1025 attempt 5 -> raysubmit_dWUePXubyDwZaHx1
+[11-13 21:19:19] tr_cube_double_qfr1024 attempt 4 -> raysubmit_amNYjw7KGxeMMq8m
+[11-13 21:21:27] status: 8 trainings, 0 eval jobs outstanding; free=2
+[11-13 21:36:23] tr_cube_double_qfr1024 attempt 5 -> raysubmit_E4MAcUJeUvGhfTeq
+[11-13 21:53:26] status: 8 trainings, 0 eval jobs outstanding; free=0
+[11-13 21:55:34] tr_cube_double_qfr1024 attempt 6 -> raysubmit_ASC1Cgcbq1LaFrc4
+[11-13 21:59:51] ev_cube_double_qfr1025_cem_101 attempt 1 -> raysubmit_2yvctt5EbqSrnnZH
+[11-13 21:59:52] ev_cube_double_qfr1025_cem_104 attempt 1 -> raysubmit_izwzTNPQSjki9Pss
+[11-13 22:02:01] ev_cube_double_qfr1025_icem_101 attempt 1 -> raysubmit_mkYWsXyBeUjYq7xP
+[11-13 22:02:02] ev_cube_double_qfr1025_icem_104 attempt 1 -> raysubmit_crbCiyHHRsXktJdj
+[11-13 22:08:27] ev_cube_quadruple_qfr1024_cem_101 attempt 1 -> raysubmit_Pfy1VjQCvmrn8ueN
+[11-13 22:08:28] ev_cube_quadruple_qfr1024_cem_104 attempt 1 -> raysubmit_ebqb3KxqUBrS7e73
+[11-13 22:08:29] ev_cube_quadruple_qfr1024_icem_101 attempt 1 -> raysubmit_tqsYbPYQpNJqs3KF
+[11-13 22:08:30] ev_cube_quadruple_qfr1024_icem_104 attempt 1 -> raysubmit_ViXLc47psewm3Wku
+[11-13 22:14:55] tr_cube_double_qfr1024 attempt 7 -> raysubmit_3iyNM4dVPdVpu2ci
+[11-13 22:19:13] ev_cube_triple_qfr1024_cem_101 attempt 1 -> raysubmit_7JWXXMPUbtCLYDhw
+[11-13 22:25:39] ev_cube_triple_qfr1024_cem_104 attempt 1 -> raysubmit_7eVxPe3iW9Wf79Lp
+[11-13 22:25:40] ev_cube_triple_qfr1024_icem_101 attempt 1 -> raysubmit_9XBV2q7y5zR7ubnb
+[11-13 22:25:40] ev_cube_triple_qfr1024_icem_104 attempt 1 -> raysubmit_1hk7NSidmehdwCbp
+[11-13 22:25:41] ev_cube_quadruple_qfr1024_cem_101 attempt 2 -> raysubmit_urjn7NwM3a494UZw
+[11-13 22:25:42] ev_cube_double_qfr1025_icem_101 attempt 2 -> raysubmit_PQz1GFwkYaGYva4m
+[11-13 22:25:42] status: 3 trainings, 19 eval jobs outstanding; free=0
+[11-13 22:30:00] ev_scene_qfr1024_cem_101 attempt 1 -> raysubmit_DGHBvAq3GajcDnTa
+[11-13 22:30:01] ev_scene_qfr1024_cem_104 attempt 1 -> raysubmit_86p6BwLVNnT5Zc1B
+[11-13 22:34:19] ev_scene_qfr1024_icem_101 attempt 1 -> raysubmit_qpZUNYwTXsBSuMtj
+[11-13 22:36:29] ev_scene_qfr1024_icem_104 attempt 1 -> raysubmit_VzsbbPEDQwQM4ygV
+[11-13 22:38:39] ev_cube_triple_qfr1025_cem_101 attempt 1 -> raysubmit_rSAG4GMCTbfaEVGw
+[11-13 22:38:39] ev_cube_triple_qfr1025_cem_104 attempt 1 -> raysubmit_iHDWPwaiTaz4wz6j
+[11-13 22:38:40] ev_cube_triple_qfr1025_icem_101 attempt 1 -> raysubmit_D2d5XEnGsatRVtYJ
+[11-13 22:40:50] ev_cube_triple_qfr1025_icem_104 attempt 1 -> raysubmit_XzyXRayXmJxHywHn
+[11-13 22:40:51] ev_scene_qfr1025_cem_101 attempt 1 -> raysubmit_pfWYHuuFGKZMJmyX
+[11-13 22:40:52] ev_scene_qfr1025_cem_104 attempt 1 -> raysubmit_xgedyr6jzmqHEagN
+[11-13 22:40:53] ev_scene_qfr1025_icem_101 attempt 1 -> raysubmit_z6ras9HdUEJsXZen
+[11-13 22:40:54] ev_scene_qfr1025_icem_104 attempt 1 -> raysubmit_nMA9DcHEMnKNGHaT
+[11-13 22:58:06] status: 2 trainings, 7 eval jobs outstanding; free=3
+[11-13 23:13:11] ev_cube_quadruple_qfr1025_cem_101 attempt 1 -> raysubmit_Vh8TCj6CKqXdMGd5
+[11-13 23:13:12] ev_cube_quadruple_qfr1025_cem_104 attempt 1 -> raysubmit_iDVHu63XXauir1Jg
+[11-13 23:13:12] ev_cube_quadruple_qfr1025_icem_101 attempt 1 -> raysubmit_7KXXLAfh9i3GxKVK
+[11-13 23:13:13] ev_cube_quadruple_qfr1025_icem_104 attempt 1 -> raysubmit_S7PSz9Zb1s3dLRiW
+[11-13 23:30:27] status: 1 trainings, 3 eval jobs outstanding; free=1
+[11-13 23:45:31] ev_cube_double_qfr1024_cem_101 attempt 1 -> raysubmit_hjVEzDEwpHS5tnTC
+[11-13 23:45:32] ev_cube_double_qfr1024_cem_104 attempt 1 -> raysubmit_Zfct1BL3rFNHuJEq
+[11-13 23:45:33] ev_cube_double_qfr1024_icem_101 attempt 1 -> raysubmit_AAjgTa3x1qdFBeEB
+[11-13 23:45:34] ev_cube_double_qfr1024_icem_104 attempt 1 -> raysubmit_dpWcy8NUXzC1CyFE
+[11-14 00:02:47] qin_ogbmulti COMPLETE
